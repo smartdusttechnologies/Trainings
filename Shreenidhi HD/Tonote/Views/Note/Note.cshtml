@@ -1,21 +1,21 @@
 ﻿@model Tonote.Models.NoteModule
 
 @{
-    ViewData["Title"] = "Note";
+    ViewData["Title"] = "Note Add";
 }
 
 <h1>Note</h1>
 
-<h4>Add Note</h4>
+<h4>NoteModule</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Note">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NoteId" class="control-label"></label>
-                <input asp-for="NoteId" class="form-control" />
-                <span asp-validation-for="NoteId" class="text-danger"></span>
+                <label asp-for="ID" class="control-label"></label>
+                <input asp-for="ID" class="form-control" />
+                <span asp-validation-for="ID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -25,9 +25,7 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-            <div class="bg-success">
-                @ViewBag.Msg
-            </div>
+            <b>@ViewData["Message"]</b>
         </form>
     </div>
 </div>

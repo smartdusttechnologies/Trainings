@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tonote.Models;
+using Dapper;
+using System.Data.SqlClient;
 
 namespace Tonote.Controllers
 {
@@ -13,16 +15,19 @@ namespace Tonote.Controllers
         {
             return View();
         }
-        public ActionResult Note()
+        public IActionResult Note()
         {
 
             return View();
         }
         [HttpPost]
-        public ActionResult Note(NoteModule obj)
+        public IActionResult Note(NoteModule Note)
         {
-            ViewBag.Msg = "The Note Name" + obj.Name + "added";
-            return View();
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@ID",Note.ID);
+            param.Add("@Name",Note.Name);
+            Notedb.ExecuteWithoutReturn("Note", param);
+            return RedirectToAction("Index");
         }
     }
 }

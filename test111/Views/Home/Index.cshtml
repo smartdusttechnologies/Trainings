@@ -1,0 +1,58 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="table table-borderless" style="background-color: ghostwhite;">
+                <tr class="border-bottom">
+                    <th>To Do(3)</th>
+                </tr>
+                <tr class="border-bottom">
+                    <td><span class="glyphicon glyphicon-plus bg-danger"></span><b>Add Task</b></td>
+                </tr>
+                <tr class="border-bottom">
+                     <td><input type="checkbox" value="">&nbsp;@Model.ShowRequestId</></td>
+                </tr>
+                <tr class="border-bottom">
+                    <td><input type="checkbox" value="">&nbsp;new</></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <table class="table table-borderless" style="background-color: ghostwhite;">
+                <tr class="border-bottom">
+                    <th>In Progress(0)</th>
+                </tr>
+                <tr class="border-bottom">
+                    <th><p></p></th>
+                </tr>
+                <tr class="border-bottom">
+                    <td><input type="checkbox" value="">&nbsp;new</></td>
+                </tr>
+                <tr class="border-bottom">
+                    <td><input type="checkbox" value="">&nbsp;new</></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <table class="table table-borderless" style="background-color: ghostwhite;">
+                <tr class="border-bottom">
+                    <th>Completed(3)</th>
+                </tr>
+                <tr class="border-bottom">
+                    <th><p></p></th>
+                </tr>
+                <tr class="border-bottom">
+                    <td><input type="checkbox" value="">&nbsp;new</></td>
+                </tr>
+                <tr class="border-bottom">
+                    <td><input type="checkbox" value="">&nbsp;new</></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
