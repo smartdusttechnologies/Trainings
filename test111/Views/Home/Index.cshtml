@@ -11,10 +11,10 @@
                     <th>To Do(3)</th>
                 </tr>
                 <tr class="border-bottom">
-                    <td><span class="glyphicon glyphicon-plus bg-danger"></span><b>Add Task</b></td>
+                    <td><span class="glyphicon glyphicon-plus bg-danger"></span><button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add task</button></td>
                 </tr>
                 <tr class="border-bottom">
-                     <td><input type="checkbox" value="">&nbsp;@Model.ShowRequestId</></td>
+                    <td><input type="checkbox" value="">&nbsp;@Model.ShowRequestId</></td>
                 </tr>
                 <tr class="border-bottom">
                     <td><input type="checkbox" value="">&nbsp;new</></td>
@@ -56,3 +56,26 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div>
+                <h3 class="text-center">Add Note</h3>
+                </div>
+            <div class="modal-body">
+                <input type="text"></input>
+                <p class="text-center">
+                <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
+            </div>
+        </div>
+
+    </div>
+</div>
