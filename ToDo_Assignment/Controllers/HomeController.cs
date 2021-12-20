@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ToDo.Dal.Operations;
 using ToDo_Assignment.Models;
 
 namespace ToDo_Assignment.Controllers
@@ -20,10 +21,20 @@ namespace ToDo_Assignment.Controllers
 
         public IActionResult Index()
         {
-
-
-            return View();
+            ToDoDal listofnote = new ToDoDal();
+            var tasks=  listofnote.get();
+            List<ToDoModel> toDos = new List<ToDoModel>();
+            foreach (var item in tasks)
+            {
+                var task = new ToDoModel();
+                task.DueDate = item.DueDate;
+                task.Task = item.Task;
+                toDos.Add(task);
+               
+            }
+            return View(toDos);
         }
+        
 
         public IActionResult Privacy()
         {
