@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ToDo_Assignment.Models.ToDoModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -14,7 +14,7 @@
                     <td><span class="glyphicon glyphicon-plus bg-danger"></span><button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add task</button></td>
                 </tr>
                 <tr class="border-bottom">
-                    <td><input type="checkbox" value="">&nbsp;</></td>
+                    <td><input type="checkbox" value="@Html.DisplayNameFor(model => model.Task)">&nbsp;</></td>
                 </tr>
                 <tr class="border-bottom">
                     <td><input type="checkbox" value="">&nbsp;new</></td>
@@ -77,9 +77,9 @@
                         <label for="date">Date:</label>
                         <input type="date" class="form-control" id="date" placeholder="Enter date" required name="date">
                     </div>
-                  <p class="text-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                  </p>
+                    <p class="text-center">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
                 </form>
             </div>
         </div>

@@ -10,7 +10,7 @@ namespace ToDo.Dal.Operations
 {
      public class ToDoDal
     {
-        private string sqlConnectionString = @"Data Source=DESKTOP-1GFB995;Initial";
+        private string sqlConnectionString = @"Data Source=DESKTOP-4UBR12G;Initial Catalog=ToDoList;User ID=sa;Password=admin;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public List<Entity.ToDo> get()
         {
@@ -18,7 +18,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                toDo = connection.Query<Entity.ToDo>("Select Id, Task, DueDate from ToDo.tbl").ToList();
+                toDo = connection.Query<Entity.ToDo>("Select ID, Task, DueDate from tblToDo").ToList();
                 connection.Close();
             }
             return toDo;
@@ -32,7 +32,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Insert into ToDo (ID, Task) values (@ID, @Task)", new { ID = obj.id, Task = obj.Task });
+                var affectedRows = connection.Execute("Insert into ToDo (ID, Task) values (@ID, @Task)", new { ID = obj.ID, Task = obj.Task });
                 connection.Close();
                 return affectedRows;
             }
@@ -43,7 +43,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Update ToDo set Name = @Id, Task = @Id Where Id = @Id", new { Id = obj.id, Task = obj.Task });
+                var affectedRows = connection.Execute("Update ToDo set ID= @Id, Task = @Id Where Id = @Id", new { Id = obj.ID, Task = obj.Task });
                 connection.Close();
                 return affectedRows;
             }
@@ -55,7 +55,7 @@ namespace ToDo.Dal.Operations
             using (SqlConnection connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Delete from ToDO Where Id = @Id", new { Id = obj.id });
+                var affectedRows = connection.Execute("Delete from ToDO Where ID = @Id", new { Id = obj.ID });
                 connection.Close();
                 return affectedRows;
             }

@@ -7,9 +7,10 @@ namespace ToDo_Assignment.Models
 {
     public class ToDoModel
     {
-            public int id { get; set; }
+        public int ID { get; set; }
             public string Task { get; set; }
             public DateTime DueDate { get; set; }
+            public string TStatus { get; set; }
 
 
         }
