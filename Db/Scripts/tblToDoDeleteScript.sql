@@ -1,0 +1,3 @@
+
+
+DELETE FROM tblToDo WHERE ID = id
