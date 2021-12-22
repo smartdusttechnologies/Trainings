@@ -15,14 +15,13 @@
                 <tr class="border-bottom">
                     <td><span class="glyphicon glyphicon-plus bg-danger"></span><button class="text" data-toggle="modal" data-target="#myModal">Add task</button></td>
                 </tr>
-                @foreach (var task in Model.Where(n => n.TStatus=="ToDo"))
+                @foreach (var task in Model.Where(n => n.TStatus=="new"))
                 {
                     <tr>
                         <td>
                             <input id="@task.Task" type="checkbox" name="task" value="@task.Task"  />
                         </td>
                         <td>
-                            <label for="@task.TStatus">@task.TStatus</label>
                             <label for="@task.Task">@task.Task</label>
                             <label for="@task.DueDate">@task.DueDate</label>
                         </td>
@@ -40,7 +39,7 @@
                 <tr class="border-bottom">
                     <th><p></p></th>
                 </tr>
-                @foreach (var task in Model.Where(n => n.TStatus == "In Progress"))
+                @foreach (var task in Model.Where(n => n.TStatus == "InProgress"))
                 {
                     <tr>
                         <td>
@@ -103,11 +102,11 @@
                 <form class="form" method="post" action="Home/InsertEToDo" onsubmit="check()">
                     <div class="form-group">
                         <label for="note">Note:</label>
-                        <input type="text" class="form-control" id="note" placeholder="Enter Note" required name="note">
+                        <input type="text" class="form-control" id="note" placeholder="Enter Note" required name="Task">
                     </div>
                     <div class="form-group">
                         <label for="date">DueDate:</label>
-                        <input type="date" class="form-control" id="date" placeholder="Enter date" required name="date">
+                        <input type="date" class="form-control" id="date" placeholder="Enter date" required name="DueDate">
                     </div>
                     <p class="text-center">
                         <button type="submit" class="btn btn-success">Submit</button>

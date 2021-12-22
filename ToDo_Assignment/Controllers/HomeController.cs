@@ -38,16 +38,16 @@ namespace ToDo_Assignment.Controllers
             return View(toDos);
         }
         [HttpPost]
-        public ActionResult InsertEToDo(string Task ,DateTime DueDate, string TStatus)
+        public ActionResult InsertEToDo(string task ,DateTime dueDate, string tStatus)
         {
-           string sqlFormattedDate = DueDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+           
             var toDoDal = new ToDo.Dal.Entity.ToDo();
-            toDoDal.Task = Task;
-            toDoDal.DueDate = DateTime.Parse(sqlFormattedDate);
-            toDoDal.TStatus = TStatus;
+            toDoDal.Task = task;
+            toDoDal.DueDate = dueDate;
+            
             
             new ToDoDal().InsertEToDo(toDoDal);
-            return View("index");
+            return RedirectToAction("index");
         }
         
 
