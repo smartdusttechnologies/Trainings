@@ -33,7 +33,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Insert into tblToDo (Task,DueDate,TStatus) values (@Task, @DueDate,@TStatus)", new { ID = obj.Task, Task = obj.DueDate.Date , TStatus = obj.TStatus });
+                var affectedRows = connection.Execute("Insert into tblToDo (Task,DueDate,TStatus) values (@Task, @DueDate,@TStatus)", new { Task = obj.Task, DueDate = obj.DueDate , TStatus = obj.TStatus });
                 connection.Close();
                 return affectedRows;
             }
