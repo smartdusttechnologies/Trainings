@@ -6,21 +6,32 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4  zoom">
+           
             <table class="table table-borderless" style="background-color: ghostwhite;">
+
                 <tr class="border-bottom">
                     <th>To Do(3)</th>
                 </tr>
                 <tr class="border-bottom">
-                    <td><span class="glyphicon glyphicon-plus bg-danger"></span><button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add task</button></td>
+                    <td><span class="glyphicon glyphicon-plus bg-danger"></span><button class="text" data-toggle="modal" data-target="#myModal">Add task</button></td>
                 </tr>
-                <tr class="border-bottom">
-                    <td><input type="checkbox" value="@Html.DisplayNameFor(model => model.Task)">&nbsp;</></td>
-                </tr>
-                <tr class="border-bottom">
-                    <td><input type="checkbox" value="">&nbsp;new</></td>
-                </tr>
+                @foreach (var task in Model.Where(n => n.TStatus=="ToDo"))
+                {
+                    <tr>
+                        <td>
+                            <input id="@task.Task" type="checkbox" name="task" value="@task.Task"  />
+                        </td>
+                        <td>
+                            <label for="@task.TStatus">@task.TStatus</label>
+                            <label for="@task.Task">@task.Task</label>
+                            <label for="@task.DueDate">@task.DueDate</label>
+                        </td>
+                    </tr>
+
+                }
+
             </table>
-        </div>
+            </div>
         <div class="col-sm-4  zoom">
             <table class="table table-borderless" style="background-color: ghostwhite;">
                 <tr class="border-bottom">
@@ -29,12 +40,19 @@
                 <tr class="border-bottom">
                     <th><p></p></th>
                 </tr>
-                <tr class="border-bottom">
-                    <td><input type="checkbox" value="">&nbsp;new</></td>
-                </tr>
-                <tr class="border-bottom">
-                    <td><input type="checkbox" value="">&nbsp;new</></td>
-                </tr>
+                @foreach (var task in Model.Where(n => n.TStatus == "In Progress"))
+                {
+                    <tr>
+                        <td>
+                            <input id="@task.Task" type="checkbox" name="task" value="@task.Task" />
+                        </td>
+                        <td>
+                            <label for="@task.Task">@task.Task</label>
+                            <label for="@task.DueDate">@task.DueDate</label>
+                        </td>
+                    </tr>
+                }
+
             </table>
         </div>
         <div class="col-sm-4  zoom">
@@ -45,17 +63,31 @@
                 <tr class="border-bottom">
                     <th><p></p></th>
                 </tr>
-                <tr class="border-bottom">
-                    <td><input type="checkbox" value="">&nbsp;new</></td>
-                </tr>
-                <tr class="border-bottom">
-                    <td><input type="checkbox" value="">&nbsp;new</></td>
-                </tr>
+                @foreach (var task in Model.Where(n => n.TStatus == "Completed"))
+
+                {
+                    <tr>
+                        <td>
+                            <input id="@task.Task" type="checkbox" name="task" value="@task.Task" />
+                        </td>
+                        <td>
+                            <label for="@task.Task">@task.Task</label>
+                            <label for="@task.DueDate">@task.DueDate</label>
+                        </td>
+                    </tr>
+                }
             </table>
         </div>
     </div>
 </div>
+<!--
+<script>
 
+    function check() {
+        alert(document.getElementById("date").value);
+    }
+</script>
+    -->
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -68,7 +100,7 @@
 
             </div>
             <div class="modal-body">
-                <form class="form" action="">
+                <form class="form" method="post" action="Home/InsertEToDo" onsubmit="check()">
                     <div class="form-group">
                         <label for="note">Note:</label>
                         <input type="text" class="form-control" id="note" placeholder="Enter Note" required name="note">

@@ -18,7 +18,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                toDo = connection.Query<Entity.ToDo>("Select ID, Task, DueDate from tblToDo").ToList();
+                toDo = connection.Query<Entity.ToDo>("Select ID, Task, DueDate , TStatus from tblToDo").ToList();
                 connection.Close();
             }
             return toDo;
@@ -29,13 +29,19 @@ namespace ToDo.Dal.Operations
 
         public int InsertEToDo(Entity.ToDo obj)
         {
+            obj.TStatus = "new";
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Insert into ToDo (ID, Task) values (@ID, @Task)", new { ID = obj.ID, Task = obj.Task });
+                var affectedRows = connection.Execute("Insert into tblToDo (Task,DueDate,TStatus) values (@Task, @DueDate,@TStatus)", new { ID = obj.Task, Task = obj.DueDate.Date , TStatus = obj.TStatus });
                 connection.Close();
                 return affectedRows;
             }
+        }
+
+        public object InsertEToDo()
+        {
+            throw new NotImplementedException();
         }
 
         public int UpdateEToDo(Entity.ToDo obj)
@@ -55,7 +61,7 @@ namespace ToDo.Dal.Operations
             using (SqlConnection connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Delete from ToDO Where ID = @Id", new { Id = obj.ID });
+                var affectedRows = connection.Execute("Delete from tblToDO Where ID = @Id", new { Id = obj.ID });
                 connection.Close();
                 return affectedRows;
             }

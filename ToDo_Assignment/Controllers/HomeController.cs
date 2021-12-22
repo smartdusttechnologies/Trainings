@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ToDo.Dal.Operations;
 using ToDo_Assignment.Models;
+using ToDo.Dal.Entity;
+using System.Globalization;
 
 namespace ToDo_Assignment.Controllers
 {
@@ -29,10 +31,23 @@ namespace ToDo_Assignment.Controllers
                 var task = new ToDoModel();
                 task.DueDate = item.DueDate;
                 task.Task = item.Task;
+                task.TStatus = item.TStatus;
                 toDos.Add(task);
                
             }
             return View(toDos);
+        }
+        [HttpPost]
+        public ActionResult InsertEToDo(string Task ,DateTime DueDate, string TStatus)
+        {
+           string sqlFormattedDate = DueDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            var toDoDal = new ToDo.Dal.Entity.ToDo();
+            toDoDal.Task = Task;
+            toDoDal.DueDate = DateTime.Parse(sqlFormattedDate);
+            toDoDal.TStatus = TStatus;
+            
+            new ToDoDal().InsertEToDo(toDoDal);
+            return View("index");
         }
         
 
