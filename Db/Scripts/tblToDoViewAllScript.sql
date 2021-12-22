@@ -1,5 +1,0 @@
-CREATE PROC tblToDoViewAll
-
-AS
-
-SELECT * FROM tblToDo
