@@ -49,7 +49,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Update ToDo set ID= @Id, Task = @Id Where Id = @Id", new { Id = obj.ID, Task = obj.Task });
+                var affectedRows = connection.Execute("Update tblToDo set TStatus= @TStatus Where ID = @ID", new { ID = obj.ID, TStatus = obj.TStatus });
                 connection.Close();
                 return affectedRows;
             }

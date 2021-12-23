@@ -2,62 +2,109 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<script>
+    function fun(id, status) {
+        if (status == "Completed") {
+            if (confirm("Do you want to update completed task to new???") == true) {
+                callBackEnd(id, status);
+            }
+        }
+        else {
+            callBackEnd(id, status);
+        }
+
+        function callBackEnd(id,status) {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "Home/updateData");
+
+            var FN = document.createElement("input");
+            FN.setAttribute("type", "text");
+            FN.setAttribute("name", "id");
+            FN.setAttribute("value", id.id);
+
+            form.appendChild(FN);
+
+            var FNN = document.createElement("input");
+            FNN.setAttribute("type", "text");
+            FNN.setAttribute("name", "status");
+            FNN.setAttribute("value", status);
+
+            form.appendChild(FNN);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+    }
+</script>
+
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4  zoom">
-           
-            <table class="table table-borderless" style="background-color: ghostwhite;">
+        <div class="col-sm-4 ">
 
-                <tr class="border-bottom">
-                    <th>To Do(3)</th>
-                </tr>
-                <tr class="border-bottom">
-                    <td><span class="glyphicon glyphicon-plus bg-danger"></span><button class="text" data-toggle="modal" data-target="#myModal">Add task</button></td>
-                </tr>
-                @foreach (var task in Model.Where(n => n.TStatus=="new"))
+            <table class="table table-borderless bg-white" style="background-color: ghostwhite;">
+                @{ int new_count = 0; }
+                @foreach (var c in Model.Where(n => n.TStatus == "new"))
                 {
-                    <tr>
-                        <td>
-                            <input id="@task.Task" type="checkbox" name="task" value="@task.Task"  />
-                        </td>
-                        <td>
-                            <label for="@task.Task">@task.Task</label>
-                            <label for="@task.DueDate">@task.DueDate</label>
-                        </td>
-                    </tr>
-
+                    new_count = new_count + 1;
                 }
+                    <tr class="border-bottom">
+                        <th>To Do(@new_count)</th>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td><span class="glyphicon glyphicon-plus bg-danger"></span><a class="text text-success" data-toggle="modal" data-target="#myModal">Add task</a></td>
+                    </tr>
+                    @foreach (var task in Model.Where(n => n.TStatus == "new"))
+                    {
+                        <tr class="border-bottom">
+                            <td>
+                                <input id="@task.ID" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @task.DueDate</span>
 
-            </table>
-            </div>
-        <div class="col-sm-4  zoom">
-            <table class="table table-borderless" style="background-color: ghostwhite;">
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </table>
+        </div>
+        <div class="col-sm-4 ">
+            <table class="table table-borderless bg-white" style="background-color: ghostwhite;">
                 <tr class="border-bottom">
-                    <th>In Progress(0)</th>
+                    @{ int progress_count = 0; }
+                    @foreach (var c in Model.Where(n => n.TStatus == "InProgress"))
+                    {
+                        progress_count = progress_count + 1;
+                    }
+                    <th>In Progress(@progress_count)</th>
                 </tr>
                 <tr class="border-bottom">
                     <th><p></p></th>
                 </tr>
                 @foreach (var task in Model.Where(n => n.TStatus == "InProgress"))
                 {
-                    <tr>
+                    <tr class="border-bottom">
                         <td>
-                            <input id="@task.Task" type="checkbox" name="task" value="@task.Task" />
+                            <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @task.DueDate</span>
+
                         </td>
-                        <td>
-                            <label for="@task.Task">@task.Task</label>
-                            <label for="@task.DueDate">@task.DueDate</label>
-                        </td>
+
                     </tr>
                 }
 
             </table>
         </div>
-        <div class="col-sm-4  zoom">
-            <table class="table table-borderless" style="background-color: ghostwhite;">
+        <div class="col-sm-4">
+            <table class="table table-borderless bg-white" style="background-color: ghostwhite;">
                 <tr class="border-bottom">
-                    <th>Completed(3)</th>
+                    @{ int completed_count = 0; }
+                    @foreach (var c in Model.Where(n => n.TStatus == "Completed"))
+                    {
+                        completed_count = completed_count + 1;
+                    }
+                    <th>Completed(@completed_count)</th>
                 </tr>
                 <tr class="border-bottom">
                     <th><p></p></th>
@@ -65,20 +112,20 @@
                 @foreach (var task in Model.Where(n => n.TStatus == "Completed"))
 
                 {
-                    <tr>
+                    <tr class="border-bottom">
                         <td>
-                            <input id="@task.Task" type="checkbox" name="task" value="@task.Task" />
+                            <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @task.DueDate</span>
+
                         </td>
-                        <td>
-                            <label for="@task.Task">@task.Task</label>
-                            <label for="@task.DueDate">@task.DueDate</label>
-                        </td>
+
                     </tr>
                 }
             </table>
         </div>
     </div>
 </div>
+<label>
+    @ViewBag.TotalStudents</label>
 <!--
 <script>
 
