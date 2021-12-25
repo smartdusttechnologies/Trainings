@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
+
 <script>
     function fun(id, status) {
         if (status == "Completed") {
@@ -13,7 +15,7 @@
             callBackEnd(id, status);
         }
 
-        function callBackEnd(id,status) {
+        function callBackEnd(id, status) {
             var form = document.createElement("form");
             form.setAttribute("method", "post");
             form.setAttribute("action", "Home/updateData");
@@ -39,8 +41,8 @@
     }
 </script>
 
-
 <div class="container-fluid">
+
     <div class="row">
         <div class="col-sm-4 ">
 
@@ -50,25 +52,33 @@
                 {
                     new_count = new_count + 1;
                 }
+                <tr class="border-bottom">
+                    <th>
+                        To Do(@new_count)
+                        <br>
+                        <progress id="progress" value="@new_count" max="10" style="width: 100%;"></progress>
+                    </th>
+                </tr>
+                
+                <tr class="border-bottom">
+                    <td> <a style="color: #10c3dc" data-toggle="modal" data-target="#myModal"><i class='fas fa-plus'></i>&nbsp;&nbsp;&nbsp;Add task</a></td>
+                </tr>
+                @foreach (var task in Model.Where(n => n.TStatus == "new"))
+                {
                     <tr class="border-bottom">
-                        <th>To Do(@new_count)</th>
+
+                        @{
+                            var shortDateValue = @task.DueDate.ToShortDateString(); }
+                        <td>
+                            <input id="@task.ID" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
+
+                        </td>
+
                     </tr>
-                    <tr class="border-bottom">
-                        <td><span class="glyphicon glyphicon-plus bg-danger"></span><a class="text text-success" data-toggle="modal" data-target="#myModal">Add task</a></td>
-                    </tr>
-                    @foreach (var task in Model.Where(n => n.TStatus == "new"))
-                    {
-                        <tr class="border-bottom">
-                            <td>
-                                <input id="@task.ID" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @task.DueDate</span>
 
-                            </td>
+                }
 
-                        </tr>
-
-                    }
-
-                </table>
+            </table>
         </div>
         <div class="col-sm-4 ">
             <table class="table table-borderless bg-white" style="background-color: ghostwhite;">
@@ -78,20 +88,27 @@
                     {
                         progress_count = progress_count + 1;
                     }
-                    <th>In Progress(@progress_count)</th>
+                    <th>
+                        In Progress(@progress_count)
+                        <br>
+                        <progress id="progress" value="@progress_count" max="10" style="width: 100%;"></progress>
+                    </th>
+                 
                 </tr>
                 <tr class="border-bottom">
                     <th><p></p></th>
                 </tr>
                 @foreach (var task in Model.Where(n => n.TStatus == "InProgress"))
                 {
-                    <tr class="border-bottom">
-                        <td>
-                            <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @task.DueDate</span>
+            <tr class="border-bottom">
+                @{
+                    var shortDateValue = @task.DueDate.ToShortDateString(); }
+                <td>
+                    <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
 
-                        </td>
+                </td>
 
-                    </tr>
+            </tr>
                 }
 
             </table>
@@ -104,7 +121,11 @@
                     {
                         completed_count = completed_count + 1;
                     }
-                    <th>Completed(@completed_count)</th>
+                    <th>
+                        Completed(@completed_count)
+                        <br>
+                        <progress id="progress" value="@completed_count" max="10" style="width: 100%;"></progress>
+                    </th>
                 </tr>
                 <tr class="border-bottom">
                     <th><p></p></th>
@@ -112,20 +133,21 @@
                 @foreach (var task in Model.Where(n => n.TStatus == "Completed"))
 
                 {
-                    <tr class="border-bottom">
-                        <td>
-                            <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @task.DueDate</span>
+            <tr class="border-bottom">
+                @{
+                    var shortDateValue = @task.DueDate.ToShortDateString(); }
+                <td>
+                    <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
 
-                        </td>
+                </td>
 
-                    </tr>
+            </tr>
                 }
             </table>
         </div>
     </div>
 </div>
-<label>
-    @ViewBag.TotalStudents</label>
+
 <!--
 <script>
 
@@ -140,23 +162,24 @@
 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Note</h4>
+            <div class="modal-header" style="background: #2cbac4;">
+                <h4 class="modal-title">Add Task</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>
             <div class="modal-body">
-                <form class="form" method="post" action="Home/InsertEToDo" onsubmit="check()">
+                <form class="form" method="post" action="Home/InsertEToDo">
                     <div class="form-group">
-                        <label for="note">Note:</label>
-                        <input type="text" class="form-control" id="note" placeholder="Enter Note" required name="Task">
+                        <label for="note">Task:</label>
+                        <input type="text" class="form-control" id="note" placeholder="Add Task Discription" required name="Task">
                     </div>
                     <div class="form-group">
                         <label for="date">DueDate:</label>
-                        <input type="date" class="form-control" id="date" placeholder="Enter date" required name="DueDate">
+                        <input type="datetime-local" class="form-control" id="date" placeholder="Enter date" required name="DueDate">
                     </div>
                     <p class="text-center">
                         <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </p>
                 </form>
             </div>

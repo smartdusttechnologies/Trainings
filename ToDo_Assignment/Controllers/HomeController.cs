@@ -27,6 +27,9 @@ namespace ToDo_Assignment.Controllers
 
         public IActionResult Index()
         {
+
+          
+
             ToDoDal listofnote = new ToDoDal();
             var tasks=  listofnote.get();
             List<ToDoModel> toDos = new List<ToDoModel>();
@@ -34,6 +37,7 @@ namespace ToDo_Assignment.Controllers
             {
                 var task = new ToDoModel();
                 task.DueDate = item.DueDate;
+             
                 task.Task = item.Task;
                 task.ID = item.ID;
                 task.TStatus = item.TStatus;
