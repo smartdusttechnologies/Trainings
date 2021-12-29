@@ -18,7 +18,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                toDo = connection.Query<Entity.ToDo>("Select ID, Task, DueDate , TStatus from tblToDo").ToList();
+                toDo = connection.Query<Entity.ToDo>("Select ID, Task, DueDate , TStatus from tblToDo ORDER BY DueDate").ToList();
                 connection.Close();
             }
             return toDo;

@@ -35,9 +35,10 @@ namespace ToDo_Assignment.Controllers
             List<ToDoModel> toDos = new List<ToDoModel>();
             foreach (var item in tasks)
             {
+                var test = DateTime.Now.ToString("dd.MM.yyy");
                 var task = new ToDoModel();
                 task.DueDate = item.DueDate;
-             
+               
                 task.Task = item.Task;
                 task.ID = item.ID;
                 task.TStatus = item.TStatus;

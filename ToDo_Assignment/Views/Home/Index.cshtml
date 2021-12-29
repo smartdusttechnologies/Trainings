@@ -42,11 +42,11 @@
 </script>
 
 <div class="container-fluid">
-
     <div class="row">
-        <div class="col-sm-4 ">
+        <div class="col-sm-4 container ">
 
-            <table class="table table-borderless bg-white" style="background-color: ghostwhite;">
+            <table class="table table-borderless bg-white " style="background-color: ghostwhite;">
+
                 @{ int new_count = 0; }
                 @foreach (var c in Model.Where(n => n.TStatus == "new"))
                 {
@@ -59,7 +59,6 @@
                         <progress id="progress" value="@new_count" max="10" style="width: 100%;"></progress>
                     </th>
                 </tr>
-                
                 <tr class="border-bottom">
                     <td> <a style="color: #10c3dc" data-toggle="modal" data-target="#myModal"><i class='fas fa-plus'></i>&nbsp;&nbsp;&nbsp;Add task</a></td>
                 </tr>
@@ -70,18 +69,18 @@
                         @{
                             var shortDateValue = @task.DueDate.ToShortDateString(); }
                         <td>
-                            <input id="@task.ID" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                            <input id="@task.ID" class="input" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
 
                         </td>
 
                     </tr>
 
                 }
-
+               
             </table>
         </div>
         <div class="col-sm-4 ">
-            <table class="table table-borderless bg-white" style="background-color: ghostwhite;">
+            <table class="table table-borderless bg-white " style="background-color: ghostwhite;">
                 <tr class="border-bottom">
                     @{ int progress_count = 0; }
                     @foreach (var c in Model.Where(n => n.TStatus == "InProgress"))
@@ -91,30 +90,30 @@
                     <th>
                         In Progress(@progress_count)
                         <br>
-                        <progress id="progress" value="@progress_count" max="10" style="width: 100%;"></progress>
+                        <progress id="progress"  value="@progress_count" max="10" style="width: 100%;"></progress>
                     </th>
-                 
+
                 </tr>
                 <tr class="border-bottom">
                     <th><p></p></th>
                 </tr>
                 @foreach (var task in Model.Where(n => n.TStatus == "InProgress"))
                 {
-            <tr class="border-bottom">
-                @{
-                    var shortDateValue = @task.DueDate.ToShortDateString(); }
-                <td>
-                    <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                    <tr class="border-bottom">
+                        @{
+                            var shortDateValue = @task.DueDate.ToShortDateString(); }
+                        <td>
+                            <input id="@task.ID" class="input"  type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task"  />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
 
-                </td>
+                        </td>
 
-            </tr>
+                    </tr>
                 }
 
             </table>
         </div>
         <div class="col-sm-4">
-            <table class="table table-borderless bg-white" style="background-color: ghostwhite;">
+            <table class="table table-borderless bg-white " style="background-color: ghostwhite;">
                 <tr class="border-bottom">
                     @{ int completed_count = 0; }
                     @foreach (var c in Model.Where(n => n.TStatus == "Completed"))
@@ -133,15 +132,16 @@
                 @foreach (var task in Model.Where(n => n.TStatus == "Completed"))
 
                 {
-            <tr class="border-bottom">
-                @{
-                    var shortDateValue = @task.DueDate.ToShortDateString(); }
-                <td>
-                    <input id="@task.ID" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                    <tr class="border-bottom">
+                        @{
+                            var shortDateValue = @task.DueDate.ToShortDateString(); }
+                        <td>
+                            <div>
+                            <input id="@task.ID" style="background-color: green;"  type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" checked />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                               </div>
+                        </td>
 
-                </td>
-
-            </tr>
+                    </tr>
                 }
             </table>
         </div>
@@ -178,8 +178,8 @@
                         <input type="datetime-local" class="form-control" id="date" placeholder="Enter date" required name="DueDate">
                     </div>
                     <p class="text-center">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-lg " data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-lg btn-primary ml-5">Add</button>
                     </p>
                 </form>
             </div>
