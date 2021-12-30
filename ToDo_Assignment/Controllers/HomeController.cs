@@ -38,10 +38,11 @@ namespace ToDo_Assignment.Controllers
                 var test = DateTime.Now.ToString("dd.MM.yyy");
                 var task = new ToDoModel();
                 task.DueDate = item.DueDate;
-               
                 task.Task = item.Task;
                 task.ID = item.ID;
                 task.TStatus = item.TStatus;
+                task.AssignedTo = item.AssignedTo;
+                task.Description = item.Description;
                 toDos.Add(task);
                
             }
@@ -74,14 +75,14 @@ namespace ToDo_Assignment.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertEToDo(string task ,DateTime dueDate, string tStatus)
+        public ActionResult InsertEToDo(string task ,DateTime dueDate, string tStatus, string assignedTo, string description)
         {
            
             var toDoDal = new ToDo.Dal.Entity.ToDo();
             toDoDal.Task = task;
             toDoDal.DueDate = dueDate;
-            
-            
+            toDoDal.AssignedTo = assignedTo;
+            toDoDal.Description = description;
             new ToDoDal().InsertEToDo(toDoDal);
             return RedirectToAction("index");
         }
