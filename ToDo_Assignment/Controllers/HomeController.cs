@@ -35,7 +35,7 @@ namespace ToDo_Assignment.Controllers
             List<ToDoModel> toDos = new List<ToDoModel>();
             foreach (var item in tasks)
             {
-                var test = DateTime.Now.ToString("dd.MM.yyy");
+                
                 var task = new ToDoModel();
                 task.DueDate = item.DueDate;
                 task.Task = item.Task;
@@ -86,7 +86,22 @@ namespace ToDo_Assignment.Controllers
             new ToDoDal().InsertEToDo(toDoDal);
             return RedirectToAction("index");
         }
-        
+
+        [HttpPost]
+        public ActionResult UpdateToDo(int id,string task, DateTime dueDate, string assignedTo, string description)
+        {
+
+            var toDoDal = new ToDo.Dal.Entity.ToDo();
+            toDoDal.ID = id;
+            toDoDal.Task = task;
+            toDoDal.DueDate = dueDate;
+            toDoDal.AssignedTo = assignedTo;
+            toDoDal.Description = description;
+            new ToDoDal().UpdateTaskToDo(toDoDal);
+            return RedirectToAction("index");
+        }
+
+
 
         public IActionResult Privacy()
         {

@@ -52,7 +52,7 @@
                 {
                     new_count = new_count + 1;
                 }
-                <tr class="border-bottom">
+                <tr class="border-bottom  ">
                     <th>
                         To Do(@new_count)
                         <br>
@@ -67,10 +67,18 @@
                     <tr class="border-bottom">
 
                         @{
+                            var bg_color = "";
+                            DateTime TodayDate = DateTime.Today;
+                            if (task.DueDate < TodayDate)
+                            {
+                                bg_color = "bg-warning";
+                            }
                             var shortDateValue = @task.DueDate.ToShortDateString(); }
-                        <td>
-                            <input id="@task.ID" class="input" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
-                            <p style="color:forestgreen"><b>Work: @task.AssignedTo</b></p>
+                        <td class="@bg_color">
+                            <input id="@task.ID" class="input" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.DueDate')"  data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                            <p style="color:forestgreen">Assignee: @{ if (task.AssignedTo == null) { task.AssignedTo = "Unassigned";
+                                } @task.AssignedTo}</p>
+
                         </td>
 
                     </tr>
@@ -101,10 +109,19 @@
                 {
                     <tr class="border-bottom">
                         @{
+                            var bg_color = "";
+                            DateTime TodayDate = DateTime.Today;
+                            if (task.DueDate < TodayDate)
+                            {
+                                bg_color = "bg-warning";
+                            }
+                           
                             var shortDateValue = @task.DueDate.ToShortDateString(); }
-                        <td>
-                            <input id="@task.ID" class="input" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
-                            <p style="color:forestgreen"><b>Work: @task.AssignedTo</b></p>
+                        <td class="@bg_color">
+                            <input id="@task.ID" class="input" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                            <p style="color:forestgreen">Assignee:  @{ if (task.AssignedTo == null) { task.AssignedTo = "Unassigned"; }@task.AssignedTo;
+                            }
+                            </p>
                         </td>
 
                     </tr>
@@ -135,10 +152,11 @@
                     <tr class="border-bottom">
                         @{
                             var shortDateValue = @task.DueDate.ToShortDateString(); }
-                        <td>
+                        <td >
                             <div>
-                                <input id="@task.ID" style="background-color: green;" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" checked />&nbsp;<span>@task.Task&nbsp;</span><span class="float-right"> @shortDateValue</span>
-                                <p style="color:forestgreen"><b>Work: @task.AssignedTo</b></p>
+                                <input id="@task.ID" class="form-check-inline" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" checked />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                                <p style="color:forestgreen">Assignee: @{ if (task.AssignedTo == null) { task.AssignedTo = "Unassigned"; }@task.AssignedTo;
+                                    }</p>
                             </div>
                         </td>
 
@@ -179,7 +197,7 @@
                     </div>
                     <div class="form-group">
                         <label for="note">Assigned To</label>
-                        <input type="text" class="form-control" id="note" placeholder="Enter Assignee Name" required name="AssignedTo" />
+                        <input type="text" class="form-control" id="note" placeholder="Enter Assignee Name"   name="AssignedTo" />
                     </div>
 
                     <div class="form-group">
@@ -188,6 +206,66 @@
                     </div>
                     <p class="text-center">
                         <button type="submit" style="background-color:#4111f0; float:right" class="btn btn-success">Add</button>
+                        <button type="button" style="background-color:gray; float:left" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script>
+    function setData(id,task, description, assignedTo, dueDate) {
+        document.getElementById("ID").value = id;
+        document.getElementById("Task").value = task;
+        document.getElementById("DescriptionModal").value = description;
+        document.getElementById("AssignedTo").value = assignedTo;
+        document.getElementById("DueDateModal").value = dueDate;
+    }
+</script>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModalview" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background: #2cbac4;">
+                <h4 class="modal-title">Add Task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post" action="Home/UpdateToDo">
+                    <div class="form-group">
+                        <label for="note">Task:</label>
+                        <input type="hidden" class="form-control" id="ID" placeholder="ID" required name="ID">
+                        <input type="text" class="form-control" id="Task" placeholder="Name" required name="Task">
+                    </div>
+                    <div class="form-group">
+                        <lable form="note">Description</lable>
+                        <textarea rows="5" cols="60" class="form-control" id="DescriptionModal" placeholder="Enter Work Description Here" required name="Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Assigned To</label>
+                        <input type="text" class="form-control" id="AssignedTo" placeholder="Enter Assignee Name" required name="AssignedTo" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">DueDate:</label>
+                        <input type="datetime" class="form-control" id="DueDateModal" placeholder="Enter date" required name="DueDate">
+                    </div>
+                    <p class="text-center">
+                        <button type="submit" style="background-color:#4111f0; float:right" class="btn btn-success">Save</button>
                         <button type="button" style="background-color:gray; float:left" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </p>
                 </form>
