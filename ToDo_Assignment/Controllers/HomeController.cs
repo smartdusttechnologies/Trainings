@@ -12,10 +12,10 @@ using System.Globalization;
 
 namespace ToDo_Assignment.Controllers
 {
-    
+
     public class HomeController : Controller
     {
-        
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -23,19 +23,19 @@ namespace ToDo_Assignment.Controllers
             _logger = logger;
         }
 
-        
+
 
         public IActionResult Index()
         {
 
-          
+
 
             ToDoDal listofnote = new ToDoDal();
-            var tasks=  listofnote.get();
+            var tasks = listofnote.get();
             List<ToDoModel> toDos = new List<ToDoModel>();
             foreach (var item in tasks)
             {
-                
+
                 var task = new ToDoModel();
                 task.DueDate = item.DueDate;
                 task.Task = item.Task;
@@ -44,13 +44,13 @@ namespace ToDo_Assignment.Controllers
                 task.AssignedTo = item.AssignedTo;
                 task.Description = item.Description;
                 toDos.Add(task);
-               
+
             }
             return View(toDos);
         }
 
         [HttpPost]
-        public IActionResult updateData(int id,string status) 
+        public IActionResult updateData(int id, string status)
         {
             string newStatus = "";
             if (status == "new") {
@@ -70,14 +70,14 @@ namespace ToDo_Assignment.Controllers
 
             new ToDoDal().UpdateEToDo(toDoDal);
 
- 
+
             return RedirectToAction("index");
         }
 
         [HttpPost]
-        public ActionResult InsertEToDo(string task ,DateTime dueDate, string tStatus, string assignedTo, string description)
+        public ActionResult InsertEToDo(string task, DateTime dueDate, string tStatus, string assignedTo, string description)
         {
-           
+
             var toDoDal = new ToDo.Dal.Entity.ToDo();
             toDoDal.Task = task;
             toDoDal.DueDate = dueDate;
@@ -88,7 +88,7 @@ namespace ToDo_Assignment.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateToDo(int id,string task, DateTime dueDate, string assignedTo, string description)
+        public ActionResult UpdateToDo(int id, string task, DateTime dueDate, string assignedTo, string description)
         {
 
             var toDoDal = new ToDo.Dal.Entity.ToDo();
@@ -101,7 +101,15 @@ namespace ToDo_Assignment.Controllers
             return RedirectToAction("index");
         }
 
-
+        [HttpGet]
+        public ActionResult DeleteEToDo(int id )
+        {
+            var toDoDal = new ToDo.Dal.Entity.ToDo();
+            toDoDal.ID = id;
+            new ToDoDal().DeleteEToDo(toDoDal);
+            return RedirectToAction("Index");
+           
+        }
 
         public IActionResult Privacy()
         {
