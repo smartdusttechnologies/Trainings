@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ToDo_Assignment.Models
 {
+    /// <summary>
+    /// Declaring properies
+    /// </summary>
     public class ToDoModel
     {
             public int ID { get; set; }
