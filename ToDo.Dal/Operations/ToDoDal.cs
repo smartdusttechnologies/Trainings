@@ -10,7 +10,7 @@ namespace ToDo.Dal.Operations
 {
      public class ToDoDal
     {
-        private string sqlConnectionString = @"Data Source=DESKTOP-1GFB995;Initial Catalog=ToDoList;User ID=sa;Password=admin;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private string sqlConnectionString = @"Data Source=DESKTOP-VFA6S9N;Initial Catalog=ToDoList;User ID=sa;Password=admin;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public List<Entity.ToDo> get()
         {
