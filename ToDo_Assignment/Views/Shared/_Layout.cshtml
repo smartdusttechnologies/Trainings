@@ -34,6 +34,54 @@
                     </ul>
                 </div>
             </div>
+
+              
+<div class="modal fade" id="Search" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background: #2cbac4;">
+                <h4 class="modal-title">Add Task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post" action="Home/UpdateToDo">
+                    <div class="form-group">
+                        <label for="note">Task:</label>
+                        <input type="hidden" class="form-control" id="ID" placeholder="ID" required name="ID">
+                        <input type="text" class="form-control" id="Task" placeholder="Name" required name="Task">
+                    </div>
+                    <div class="form-group">
+                        <lable form="note">Description</lable>
+                        <textarea rows="5" cols="60" class="form-control" id="DescriptionModal" placeholder="Enter Work Description Here" required name="Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Assigned To</label>
+                        <input type="text" class="form-control" id="AssignedTo" placeholder="Enter Assignee Name" required name="AssignedTo" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">DueDate:</label>
+                        <input type="datetime" class="form-control" id="DueDateModal" placeholder="Enter date" required name="DueDate">
+                    </div>
+                    
+
+                    <p class="text-center">
+                        <button type="submit" style="background-color:#4111f0; float:right" class="btn btn-success">Save</button>
+                        <button type="button" style="background-color:gray; float:left" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>  
+       <input type="text" id="txtSearch" name="term"  />
+       <input type="hidden" id="selectedTaskId" name="selectedTaskId"/>
+       <button type="submit" id="detail"  name="detail"  onclick="setData()" data-toggle="modal" data-target="#Search" >search</button>
+        
+       
         </nav>
     </header>
     <div class="container">
@@ -46,6 +94,60 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css"/>
     @await RenderSectionAsync("Scripts", required: false)
+     <script type="text/javascript">
+            $(document).ready(function() {
+                $("#txtSearch").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/Home/GetSearchResults/',
+                        data: { "term": request.term },
+                        type: "GET",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function (e, i) {
+                    $("#selectedTaskId").val(i.item.val);
+                },
+            });
+
+            });
+
+        function setData() {
+            $.ajax({
+                        url: '/Home/GetTaskDetail/',
+                        data: { "detail":  $("#selectedTaskId").val() },
+                        type: "POST",
+                        success: function (data) {
+                            document.getElementById("ID").value = data.id;
+                            document.getElementById("Task").value = data.task;
+                            document.getElementById("DescriptionModal").value = data.description;
+                            document.getElementById("AssignedTo").value = data.assignedTo;
+                            document.getElementById("DueDateModal").value = data.dueDate;      
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });         
+    }
+        </script>
 </body>
 </html>
