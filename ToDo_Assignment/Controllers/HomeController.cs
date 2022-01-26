@@ -121,5 +121,31 @@ namespace ToDo_Assignment.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public ActionResult GetTaskDetail(int detail)
+        {
+
+            var toDoDal = new ToDoDal();
+            var tasks = toDoDal.get();
+            ViewData["id"] = detail;
+            var abc = tasks.Where(x => x.ID.Equals(detail)).FirstOrDefault();
+            return Json(abc);
+        }
+
+
+        [HttpGet]
+        public JsonResult GetSearchResults(string term)
+        {
+            var toDoDal = new ToDoDal();
+            var tasks = toDoDal.get();
+
+            var searchResults = tasks.Where(x => x.Task.Contains(term)).Select(x => new
+            {
+                label = x.Task,
+                val = x.ID
+            }).ToList();
+            return Json(searchResults);
+        }
     }
 }
