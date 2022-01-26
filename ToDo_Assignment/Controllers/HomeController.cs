@@ -122,6 +122,11 @@ namespace ToDo_Assignment.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        /// <summary>
+        /// this controller used for showing search results for your query task
+        /// </summary>
+        /// <param name="detail"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult GetTaskDetail(int detail)
         {
@@ -133,7 +138,11 @@ namespace ToDo_Assignment.Controllers
             return Json(abc);
         }
 
-
+        /// <summary>
+        /// This controller used for Autocomplete feature that gives options of search results.
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
         [HttpGet]
         public JsonResult GetSearchResults(string term)
         {

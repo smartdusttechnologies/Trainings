@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-                    
+              
 <div class="modal fade" id="Search" role="dialog">
     <div class="modal-dialog">
 
@@ -77,15 +77,11 @@
 
     </div>
 </div>  
-
-  
-
-
-            <input type="text" id="txtSearch" name="term"  />
-            <input type="hidden" id="selectedTaskId" name="selectedTaskId"/>
-            <button type="submit" id="detail"  name="detail"  onclick="setData()" data-toggle="modal" data-target="#Search" >search</button>
-            
-
+       <input type="text" id="txtSearch" name="term"  />
+       <input type="hidden" id="selectedTaskId" name="selectedTaskId"/>
+       <button type="submit" id="detail"  name="detail"  onclick="setData()" data-toggle="modal" data-target="#Search" >search</button>
+        
+       
         </nav>
     </header>
     <div class="container">
@@ -132,7 +128,6 @@
 
             });
 
-
         function setData() {
             $.ajax({
                         url: '/Home/GetTaskDetail/',
@@ -143,9 +138,7 @@
                             document.getElementById("Task").value = data.task;
                             document.getElementById("DescriptionModal").value = data.description;
                             document.getElementById("AssignedTo").value = data.assignedTo;
-                            document.getElementById("DueDateModal").value = data.dueDate;
-                           
-                            
+                            document.getElementById("DueDateModal").value = data.dueDate;      
                         },
                         error: function (response) {
                             alert(response.responseText);
@@ -153,9 +146,7 @@
                         failure: function (response) {
                             alert(response.responseText);
                         }
-                    });
-        
-        
+                    });         
     }
         </script>
 </body>
