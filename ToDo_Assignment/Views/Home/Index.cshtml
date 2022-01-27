@@ -1,21 +1,24 @@
 ﻿@model IEnumerable<ToDo_Assignment.Models.ToDoModel>
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
-
 <script>
     function fun(id, status) {
         if (status == "Completed") {
-            if (confirm("Do you want to update completed task to new???") == true) {
+            if (confirm("Do you want to update completed task to new???") == true)
+            {
                 callBackEnd(id, status);
             }
         }
-        else {
+        else
+        {
             callBackEnd(id, status);
         }
 
-        function callBackEnd(id, status) {
+        function callBackEnd(id, status)
+        {
             var form = document.createElement("form");
             form.setAttribute("method", "post");
             form.setAttribute("action", "Home/updateData");
@@ -37,17 +40,16 @@
             document.body.appendChild(form);
             form.submit();
         }
-
     }
 </script>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4 container ">
-
             <table class="table table-borderless bg-white " style="background-color: ghostwhite;">
-
-                @{ int new_count = 0; }
+                @{
+                    int new_count = 0;
+                }
                 @foreach (var c in Model.Where(n => n.TStatus == "new"))
                 {
                     new_count = new_count + 1;
@@ -65,7 +67,6 @@
                 @foreach (var task in Model.Where(n => n.TStatus == "new"))
                 {
                     <tr class="border-bottom">
-
                         @{
                             var bg_color = "";
                             DateTime TodayDate = DateTime.Today;
@@ -73,29 +74,32 @@
                             {
                                 bg_color = "bg-warning";
                             }
-                            var shortDateValue = @task.DueDate.ToShortDateString(); }
+                            var shortDateValue = @task.DueDate.ToShortDateString();
+                        }
                         <td class="@bg_color">
-                            <input id="@task.ID" class="input" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                            <input id="@task.ID" class="input" type="checkbox" onclick="fun(this,'new')" name="task" value="@task.Task" />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo','@task.StoryPoints', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span>
+                            <span class="float-right"> @shortDateValue</span>
                             <p style="color:forestgreen">
-                                Assignee: @{ if (task.AssignedTo == null)
+                                Assignee: @{
+                                    if (task.AssignedTo == null)
                                     {
                                         task.AssignedTo = "Unassigned";
-                                    } @task.AssignedTo}
-                            </p>
-                            <a href="/Home/DeleteEToDo/@task.ID" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
-                            
+                                    } @task.AssignedTo
+                                }
+                            </p><a href="/Home/DeleteEToDo/@task.ID" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
+                            <span class="float-right" style="border-style:solid; border-color:green; border-width: thin;  border-spacing: 15px 50px;">&nbsp;@task.StoryPoints &nbsp;</span>
                         </td>
-
                     </tr>
-
                 }
-
             </table>
         </div>
+
         <div class="col-sm-4 ">
             <table class="table table-borderless bg-white " style="background-color: ghostwhite;">
                 <tr class="border-bottom">
-                    @{ int progress_count = 0; }
+                    @{
+                        int progress_count = 0;
+                    }
                     @foreach (var c in Model.Where(n => n.TStatus == "InProgress"))
                     {
                         progress_count = progress_count + 1;
@@ -105,7 +109,6 @@
                         <br>
                         <progress id="progress" value="@progress_count" max="10" style="width: 100%;"></progress>
                     </th>
-
                 </tr>
                 <tr class="border-bottom">
                     <th><p></p></th>
@@ -120,26 +123,29 @@
                             {
                                 bg_color = "bg-warning";
                             }
-                           
-                            var shortDateValue = @task.DueDate.ToShortDateString(); }
+                            var shortDateValue = @task.DueDate.ToShortDateString();
+                        }
                         <td class="@bg_color">
-                            <input id="@task.ID" class="input" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                            <input id="@task.ID" class="input" type="checkbox" name="task" onclick="fun(this,'InProgress')" value="@task.Task" />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.StoryPoints', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
                             <p style="color:forestgreen">
-                                Assignee:  @{ if (task.AssignedTo == null) { task.AssignedTo = "Unassigned"; }@task.AssignedTo;
+                                Assignee:  @{
+                                    if (task.AssignedTo == null) { task.AssignedTo = "Unassigned"; }
+                                    @task.AssignedTo;
                                 }
                             </p>
                             <a href="/Home/DeleteEToDo/@task.ID" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
+                            <span class="float-right" style="border-style:solid; border-color:green; border-width: thin;  border-spacing: 15px 50px;">&nbsp;@task.StoryPoints &nbsp;</span>
                         </td>
-
                     </tr>
                 }
-
             </table>
         </div>
         <div class="col-sm-4">
             <table class="table table-borderless bg-white " style="background-color: ghostwhite;">
                 <tr class="border-bottom">
-                    @{ int completed_count = 0; }
+                    @{
+                        int completed_count = 0;
+                    }
                     @foreach (var c in Model.Where(n => n.TStatus == "Completed"))
                     {
                         completed_count = completed_count + 1;
@@ -154,22 +160,24 @@
                     <th><p></p></th>
                 </tr>
                 @foreach (var task in Model.Where(n => n.TStatus == "Completed"))
-
                 {
                     <tr class="border-bottom">
                         @{
-                            var shortDateValue = @task.DueDate.ToShortDateString(); }
+                            var shortDateValue = @task.DueDate.ToShortDateString();
+                        }
                         <td>
                             <div>
-                                <input id="@task.ID" class="form-check-inline" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" checked />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
+                                <input id="@task.ID" class="form-check-inline" type="checkbox" name="task" onclick="fun(this,'Completed')" value="@task.Task" checked />&nbsp;<span><a href="" onclick="setData('@task.ID', '@task.Task', '@task.Description', '@task.AssignedTo', '@task.StoryPoints', '@task.DueDate')" data-toggle="modal" data-target="#myModalview">@task.Task</a>&nbsp;</span><span class="float-right"> @shortDateValue</span>
                                 <p style="color:forestgreen">
-                                    Assignee: @{ if (task.AssignedTo == null) { task.AssignedTo = "Unassigned"; }@task.AssignedTo;
+                                    Assignee: @{
+                                        if (task.AssignedTo == null) { task.AssignedTo = "Unassigned"; }
+                                        @task.AssignedTo;
                                     }
                                 </p>
                             </div>
                             <a href="/Home/DeleteEToDo/@task.ID" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
+                            <span class="float-right" style="border-style:solid; border-color:green; border-width: thin;  border-spacing: 15px 50px;">&nbsp;@task.StoryPoints &nbsp;</span>
                         </td>
-
                     </tr>
                 }
             </table>
@@ -177,28 +185,26 @@
     </div>
 </div>
 
-<!--
-<script>
+@*Grid view code vill be there on GridView.cshtml*@
+@Html.Partial("~/Views/Home/GridView.cshtml")
 
-    function check() {
-        alert(document.getElementById("date").value);
-    }
-</script>
-    -->
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
+
             <div class="modal-header" style="background: #2cbac4;">
                 <h4 class="modal-title">Add Task</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+
             <div class="modal-body">
+
                 <form class="form" method="post" action="Home/InsertEToDo">
                     <div class="form-group">
-                        <label for="note">Task:</label>
+                        <label for="note">Task</label>
                         <input type="text" class="form-control" id="note" placeholder="Name" required name="Task">
                     </div>
                     <div class="form-group">
@@ -207,11 +213,16 @@
                     </div>
                     <div class="form-group">
                         <label for="note">Assigned To</label>
-                        <input type="text" class="form-control" id="note" placeholder="Enter Assignee Name"   name="AssignedTo" />
+                        <input type="text" class="form-control" id="note" placeholder="Enter Assignee Name" name="AssignedTo" />
                     </div>
 
                     <div class="form-group">
-                        <label for="date">DueDate:</label>
+                        <label for="note">Story Points</label>
+                        <input type="number" class="form-control" id="note" placeholder="Enter StoryPoints" name="StoryPoints" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Due Date</label>
                         <input type="datetime-local" class="form-control" id="date" placeholder="Enter date" required name="DueDate">
                     </div>
                     <p class="text-center">
@@ -225,31 +236,25 @@
     </div>
 </div>
 
-
-
-
 <script>
-    function setData(id,task, description, assignedTo, dueDate) {
+    function setData(id,task, description, assignedTo, storyPoints, dueDate)
+    {
+        debugger;
         document.getElementById("ID").value = id;
         document.getElementById("Task").value = task;
         document.getElementById("DescriptionModal").value = description;
         document.getElementById("AssignedTo").value = assignedTo;
+        document.getElementById("StoryPoints").value = storyPoints;
         document.getElementById("DueDateModal").value = dueDate;
     }
 </script>
-
-
-
-
-
-
-
 
 <div class="modal fade" id="myModalview" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
+
             <div class="modal-header" style="background: #2cbac4;">
                 <h4 class="modal-title">Add Task</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -269,9 +274,12 @@
                         <label for="note">Assigned To</label>
                         <input type="text" class="form-control" id="AssignedTo" placeholder="Enter Assignee Name" required name="AssignedTo" />
                     </div>
-
                     <div class="form-group">
-                        <label for="date">DueDate:</label>
+                        <label for="note">StoryPoints</label>
+                        <input type="number" class="form-control" id="StoryPoints" placeholder="Enter StoryPoints" required name="StoryPoints" />
+                    </div>
+                    <div class="form-group">
+                        <label for="note">DueDate:</label>
                         <input type="datetime" class="form-control" id="DueDateModal" placeholder="Enter date" required name="DueDate">
                     </div>
                     <p class="text-center">
@@ -281,6 +289,5 @@
                 </form>
             </div>
         </div>
-
-    </div>
+     </div>
 </div>
