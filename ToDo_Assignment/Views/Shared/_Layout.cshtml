@@ -9,8 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
@@ -34,8 +32,7 @@
                     </ul>
                 </div>
             </div>
-
-              
+       
 <div class="modal fade" id="Search" role="dialog">
     <div class="modal-dialog">
 
@@ -83,6 +80,20 @@
         
        
         </nav>
+
+
+
+        <div class = "scrollmenu">
+            <h4 style="color:rgb(255, 0, 0); font-size: 20px;">Scrum Board</h4>
+            <span style="color:rgb(255, 0, 0); font-size: 14px;" >Quick filter:</span>
+            <input type="hidden" id="AssigneeName" name="AssigneeName"/>
+            <a href="" id="Vishal" name="Vishal" onclick="setAssignee()" data-toggle="modal" data-target="#Search" >Vishal</a>
+            <a href="" id="Assignee" name="Vishal" onclick="setAssignee()" data-toggle="modal" data-target="#Search" >Sumanth</a>
+            <a href="" id="Assignee" name="Sushil" onclick="setAssignee()" data-toggle="modal" data-target="#Search" >Sushil</a>
+            <a href="" id="AssigneeName" onclick="fun(id, Shreenidhi)" data-toggle="modal" data-target="" >Shreenidhi</a>
+        </div>
+        <br />
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -90,7 +101,6 @@
         </main>
     </div>
 
-    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -148,6 +158,47 @@
                         }
                     });         
     }
+        </script>
+
+        <script>
+            function setAssignee() {
+                $.ajax({
+                    url: '/Home/GetAssigneeDetail/',
+                        data: { "assignee":  $("#AssigneeName").val() },
+                        type: "POST",
+                        success: function (data) {
+                            document.getElementById("ID").value = data.id;
+                            document.getElementById("Task").value = data.task;
+                            document.getElementById("DescriptionModal").value = data.description;
+                            document.getElementById("AssignedTo").value = data.assignedTo;
+                            document.getElementById("DueDateModal").value = data.dueDate;
+                            //document.getElementById("modal").value = data.modal;
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                });
+            }
+
+            //function setAssignee(AssigneeName) {
+            //    if (AssigneeName == "Vishal") {
+            //        callBackEnd(AssigneeName);
+            //    }
+            //    if (AssigneeName == "Sumanth") {
+            //        callBackEnd(AssigneeName);
+            //    }
+            //    if (AssigneeName == "Sushil") {
+            //        callBackEnd(id, AssigneeName);
+            //    }
+            //    if (AssigneeName == "Shreenidhi") {
+            //        callBackEnd(AssigneeName);
+            //    }
+                
+            //}
+
         </script>
 </body>
 </html>

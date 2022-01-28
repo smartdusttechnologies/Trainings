@@ -24,6 +24,26 @@ a {
   border-color: #1861ac;
 }
 
+/* Filter styles
+-------------------------------------------------- */
+div.scrollmenu {
+    background-color: #dee2e6;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+    div.scrollmenu a {
+        display: inline-block;
+        color: #1b6ec2;
+        text-align: center;
+        font-size: 13px;
+        padding: 10px;
+        text-decoration: none;
+    }
+/*div.scrollmenu a:hover {
+  background-color: #777;
+}*/
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

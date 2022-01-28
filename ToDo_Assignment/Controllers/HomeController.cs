@@ -156,5 +156,16 @@ namespace ToDo_Assignment.Controllers
             }).ToList();
             return Json(searchResults);
         }
+
+        [HttpPost]
+        public ActionResult GetAssigneeDetail(string assignee)
+        {
+
+            var toDoDal = new ToDoDal();
+            var tasks = toDoDal.get();
+            ViewData["id"] = assignee;
+            var assign  = tasks.Where(x => x.AssignedTo.Equals(assignee)).FirstOrDefault();
+            return View(assign);
+        }
     }
 }
