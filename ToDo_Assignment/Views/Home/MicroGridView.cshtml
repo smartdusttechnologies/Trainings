@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<ToDo_Assignment.Models.ToDoModel>
-@*Table creation*@
-<table cellpadding="0" cellspacing="0" class="table table-bordered table-condensed">
+
+    
+
+<table id="MicroGrid" cellpadding="0" cellspacing="0" class="display">
+    <thead>
     <tr>
         <th>Id</th>
         <th>Task Name</th>
@@ -11,7 +14,8 @@
         <th></th>
         <th></th>
     </tr>
-    @* *@
+    </thead>
+    <tbody>
     @foreach (var task in Model)
     {
         <tr>
@@ -20,7 +24,6 @@
             <td>@task.AssignedTo</td>
             <td>@task.StoryPoints</td>
              <td>@task.DueDate</td>
-
             @{
                 var status = "";
                 if (task.DueDate < DateTime.Today && task.TStatus != "Completed")
@@ -47,6 +50,12 @@
             <td><a href="/Home/DeleteEToDo/@task.ID" onclick="return confirm('Really want to delete the task');" >Delete</a></td>
         </tr>
     }
+    </tbody>
 </table>
-
-<br />
+<script type="text/javascript">
+  
+    $('#MicroGrid').DataTable({
+        "searching": true
+        
+    });
+</script>
