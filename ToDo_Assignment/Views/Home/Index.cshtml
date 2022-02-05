@@ -188,9 +188,9 @@
 
 @*Grid view code vill be there on GridView.cshtml*@
 @Html.Partial("~/Views/Home/GridView.cshtml")
-@Html.Partial("~/Views/Home/MicroGridView.cshtml")
+@Html.Partial("~/Views/Home/MultiGrid.cshtml")
 
-<!-- Modal -->
+<!-- Adding new data -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -205,14 +205,17 @@
             <div class="modal-body">
 
                 <form class="form" method="post" action="Home/InsertEToDo">
+
+@*
                     <div class="form-group">
                         <label for="note">Task</label>
                         <input type="text" class="form-control" id="note" placeholder="Name" required name="Task">
                     </div>
-                    <div class="form-group">
+                  <div class="form-group">
                         <lable form="note">Description</lable>
-                        <textarea rows="5" cols="60" class="form-control" id="Description" placeholder="Enter Work Description Here" required name="Description"> </textarea>
-                    </div>
+                        <textarea rows="3" cols="60" class="form-control" id="Description" placeholder="Enter Work Description Here" required name="Description"> </textarea>
+                    </div>a
+
                     <div class="form-group">
                         <label for="note">Assigned To</label>
                         <input type="text" class="form-control" id="note" placeholder="Enter Assignee Name" name="AssignedTo" />
@@ -227,6 +230,28 @@
                         <label for="date">Due Date</label>
                         <input type="datetime-local" class="form-control" id="date" placeholder="Enter date" required name="DueDate">
                     </div>
+*@  
+                       
+                       <div class="form-floating mb-5">
+                             <input type="text" class="form-control" id="note" required placeholder="name">
+                             <label for="note">task</label>
+                       </div>
+                       <div class="form-floating mb-5">
+                             <textarea type="text" class="form-control" id="description" placeholder="enter work description here"></textarea>
+                             <label for="note">description</label>
+                       </div>
+                       <div class="form-floating mb-5">
+                             <input type="text" class="form-control" id="note" required placeholder="enter assignee name">
+                             <label for="note">assignee</label>
+                       </div>
+                       <div class="form-floating mb-5">
+                             <input type="number" class="form-control" id="note" required placeholder="enter story points">
+                             <label for="note">storypoints</label>
+                       </div>
+                       <div class="form-floating mb-5">
+                             <input type="datetime-local" class="form-control" required id="date">
+                             <label for="date">due date</label>
+                       </div>
                     <p class="text-center">
                         <button type="submit" style="background-color:#4111f0; float:right" class="btn btn-success">Add</button>
                         <button type="button" style="background-color:gray; float:left" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -263,27 +288,52 @@
             </div>
             <div class="modal-body">
                 <form class="form" method="post" action="Home/UpdateToDo">
-                    <div class="form-group">
-                        <label for="note">Task:</label>
-                        <input type="hidden" class="form-control" id="ID" placeholder="ID" required name="ID">
-                        <input type="text" class="form-control" id="Task" placeholder="Name" required name="Task">
-                    </div>
-                    <div class="form-group">
-                        <lable form="note">Description</lable>
-                        <textarea rows="5" cols="60" class="form-control" id="DescriptionModal" placeholder="Enter Work Description Here" required name="Description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="note">Assigned To</label>
-                        <input type="text" class="form-control" id="AssignedTo" placeholder="Enter Assignee Name" required name="AssignedTo" />
-                    </div>
-                    <div class="form-group">
-                        <label for="note">StoryPoints</label>
-                        <input type="number" class="form-control" id="StoryPoints" placeholder="Enter StoryPoints" required name="StoryPoints" />
-                    </div>
-                    <div class="form-group">
-                        <label for="note">DueDate:</label>
-                        <input type="datetime" class="form-control" id="DueDateModal" placeholder="Enter date" required name="DueDate">
-                    </div>
+                         <div class="form-outline mb-4">
+                          <input type="hidden" class="form-control" id="ID" placeholder="ID" required name="ID">
+                          <input type="text" id="Task" class="form-control" name="Task" required style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                          <label class="form-label" for="note" style="margin-left: 0px;">Name</label>
+                           <div class="form-notch">
+                               <div class="form-notch-leading" style="width: 9px;"></div>
+                               <div class="form-notch-middle" style="width: 39.2px;"></div>
+                               <div class="form-notch-trailing"></div>
+                           </div>
+                       </div>
+                     <div class="form-outline mb-4">
+                          <textarea type="text" id="DescriptionModal" class="form-control" name="Description" required style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"></textarea>
+                          <label  class="form-label" for="note" style="margin-left: 0px;">Enter Work Description Here</label>
+                           <div class="form-notch">
+                               <div class="form-notch-leading" style="width: 9px;"></div>
+                               <div class="form-notch-middle" style="width: 39.2px;"></div>
+                               <div class="form-notch-trailing"></div>
+                           </div>
+                       </div>
+                     <div class="form-outline mb-4">
+                          <input type="text" id="AssignedTo" class="form-control" name="AssignedTo" required style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                          <label class="form-label" for="note" style="margin-left: 0px;">Enter Assignee Name</label>
+                           <div class="form-notch">
+                               <div class="form-notch-leading" style="width: 9px;"></div>
+                               <div class="form-notch-middle" style="width: 39.2px;"></div>
+                               <div class="form-notch-trailing"></div>
+                           </div>
+                       </div>
+                     <div class="form-outline mb-4">
+                          <input type="number" id="StoryPoints" class="form-control" name="StoryPoints" required style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                          <label class="form-label" for="note" style="margin-left: 0px;">Enter StoryPoints</label>
+                           <div class="form-notch">
+                               <div class="form-notch-leading" style="width: 9px;"></div>
+                               <div class="form-notch-middle" style="width: 39.2px;"></div>
+                               <div class="form-notch-trailing"></div>
+                           </div>
+                       </div>
+                     <div class="form-outline mb-4">
+                          <input type="datetime-local" id="DueDateModal" class="form-control" name="DueDate" required style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                          <label class="form-label" for="date" style="margin-left: 0px;">Enter date</label>
+                           <div class="form-notch">
+                               <div class="form-notch-leading" style="width: 9px;"></div>
+                               <div class="form-notch-middle" style="width: 39.2px;"></div>
+                               <div class="form-notch-trailing"></div>
+                           </div>
+                       </div>
                     <p class="text-center">
                         <button type="submit" style="background-color:#4111f0; float:right" class="btn btn-success">Save</button>
                         <button type="button" style="background-color:gray; float:left" class="btn btn-danger" data-dismiss="modal">Cancel</button>
