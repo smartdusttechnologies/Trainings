@@ -39,7 +39,6 @@ namespace ToDo_Assignment.Controllers
             }
             return View(toDos);
         }
-        //For showing the status in the grid
         [HttpPost]
         public IActionResult updateData(int id, string status)
         {
@@ -88,7 +87,7 @@ namespace ToDo_Assignment.Controllers
             new ToDoDal().UpdateTaskToDo(toDoDal);
             return RedirectToAction("index");
         }
-       
+
         [HttpGet]
         public ActionResult DeleteEToDo(int id )
         {
@@ -113,10 +112,9 @@ namespace ToDo_Assignment.Controllers
         {
             ToDoDal listofnote = new ToDoDal();
             var tasks = listofnote.get();
-
             List<ToDoModel> toDos = new List<ToDoModel>();
             foreach (var item in tasks)
-            {   
+            {
                 var task = new ToDoModel();
                 task.DueDate = item.DueDate;
                 task.Task = item.Task;
@@ -127,7 +125,6 @@ namespace ToDo_Assignment.Controllers
                 task.Description = item.Description;
                 toDos.Add(task);
             }
-            
             return View(tasks);
         }
     }

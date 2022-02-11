@@ -1,6 +1,8 @@
-﻿@model IEnumerable<ToDo_Assignment.Models.ToDoModel>
+﻿<br />
+<br />
+
 @*Table creation*@
-<table cellpadding="0" cellspacing="0" class="table table-bordered table-condensed">
+<table id="ntable" cellpadding="0" cellspacing="0" class="table table-bordered table-condensed">
     <tr>
         <th>Id</th>
         <th>Task Name</th>
@@ -11,7 +13,6 @@
         <th></th>
         <th></th>
     </tr>
-    @* *@
     @foreach (var task in Model)
     {
         <tr>
@@ -20,7 +21,6 @@
             <td>@task.AssignedTo</td>
             <td>@task.StoryPoints</td>
              <td>@task.DueDate</td>
-
             @{
                 var status = "";
                 if (task.DueDate < DateTime.Today && task.TStatus != "Completed")
@@ -48,5 +48,4 @@
         </tr>
     }
 </table>
-
 <br />
