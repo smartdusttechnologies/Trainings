@@ -10,7 +10,8 @@ namespace ToDo.Dal.Operations
 {
      public class ToDoDal
     {
-        private string sqlConnectionString = @"Data Source=DESKTOP-IFTP34V;Initial Catalog=ToDoList;User ID=sa;Password=Vishal@#&099;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private string sqlConnectionString = @"Data Source=DESKTOP-O9DO8UK;Initial Catalog=ToDoList;User ID=sa;Password=Welcome@123;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
 
         public List<Entity.ToDo> get()
         {
@@ -18,7 +19,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                toDo = connection.Query<Entity.ToDo>("Select ID, Task, DueDate , TStatus, AssignedTo, Description from tblToDo ORDER BY DueDate").ToList();
+                toDo = connection.Query<Entity.ToDo>("Select ID, Task, DueDate , TStatus, AssignedTo, StoryPoints, Description from tblToDo ORDER BY DueDate").ToList();           
                 connection.Close();
             }
             return toDo;
@@ -33,7 +34,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Insert into tblToDo (Task,DueDate,TStatus,AssignedTo, Description) values (@Task, @DueDate,@TStatus,@AssignedTo, @Description)", new { Task = obj.Task, DueDate = obj.DueDate , TStatus = obj.TStatus, AssignedTo=obj.AssignedTo, Description=obj.Description });
+                var affectedRows = connection.Execute("Insert into tblToDo (Task,DueDate,TStatus,AssignedTo,StoryPoints, Description) values (@Task, @DueDate,@TStatus,@AssignedTo,@StoryPoints, @Description)", new { Task = obj.Task, DueDate = obj.DueDate , TStatus = obj.TStatus, AssignedTo=obj.AssignedTo, StoryPoints=obj.StoryPoints, Description=obj.Description });
                 connection.Close();
                 return affectedRows;
             }
@@ -60,7 +61,7 @@ namespace ToDo.Dal.Operations
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Update tblToDo set Task=@Task,Description=@Description,AssignedTo=@AssignedTo,DueDate=@DueDate Where ID = @ID", new { ID = obj.ID, Description=obj.Description, AssignedTo=obj.AssignedTo, DueDate=obj.DueDate , Task=obj.Task });
+                var affectedRows = connection.Execute("Update tblToDo set Task=@Task,Description=@Description,AssignedTo=@AssignedTo, StoryPoints=@StoryPoints, DueDate=@DueDate Where ID = @ID", new { ID = obj.ID, Description=obj.Description, AssignedTo=obj.AssignedTo, StoryPoints=obj.StoryPoints, DueDate=obj.DueDate , Task=obj.Task });
                 connection.Close();
                 return affectedRows;
             }
