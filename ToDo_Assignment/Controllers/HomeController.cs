@@ -126,6 +126,40 @@ namespace ToDo_Assignment.Controllers
                 toDos.Add(task);
             }
             return View(tasks);
+
+        /// <summary>
+        /// this controller used for showing search results for your query task
+        /// </summary>
+        /// <param name="detail"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetTaskDetail(int detail)
+        {
+
+            var toDoDal = new ToDoDal();
+            var tasks = toDoDal.get();
+            ViewData["id"] = detail;
+            var abc = tasks.Where(x => x.ID.Equals(detail)).FirstOrDefault();
+            return Json(abc);
+        }
+
+        /// <summary>
+        /// This controller used for Autocomplete feature that gives options of search results.
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult GetSearchResults(string term)
+        {
+            var toDoDal = new ToDoDal();
+            var tasks = toDoDal.get();
+
+            var searchResults = tasks.Where(x => x.Task.Contains(term)).Select(x => new
+            {
+                label = x.Task,
+                val = x.ID
+            }).ToList();
+            return Json(searchResults);
         }
     }
 }

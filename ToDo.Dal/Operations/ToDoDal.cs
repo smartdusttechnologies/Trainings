@@ -12,6 +12,7 @@ namespace ToDo.Dal.Operations
     {
         private string sqlConnectionString = @"Data Source=DESKTOP-O9DO8UK;Initial Catalog=ToDoList;User ID=sa;Password=Welcome@123;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+
         public List<Entity.ToDo> get()
         {
             List<Entity.ToDo> toDo = new List<Entity.ToDo>();
