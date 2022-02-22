@@ -67,12 +67,8 @@ namespace ToDo_Assignment.Controllers
             }
             ViewBag.Teams = teams.Distinct();
             ViewBag.TeamMembersName = teamMembersNames;
-            //return View(ToDoUser);
             return View(toDos);
         }
-        //public IActionResult UserUpdate()
-        //{
-        //}
         [HttpPost]
         public IActionResult updateData(int id, string status)
         {
