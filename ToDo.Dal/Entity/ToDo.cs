@@ -11,12 +11,9 @@ namespace ToDo.Dal.Entity
         public int ID { get; set; }
         public string Task { get; set; }
         public DateTime DueDate { get; set; }
-
         public string TStatus { get; set; }
-        
         public string AssignedTo { get; set; }
         public int StoryPoints { get; set; }
-
         public string Description { get; set; }
 
     }
