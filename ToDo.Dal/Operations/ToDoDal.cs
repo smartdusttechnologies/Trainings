@@ -24,17 +24,14 @@ namespace ToDo.Dal.Operations
             }
             return toDo;
         }
-
-
-
-
+        //This method Add the Data to database
         public int InsertEToDo(Entity.ToDo obj)
         {
             obj.TStatus = "new";
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
-                var affectedRows = connection.Execute("Insert into tblToDo (Task,DueDate,TStatus,AssignedTo,StoryPoints, Description) values (@Task, @DueDate,@TStatus,@AssignedTo,@StoryPoints, @Description)", new { Task = obj.Task, DueDate = obj.DueDate , TStatus = obj.TStatus, AssignedTo=obj.AssignedTo, StoryPoints=obj.StoryPoints, Description=obj.Description });
+                var affectedRows = connection.Execute("Insert into tblToDo (Task,DueDate,TStatus,AssignedTo,StoryPoints, Description) values (@Task, @DueDate,@TStatus,@AssignedTo,@StoryPoints, @Description)", new { Task = obj.Task, DueDate = obj.DueDate , TStatus = obj.TStatus, AssignedTo=obj.AssignedTo, StoryPoints=obj.StoryPoints, Description=obj.Description,});
                 connection.Close();
                 return affectedRows;
             }
@@ -44,7 +41,7 @@ namespace ToDo.Dal.Operations
         {
             throw new NotImplementedException();
         }
-
+        //This method update the Task in database
         public int UpdateEToDo(Entity.ToDo obj)
         {
             using (var connection = new SqlConnection(sqlConnectionString))
@@ -55,7 +52,7 @@ namespace ToDo.Dal.Operations
                 return affectedRows;
             }
         }
-
+        //This method updated a record in database
         public int UpdateTaskToDo(Entity.ToDo obj)
         {
             using (var connection = new SqlConnection(sqlConnectionString))
@@ -66,7 +63,6 @@ namespace ToDo.Dal.Operations
                 return affectedRows;
             }
         }
-
         //This method deletes a record from database    
         public int DeleteEToDo(Entity.ToDo obj)
         {
@@ -78,7 +74,6 @@ namespace ToDo.Dal.Operations
                 return affectedRows;
             }
         }
-
         public object UpdateEToDo()
         {
             throw new NotImplementedException();

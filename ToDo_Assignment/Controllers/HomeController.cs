@@ -20,23 +20,53 @@ namespace ToDo_Assignment.Controllers
         {
             _logger = logger;
         }
-        public IActionResult Index()
+        public IActionResult Index(string teamName)
+
         {
+            ToDoUserDal ListOfNoteOfUser = new ToDoUserDal();
+            var DataInUser = ListOfNoteOfUser.UserGet();
+            List<ToDoModel> ToDoUser = new List<ToDoModel>();
+            List<string> teams = new List<string>();
+            List<string> teamMembersNames = new List<string>();
+            foreach (var item in DataInUser)
+            {
+                teams.Add(item.TeamName);
+                if (teamName != null && teamName == item.TeamName)
+                {
+                    teamMembersNames.Add(item.Name);
+                }
+            }
             ToDoDal listofnote = new ToDoDal();
             var tasks = listofnote.get();
             List<ToDoModel> toDos = new List<ToDoModel>();
             foreach (var item in tasks)
             {
                 var task = new ToDoModel();
-                task.DueDate = item.DueDate;
-                task.Task = item.Task;
-                task.ID = item.ID;
-                task.TStatus = item.TStatus;
-                task.AssignedTo = item.AssignedTo;
-                task.StoryPoints = item.StoryPoints;
-                task.Description = item.Description;
-                toDos.Add(task);
+                if (teamName == null)
+                {
+                    task.DueDate = item.DueDate;
+                    task.Task = item.Task;
+                    task.ID = item.ID;
+                    task.TStatus = item.TStatus;
+                    task.AssignedTo = item.AssignedTo;
+                    task.StoryPoints = item.StoryPoints;
+                    task.Description = item.Description;
+                    toDos.Add(task);
+                }
+                else if (teamMembersNames.Contains(item.AssignedTo))
+                {
+                    task.DueDate = item.DueDate;
+                    task.Task = item.Task;
+                    task.ID = item.ID;
+                    task.TStatus = item.TStatus;
+                    task.AssignedTo = item.AssignedTo;
+                    task.StoryPoints = item.StoryPoints;
+                    task.Description = item.Description;
+                    toDos.Add(task);
+                }
             }
+            ViewBag.Teams = teams.Distinct();
+            ViewBag.TeamMembersName = teamMembersNames;
             return View(toDos);
         }
         [HttpPost]
@@ -58,10 +88,9 @@ namespace ToDo_Assignment.Controllers
             new ToDoDal().UpdateEToDo(toDoDal);
             return RedirectToAction("index");
         }
-
         //For insertion
         [HttpPost]
-        public ActionResult InsertEToDo(string task, DateTime dueDate, string tStatus, string assignedTo,int storyPoints, string description)
+        public ActionResult InsertEToDo(string task, DateTime dueDate, string tStatus, string assignedTo, int storyPoints, string description)
         {
             var toDoDal = new ToDo.Dal.Entity.ToDo();
             toDoDal.Task = task;
@@ -72,7 +101,6 @@ namespace ToDo_Assignment.Controllers
             new ToDoDal().InsertEToDo(toDoDal);
             return RedirectToAction("index");
         }
-
         //For updating the data
         [HttpPost]
         public ActionResult UpdateToDo(int id, string task, DateTime dueDate, string assignedTo, int storyPoints, string description)
@@ -87,27 +115,23 @@ namespace ToDo_Assignment.Controllers
             new ToDoDal().UpdateTaskToDo(toDoDal);
             return RedirectToAction("index");
         }
-
         [HttpGet]
-        public ActionResult DeleteEToDo(int id )
+        public ActionResult DeleteEToDo(int id)
         {
             var toDoDal = new ToDo.Dal.Entity.ToDo();
             toDoDal.ID = id;
             new ToDoDal().DeleteEToDo(toDoDal);
             return RedirectToAction("Index");
         }
-
         public IActionResult Privacy()
         {
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
         public IActionResult GridView()
         {
             ToDoDal listofnote = new ToDoDal();
@@ -126,40 +150,40 @@ namespace ToDo_Assignment.Controllers
                 toDos.Add(task);
             }
             return View(tasks);
-
-        /// <summary>
-        /// this controller used for showing search results for your query task
-        /// </summary>
-        /// <param name="detail"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult GetTaskDetail(int detail)
-        {
-
-            var toDoDal = new ToDoDal();
-            var tasks = toDoDal.get();
-            ViewData["id"] = detail;
-            var abc = tasks.Where(x => x.ID.Equals(detail)).FirstOrDefault();
-            return Json(abc);
         }
-
-        /// <summary>
-        /// This controller used for Autocomplete feature that gives options of search results.
-        /// </summary>
-        /// <param name="term"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public JsonResult GetSearchResults(string term)
-        {
-            var toDoDal = new ToDoDal();
-            var tasks = toDoDal.get();
-
-            var searchResults = tasks.Where(x => x.Task.Contains(term)).Select(x => new
+            /// <summary>
+            /// this controller used for showing search results for your query task
+            /// </summary>
+            /// <param name="detail"></param>
+            /// <returns></returns>
+            [HttpPost]
+            public ActionResult GetTaskDetail(int detail)
             {
-                label = x.Task,
-                val = x.ID
-            }).ToList();
-            return Json(searchResults);
+                var toDoDal = new ToDoDal();
+                var tasks = toDoDal.get();
+                ViewData["id"] = detail;
+                var abc = tasks.Where(x => x.ID.Equals(detail)).FirstOrDefault();
+                return Json(abc);
+            }
+            /// <summary>
+            /// This controller used for Autocomplete feature that gives options of search results.
+            /// </summary>
+            /// <param name="term"></param>
+            /// <returns></returns>
+            [HttpGet]
+            public JsonResult GetSearchResults(string term)
+            {
+                var toDoDal = new ToDoDal();
+                var tasks = toDoDal.get();
+
+                var searchResults = tasks.Where(x => x.Task.Contains(term)).Select(x => new
+                {
+                    label = x.Task,
+                    val = x.ID
+                }).ToList();
+                return Json(searchResults);
+            }
         }
     }
-}
+
+
