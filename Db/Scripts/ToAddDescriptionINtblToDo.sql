@@ -1,2 +1,2 @@
 ALTER TABLE tblTODo
-ADD Description varchar(500)
+ADD StoryPoints varchar(500)
