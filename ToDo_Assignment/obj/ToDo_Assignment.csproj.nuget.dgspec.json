@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj": {}
+    "E:\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj": {}
   },
   "projects": {
-    "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
+    "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
+        "projectUniqueName": "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
         "projectName": "ToDo.Dal",
-        "projectPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\obj\\",
+        "projectPath": "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "E:\\Trainings\\Trainings\\ToDo.Dal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -64,21 +65,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj": {
+    "E:\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj",
+        "projectUniqueName": "E:\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj",
         "projectName": "ToDo_Assignment",
-        "projectPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo_Assignment\\obj\\",
+        "projectPath": "E:\\Trainings\\Trainings\\ToDo_Assignment\\ToDo_Assignment.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "E:\\Trainings\\Trainings\\ToDo_Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,8 +93,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
-                "projectPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj"
+              "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
+                "projectPath": "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj"
               }
             }
           }
@@ -111,6 +112,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.0.123, )"
+            },
+            "LazZiya.TagHelpers": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             }
           },
           "imports": [
@@ -119,7 +124,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -131,7 +137,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

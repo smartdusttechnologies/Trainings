@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {}
+    "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {}
   },
   "projects": {
-    "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
+    "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
+        "projectUniqueName": "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
         "projectName": "ToDo.Dal",
-        "projectPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\obj\\",
+        "projectPath": "E:\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "E:\\Trainings\\Trainings\\ToDo.Dal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -64,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
