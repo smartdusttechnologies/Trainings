@@ -1,0 +1,9 @@
+.drawer-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.drawer-menu a{
+    text-decoration: none;
+    color: white;
+}
