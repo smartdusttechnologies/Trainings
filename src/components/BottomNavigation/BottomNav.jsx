@@ -3,7 +3,6 @@ import './BottomNav.css'
 import { BottomNavigationAction } from '@mui/material';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
-import Drawer from '../Drawer/Drawer';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
@@ -24,7 +23,7 @@ const BottomNav = () => {
       >
         <BottomNavigationAction label="Phone" icon={<LocalPhoneIcon />} />
         <BottomNavigationAction label="Email" icon={<EmailIcon />} />
-        <BottomNavigationAction label="Facebiik" icon={<FacebookIcon />} />
+        <BottomNavigationAction label="Facebook" icon={<FacebookIcon />} />
         <BottomNavigationAction label="Chat" icon={<ChatBubbleIcon />} />
       </BottomNavigation>
     </Box>

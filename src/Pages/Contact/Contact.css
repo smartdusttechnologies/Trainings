@@ -21,10 +21,15 @@
 .user-details-form input{
     border: none;
     background-color: transparent;
+    border: 2px transparent;
     border-bottom: solid white 1px;
     color: white;
     height: 4vh;
     margin: 10px 0px;
+}
+.user-details-form input:hover{
+    border: solid white 1px;
+    transition: 0.3s ease-in-out;
 }
 .user-details-form input::placeholder{
     color: white;
@@ -53,7 +58,7 @@
     height: 5vh;
     background-color: #fff;
     color: black;
-    border-radius: 15px;
+    border-radius: 25px;
     font-weight: 500;
 }
 

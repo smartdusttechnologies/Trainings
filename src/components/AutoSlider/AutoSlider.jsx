@@ -33,7 +33,7 @@ export default class SlickGoTo extends React.Component {
         <Slider ref={slider => (this.slider = slider)} {...settings} arrows={false}>
             {
                 images.map((i)=>(
-                    <div style={{width:'100%'}}>
+                    <div style={{width:'100%'}} key={i}>
                         <img src={i} style={{width:'100%'}} alt="" />
                     </div>
                 ))
