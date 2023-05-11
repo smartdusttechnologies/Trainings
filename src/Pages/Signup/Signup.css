@@ -1,0 +1,47 @@
+.signup-page{
+    display: flex;
+    justify-content: center;
+}
+.signup-container{
+    text-align: center;
+    width: 350px;
+}
+.text-signup{
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(62, 61, 61);
+}
+.signup-container form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submit-btn{
+    background-color: #258ad8;
+    color: white;
+    width: 350px;
+    height: 5vh;
+    margin: auto;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+.submit-btn:hover{
+    background-color: #2273b0;
+    transition: 0.3s ease-in-out;
+}
+.login{
+    font-size: 13px;
+    margin-top: 10px;
+    text-align: center;
+}
+@media screen and (min-width:101px) and (max-width:600px){
+    .signup-container{
+        width: 220px;
+    }
+    .submit-btn{
+        width: 200px;
+    }
+}

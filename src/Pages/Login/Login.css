@@ -1,0 +1,48 @@
+.login-page{
+    display: flex;
+    justify-content: center;
+}
+.login-container{
+    text-align: center;
+    width: 350px;
+}
+.text-login{
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(62, 61, 61);
+}
+.login-container form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submit-btn{
+    background-color: #258ad8;
+    color: white;
+    width: 350px;
+    height: 5vh;
+    margin: auto;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+.submit-btn:hover{
+    background-color: #2273b0;
+    transition: 0.3s ease-in-out;
+}
+.sign-up{
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-top: 10px;
+}
+@media screen and (min-width:101px) and (max-width:600px){
+    .login-container{
+        width: 220px;
+    }
+    .submit-btn{
+        width: 200px;
+    }
+}
