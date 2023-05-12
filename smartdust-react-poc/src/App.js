@@ -1,10 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import AllRoutes from './components/AllRoutes';
+import Footer from './components/Footer/Footer';
+import BottomNav from './components/BottomNavigation/BottomNav';
+import LocationMap from './components/Localtionmap/Locationmap';
 
 function App() {
   return (
-    <div className="App">
-      Fresh app
+    <div>
+      <Navbar/>
+      <AllRoutes/>
+      <LocationMap/>
+      <Footer/>
+      <BottomNav/>
     </div>
   );
 }

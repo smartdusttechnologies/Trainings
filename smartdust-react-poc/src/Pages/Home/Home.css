@@ -1,0 +1,120 @@
+.Poster-Home{
+    height: 90vh;
+    background-image: url(../../assets/images/Background-Home-page.jpg);
+    /* background-position: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Poster-Home-text{
+    color: white;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 700;
+}
+.Poster-Home-text span{
+    font-size: 25px;
+    font-weight: 500;
+
+}
+.About{
+    height: 50vh;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.About-container{
+    width: 55%;
+    margin: auto;
+}
+#About-Q{
+    font-size: 40px;
+    font-weight: 600;
+    
+}
+#About-text{
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.Auto-slider{
+    width: 60%;
+    margin: auto;
+    background-color: black;
+}
+.Quote-div{
+    background-image: url('https://static.wixstatic.com/media/11062b_0f162ab89785432f9b834066fa96982b~mv2.jpg/v1/fill/w_1899,h_700,fp_0.23_0.40,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_0f162ab89785432f9b834066fa96982b~mv2.jpg');
+    height: 70vh;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+#quote{
+    font-size: 22px;
+    font-weight: 400;
+}
+.small-screen-quote{
+    display: none;
+}
+
+
+@media screen and (min-width:101px) and (max-width:600px){
+    .none{
+        display: none;
+    }
+    .Poster-Home-text{
+        font-size: 45px;
+        font-weight: 600;
+    }
+    .Poster-Home-text span{
+        font-size: 20px;
+        font-weight: 400;
+    }
+    .About{
+        height: 70vh;
+    }
+    .work{
+        height: 50vh;
+    }
+    .About-container{
+        width: 90%;
+        margin: auto;
+    }
+    #About-Q{
+        font-size: 30px;
+        font-weight: 500;
+        
+    }
+    #About-text{
+        font-size: 15px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .Auto-slider{
+        width: 100%;
+    }
+    .Quote-div{
+        height: 30vh;
+    }
+    .small-screen-quote{
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+    }
+    .small-screen-quote img{
+        width: 100%;
+    }
+    .s-quote-div{
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 20vh;
+    }
+}
