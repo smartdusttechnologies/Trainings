@@ -6,6 +6,10 @@
 .login-container{
     text-align: center;
     width: 350px;
+    height: 77vh;
+    margin-top: 60px;
+    border: 1px solid rgb(121, 121, 121);
+    padding: 5px 20px;
 }
 .text-login{
     font-size: 25px;
@@ -19,7 +23,7 @@
 }
 
 .submit-btn{
-    background-color: #258ad8;
+    background-color: rgb(63, 158, 61);
     color: white;
     width: 350px;
     height: 5vh;
@@ -30,15 +34,58 @@
     border-radius: 5px;
 }
 .submit-btn:hover{
-    background-color: #2273b0;
+    background-color: rgb(58, 144, 56);
     transition: 0.3s ease-in-out;
 }
 .sign-up{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 13px;
     margin-top: 10px;
 }
+.Or-div{
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 0px;
+    align-items: center;
+}
+.Or-div div hr{
+    width: 130px;
+}
+.social-media-login{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+.social-media-login p{
+    text-align: center;
+    margin: 2px;
+}
+.social-media-login a{
+    text-decoration: none;
+    align-items: center;
+    width: 150px;
+    height: 4vh;
+    margin: auto;
+    border-radius: 5px;
+    color: white;
+}
+.blue-login{
+    background-color: #25a0d0;
+}
+.red-login{
+    background-color: #de312e;
+}
+.why{
+    color: rgb(26, 149, 26);
+}
+.ans{
+    font-size: 11px;
+}
+.forgot-pass{
+    font-size: 15px;
+}
+
 @media screen and (min-width:101px) and (max-width:600px){
     .login-container{
         width: 220px;

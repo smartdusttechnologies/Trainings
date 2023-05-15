@@ -7,6 +7,9 @@
 .signup-container{
     text-align: center;
     width: 350px;
+    border: 1px solid rgb(121, 121, 121);
+    padding: 5px 20px;
+    height: 75vh;
 }
 .text-signup{
     font-size: 25px;
@@ -20,10 +23,10 @@
 }
 
 .submit-btn{
-    background-color: #258ad8;
+    background-color: rgb(63, 158, 61);
     color: white;
     width: 350px;
-    height: 5vh;
+    height: 4vh;
     margin: auto;
     font-size: 16px;
     font-weight: 500;
@@ -31,7 +34,7 @@
     border-radius: 5px;
 }
 .submit-btn:hover{
-    background-color: #2273b0;
+    background-color: rgb(63, 158, 61);
     transition: 0.3s ease-in-out;
 }
 .login{
