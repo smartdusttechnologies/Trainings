@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { Input, TextField } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Signup.css'
@@ -6,11 +6,23 @@ const Signup = () => {
   return (
     <div className='signup-page'>
       <div className='signup-container'>
-        <p className='text-signup'>Sign up</p>
+        <div className='login-header'>
+          <div className='login-text-div'>
+            <Link  to={'/login'}  style={{textDecoration:'none'}}>
+            <p style={{fontSize:"23px", color: 'rgb(62, 61, 61)'}}>Sign in</p>
+            </Link>
+          </div>
+          <div>
+            <Link style={{textDecoration:'none'}}>
+            <p className='text-signup'>Sign up</p>
+            </Link>
+          </div>
+        </div>
         <form action="">
-          <TextField label='Name' type="text"/>
-          <TextField label='Email Address' type="text"/>
-          <TextField label='Password' type="password"/>
+          <input placeholder='Name' type="text"/>
+          <input placeholder='Email Address' type="text"/>
+          <input placeholder='Enter Password' type="password"/>
+          <input placeholder='Re-Enter Password' type="password"/>
           <input className='submit-btn' type="submit" value={'Sign up'}/>
         </form>
         

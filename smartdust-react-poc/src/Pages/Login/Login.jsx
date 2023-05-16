@@ -5,11 +5,15 @@ import { Link } from 'react-router-dom'
 const Login = () => {
   const [email , setEmail] = useState('');
   const [password , setPassword] = useState('');
+  const [errmsg , setErrmsg] = useState('')
 
   const handleSubmit = async ()=>{
     try {
+
       
-    } catch (error) {
+      setEmail('')
+      setPassword('')
+    } catch (err) {
       
     }
   }
@@ -18,19 +22,33 @@ const Login = () => {
   return (
     <div className='login-page'>
       <div className='login-container'>
-        <p className='text-login'>Sign in</p>
+        <div className='login-header'>
+          <div className='login-text-div'>
+            <Link style={{textDecoration:'none' , color:"blue"}}>
+            <p className='text-login'>Sign in</p>
+            </Link>
+          </div>
+          <div>
+            <Link to={'/signup'} style={{textDecoration:'none'}}>
+            <p style={{fontSize:"23px", color: 'rgb(62, 61, 61)'}}>Sign up</p>
+            </Link>
+          </div>
+        </div>
         <form action="">
-          <TextField
+          <input
            onChange={(e)=>setEmail(e.target.value)}
-          label='Email Address' type="text"
+          placeholder='Username or Email ID' type="text"
           value={email}
           />
-          <TextField
+          <input
            onChange={(e)=>setPassword(e.target.value)}
-          label='Password' type="password"
+          placeholder='Password' type="password"
           value={password}
           />
+          <div className='remeber-me-forgot-pass'>
+           <div> <label htmlFor="">Remember me</label> <input type="checkbox" /></div>
           <Link className='forgot-pass'>Forgot password</Link>
+          </div>
           <input className='submit-btn' type="submit" value={'Sign-in'}/>
         </form>
         

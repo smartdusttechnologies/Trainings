@@ -6,24 +6,34 @@
 .login-container{
     text-align: center;
     width: 350px;
-    height: 77vh;
-    margin-top: 60px;
+    height: 71vh;
+    margin-top: 40px;
     border: 1px solid rgb(121, 121, 121);
-    padding: 5px 20px;
+    padding: 0px 20px;
+}
+.login-header{
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
 }
 .text-login{
-    font-size: 25px;
+    font-size: 23px;
     font-weight: 500;
-    color: rgb(62, 61, 61);
+    color: rgb(16, 128, 175);
 }
 .login-container form{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+.login-container form input{
+    height: 4vh;
+    border-radius: 5px;
+    border: 1px solid rgb(102, 101, 101);
+}
 
 .submit-btn{
-    background-color: rgb(63, 158, 61);
+    background-color: rgb(61, 147, 85);
     color: white;
     width: 350px;
     height: 5vh;
@@ -34,7 +44,7 @@
     border-radius: 5px;
 }
 .submit-btn:hover{
-    background-color: rgb(58, 144, 56);
+    background-color: rgb(55, 169, 87);
     transition: 0.3s ease-in-out;
 }
 .sign-up{
@@ -42,6 +52,15 @@
     justify-content: center;
     font-size: 13px;
     margin-top: 10px;
+}
+.remeber-me-forgot-pass{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.remeber-me-forgot-pass > div{
+    display: flex;
+    align-items: center;
 }
 .Or-div{
     display: flex;
@@ -83,7 +102,7 @@
     font-size: 11px;
 }
 .forgot-pass{
-    font-size: 15px;
+    font-size: 14px;
 }
 
 @media screen and (min-width:101px) and (max-width:600px){

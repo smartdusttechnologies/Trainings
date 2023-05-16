@@ -8,22 +8,28 @@
     text-align: center;
     width: 350px;
     border: 1px solid rgb(121, 121, 121);
-    padding: 5px 20px;
-    height: 75vh;
+    padding: 0px 20px;
+    height: 70vh;
+    margin-top: 40px;
 }
 .text-signup{
-    font-size: 25px;
+    font-size: 23px;
     font-weight: 500;
-    color: rgb(62, 61, 61);
+    color: rgb(16, 128, 175);
 }
 .signup-container form{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+.signup-container form input{
+    height: 4vh;
+    border-radius: 5px;
+    border: 1px solid rgb(102, 101, 101);
+}
 
 .submit-btn{
-    background-color: rgb(63, 158, 61);
+    background-color: rgb(61, 147, 85);
     color: white;
     width: 350px;
     height: 4vh;
@@ -34,7 +40,7 @@
     border-radius: 5px;
 }
 .submit-btn:hover{
-    background-color: rgb(63, 158, 61);
+    background-color: rgb(55, 169, 87);
     transition: 0.3s ease-in-out;
 }
 .login{
