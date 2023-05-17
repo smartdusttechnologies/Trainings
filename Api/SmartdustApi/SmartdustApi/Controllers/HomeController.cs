@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartdustApi.Common;
 using SmartdustApi.Models;
+using SmartdustApi.Repository;
 using SmartdustApi.Services.Interfaces;
 
 namespace SmartdustApi.Controllers
@@ -11,11 +13,12 @@ namespace SmartdustApi.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IContactService _contactService;
-
-        public HomeController(ILogger<HomeController> logger,IContactService contactService)
+        private readonly IJWTManagerRepository _jWTManager;
+        public HomeController(ILogger<HomeController> logger, IContactService contactService, IJWTManagerRepository jWTManager)
         {
             _logger = logger;
             _contactService = contactService;
+            _jWTManager = jWTManager;
         }
 
         [HttpPost(Name = "Contactus")]
@@ -23,5 +26,34 @@ namespace SmartdustApi.Controllers
         {
             return _contactService.Save(contact);
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("authenticate")]
+        public IActionResult Authenticate(Users usersdata)
+        {
+            var token = _jWTManager.Authenticate(usersdata);
+
+            if (token == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(token);
+        }
+        [Authorize]
+        [HttpGet]
+        public List<string> Get()
+        {
+            var users = new List<string>
+        {
+            "Satinder Singh",
+            "Amit Sarna",
+            "Davin Jon"
+        };
+
+            return users;
+        }
+
     }
 }

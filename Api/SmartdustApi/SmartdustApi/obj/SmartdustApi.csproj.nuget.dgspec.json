@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\training\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj": {}
+    "D:\\trainingOld\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj": {}
   },
   "projects": {
-    "D:\\training\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj": {
+    "D:\\trainingOld\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\training\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj",
+        "projectUniqueName": "D:\\trainingOld\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj",
         "projectName": "SmartdustApi",
-        "projectPath": "D:\\training\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj",
+        "projectPath": "D:\\trainingOld\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\SmartdustApi.csproj",
         "packagesPath": "C:\\Users\\Raj\\.nuget\\packages\\",
-        "outputPath": "D:\\training\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\obj\\",
+        "outputPath": "D:\\trainingOld\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Raj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[2.0.123, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -51,6 +55,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.30.1, )"
             }
           },
           "imports": [
