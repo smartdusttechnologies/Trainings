@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartdustApi", "SmartdustApi\SmartdustApi.csproj", "{62539B82-4B08-422C-BC05-8F0519D77FD7}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SmartdustApi.DB", "SmartdustApi.DB\SmartdustApi.DB.sqlproj", "{40336D5B-D7B8-4DE2-A78C-57E7A779BE8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{62539B82-4B08-422C-BC05-8F0519D77FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62539B82-4B08-422C-BC05-8F0519D77FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62539B82-4B08-422C-BC05-8F0519D77FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40336D5B-D7B8-4DE2-A78C-57E7A779BE8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40336D5B-D7B8-4DE2-A78C-57E7A779BE8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40336D5B-D7B8-4DE2-A78C-57E7A779BE8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{40336D5B-D7B8-4DE2-A78C-57E7A779BE8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40336D5B-D7B8-4DE2-A78C-57E7A779BE8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40336D5B-D7B8-4DE2-A78C-57E7A779BE8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

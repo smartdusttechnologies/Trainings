@@ -11,49 +11,40 @@ using SmartdustApi.Repository.Interfaces;
 using SmartdustApi.Repository;
 using SmartdustApi.Services.Interfaces;
 using SmartdustApi.Services;
+using SmartdustApi.Common;
 
 namespace SmartdustApi
 {
     public class Startup
     {
-        private string MyAllowSpecificOrigins ;
+        private string MyAllowSpecificOrigins;
+        public static TokenValidationParameters tokenValidationParameters;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
             MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         }
-       
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-           
-
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-            services.AddAuthentication(x =>
+            services.AddAuthentication(options =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(o =>
-            {
-                var Key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
-                o.SaveToken = true;
-                o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["JWT:Issuer"],
-                    ValidAudience = Configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Key)
-                };
-            });
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+         .AddJwtBearer(options =>
+         {
+             options.TokenValidationParameters = tokenValidationParameters;
+         });
             //Services
             services.AddCors(options =>
             {
@@ -87,11 +78,42 @@ namespace SmartdustApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            tokenValidationParameters = new TokenValidationParameters
+            {
+                // The signing key must match!
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:Secret"])),
 
+                // Validate the JWT Issuer (iss) claim
+                ValidateIssuer = true,
+                ValidIssuer = Configuration["JWT:ValidIssuer"],
+
+                // Validate the JWT Audience (aud) claim
+                ValidateAudience = true,
+                ValidAudience = Configuration["JWT:ValidAudience"],
+
+                // Validate the token expiry
+                ValidateLifetime = true,
+
+                // If you want to allow a certain amount of clock drift, set that here:
+                ClockSkew = TimeSpan.Zero
+            };
+            app.UseSession();
+
+            app.Use(async (context, next) =>
+            {
+                var token = context.Session.GetString("Token");
+                if (!string.IsNullOrEmpty(token))
+                {
+                    //context.Request.Headers.Add("Authorization", "Bearer " + token);
+                    context.Request.Headers.Add("Authorization", token);
+                }
+                await next();
+            });
             app.UseCors(MyAllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            //app.UseMiddleware<SdtAuthenticationMiddleware>();
+            app.UseMiddleware<SdtAuthenticationMiddleware>();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

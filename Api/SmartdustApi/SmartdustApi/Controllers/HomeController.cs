@@ -14,6 +14,7 @@ namespace SmartdustApi.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IContactService _contactService;
         private readonly IJWTManagerRepository _jWTManager;
+
         public HomeController(ILogger<HomeController> logger, IContactService contactService, IJWTManagerRepository jWTManager)
         {
             _logger = logger;
@@ -21,12 +22,19 @@ namespace SmartdustApi.Controllers
             _jWTManager = jWTManager;
         }
 
-        [HttpPost(Name = "Contactus")]
+        [HttpPost]
+        [Route("Contactus")]
         public RequestResult<bool> Contactsus(ContactDTO contact)
         {
             return _contactService.Save(contact);
         }
-
+        [Authorize]
+        [ActionName("GetName")]
+        [HttpGet(Name ="GetName")]
+        public string GetName()
+        {
+            return "Raj";
+        }
         [AllowAnonymous]
         [HttpPost]
         [Route("authenticate")]
@@ -41,19 +49,5 @@ namespace SmartdustApi.Controllers
 
             return Ok(token);
         }
-        [Authorize]
-        [HttpGet]
-        public List<string> Get()
-        {
-            var users = new List<string>
-        {
-            "Satinder Singh",
-            "Amit Sarna",
-            "Davin Jon"
-        };
-
-            return users;
-        }
-
     }
 }
