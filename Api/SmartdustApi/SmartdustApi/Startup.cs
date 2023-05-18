@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +11,7 @@ using SmartdustApi.Repository;
 using SmartdustApi.Services.Interfaces;
 using SmartdustApi.Services;
 using SmartdustApi.Common;
+using SmartdustApi.Repository.Interface;
 
 namespace SmartdustApi
 {
@@ -61,7 +61,26 @@ namespace SmartdustApi
             //Service DI
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IConnectionFactory, ConnectionFactory>();
-            services.AddScoped<IJWTManagerRepository, JWTManagerRepository>();
+            //
+
+            services.AddScoped<Services.Interfaces.ILogger,Infrastructure.Logger>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IRoleService, RoleService>();
+            //Authorization Handler Initalization Start
+            //Authorization Handler Initalization End
+            services.AddScoped<ISecurityParameterService, SecurityParameterService>();
+
+
+            //Repository
+            services.AddScoped<IConnectionFactory, ConnectionFactory>();
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<ILoggerRepository, LoggerRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ISecurityParameterRepository, SecurityParameterRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            //
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

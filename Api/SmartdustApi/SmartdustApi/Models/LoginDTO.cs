@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SmartdustApi.Models
+namespace SmartdustApi.Model
 {
     public class LoginDTO
     {
@@ -16,4 +16,3 @@ namespace SmartdustApi.Models
         public string Password { get; set; }
     }
 }
-

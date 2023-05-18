@@ -1,6 +1,4 @@
-﻿
-
-namespace SmartdustApi.Model
+﻿namespace SmartdustApi.Model
 {
     public class UserClaim : Entity
     {

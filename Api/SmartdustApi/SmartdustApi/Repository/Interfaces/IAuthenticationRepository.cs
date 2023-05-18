@@ -1,6 +1,6 @@
 ﻿//using SmartdustApi.Model;
 
-//namespace TestingAndCalibrationLabs.Business.Data.Repository.Interfaces
+//namespace SmartdustApi.Repository.Interface
 //{
 //    public interface IAuthenticationRepository
 //    {

@@ -1,5 +1,5 @@
 ﻿using SmartdustApi.Common;
-using SmartdustApi.Models;
+using SmartdustApi.Model;
 using SmartdustApi.Repository.Interfaces;
 using SmartdustApi.Services.Interfaces;
 

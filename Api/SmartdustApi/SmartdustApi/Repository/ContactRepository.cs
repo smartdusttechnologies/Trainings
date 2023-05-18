@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using SmartdustApi.Common;
 using SmartdustApi.Infrastructure;
-using SmartdustApi.Models;
+using SmartdustApi.Model;
 using SmartdustApi.Repository.Interfaces;
 using System.Data;
 

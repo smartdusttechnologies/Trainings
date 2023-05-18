@@ -1,4 +1,4 @@
-﻿namespace SmartdustApi.Models
+﻿namespace SmartdustApi.Model
 {
     public class ContactDTO
     {
