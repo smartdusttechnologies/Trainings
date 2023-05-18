@@ -2,6 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import Drawer from '../Drawer/Drawer'
+import UserAccountMenu from '../UserProfile/UserAccountMenu'
 
 const Navbar = () => {
   return (
@@ -19,6 +20,7 @@ const Navbar = () => {
         <Link to={'/login'}><div><a href="">Login</a> </div></Link> |
         <Link to={'/contact'}><div><a href="">Contact</a> </div></Link> | 
         <Link to={'/about'}><div><a href="">About</a> </div></Link>
+        <UserAccountMenu/>
         </div>
       </div>
           <Drawer/>

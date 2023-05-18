@@ -5,6 +5,8 @@ import Contact from '../Pages/Contact/Contact'
 import About from '../Pages/About/About'
 import Login from '../Pages/Login/Login'
 import Signup from '../Pages/Signup/Signup'
+import ChangePassword from '../Pages/ChangePassword/ChangePassword'
+import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword'
 
 const AllRoutes = () => {
   return (
@@ -14,6 +16,8 @@ const AllRoutes = () => {
       <Route path='/about' element={<About/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/signup' element={<Signup/>}></Route>
+      <Route path='/changepassword' element={<ChangePassword/>}></Route>
+      <Route path='/forgotpassword' element={<ForgotPassword/>}></Route>
     </Routes>
   )
 }

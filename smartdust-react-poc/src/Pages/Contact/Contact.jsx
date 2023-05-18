@@ -26,7 +26,7 @@ const Contact = () => {
   const handleSubmit = (e)=>{
     e.preventDefault()
     console.log(userdata)
-    axios.post('https://localhost:7023/Home' , {
+    axios.post('https://localhost:7023/Home/Contactus/' , {
     name: userdata.name,
     mail:userdata.mail,
     phone:userdata.phone,

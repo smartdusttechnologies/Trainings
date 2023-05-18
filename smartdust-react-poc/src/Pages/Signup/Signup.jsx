@@ -1,8 +1,30 @@
-import { Input, TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Signup.css'
 const Signup = () => {
+  const [newuser , setNewuser] = useState({
+    firstname:"",
+    lastname:"",
+    username:"",
+    mail:"",
+    phone:0,
+    country:"",
+    org:"",
+    password:""
+  })
+
+
+  const handleChange = (e)=>{
+    const newdata = {...newuser}
+    newdata[e.target.id] = e.target.value
+    setNewuser(newdata)
+    console.log(newuser)
+    console.log(e.target);
+  }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+  }
   return (
     <div className='signup-page'>
       <div className='signup-container'>
@@ -18,12 +40,25 @@ const Signup = () => {
             </Link>
           </div>
         </div>
-        <form action="">
-          <input placeholder='Name' type="text"/>
-          <input placeholder='Email Address' type="text"/>
-          <input placeholder='Enter Password' type="password"/>
-          <input placeholder='Re-Enter Password' type="password"/>
-          <input className='submit-btn' type="submit" value={'Sign up'}/>
+        <form onSubmit={(e)=>handleSubmit(e)} action="">
+          <input onChange={(e)=>handleChange(e)} id='firstname' placeholder='Enter FirstName' type="text"/>
+          <input onChange={(e)=>handleChange(e)} id='lastname' placeholder='Enter LastName' type="text"/>
+          <input onChange={(e)=>handleChange(e)} id='username' placeholder='Enter UserName' type="text"/>
+          <input onChange={(e)=>handleChange(e)} id='mail' placeholder='Enter Email' type="text"/>
+          <input onChange={(e)=>handleChange(e)} id='phone' placeholder='Enter MobileNumber' type="number"/>
+
+          <select  onChange={(e)=>handleChange(e)} id="country">
+            <option value="">Country</option>
+            <option value="india">India</option>
+          </select>
+
+          <select onChange={(e)=>handleChange(e)} id='org'>
+            <option value="sysorg">SYSORG</option>
+          </select>
+
+          <input onChange={(e)=>handleChange(e)} id='password' placeholder='Enter Password' type="password"/>
+          <input onChange={(e)=>handleChange(e)} id='reenterpassword' placeholder='Re-Enter Password' type="password"/>
+          <button className='submit-btn'>Sign up</button>
         </form>
         
         <div className='Or-div'>
@@ -38,9 +73,9 @@ const Signup = () => {
           <a className='Google red-login' href=""><p>Google</p></a>
           <a className='Linked-In blue-login' href=""><p>Linked-In</p></a>
         </div>
-        <div className='login'>
+        {/* <div className='login'>
           <Link to={'/login'}>Already have an account? Sign in</Link>
-        </div>
+        </div> */}
       </div>
     </div>
   )

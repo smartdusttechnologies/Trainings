@@ -47,7 +47,7 @@ const Login = () => {
           />
           <div className='remeber-me-forgot-pass'>
            <div> <label htmlFor="">Remember me</label> <input type="checkbox" /></div>
-          <Link className='forgot-pass'>Forgot password</Link>
+          <Link to={'/forgotpassword'} className='forgot-pass'>Forgot password</Link>
           </div>
           <input className='submit-btn' type="submit" value={'Sign-in'}/>
         </form>
