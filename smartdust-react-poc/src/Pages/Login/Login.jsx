@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import './Login.css'
-import { Input, TextField } from '@mui/material'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 const Login = () => {
   const [email , setEmail] = useState('');
   const [password , setPassword] = useState('');
   const [errmsg , setErrmsg] = useState('')
+  const loginurl = '';
 
-  const handleSubmit = async ()=>{
+  
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    console.log(email,password)   
     try {
-
+      const response = await axios.post(loginurl , 
+        {email,password}        
+      )
       
       setEmail('')
       setPassword('')
@@ -34,7 +40,7 @@ const Login = () => {
             </Link>
           </div>
         </div>
-        <form action="">
+        <form onSubmit={handleSubmit} action="">
           <input
            onChange={(e)=>setEmail(e.target.value)}
           placeholder='Username or Email ID' type="text"

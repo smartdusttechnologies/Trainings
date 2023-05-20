@@ -6,7 +6,7 @@ import About from '../Pages/About/About'
 import Login from '../Pages/Login/Login'
 import Signup from '../Pages/Signup/Signup'
 import ChangePassword from '../Pages/ChangePassword/ChangePassword'
-import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword'
+import ForgotPassword from '../Pages/Login/ForgotPassword/ForgotPassword'
 
 const AllRoutes = () => {
   return (

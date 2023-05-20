@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Signup.css'
+import axios from 'axios'
 const Signup = () => {
   const [newuser , setNewuser] = useState({
     firstname:"",
@@ -12,18 +13,33 @@ const Signup = () => {
     org:"",
     password:""
   })
-
+  const signupapi = '';
 
   const handleChange = (e)=>{
     const newdata = {...newuser}
     newdata[e.target.id] = e.target.value
     setNewuser(newdata)
     console.log(newuser)
-    console.log(e.target);
   }
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = async (e)=>{
     e.preventDefault()
+    try {
+      axios.post( signupapi , {
+        firstname: newuser.firstname,
+        lastname: newuser.lastname,
+        username: newuser.username,
+        mail:newuser.mail,
+        phone:newuser.phone,
+        country:newuser.country,
+        org:newuser.org,
+        password:newuser.password
+        })
+        .then(res=> console.log(res))
+        .catch(err=>console.log(err))
+    } catch (error) {
+      
+    }
   }
   return (
     <div className='signup-page'>
