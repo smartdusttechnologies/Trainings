@@ -26,8 +26,9 @@ namespace SmartdustApi.Controllers
         {
             return _contactService.Save(contact);
         }
-        [Authorize]
-        [HttpGet(Name ="GetName")]
+        
+        [HttpGet]
+        [Route("GetName")]
         public string GetName()
         {
             return "Raj";

@@ -48,13 +48,13 @@ namespace SmartdustApi
             //Services
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  policy =>
-                                  {
-                                      //please put your url from where you are going to request
-                                      policy.WithOrigins("http://example.com",
-                                                          "http://www.contoso.com");
-                                  });
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:3000/", "http://localhost:3000").AllowAnyOrigin()
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
             });
             //Repository DI
             services.AddScoped<IContactRepository, ContactRepository>();
@@ -129,7 +129,7 @@ namespace SmartdustApi
                 }
                 await next();
             });
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMiddleware<SdtAuthenticationMiddleware>();

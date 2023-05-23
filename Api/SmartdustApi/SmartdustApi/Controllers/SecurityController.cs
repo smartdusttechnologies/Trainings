@@ -48,7 +48,7 @@ namespace SmartdustApi.Controllers
 
                 return Json(new { status = true, message = "Login Successfull!" });
             }
-            return View();
+            return Json(result);
         }
     }
 }
