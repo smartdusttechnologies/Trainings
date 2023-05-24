@@ -79,6 +79,7 @@ namespace SmartdustApi
             services.AddScoped<ISecurityParameterRepository, SecurityParameterRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISecurityParameterService, SecurityParameterService>();
 
             //
         }
@@ -121,12 +122,6 @@ namespace SmartdustApi
 
             app.Use(async (context, next) =>
             {
-                var token = context.Session.GetString("Token");
-                if (!string.IsNullOrEmpty(token))
-                {
-                    //context.Request.Headers.Add("Authorization", "Bearer " + token);
-                    context.Request.Headers.Add("Authorization", token);
-                }
                 await next();
             });
             app.UseCors();

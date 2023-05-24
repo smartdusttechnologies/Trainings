@@ -31,7 +31,18 @@ namespace SmartdustApi.Controllers
             //ViewBag.Organizations = organizationNames;
             return View();
         }
-
+        [HttpPost]
+        [Route("SignUp")]
+        public IActionResult SignUp(UserModel user,string password)
+        {
+            
+            RequestResult<bool> result = _authenticationService.Add(user,password);
+            if (result.IsSuccessful)
+            {
+                return Json(new { status = true, message = "Account Created Successfull!" });
+            }
+            return Json(result);
+        }
         /// <summary>
         /// Method to get the Login details from UI and Process Login.
         /// </summary>

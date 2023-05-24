@@ -29,7 +29,8 @@ namespace SmartdustApi.Repository
         public SecurityParameter Get(int orgId)
         {
             using IDbConnection db = _connectionFactory.GetConnection;
-            return db.Query<SecurityParameter>("Select top 1 * From [PasswordPolicy] where OrgId=@orgId and IsDeleted=0", new { orgId }).FirstOrDefault();
+            var securityParameter = db.Query<SecurityParameter>("Select top 1 * From [PasswordPolicy] where OrgId=@orgId and IsDeleted=0", new { orgId }).FirstOrDefault();
+            return securityParameter;
         }
 
         public List<SecurityParameter> Get(SessionContext sessionContext)

@@ -12,16 +12,10 @@ namespace SmartdustApi.Services
     {
 
         private readonly ISecurityParameterRepository _securityParameterRepository;
-        private readonly Microsoft.Extensions.Logging.ILogger _logger;
 
-        public SecurityParameterService()
-        {
-
-        }
-        public SecurityParameterService(ISecurityParameterRepository securityParameterRepository, Microsoft.Extensions.Logging.ILogger logger)
+        public SecurityParameterService(ISecurityParameterRepository securityParameterRepository)
         {
             _securityParameterRepository = securityParameterRepository;
-            _logger = logger;
 
         }
 
