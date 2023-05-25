@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartdustApi.Common;
 using SmartdustApi.Model;
+using SmartdustApi.Models;
 using SmartdustApi.Repository;
 using SmartdustApi.Services.Interfaces;
 
@@ -13,11 +14,13 @@ namespace SmartdustApi.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IContactService _contactService;
+        private readonly IOrganizationService _organizationService;
 
-        public HomeController(ILogger<HomeController> logger, IContactService contactService)
+        public HomeController(ILogger<HomeController> logger, IContactService contactService,IOrganizationService organizationService)
         {
             _logger = logger;
             _contactService = contactService;
+            _organizationService = organizationService;
         }
 
         [HttpPost]
@@ -28,10 +31,10 @@ namespace SmartdustApi.Controllers
         }
         
         [HttpGet]
-        [Route("GetName")]
-        public string GetName()
+        [Route("GetOrganizations")]
+        public RequestResult<List<OrganizationModel>> GetOrganizations()
         {
-            return "Raj";
+            return _organizationService.Get();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SmartdustApi.Services.Interfaces
     {
         RequestResult<LoginToken> Login(LoginRequest loginRequest);
         //TODo: This should be moved to User service.
-        RequestResult<bool> Add(UserModel user, string password);
+        RequestResult<bool> Add(UserModel user);
         RequestResult<bool> UpdatePaasword(ChangePasswordModel password);
 
     }

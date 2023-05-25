@@ -176,14 +176,14 @@ namespace SmartdustApi.Services
         /// <summary>
         /// Method to Add new and validate existing user for Registration
         /// </summary>
-        public RequestResult<bool> Add(UserModel user, string password)
+        public RequestResult<bool> Add(UserModel user)
         {
             try
             {
-                var validationResult = ValidateNewUserRegistration(user, password);
+                var validationResult = ValidateNewUserRegistration(user);
                 if (validationResult.IsSuccessful)
                 {
-                    PasswordLogin passwordLogin = Hasher.HashPassword(password);
+                    PasswordLogin passwordLogin = Hasher.HashPassword(user.Password);
                     _userRepository.Insert(user, passwordLogin);
                     return new RequestResult<bool>(true);
                 }
@@ -198,7 +198,7 @@ namespace SmartdustApi.Services
         /// <summary>
         /// Method to Validate the New User Registation
         /// </summary>
-        private RequestResult<bool> ValidateNewUserRegistration(UserModel user, string password)
+        private RequestResult<bool> ValidateNewUserRegistration(UserModel user)
         {
             List<ValidationMessage> validationMessages = new List<ValidationMessage>();
             UserModel existingUser = _userRepository.Get(user.UserName);
@@ -208,7 +208,13 @@ namespace SmartdustApi.Services
                 validationMessages.Add(error);
                 return new RequestResult<bool>(false, validationMessages);
             }
-            var validatePasswordResult = _securityParameterService.ValidatePasswordPolicy(user.OrgId, password);
+            if (user.Password != user.NewPassword)
+            {
+                var error = new ValidationMessage { Reason = "Password Didn't Match", Severity = ValidationSeverity.Error };
+                validationMessages.Add(error);
+                return new RequestResult<bool>(false, validationMessages);
+            }
+            var validatePasswordResult = _securityParameterService.ValidatePasswordPolicy(user.OrgId, user.Password);
             return validatePasswordResult;
         }
         public RequestResult<bool> UpdatePaasword(ChangePasswordModel password)

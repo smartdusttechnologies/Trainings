@@ -50,7 +50,7 @@ namespace SmartdustApi.Common
                 || context.Request.Path.Value.Equals("/Security/RevokeToken", StringComparison.OrdinalIgnoreCase)
                 || context.Request.Path.Value.StartsWith("/Security/SignUp", StringComparison.OrdinalIgnoreCase)
                 || context.Request.Path.Value.StartsWith("/Swagger", StringComparison.OrdinalIgnoreCase)
-                || context.Request.Path.Value.StartsWith("/Security/ChangePassword", StringComparison.OrdinalIgnoreCase))
+                || context.Request.Path.Value.StartsWith("/Home/GetOrganizations", StringComparison.OrdinalIgnoreCase))
             {
                 await _next(context);
             }

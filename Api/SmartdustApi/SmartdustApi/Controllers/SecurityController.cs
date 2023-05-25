@@ -18,25 +18,12 @@ namespace SmartdustApi.Controllers
             //_orgnizationService = orgnizationService;
             //_mapper = mapper;
         }
-
-        /// <summary>
-        /// UI Shows the Orgnizations names in dropdown list
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public IActionResult Index()
-        {
-            // List<Business.Core.Model.Organization> organizations = _orgnizationService.Get();
-            //List<SelectListItem> organizationNames = organizations.Select(x => new SelectListItem { Text = x.OrgName, Value = x.Id.ToString() }).ToList();
-            //ViewBag.Organizations = organizationNames;
-            return View();
-        }
         [HttpPost]
         [Route("SignUp")]
-        public IActionResult SignUp(UserModel user, string password)
+        public IActionResult SignUp(UserModel user)
         {
 
-            RequestResult<bool> result = _authenticationService.Add(user, password);
+            RequestResult<bool> result = _authenticationService.Add(user);
             if (result.IsSuccessful)
             {
                 return Json(new { status = true, message = "Account Created Successfull!" });
@@ -63,8 +50,6 @@ namespace SmartdustApi.Controllers
         [Route("ChangePassword")]
         public IActionResult ChangePassword(ChangePasswordModel changepasswordRequest)
         {
-
-            //var psswReq = new ChangePasswordModel { OldPassword = changepasswordRequest.OldPassword, NewPassword = changepasswordRequest.NewPassword, ConfirmPassword = changepasswordRequest.ConfirmPassword, UserId = changepasswordRequest.UserId };
             var result = _authenticationService.UpdatePaasword(changepasswordRequest);
             if (result.IsSuccessful)
             {
