@@ -1,26 +1,52 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Login.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import AuthContext from '../../context/AuthProvider';
+
+const loginurl = 'https://localhost:7023/Security/Login';
+
 const Login = () => {
+  const {auth , setAuth} = useContext(AuthContext)
+
   const [email , setEmail] = useState('');
   const [password , setPassword] = useState('');
-  const [errmsg , setErrmsg] = useState('')
-  const loginurl = '';
+  const [msg , setMsg] = useState('')
 
   
   const handleSubmit = async (e)=>{
     e.preventDefault()
-    console.log(email,password)   
+
     try {
       const response = await axios.post(loginurl , 
-        {email,password}        
+      {
+        userName:email,
+        password:password
+      }        
       )
+      // .then(res => {
+      //   console.log(res)
+      //   console.log(res.data)
+      // })
+      // .catch(err => {
+      //   console.log(err)
+      // })
+      console.log(response)
+      console.log(response?.data)
+      const accessToken = response?.data.requestedObject.accessToken
+      console.log(accessToken)
+      setAuth({accessToken})
+      console.log(auth.accessToken)
       
-      setEmail('')
-      setPassword('')
+      
+      response?.data?.isSuccessful  ? setMsg("Login Successful!") : setMsg("Login Failed!")
+
+      // setMsg(response?.data.message)
+      // console.log(response?.data.message)
+      // setEmail('')
+      // setPassword('')
     } catch (err) {
-      
+      console.log(err);
     }
   }
 
@@ -57,7 +83,9 @@ const Login = () => {
           </div>
           <input className='submit-btn' type="submit" value={'Sign-in'}/>
         </form>
-        
+        <div>
+          {msg}
+        </div>
         <div className='Or-div'>
           <div><hr /></div>
           <div><p>or</p></div>

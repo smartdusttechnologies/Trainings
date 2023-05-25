@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import './Signup.css'
 import axios from 'axios'
 const Signup = () => {
+
+  const signupapi = 'https://localhost:7023/Security/SignUp';
+
   const [newuser , setNewuser] = useState({
     firstname:"",
     lastname:"",
@@ -11,9 +14,9 @@ const Signup = () => {
     phone:0,
     country:"",
     org:"",
-    password:""
+    password:"",
+    confirmpassword:""
   })
-  const signupapi = '';
 
   const handleChange = (e)=>{
     const newdata = {...newuser}
@@ -26,14 +29,15 @@ const Signup = () => {
     e.preventDefault()
     try {
       axios.post( signupapi , {
-        firstname: newuser.firstname,
-        lastname: newuser.lastname,
-        username: newuser.username,
-        mail:newuser.mail,
-        phone:newuser.phone,
+        userName: newuser.username,
+        firstName: newuser.firstname,
+        lastName: newuser.lastname,
+        email:newuser.mail,
+        mobile:newuser.phone,
         country:newuser.country,
         org:newuser.org,
-        password:newuser.password
+        password:newuser.password,
+        confirmpassword:newuser.confirmpassword
         })
         .then(res=> console.log(res))
         .catch(err=>console.log(err))
@@ -70,10 +74,11 @@ const Signup = () => {
 
           <select onChange={(e)=>handleChange(e)} id='org'>
             <option value="sysorg">SYSORG</option>
+            <option value={1}>ORG 1</option>
           </select>
 
           <input onChange={(e)=>handleChange(e)} id='password' placeholder='Enter Password' type="password"/>
-          <input onChange={(e)=>handleChange(e)} id='reenterpassword' placeholder='Re-Enter Password' type="password"/>
+          <input onChange={(e)=>handleChange(e)} id='confirmpassword' placeholder='Re-Enter Password' type="password"/>
           <button className='submit-btn'>Sign up</button>
         </form>
         

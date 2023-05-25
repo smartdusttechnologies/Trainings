@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Contact = () => {
   // API Link 
-  // const url = '';
+  const APIurl = 'https://localhost:7023/Home/Contactus';
 
   // User Details 
   const [userdata , setUserdata] = useState({
@@ -26,15 +26,15 @@ const Contact = () => {
   const handleSubmit = (e)=>{
     e.preventDefault()
     console.log(userdata)
-    axios.post('https://localhost:7023/Home/Contactus/' , {
+    axios.post( APIurl , {
     name: userdata.name,
     mail:userdata.mail,
     phone:userdata.phone,
-    address:userdata.address,
     subject:userdata.subject,
+    address:userdata.address,
     message:userdata.message
     })
-    .then(res=> console.log(res))
+    .then(res=> console.log(res.data))
     .catch(err=>console.log(err))
   }
 
@@ -55,17 +55,17 @@ const Contact = () => {
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Name</label> <br />
-              <input onChange={(e)=>handleChange(e)} id='name' value={userdata.name} type="text" placeholder='Enter your name' />
+              <input onChange={(e)=>handleChange(e)} required id='name' value={userdata.name} type="text" placeholder='Enter your name' />
             </div>
             <div>
               <label htmlFor="">Email</label> <br />
-              <input onChange={(e)=>handleChange(e)} id='mail' value={userdata.mail} type="email" placeholder='Enter your email' />
+              <input onChange={(e)=>handleChange(e)} required id='mail' value={userdata.mail} type="email" placeholder='Enter your email' />
             </div>
           </div>
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Phone</label> <br />
-              <input onChange={(e)=>handleChange(e)} id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' />
+              <input onChange={(e)=>handleChange(e)} required id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' />
             </div>
             <div>
               <label htmlFor="">Address</label> <br />
