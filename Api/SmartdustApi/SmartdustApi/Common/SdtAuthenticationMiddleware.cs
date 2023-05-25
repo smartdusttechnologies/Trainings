@@ -36,8 +36,11 @@ namespace SmartdustApi.Common
                 var userIdentity = GetUserIdentity(validatedToken);
                 if (userIdentity != null)
                 {
+                    
                     context.User = new SdtPrincipal(userIdentity);
+                    
                     await _next(context);
+                    
                 }
 
             }
@@ -46,7 +49,8 @@ namespace SmartdustApi.Common
                 || context.Request.Path.Value.Equals("/Security/RefreshToken", StringComparison.OrdinalIgnoreCase)
                 || context.Request.Path.Value.Equals("/Security/RevokeToken", StringComparison.OrdinalIgnoreCase)
                 || context.Request.Path.Value.StartsWith("/Security/SignUp", StringComparison.OrdinalIgnoreCase)
-                || context.Request.Path.Value.StartsWith("/Swagger", StringComparison.OrdinalIgnoreCase))
+                || context.Request.Path.Value.StartsWith("/Swagger", StringComparison.OrdinalIgnoreCase)
+                || context.Request.Path.Value.StartsWith("/Security/ChangePassword", StringComparison.OrdinalIgnoreCase))
             {
                 await _next(context);
             }

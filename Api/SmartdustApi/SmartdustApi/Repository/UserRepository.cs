@@ -96,5 +96,17 @@ namespace SmartdustApi.Repository
 
             return insertedUserId;
         }
+        public int Update(ChangePasswordModel newpassword)
+        {
+
+            string changepasswordQuery = @"update [PasswordLogin] Set
+                                           PasswordHash = @PasswordHash,
+                                           PasswordSalt = @PasswordSalt
+                                                Where UserId = @UserId";
+
+            using IDbConnection db = _connectionFactory.GetConnection;
+            return db.Execute(changepasswordQuery, newpassword);
+
+        }
     }
 }

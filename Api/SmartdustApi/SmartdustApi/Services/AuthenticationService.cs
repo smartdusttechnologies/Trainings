@@ -211,5 +211,55 @@ namespace SmartdustApi.Services
             var validatePasswordResult = _securityParameterService.ValidatePasswordPolicy(user.OrgId, password);
             return validatePasswordResult;
         }
+        public RequestResult<bool> UpdatePaasword(ChangePasswordModel password)
+
+        {
+            try
+            {
+                var passworsResult = _securityParameterService.ChangePaaswordPolicy(password);
+                if (passworsResult.IsSuccessful)
+                {
+                    var validationResult = _securityParameterService.ValidatePasswordPolicy(0, password.NewPassword);
+
+                    var passwordLogin = _authenticationRepository.GetLoginPassword(password.Username);
+                    List<ValidationMessage> validationMessages = new List<ValidationMessage>();
+                    string valueHash = string.Empty;
+                    if (password != null && !Hasher.ValidateHash(password.OldPassword, passwordLogin.PasswordSalt, passwordLogin.PasswordHash, out valueHash))
+                    {
+                        validationMessages.Add(new ValidationMessage { Reason = "Old password is incorrect.", Severity = ValidationSeverity.Error, SourceId = "OldPassword" });
+                        return new RequestResult<bool>(validationMessages);
+                    }
+                    if (password.ConfirmPassword != password.NewPassword)
+                    {
+                        validationMessages.Add(new ValidationMessage { Reason = "New Password Didn't Match.", Severity = ValidationSeverity.Error, SourceId = "OldPassword" });
+                        return new RequestResult<bool>(validationMessages);
+                    }
+                    if (validationResult.IsSuccessful)
+                    {
+                        if (passworsResult.IsSuccessful)
+                        {
+                            PasswordLogin newPasswordLogin = Hasher.HashPassword(password.NewPassword);
+                            ChangePasswordModel passwordModel = new ChangePasswordModel();
+                            passwordModel.PasswordHash = newPasswordLogin.PasswordHash;
+                            passwordModel.UserId = password.UserId;
+                            passwordModel.PasswordSalt = newPasswordLogin.PasswordSalt;
+
+                            _userRepository.Update(passwordModel);
+
+                            return new RequestResult<bool>(true);
+                        }
+
+                    }
+                    return new RequestResult<bool>(false, validationResult.ValidationMessages);
+                }
+                return new RequestResult<bool>(false, passworsResult.ValidationMessages);
+            }
+            catch (Exception ex)
+            {
+
+                return new RequestResult<bool>(false);
+            }
+
+        }
     }
 }

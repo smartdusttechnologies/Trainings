@@ -81,5 +81,42 @@ namespace SmartdustApi.Services
             }
             return new RequestResult<bool>(true);
         }
+        /// <summary>
+        /// Method to validate the Change Password.
+        /// </summary>
+        public RequestResult<bool> ChangePaaswordPolicy(ChangePasswordModel password)
+        {
+            List<ValidationMessage> validationMessages = new List<ValidationMessage>();
+
+            if (string.IsNullOrEmpty(password.OldPassword))
+            {
+                validationMessages.Add(new ValidationMessage { Reason = "Please enter Old Password", Severity = ValidationSeverity.Error, SourceId = "OldPassword" });
+                return new RequestResult<bool>(false, validationMessages); ;
+
+            }
+            else if (string.IsNullOrEmpty(password.NewPassword))
+            {
+                validationMessages.Add(new ValidationMessage { Reason = "Please Enter New Password.", Severity = ValidationSeverity.Error, SourceId = "NewPassword" });
+                return new RequestResult<bool>(false, validationMessages); ;
+            }
+            else if (string.IsNullOrEmpty(password.ConfirmPassword))
+            {
+                validationMessages.Add(new ValidationMessage { Reason = "Please Enter Confirm Password.", Severity = ValidationSeverity.Error, SourceId = "ConfirmPassword" });
+                return new RequestResult<bool>(false, validationMessages); ;
+            }
+            else if (password.OldPassword == password.NewPassword)
+            {
+                validationMessages.Add(new ValidationMessage { Reason = "New password must be different from old password.", Severity = ValidationSeverity.Error, SourceId = "NewPassword" });
+                return new RequestResult<bool>(false, validationMessages); ;
+
+            }
+            else if (password.NewPassword != password.ConfirmPassword)
+            {
+                validationMessages.Add(new ValidationMessage { Reason = "New password and confirm password fields must match.", Severity = ValidationSeverity.Error, SourceId = "ConfirmPassword" });
+                return new RequestResult<bool>(false, validationMessages); ;
+
+            }
+            return new RequestResult<bool>(true);
+        }
     }
 }

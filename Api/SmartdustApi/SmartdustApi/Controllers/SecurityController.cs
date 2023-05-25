@@ -26,17 +26,17 @@ namespace SmartdustApi.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-           // List<Business.Core.Model.Organization> organizations = _orgnizationService.Get();
+            // List<Business.Core.Model.Organization> organizations = _orgnizationService.Get();
             //List<SelectListItem> organizationNames = organizations.Select(x => new SelectListItem { Text = x.OrgName, Value = x.Id.ToString() }).ToList();
             //ViewBag.Organizations = organizationNames;
             return View();
         }
         [HttpPost]
         [Route("SignUp")]
-        public IActionResult SignUp(UserModel user,string password)
+        public IActionResult SignUp(UserModel user, string password)
         {
-            
-            RequestResult<bool> result = _authenticationService.Add(user,password);
+
+            RequestResult<bool> result = _authenticationService.Add(user, password);
             if (result.IsSuccessful)
             {
                 return Json(new { status = true, message = "Account Created Successfull!" });
@@ -55,11 +55,22 @@ namespace SmartdustApi.Controllers
             RequestResult<LoginToken> result = _authenticationService.Login(loginReq);
             if (result.IsSuccessful)
             {
-                HttpContext.Session.SetString("Token", result.RequestedObject.AccessToken);
-
-                return Json(new { status = true, message = "Login Successfull!" });
+                return Json(result);
             }
             return Json(result);
+        }
+        [HttpPost]
+        [Route("ChangePassword")]
+        public IActionResult ChangePassword(ChangePasswordModel changepasswordRequest)
+        {
+
+            //var psswReq = new ChangePasswordModel { OldPassword = changepasswordRequest.OldPassword, NewPassword = changepasswordRequest.NewPassword, ConfirmPassword = changepasswordRequest.ConfirmPassword, UserId = changepasswordRequest.UserId };
+            var result = _authenticationService.UpdatePaasword(changepasswordRequest);
+            if (result.IsSuccessful)
+            {
+                return Ok(result.RequestedObject);
+            }
+            return BadRequest(result.ValidationMessages);
         }
     }
 }
