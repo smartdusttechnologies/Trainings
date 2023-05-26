@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Signup.css'
 import axios from 'axios'
+import { TextField } from '@mui/material'
 const Signup = () => {
 
   const signupapi = 'https://localhost:7023/Security/SignUp';
@@ -25,9 +26,9 @@ const Signup = () => {
     console.log(newuser)
   }
 
-  const handleSubmit = async (e)=>{
+  const handleSubmit = (e)=>{
     e.preventDefault()
-    try {
+
       axios.post( signupapi , {
         userName: newuser.username,
         firstName: newuser.firstname,
@@ -41,9 +42,6 @@ const Signup = () => {
         })
         .then(res=> console.log(res))
         .catch(err=>console.log(err))
-    } catch (error) {
-      
-    }
   }
   return (
     <div className='signup-page'>
@@ -61,11 +59,11 @@ const Signup = () => {
           </div>
         </div>
         <form onSubmit={(e)=>handleSubmit(e)} action="">
-          <input onChange={(e)=>handleChange(e)} id='firstname' placeholder='Enter FirstName' type="text"/>
-          <input onChange={(e)=>handleChange(e)} id='lastname' placeholder='Enter LastName' type="text"/>
-          <input onChange={(e)=>handleChange(e)} id='username' placeholder='Enter UserName' type="text"/>
-          <input onChange={(e)=>handleChange(e)} id='mail' placeholder='Enter Email' type="text"/>
-          <input onChange={(e)=>handleChange(e)} id='phone' placeholder='Enter MobileNumber' type="number"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} id='firstname' label='Enter FirstName' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} id='lastname' label='Enter LastName' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} id='username' label='Enter UserName' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} id='mail' label='Enter Email' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} id='phone' label='Enter MobileNumber' type="number"/>
 
           <select  onChange={(e)=>handleChange(e)} id="country">
             <option value="">Country</option>
@@ -74,11 +72,11 @@ const Signup = () => {
 
           <select onChange={(e)=>handleChange(e)} id='org'>
             <option value="sysorg">SYSORG</option>
-            <option value={1}>ORG 1</option>
+            <option value={0}>ORG 1</option>
           </select>
 
-          <input onChange={(e)=>handleChange(e)} id='password' placeholder='Enter Password' type="password"/>
-          <input onChange={(e)=>handleChange(e)} id='confirmpassword' placeholder='Re-Enter Password' type="password"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} id='password' label='Enter Password' type="password"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} id='confirmpassword' label='Re-Enter Password' type="password"/>
           <button className='submit-btn'>Sign up</button>
         </form>
         

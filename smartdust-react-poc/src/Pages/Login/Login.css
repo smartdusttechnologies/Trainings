@@ -27,9 +27,7 @@
     gap: 20px;
 }
 .login-container form input{
-    height: 4vh;
     border-radius: 5px;
-    border: 1px solid rgb(102, 101, 101);
 }
 
 .submit-btn{
@@ -69,7 +67,7 @@
     align-items: center;
 }
 .Or-div div hr{
-    width: 130px;
+    width: 100px;
 }
 .social-media-login{
     display: grid;
@@ -107,9 +105,21 @@
 
 @media screen and (min-width:101px) and (max-width:600px){
     .login-container{
-        width: 220px;
+        width: 240px;
     }
     .submit-btn{
-        width: 200px;
+        width: 240px;
+    }
+    .social-media-login{
+        gap: 15px;
+    }
+    .social-media-login p{
+        text-align: center;
+        margin: 2px;
+    }
+    .social-media-login a{
+        width: 100px;
+        height: 4vh;
+        margin: auto;
     }
 }

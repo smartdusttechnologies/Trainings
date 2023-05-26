@@ -14,11 +14,6 @@ const About = () => {
         axios.get(api, { headers: {"Authorization" : `${auth.accessToken}`} })
         .then(res => {
           console.log(res.data);
-          // this.setState({
-          //       items: res.data,  /*set response data in items array*/
-          //       isLoaded : true,
-          //       redirectToReferrer: false
-          //   })
           })
       }
   

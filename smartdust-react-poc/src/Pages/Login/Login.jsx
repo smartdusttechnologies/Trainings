@@ -3,6 +3,7 @@ import './Login.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import AuthContext from '../../context/AuthProvider';
+import { TextField } from '@mui/material';
 
 const loginurl = 'https://localhost:7023/Security/Login';
 
@@ -24,19 +25,11 @@ const Login = () => {
         password:password
       }        
       )
-      // .then(res => {
-      //   console.log(res)
-      //   console.log(res.data)
-      // })
-      // .catch(err => {
-      //   console.log(err)
-      // })
-      console.log(response)
+      
       console.log(response?.data)
       const accessToken = response?.data.requestedObject.accessToken
       console.log(accessToken)
       setAuth({accessToken})
-      console.log(auth.accessToken)
       
       
       response?.data?.isSuccessful  ? setMsg("Login Successful!") : setMsg("Login Failed!")
@@ -67,14 +60,14 @@ const Login = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit} action="">
-          <input
+          <TextField size='small'
            onChange={(e)=>setEmail(e.target.value)}
-          placeholder='Username or Email ID' type="text"
+          label='Username or Email ID' type="text"
           value={email}
           />
-          <input
+          <TextField size='small'
            onChange={(e)=>setPassword(e.target.value)}
-          placeholder='Password' type="password"
+          label='Password' type="password"
           value={password}
           />
           <div className='remeber-me-forgot-pass'>
