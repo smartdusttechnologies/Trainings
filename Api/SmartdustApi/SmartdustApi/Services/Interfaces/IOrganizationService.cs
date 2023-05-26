@@ -6,6 +6,6 @@ namespace SmartdustApi.Services.Interfaces
 {
     public interface IOrganizationService
     {
-        RequestResult<List<OrganizationModel>> Get()
+        RequestResult<List<OrganizationModel>> Get();
     }
 }

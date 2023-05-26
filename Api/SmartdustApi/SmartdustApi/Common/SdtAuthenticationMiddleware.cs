@@ -38,7 +38,7 @@ namespace SmartdustApi.Common
                 {
                     
                     context.User = new SdtPrincipal(userIdentity);
-                    
+                    var userId = context.User.Identities.FirstOrDefault() as SdtUserIdentity;
                     await _next(context);
                     
                 }

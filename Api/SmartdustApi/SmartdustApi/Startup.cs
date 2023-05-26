@@ -65,6 +65,7 @@ namespace SmartdustApi
 
             services.AddScoped<Services.Interfaces.ILogger,Infrastructure.Logger>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddScoped<IRoleService, RoleService>();
             //Authorization Handler Initalization Start
             //Authorization Handler Initalization End
@@ -78,7 +79,7 @@ namespace SmartdustApi
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<ISecurityParameterRepository, SecurityParameterRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IOrganizationRepository, OrganizationRepository>();
             services.AddScoped<ISecurityParameterService, SecurityParameterService>();
 
             //

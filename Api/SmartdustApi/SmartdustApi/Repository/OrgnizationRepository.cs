@@ -25,7 +25,7 @@ namespace SmartdustApi.Repository
         public List<OrganizationModel> Get()
         {
             using IDbConnection db = _connectionFactory.GetConnection;
-            return db.Query<OrganizationModel>("select * from [Organization] IsDeleted = 0").ToList();
+            return db.Query<OrganizationModel>("select * from [Organization] WHERE IsDeleted = 0").ToList();
         }
        
     }
