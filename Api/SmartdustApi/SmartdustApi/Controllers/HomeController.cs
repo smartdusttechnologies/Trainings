@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartdustApi.Common;
 using SmartdustApi.Model;
 using SmartdustApi.Models;
-using SmartdustApi.Repository;
 using SmartdustApi.Services.Interfaces;
 
 namespace SmartdustApi.Controllers
