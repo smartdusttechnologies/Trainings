@@ -17,7 +17,7 @@ const Navbar = () => {
         </div>
         <div className='right none'>
         <Link to={'/'}><div><a href="">Home</a> </div></Link> |
-        <Link to={'/login'}><div><a href="">Login</a> </div></Link> |
+        <Link to={'/login'}><div><a href="">Sign in</a> </div></Link> |
         <Link to={'/contact'}><div><a href="">Contact</a> </div></Link> | 
         <Link to={'/about'}><div><a href="">About</a> </div></Link>
         <UserAccountMenu/>

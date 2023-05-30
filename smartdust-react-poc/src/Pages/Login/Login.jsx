@@ -27,12 +27,16 @@ const Login = () => {
       )
       
       console.log(response?.data)
-      const accessToken = response?.data.requestedObject.accessToken
-      console.log(accessToken)
-      setAuth({accessToken})
+      const accessToken = response?.data.requestedObject.accessToken 
+      const userName = response?.data.requestedObject.userName
+      const userId = response?.data.requestedObject.userId
+      const isAuthenticated = response?.data.isSuccessful
+      console.log(accessToken,userName,userId)
+      
+      setAuth({accessToken , userName , userId , isAuthenticated})
       
       
-      response?.data?.isSuccessful  ? setMsg("Login Successful!") : setMsg("Login Failed!")
+      isAuthenticated  ? setMsg("Login Successful!") : setMsg("Login Failed!")
 
       // setMsg(response?.data.message)
       // console.log(response?.data.message)
@@ -59,7 +63,7 @@ const Login = () => {
             </Link>
           </div>
         </div>
-        <form onSubmit={handleSubmit} action="">
+        <form onSubmit={(e)=>handleSubmit(e)} action="">
           <TextField size='small'
            onChange={(e)=>setEmail(e.target.value)}
           label='Username or Email ID' type="text"

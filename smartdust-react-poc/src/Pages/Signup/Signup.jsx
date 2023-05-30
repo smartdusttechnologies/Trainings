@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import './Signup.css'
 import axios from 'axios'
 import { TextField } from '@mui/material'
+
+const signupapi = 'https://localhost:7023/Security/SignUp';
+
 const Signup = () => {
 
-  const signupapi = 'https://localhost:7023/Security/SignUp';
 
   const [newuser , setNewuser] = useState({
     firstname:"",
@@ -18,6 +20,8 @@ const Signup = () => {
     password:"",
     confirmpassword:""
   })
+  const [msg , setMsg] = useState('');
+
 
   const handleChange = (e)=>{
     const newdata = {...newuser}
@@ -28,19 +32,30 @@ const Signup = () => {
 
   const handleSubmit = (e)=>{
     e.preventDefault()
-
+    setMsg('')
       axios.post( signupapi , {
+        id:0,
         userName: newuser.username,
         firstName: newuser.firstname,
         lastName: newuser.lastname,
         email:newuser.mail,
         mobile:newuser.phone,
         country:newuser.country,
-        org:newuser.org,
+        isdCode:'',
+        twoFactor:true,
+        locked:true,
+        isActive: true,
+        emailValidationStatus: 0,
+        mobileValidationStatus: 0,
+        orgId:newuser.org,
+        adminLevel: 0,
         password:newuser.password,
-        confirmpassword:newuser.confirmpassword
+        newPassword:newuser.confirmpassword
         })
-        .then(res=> console.log(res))
+        .then(res=> {
+          console.log(res)
+          setMsg(res?.data.message)
+        })
         .catch(err=>console.log(err))
   }
   return (
@@ -79,6 +94,9 @@ const Signup = () => {
           <TextField size='small' onChange={(e)=>handleChange(e)} id='confirmpassword' label='Re-Enter Password' type="password"/>
           <button className='submit-btn'>Sign up</button>
         </form>
+        <div>
+          {msg}
+        </div>
         
         <div className='Or-div'>
           <div><hr /></div>

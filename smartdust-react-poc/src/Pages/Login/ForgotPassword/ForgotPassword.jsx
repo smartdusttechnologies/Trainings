@@ -7,6 +7,9 @@ const ForgotPassword = () => {
   const [otp , setOtp] = useState(0)
 
   // console.log(regemail , otp);
+  const handleEmailSubmit = ()=>{
+    
+  }
   
   return (
     <div className='Forgotpass-body'>
@@ -16,7 +19,7 @@ const ForgotPassword = () => {
         </div>
         <div>
             <TextField onChange={(e)=>setEmail(e.target.value)} label="Enter Registered Email" size='small' />
-            <Button id='send-otp' variant="contained" background-color='red'>Send OTP</Button>
+            <Button onClick={handleEmailSubmit} id='send-otp' variant="contained" background-color='red'>Send OTP</Button>
         </div>
         <div>
             <TextField onChange={(e)=>setOtp(e.target.value)}   label="OTP" size='small' type='number' />

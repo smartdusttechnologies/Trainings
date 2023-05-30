@@ -2,14 +2,16 @@
     display: flex;
     justify-content: center;
     height: 100vh;
+    background-image: url(../../assets/images/LoginPagebackgroundImage.jpg);
 }
 .login-container{
     text-align: center;
     width: 350px;
     height: 71vh;
     margin-top: 20px;
-    border: 1px solid rgb(121, 121, 121);
+    border: 1px solid rgb(190, 189, 189);
     padding: 0px 20px;
+    background-color: #fff;
 }
 .login-header{
     display: flex;

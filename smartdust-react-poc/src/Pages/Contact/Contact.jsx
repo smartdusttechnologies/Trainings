@@ -34,7 +34,7 @@ const Contact = () => {
     address:userdata.address,
     message:userdata.message
     })
-    .then(res=> console.log(res.data))
+    .then(res=> console.log(res))
     .catch(err=>console.log(err))
   }
 

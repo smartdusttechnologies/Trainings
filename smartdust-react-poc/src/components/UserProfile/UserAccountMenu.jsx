@@ -12,9 +12,11 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../context/AuthProvider';
 
 export default function UserAccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const {auth} = React.useContext(AuthContext)
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -76,11 +78,16 @@ export default function UserAccountMenu() {
         <MenuItem >
           <Avatar /> Profile
         </MenuItem>
-        <Link to={'/changepassword'} style={{textDecoration:"none", color:"grey"}}>
           <MenuItem >
-            Change Password
+            {auth.userName}
           </MenuItem>
-        </Link>
+        {  
+         auth.isAuthenticated ? (<Link to={'/changepassword'} style={{textDecoration:"none", color:"grey"}}>
+            <MenuItem >
+              Change Password
+            </MenuItem>
+          </Link>) : (<span></span>)
+        }
         <Divider />
         <MenuItem >
           <ListItemIcon>

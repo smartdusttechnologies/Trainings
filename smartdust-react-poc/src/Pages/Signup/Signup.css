@@ -2,15 +2,16 @@
     display: flex;
     justify-content: center;
     height: 110vh;
-
+    background-image: url(../../assets/images/LoginPagebackgroundImage.jpg);
 }
 .signup-container{
     text-align: center;
     width: 350px;
-    border: 1px solid rgb(121, 121, 121);
+    border: 1px solid rgb(196, 194, 194);
     padding: 0px 20px;
-    height: 93vh;
+    height: 95vh;
     margin-top: 20px;
+    background-color: #fff;
 }
 .text-signup{
     font-size: 23px;
@@ -28,7 +29,7 @@
 .signup-container form select{
     height: 4vh;
     border-radius: 5px;
-    border: 1px solid rgb(130, 129, 129);
+    border: 1px solid rgb(177, 175, 175);
 }
 .submit-btn{
     background-color: rgb(61, 147, 85);
@@ -50,6 +51,39 @@
     margin-top: 10px;
     text-align: center;
 }
+.Or-div{
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 0px;
+    align-items: center;
+}
+.Or-div div hr{
+    width: 100px;
+}
+.social-media-login{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+.social-media-login p{
+    text-align: center;
+    margin: 2px;
+}
+.social-media-login a{
+    text-decoration: none;
+    align-items: center;
+    width: 150px;
+    height: 4vh;
+    margin: auto;
+    border-radius: 5px;
+    color: white;
+}
+.blue-login{
+    background-color: #25a0d0;
+}
+.red-login{
+    background-color: #de312e;
+}
 @media screen and (min-width:101px) and (max-width:600px){
     .signup-container{
         width: 240px;
@@ -57,5 +91,17 @@
     }
     .submit-btn{
         width: 240px;
+    }
+    .social-media-login{
+        gap: 15px;
+    }
+    .social-media-login p{
+        text-align: center;
+        margin: 2px;
+    }
+    .social-media-login a{
+        width: 100px;
+        height: 4vh;
+        margin: auto;
     }
 }
