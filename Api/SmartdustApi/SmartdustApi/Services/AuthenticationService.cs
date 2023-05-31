@@ -48,8 +48,12 @@ namespace SmartdustApi.Services
                     validationMessages.Add(new ValidationMessage { Reason = "UserName or password mismatch.", Severity = ValidationSeverity.Error });
                     return new RequestResult<LoginToken>(validationMessages);
                 }
-
                 var user = _userRepository.Get(passwordLogin.UserId);
+                if (user == null)
+                {
+                    validationMessages.Add(new ValidationMessage { Reason = "UserName or password mismatch.", Severity = ValidationSeverity.Error });
+                    return new RequestResult<LoginToken>(validationMessages);
+                }
                 if (!user.IsActive && user.Locked)
                 {
                     validationMessages.Add(new ValidationMessage { Reason = "Access denied.", Severity = ValidationSeverity.Error });

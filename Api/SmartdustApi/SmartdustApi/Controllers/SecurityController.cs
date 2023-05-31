@@ -4,6 +4,7 @@ using SmartdustApi.Common;
 using SmartdustApi.Model;
 using SmartdustApi.Model;
 using SmartdustApi.DTO;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace SmartdustApi.Controllers
 {
@@ -60,25 +61,31 @@ namespace SmartdustApi.Controllers
         [Route("ChangePassword")]
         public IActionResult ChangePassword(ChangePasswordDTO changepasswordDTO)
         {
-            var changepasswordRequest = new ChangePasswordModel()
+            if (ModelState.IsValid)
             {
-                OldPassword = changepasswordDTO.OldPassword,
-                NewPassword = changepasswordDTO.NewPassword,
-                ConfirmPassword = changepasswordDTO.ConfirmPassword
-            };
-            var user = HttpContext.User.Identities.FirstOrDefault() as SdtUserIdentity;
-            if (user != null)
-            {
-                changepasswordRequest.UserId = user.UserId;
-                changepasswordRequest.Username = user.UserName;
-                var result = _authenticationService.UpdatePaasword(changepasswordRequest);
-                if (result.IsSuccessful)
+                var changepasswordRequest = new ChangePasswordModel()
                 {
-                    return Ok(result.RequestedObject);
-                }
-                return BadRequest(result.ValidationMessages);
+                    OldPassword = changepasswordDTO.OldPassword,
+                    NewPassword = changepasswordDTO.NewPassword,
+                    ConfirmPassword = changepasswordDTO.ConfirmPassword,
+                    Username = changepasswordDTO.Username,
+                    UserId = changepasswordDTO.UserId,
+                };
+                    var result = _authenticationService.UpdatePaasword(changepasswordRequest);
+                    if (result.IsSuccessful)
+                    {
+                        return Ok(result.RequestedObject);
+                    }
+                    return BadRequest(result.ValidationMessages);
             }
-            return BadRequest(new RequestResult<bool>(false));
+            else
+            {
+                List<ValidationMessage> errors = new List<ValidationMessage>
+                {
+                    new ValidationMessage { Reason = "All Fields Are Required", Severity = ValidationSeverity.Error, SourceId = "fields" }
+                };
+                return BadRequest(new RequestResult<bool>(errors));
+            }
         }
     }
 }
