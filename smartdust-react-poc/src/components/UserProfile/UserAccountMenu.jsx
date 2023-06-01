@@ -15,8 +15,9 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/AuthProvider';
 
 export default function UserAccountMenu() {
+  const {setAuth , auth} = React.useContext(AuthContext);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const {auth} = React.useContext(AuthContext)
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -78,15 +79,17 @@ export default function UserAccountMenu() {
         <MenuItem >
           <Avatar /> Profile
         </MenuItem>
-          <MenuItem >
+        {  
+         auth.isAuthenticated && <MenuItem >
             {auth.userName}
           </MenuItem>
+        }  
         {  
-         auth.isAuthenticated ? (<Link to={'/changepassword'} style={{textDecoration:"none", color:"grey"}}>
+         auth.isAuthenticated && (<Link to={'/changepassword'} style={{textDecoration:"none", color:"grey"}}>
             <MenuItem >
               Change Password
             </MenuItem>
-          </Link>) : (<span></span>)
+          </Link>)
         }
         <Divider />
         <MenuItem >
@@ -95,12 +98,13 @@ export default function UserAccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem >
+        {
+         auth.isAuthenticated && (<MenuItem onClick={()=>setAuth({...auth , isAuthenticated : false})}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
           Logout
-        </MenuItem>
+        </MenuItem>)}
       </Menu>
     </React.Fragment>
   );

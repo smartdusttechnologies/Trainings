@@ -3,6 +3,8 @@ import './ChangePassword.css'
 import axios from 'axios'
 import { Button, TextField } from '@mui/material';
 import AuthContext from '../../context/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ChangePassword = () => {
@@ -22,24 +24,43 @@ const ChangePassword = () => {
     console.log(oldPassword,newPassword,confirmPassword,auth.userName,auth.userId)
 
     axios.post(api , {
-      id:auth.userId,
       oldPassword,
       newPassword,
       confirmPassword,
-      username: auth.userName,
       userId: auth.userId,
-      passwordHash: '',
-      passwordSalt: ''
+      username: auth.userName
     },{
        headers: {"Authorization" : `${auth.accessToken}`}
     })
     .then(res=>{
       console.log(res)
       console.log(res?.data)
-      res?.data ? setMsg("Password Changed Succesfully") : setMsg('')
+
+      
+      toast.success("Password Changed Successfully!",{
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     })
     .catch(err =>{
       console.log(err)
+      
+      toast.error("Enter Right Password!",{
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     })
   }
 
@@ -55,9 +76,9 @@ const ChangePassword = () => {
           <TextField onChange={(e)=> setNewpassword(e.target.value)} label='NewPassword' size='small' type="password" />
           <TextField onChange={(e)=> setConfirmpassword(e.target.value)} label='ConfirmPassword' size='small' type="password" />
           </div>
-          <div>
+          {/* <div>
             {msg}
-          </div>
+          </div> */}
           <div className='changepass-save'>
             <div>
               <Button onClick={(e)=>handleSubmit(e)} id='save-btn'>Save</Button>
@@ -69,6 +90,7 @@ const ChangePassword = () => {
           </div>
         {/* </form> */}
       </div>
+      <ToastContainer/>
     </div>
   )
 }

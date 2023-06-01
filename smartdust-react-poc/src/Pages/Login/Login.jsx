@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react'
 import './Login.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios';
 import AuthContext from '../../context/AuthProvider';
 import { TextField } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const loginurl = 'https://localhost:7023/Security/Login';
 
@@ -25,23 +27,45 @@ const Login = () => {
         password:password
       }        
       )
-      
-      console.log(response?.data)
-      const accessToken = response?.data.requestedObject.accessToken 
-      const userName = response?.data.requestedObject.userName
-      const userId = response?.data.requestedObject.userId
-      const isAuthenticated = response?.data.isSuccessful
-      console.log(accessToken,userName,userId)
-      
-      setAuth({accessToken , userName , userId , isAuthenticated})
-      
-      
-      isAuthenticated  ? setMsg("Login Successful!") : setMsg("Login Failed!")
+      .then(response=> {
+        console.log(response?.data)
+        // console.log(response?.data.validationMessages[0].reason)
+        const accessToken = response?.data.requestedObject.accessToken 
+        const userName = response?.data.requestedObject.userName
+        const userId = response?.data.requestedObject.userId
+        const isAuthenticated = response?.data.isSuccessful
+        // const errmsg = response?.data.validationMessages[0].reason
+        console.log(accessToken,userName,userId)
+        
+        setAuth({accessToken , userName , userId , isAuthenticated})
+        // setMsg(errmsg)
 
-      // setMsg(response?.data.message)
-      // console.log(response?.data.message)
-      // setEmail('')
-      // setPassword('')
+          toast.success("Sign in Successful!",{
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        
+      })
+      .catch(err=>{
+        // console.log(err)
+        toast.error("UserName or password mismatch.",{
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+      })
+      
     } catch (err) {
       console.log(err);
     }
@@ -109,6 +133,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

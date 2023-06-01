@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './Contact.css'
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
   // API Link 
@@ -34,8 +36,34 @@ const Contact = () => {
     address:userdata.address,
     message:userdata.message
     })
-    .then(res=> console.log(res))
-    .catch(err=>console.log(err))
+    .then(res=> {
+      console.log(res?.data)
+      
+      toast.success("Submitted successfully!",{
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    })
+    .catch(err=>{
+      console.log(err)
+      
+      toast.error("Enter right credentials!",{
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    })
   }
 
 
@@ -86,6 +114,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

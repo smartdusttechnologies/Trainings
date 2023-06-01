@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import './Signup.css'
 import axios from 'axios'
 import { TextField } from '@mui/material'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const signupapi = 'https://localhost:7023/Security/SignUp';
 
@@ -42,21 +44,39 @@ const Signup = () => {
         mobile:newuser.phone,
         country:newuser.country,
         isdCode:'',
-        twoFactor:true,
-        locked:true,
-        isActive: true,
-        emailValidationStatus: 0,
         mobileValidationStatus: 0,
         orgId:newuser.org,
-        adminLevel: 0,
         password:newuser.password,
         newPassword:newuser.confirmpassword
         })
         .then(res=> {
           console.log(res)
           setMsg(res?.data.message)
+
+          toast.success(`${msg}`,{
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
         })
-        .catch(err=>console.log(err))
+        .catch(err=>{
+          console.log(err)
+          toast.error("Enter right credentials.",{
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+        })
   }
   return (
     <div className='signup-page'>
@@ -114,6 +134,7 @@ const Signup = () => {
           <Link to={'/login'}>Already have an account? Sign in</Link>
         </div> */}
       </div>
+      <ToastContainer/>
     </div>
   )
 }

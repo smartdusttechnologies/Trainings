@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import Drawer from '../Drawer/Drawer'
 import UserAccountMenu from '../UserProfile/UserAccountMenu'
+import AuthContext from '../../context/AuthProvider'
+import NotificationBellMenu from '../NotificationBell/NotificationBellMenu'
 
 const Navbar = () => {
+  const {auth} = useContext(AuthContext);
+
   return (
     <div className='Navbar-body'>
       <div className='Navbar'>
@@ -16,11 +20,12 @@ const Navbar = () => {
           </Link>
         </div>
         <div className='right none'>
-        <Link to={'/'}><div><a href="">Home</a> </div></Link> |
-        <Link to={'/login'}><div><a href="">Sign in</a> </div></Link> |
-        <Link to={'/contact'}><div><a href="">Contact</a> </div></Link> | 
+        <Link to={'/'}><div><a href="">Home</a> </div></Link> 
+        {!auth.isAuthenticated && (<Link to={'/login'}><div><a href="">Sign in</a> </div></Link>)} 
+        <Link to={'/contact'}><div><a href="">Contact</a> </div></Link> 
         <Link to={'/about'}><div><a href="">About</a> </div></Link>
         <UserAccountMenu/>
+        <NotificationBellMenu/>
         </div>
       </div>
           <Drawer/>
