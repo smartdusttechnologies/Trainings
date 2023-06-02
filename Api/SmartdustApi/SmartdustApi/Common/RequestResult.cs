@@ -51,7 +51,7 @@ namespace SmartdustApi.Common
         public RequestResult(IList<ValidationMessage> validationMessages)
             : this()
         {
-            ValidationMessages = validationMessages;
+            Message = validationMessages;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace SmartdustApi.Common
             : this()
         {
             RequestedObject = requestedObject;
-            ValidationMessages = validationMessages;
+            Message = validationMessages;
         }
 
         #endregion

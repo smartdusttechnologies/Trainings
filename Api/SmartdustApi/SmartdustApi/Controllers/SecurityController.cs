@@ -39,7 +39,7 @@ namespace SmartdustApi.Controllers
             {
                 return Json(new { status = true, message = "Account Created Successfull!" });
             }
-            return Json(result);
+            return BadRequest(result);
         }
         /// <summary>
         /// Method to get the Login details from UI and Process Login.

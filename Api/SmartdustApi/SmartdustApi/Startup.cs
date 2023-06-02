@@ -12,6 +12,7 @@ using SmartdustApi.Services.Interfaces;
 using SmartdustApi.Services;
 using SmartdustApi.Common;
 using SmartdustApi.Repository.Interface;
+using SmartdustApi.Model;
 
 namespace SmartdustApi
 {
@@ -40,11 +41,19 @@ namespace SmartdustApi
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-         .AddJwtBearer(options =>
-         {
-             options.TokenValidationParameters = tokenValidationParameters;
-         });
+            }).AddJwtBearer(options =>
+              {
+                  options.TokenValidationParameters = tokenValidationParameters;
+              });
+            services.AddAuthorization(options =>
+            {
+
+                options.AddPolicy(PolicyTypes.Users.Manage, policy => { policy.RequireClaim(CustomClaimType.ApplicationPermission.ToString(), Permissions.UsersPermissions.Add); });
+                options.AddPolicy(PolicyTypes.Users.Manage, policy => { policy.RequireClaim(CustomClaimType.ApplicationPermission.ToString(), Permissions.UsersPermissions.Edit); });
+                options.AddPolicy(PolicyTypes.Users.Manage, policy => { policy.RequireClaim(CustomClaimType.ApplicationPermission.ToString(), Permissions.UsersPermissions.Read); });
+                //options.AddPolicy(PolicyTypes.Users.Manage, policy => { policy.RequireClaim(CustomClaimTypes.Permission, Permissions.UsersPermissions.Delete); });
+                options.AddPolicy(PolicyTypes.Users.EditRole, policy => { policy.RequireClaim(CustomClaimType.ApplicationPermission.ToString(), Permissions.UsersPermissions.EditRole); });
+            });
             //Services
             services.AddCors(options =>
             {
@@ -63,7 +72,7 @@ namespace SmartdustApi
             services.AddScoped<IConnectionFactory, ConnectionFactory>();
             //
 
-            services.AddScoped<Services.Interfaces.ILogger,Infrastructure.Logger>();
+            services.AddScoped<Services.Interfaces.ILogger, Infrastructure.Logger>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddScoped<IRoleService, RoleService>();
