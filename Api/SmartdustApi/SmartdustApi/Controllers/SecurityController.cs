@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartdustApi.Common;
 using SmartdustApi.Model;
-using SmartdustApi.Model;
 using SmartdustApi.DTO;
-using Microsoft.AspNetCore.Components.Forms;
 
 namespace SmartdustApi.Controllers
 {
@@ -13,7 +11,6 @@ namespace SmartdustApi.Controllers
     public class SecurityController : Controller
     {
         private readonly IAuthenticationService _authenticationService;
-
         public SecurityController(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
