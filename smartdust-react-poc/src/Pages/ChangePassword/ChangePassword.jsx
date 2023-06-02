@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ChangePassword = () => {
   const api = 'https://localhost:7023/Security/ChangePassword';
-  const {auth} = useContext(AuthContext)
+  const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
 
 
   const [oldPassword , setOldpassword] = useState('');
@@ -47,6 +47,8 @@ const ChangePassword = () => {
         progress: undefined,
         theme: "colored",
       });
+      setNotification([...notification,"Password Changed Successfully!"])
+
     })
     .catch(err =>{
       console.log(err)
@@ -61,6 +63,8 @@ const ChangePassword = () => {
         progress: undefined,
         theme: "colored",
       });
+      setNotification([...notification,"Password Not Changed Enter Right Password!"])
+
     })
   }
 

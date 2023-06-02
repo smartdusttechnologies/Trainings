@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Signup.css'
 import axios from 'axios'
 import { TextField } from '@mui/material'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from '../../context/AuthProvider'
 
 const signupapi = 'https://localhost:7023/Security/SignUp';
 
 const Signup = () => {
+  const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
 
 
   const [newuser , setNewuser] = useState({
@@ -63,6 +65,8 @@ const Signup = () => {
             progress: undefined,
             theme: "colored",
             });
+
+            setNotification([...notification,"Sign up Successful!"])
         })
         .catch(err=>{
           console.log(err)
@@ -76,6 +80,8 @@ const Signup = () => {
             progress: undefined,
             theme: "colored",
             });
+            setNotification([...notification,"Sign up Unsuccessful Enter right credentials.!"])
+
         })
   }
   return (

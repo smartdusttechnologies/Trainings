@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const loginurl = 'https://localhost:7023/Security/Login';
 
 const Login = () => {
-  const {auth , setAuth} = useContext(AuthContext)
+  const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
 
   const [email , setEmail] = useState('');
   const [password , setPassword] = useState('');
@@ -50,6 +50,7 @@ const Login = () => {
             progress: undefined,
             theme: "colored",
           });
+          setNotification([...notification,"Sign in Successful!"])
         
       })
       .catch(err=>{
@@ -64,6 +65,8 @@ const Login = () => {
           progress: undefined,
           theme: "colored",
           });
+          setNotification([...notification,"Sign Failed! UserName or password mismatch."])
+
       })
       
     } catch (err) {

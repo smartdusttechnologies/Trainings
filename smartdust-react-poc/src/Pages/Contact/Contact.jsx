@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Contact.css'
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from '../../context/AuthProvider';
+
+// API Link 
+const APIurl = 'https://localhost:7023/Home/Contactus';
 
 const Contact = () => {
-  // API Link 
-  const APIurl = 'https://localhost:7023/Home/Contactus';
+  const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
+
 
   // User Details 
   const [userdata , setUserdata] = useState({
@@ -49,6 +53,9 @@ const Contact = () => {
         progress: undefined,
         theme: "dark",
       });
+
+      setNotification([...notification,"Contact Submitted successfully!"])
+
     })
     .catch(err=>{
       console.log(err)

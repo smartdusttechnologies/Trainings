@@ -3,8 +3,12 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import AuthContext from '../../context/AuthProvider';
 
 export default function NotificationBellMenu() {
+
+  const {notification} = React.useContext(AuthContext);
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -37,12 +41,11 @@ export default function NotificationBellMenu() {
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
-
       >
-        {/* <MenuItem onClick={handleClose}>Notification</MenuItem> */}
-        <MenuItem onClick={handleClose}>Sign in Successful!</MenuItem>
-        <MenuItem onClick={handleClose}>UserName or password mismatch.</MenuItem>
-        {/* <MenuItem onClick={handleClose}>UserName or password mismatch.</MenuItem> */}
+        <MenuItem sx={{fontSize:"22px" , fontWeight:"500" , ml:"100px" , mr:"100px"}} onClick={handleClose}>Notification</MenuItem>
+        {notification.map((el,i)=>(
+            <MenuItem onClick={handleClose} key={i}>{el}</MenuItem>
+        ))}
       </Menu>
     </div>
   );
