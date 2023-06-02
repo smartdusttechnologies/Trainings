@@ -24,9 +24,9 @@ namespace SmartdustApi.Common
         public static IList<ValidationMessage> GetFailureValidationMessages<T>(this T returnResut) where T : ResultBase
         {
             List<ValidationMessage> errorValMsgs = new List<ValidationMessage>();
-            if (returnResut.ValidationMessages != null)
+            if (returnResut.Message != null)
             {
-                errorValMsgs.AddRange(returnResut.ValidationMessages.GetFailureValidationMessages());
+                errorValMsgs.AddRange(returnResut.Message.GetFailureValidationMessages());
             }
             return errorValMsgs;
         }

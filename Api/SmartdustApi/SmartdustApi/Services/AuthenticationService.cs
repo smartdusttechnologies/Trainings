@@ -191,7 +191,7 @@ namespace SmartdustApi.Services
                     _userRepository.Insert(user, passwordLogin);
                     return new RequestResult<bool>(true);
                 }
-                return new RequestResult<bool>(false, validationResult.ValidationMessages);
+                return new RequestResult<bool>(false, validationResult.Message);
             }
             catch (Exception ex)
             {
@@ -260,9 +260,9 @@ namespace SmartdustApi.Services
                         }
 
                     }
-                    return new RequestResult<bool>(false, validationResult.ValidationMessages);
+                    return new RequestResult<bool>(false, validationResult.Message);
                 }
-                return new RequestResult<bool>(false, passworsResult.ValidationMessages);
+                return new RequestResult<bool>(false, passworsResult.Message);
             }
             catch (Exception ex)
             {

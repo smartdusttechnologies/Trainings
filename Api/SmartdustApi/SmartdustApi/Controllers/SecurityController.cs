@@ -22,7 +22,7 @@ namespace SmartdustApi.Controllers
         [Route("SignUp")]
         public IActionResult SignUp(UserDTO user)
         {
-            var userModel  = new UserModel()
+            var userModel = new UserModel()
             {
                 UserName = user.UserName,
                 Email = user.Email,
@@ -37,7 +37,12 @@ namespace SmartdustApi.Controllers
             RequestResult<bool> result = _authenticationService.Add(userModel);
             if (result.IsSuccessful)
             {
-                return Json(new { status = true, message = "Account Created Successfull!" });
+                List<ValidationMessage> success = new List<ValidationMessage>
+                {
+                    new ValidationMessage { Reason = "Sign Up Successfully", Severity = ValidationSeverity.Information, SourceId = "fields" }
+                };
+                result.Message = success;
+                return Json(result);
             }
             return BadRequest(result);
         }
@@ -53,9 +58,14 @@ namespace SmartdustApi.Controllers
             RequestResult<LoginToken> result = _authenticationService.Login(loginReq);
             if (result.IsSuccessful)
             {
+                List<ValidationMessage> success = new List<ValidationMessage>
+                {
+                    new ValidationMessage { Reason = "Login Successfully", Severity = ValidationSeverity.Information, SourceId = "fields" }
+                };
+                result.Message = success;
                 return Json(result);
             }
-            return Json(result);
+            return BadRequest(result);
         }
         [HttpPost]
         [Route("ChangePassword")]
@@ -71,12 +81,17 @@ namespace SmartdustApi.Controllers
                     Username = changepasswordDTO.Username,
                     UserId = changepasswordDTO.UserId,
                 };
-                    var result = _authenticationService.UpdatePaasword(changepasswordRequest);
-                    if (result.IsSuccessful)
-                    {
-                        return Ok(result.RequestedObject);
-                    }
-                    return BadRequest(result.ValidationMessages);
+                var result = _authenticationService.UpdatePaasword(changepasswordRequest);
+                if (result.IsSuccessful)
+                {
+                    List<ValidationMessage> success = new List<ValidationMessage>
+                {
+                    new ValidationMessage { Reason = "Password Changed Successfully", Severity = ValidationSeverity.Information, SourceId = "fields" }
+                };
+                    result.Message = success;
+                    return Ok(result.RequestedObject);
+                }
+                return BadRequest(result.Message);
             }
             else
             {

@@ -12,7 +12,7 @@ namespace SmartdustApi.Common
         /// Gets or sets the validation messages.
         /// </summary>
         /// <value>The validation messages.</value>
-        public IList<ValidationMessage> ValidationMessages { get; set; }
+        public IList<ValidationMessage> Message { get; set; }
 
         #endregion
 
