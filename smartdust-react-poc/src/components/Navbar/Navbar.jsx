@@ -20,12 +20,12 @@ const Navbar = () => {
           </Link>
         </div>
         <div className='right none'>
-        <Link to={'/'}><div><a href="">Home</a> </div></Link> 
-        {!auth.isAuthenticated && (<Link to={'/login'}><div><a href="">Sign in</a> </div></Link>)} 
-        <Link to={'/contact'}><div><a href="">Contact</a> </div></Link> 
-        <Link to={'/about'}><div><a href="">About</a> </div></Link>
-        <UserAccountMenu/>
+        <Link to={'/'}><div><a>Home</a> </div></Link> 
+        {!auth.isAuthenticated && (<Link to={'/login'}><div><a>Sign in</a> </div></Link>)} 
+        <Link to={'/contact'}><div><a>Contact</a> </div></Link> 
+        <Link to={'/about'}><div><a>About</a> </div></Link>
         <NotificationBellMenu/>
+        <UserAccountMenu/>
         </div>
       </div>
           <Drawer/>

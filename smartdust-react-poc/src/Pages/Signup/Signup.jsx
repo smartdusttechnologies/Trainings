@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Signup.css'
 import axios from 'axios'
-import { TextField } from '@mui/material'
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../../context/AuthProvider'
@@ -11,7 +11,7 @@ const signupapi = 'https://localhost:7023/Security/SignUp';
 
 const Signup = () => {
   const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
-
+  const navigate = useNavigate()
 
   const [newuser , setNewuser] = useState({
     firstname:"",
@@ -67,6 +67,10 @@ const Signup = () => {
             });
 
             setNotification([...notification,"Sign up Successful!"])
+
+            setTimeout(() => {
+              navigate('/')
+            }, 3500);
         })
         .catch(err=>{
           console.log(err)
@@ -106,15 +110,19 @@ const Signup = () => {
           <TextField size='small' onChange={(e)=>handleChange(e)} id='mail' label='Enter Email' type="text"/>
           <TextField size='small' onChange={(e)=>handleChange(e)} id='phone' label='Enter MobileNumber' type="number"/>
 
-          <select  onChange={(e)=>handleChange(e)} id="country">
-            <option value="">Country</option>
-            <option value="india">India</option>
-          </select>
+          <FormControl>
+          <InputLabel id="demo-select-small-label">Country</InputLabel>
+            <Select onChange={(e)=>handleChange(e)} size='small' label='Country' id="country">
+              <MenuItem value="india">India</MenuItem>
+            </Select>
+          </FormControl>
 
-          <select onChange={(e)=>handleChange(e)} id='org'>
-            <option value="sysorg">SYSORG</option>
-            <option value={0}>ORG 1</option>
-          </select>
+          <FormControl>
+          <InputLabel id="demo-select-small-label">SYSORG</InputLabel>
+            <Select onChange={(e)=>handleChange(e)} size='small' label='SYSORG' id='org'>
+              <MenuItem value={0}>ORG 1</MenuItem>
+            </Select>
+          </FormControl>
 
           <TextField size='small' onChange={(e)=>handleChange(e)} id='password' label='Enter Password' type="password"/>
           <TextField size='small' onChange={(e)=>handleChange(e)} id='confirmpassword' label='Re-Enter Password' type="password"/>

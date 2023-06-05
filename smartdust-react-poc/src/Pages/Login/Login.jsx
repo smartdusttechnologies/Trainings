@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import './Login.css'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import AuthContext from '../../context/AuthProvider';
 import { TextField } from '@mui/material';
@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const loginurl = 'https://localhost:7023/Security/Login';
 
 const Login = () => {
+  const navigate = useNavigate()
   const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
 
   const [email , setEmail] = useState('');
@@ -51,7 +52,10 @@ const Login = () => {
             theme: "colored",
           });
           setNotification([...notification,"Sign in Successful!"])
-        
+
+        setTimeout(() => {
+          navigate('/')
+        }, 3000);
       })
       .catch(err=>{
         // console.log(err)

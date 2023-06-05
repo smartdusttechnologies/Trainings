@@ -1,0 +1,16 @@
+.NotificationBell-button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.NotificationBell-button::after{
+    content: attr(current-count);
+    position: absolute;
+    background-color: rgb(249, 64, 64);
+    color: rgb(241, 239, 239);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-left: -11px;
+    border: 2px solid white;
+}

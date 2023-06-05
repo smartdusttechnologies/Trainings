@@ -1,11 +1,13 @@
 .Navbar-body{
     display: flex;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .Navbar{
-    width: 90%;
+    width: 92%;
     margin: auto;
     display: flex;
     justify-content: space-between;
+    
 }
 .left{
     width: 220px;
@@ -15,7 +17,7 @@
     width:100%;
 }
 .right{
-    width: 450px;
+    width: 360px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,6 +25,7 @@
 .right a{
     text-decoration: none;
     color: black;
+    /* font-size: 17px; */
     font-weight: 600;
 }
 .right a:hover{

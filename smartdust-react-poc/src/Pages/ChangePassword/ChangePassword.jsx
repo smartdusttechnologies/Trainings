@@ -5,10 +5,12 @@ import { Button, TextField } from '@mui/material';
 import AuthContext from '../../context/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
+const api = 'https://localhost:7023/Security/ChangePassword';
 
 const ChangePassword = () => {
-  const api = 'https://localhost:7023/Security/ChangePassword';
+  const navigate = useNavigate()
   const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
 
 
@@ -35,7 +37,6 @@ const ChangePassword = () => {
     .then(res=>{
       console.log(res)
       console.log(res?.data)
-
       
       toast.success("Password Changed Successfully!",{
         position: "bottom-center",
@@ -49,6 +50,9 @@ const ChangePassword = () => {
       });
       setNotification([...notification,"Password Changed Successfully!"])
 
+      setTimeout(() => {
+        navigate('/')
+      }, 3500);
     })
     .catch(err =>{
       console.log(err)
