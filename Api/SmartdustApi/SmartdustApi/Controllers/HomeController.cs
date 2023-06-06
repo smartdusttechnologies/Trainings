@@ -14,7 +14,7 @@ namespace SmartdustApi.Controllers
         private readonly IContactService _contactService;
         private readonly IOrganizationService _organizationService;
 
-        public HomeController(ILogger<HomeController> logger, IContactService contactService,IOrganizationService organizationService)
+        public HomeController(ILogger<HomeController> logger, IContactService contactService, IOrganizationService organizationService)
         {
             _logger = logger;
             _contactService = contactService;
@@ -23,16 +23,36 @@ namespace SmartdustApi.Controllers
 
         [HttpPost]
         [Route("Contactus")]
-        public RequestResult<bool> Contactsus(ContactDTO contact)
+        public IActionResult Contactsus(ContactDTO contact)
         {
-            return _contactService.Save(contact);
+            if (ModelState.IsValid)
+            {
+                return Ok(_contactService.Save(contact));
+            }
+
+            List<ValidationMessage> errors = new List<ValidationMessage>
+                {
+                    new ValidationMessage { Reason = "All Fields Are Required", Severity = ValidationSeverity.Error, SourceId = "fields" }
+                };
+            return Ok(new RequestResult<bool>(errors));
+
         }
-        
+
         [HttpGet]
         [Route("GetOrganizations")]
-        public RequestResult<List<OrganizationModel>> GetOrganizations()
+        public IActionResult GetOrganizations()
         {
-            return _organizationService.Get();
+            var list = _organizationService.Get();
+            if (list.IsSuccessful)
+            {
+                return Ok(list);
+            }
+
+            List<ValidationMessage> errors = new List<ValidationMessage>
+                {
+                    new ValidationMessage { Reason = "Something Went Wrong", Severity = ValidationSeverity.Error, SourceId = "fields" }
+                };
+            return Ok(new RequestResult<bool>(errors));
         }
     }
 }

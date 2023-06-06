@@ -266,7 +266,6 @@ namespace SmartdustApi.Services
             }
             catch (Exception ex)
             {
-
                 return new RequestResult<bool>(false);
             }
 
