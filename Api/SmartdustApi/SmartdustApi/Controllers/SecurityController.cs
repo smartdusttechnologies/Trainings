@@ -86,9 +86,9 @@ namespace SmartdustApi.Controllers
                     new ValidationMessage { Reason = "Password Changed Successfully", Severity = ValidationSeverity.Information, SourceId = "fields" }
                 };
                     result.Message = success;
-                    return Ok(result.RequestedObject);
+                    return Ok(result);
                 }
-                return Json(result.Message);
+                return Json(result);
             }
             else
             {
