@@ -4,23 +4,28 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 // API Link 
 const APIurl = 'https://localhost:7023/Home/Contactus';
 
+const initialState = {
+  name: "",
+  mail:"",
+  phone:0,
+  address:"",
+  subject:"",
+  message:""
+}
+
 const Contact = () => {
+  const navigate = useNavigate()
+
   const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
 
 
   // User Details 
-  const [userdata , setUserdata] = useState({
-    name: "",
-    mail:"",
-    phone:0,
-    address:"",
-    subject:"",
-    message:""
-  })
+  const [userdata , setUserdata] = useState(initialState)
 
   const handleChange = (e)=>{
     const newdata = {...userdata }
@@ -40,36 +45,47 @@ const Contact = () => {
     address:userdata.address,
     message:userdata.message
     })
-    .then(res=> {
-      console.log(res?.data)
-      
-      toast.success("Submitted successfully!",{
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+    .then(response=>{
+      console.log(response?.data)
+      console.log(response?.data.message[0].reason)
+      const isSuccessful = response?.data.isSuccessful
 
-      setNotification([...notification,"Contact Submitted successfully!"])
+      // For Success
+      if(isSuccessful){
+        toast.success(response?.data.message[0].reason,{
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
+        setUserdata(initialState)
+        // setTimeout(() => {
+        //   navigate('/')
+        // }, 4000);
+      }
 
+      // For Error 
+      if(!isSuccessful){
+        toast.error(response?.data.message[0].reason,{
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
+      }
     })
     .catch(err=>{
       console.log(err)
-      
-      toast.error("Enter right credentials!",{
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
     })
   }
 
@@ -100,7 +116,7 @@ const Contact = () => {
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Phone</label> <br />
-              <input onChange={(e)=>handleChange(e)} required id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' />
+              <input onChange={(e)=>handleChange(e)} required id='phone' type="number" placeholder='Enter your phone number' />
             </div>
             <div>
               <label htmlFor="">Address</label> <br />

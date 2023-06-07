@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
-import Drawer from '../Drawer/Drawer'
+import Drawer from '../ThreedotDrawer/Drawer'
 import UserAccountMenu from '../UserProfile/UserAccountMenu'
 import AuthContext from '../../context/AuthProvider'
 import NotificationBellMenu from '../NotificationBell/NotificationBellMenu'

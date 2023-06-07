@@ -37,7 +37,6 @@ const Signup = () => {
 
   const handleSubmit = (e)=>{
     e.preventDefault()
-    setMsg('')
       axios.post( signupapi , {
         id:0,
         userName: newuser.username,
@@ -52,40 +51,47 @@ const Signup = () => {
         password:newuser.password,
         newPassword:newuser.confirmpassword
         })
-        .then(res=> {
-          console.log(res)
-          setMsg(res?.data.message)
+        .then(response=> {
+          console.log(response?.data)
+          console.log(response?.data.message[0].reason)
+          const isSuccessful = response?.data.isSuccessful
 
-          toast.success(`${msg}`,{
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
+          // For Success
+          if(isSuccessful){
+            toast.success(response?.data.message[0].reason,{
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
             });
-
-            setNotification([...notification,"Sign up Successful!"])
+            setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
 
             setTimeout(() => {
               navigate('/')
-            }, 3500);
+            }, 3000);
+          }
+
+          // For Error 
+          if(!isSuccessful){
+            toast.error(response?.data.message[0].reason,{
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+            setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
+          }
+
         })
         .catch(err=>{
-          console.log(err)
-          toast.error("Enter right credentials.",{
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            });
-            setNotification([...notification,"Sign up Unsuccessful Enter right credentials.!"])
 
         })
   }

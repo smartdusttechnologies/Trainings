@@ -65,7 +65,8 @@ const Login = () => {
               theme: "colored",
             });
             setNotification([...notification, {message:response?.data.message[0].reason,success:isAuthenticated}])
-
+            setEmail('')
+            setPassword('')
             setTimeout(() => {
               navigate('/')
             }, 3000);

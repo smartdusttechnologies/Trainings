@@ -22,7 +22,6 @@ const ChangePassword = () => {
 
   const handleSubmit = (e)=>{
     e.preventDefault()
-    // console.log(e)
     console.log(oldPassword,newPassword,confirmPassword,auth.userName,auth.userId)
 
     axios.post(api , {
@@ -34,26 +33,44 @@ const ChangePassword = () => {
     },{
        headers: {"Authorization" : `${auth.accessToken}`}
     })
-    .then(res=>{
-      console.log(res)
-      console.log(res?.data)
-      
-      toast.success("Password Changed Successfully!",{
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      setNotification([...notification,"Password Changed Successfully!"])
-      setNotification([...notification, {message:"Password Changed Successfully!",success:res?.data}])
+    .then(response=>{
+      console.log(response?.data)
+      console.log(response?.data.message[0].reason)
+      const isSuccessful = response?.data.isSuccessful
 
-      setTimeout(() => {
-        navigate('/')
-      }, 3500);
+      // For Success
+      if(isSuccessful){
+        toast.success(response?.data.message[0].reason,{
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
+
+        setTimeout(() => {
+          navigate('/')
+        }, 3000);
+      }
+
+      // For Error 
+      if(!isSuccessful){
+        toast.error(response?.data.message[0].reason,{
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
+      }
     })
     .catch(err =>{
       console.log(err)

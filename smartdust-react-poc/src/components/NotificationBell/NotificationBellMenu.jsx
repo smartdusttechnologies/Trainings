@@ -69,7 +69,7 @@ export default function NotificationBellMenu() {
               key={i} 
               style={{
                 fontWeight: !readStatus[i] ? 'bold' : 500 ,
-                backgroundColor: !readStatus[i] ? "rgb(239, 239, 239)":'white',
+                backgroundColor: !readStatus[i] ? "rgb(253, 245, 245)":'white',
                 color: el.success ? 'rgb(55, 169, 87)' : 'rgb(249, 64, 64)',
               }}
             > {el.message} </MenuItem> 
