@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+
 using SmartdustApi.Common;
 using SmartdustApi.Model;
 using SmartdustApi.Models;
@@ -8,7 +9,7 @@ namespace SmartdustApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HomeController : ControllerBase
+    public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IContactService _contactService;
@@ -27,14 +28,14 @@ namespace SmartdustApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok(_contactService.Save(contact));
+                return Json(_contactService.Save(contact));
             }
 
             List<ValidationMessage> errors = new List<ValidationMessage>
                 {
                     new ValidationMessage { Reason = "All Fields Are Required", Severity = ValidationSeverity.Error, SourceId = "fields" }
                 };
-            return Ok(new RequestResult<bool>(errors));
+            return Json(new RequestResult<bool>(errors));
 
         }
 
@@ -45,14 +46,14 @@ namespace SmartdustApi.Controllers
             var list = _organizationService.Get();
             if (list.IsSuccessful)
             {
-                return Ok(list);
+                return Json(list);
             }
 
             List<ValidationMessage> errors = new List<ValidationMessage>
                 {
                     new ValidationMessage { Reason = "Something Went Wrong", Severity = ValidationSeverity.Error, SourceId = "fields" }
                 };
-            return Ok(new RequestResult<bool>(errors));
+            return Json(new RequestResult<bool>(errors));
         }
     }
 }
