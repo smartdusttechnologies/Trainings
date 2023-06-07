@@ -49,6 +49,7 @@ const ChangePassword = () => {
         theme: "colored",
       });
       setNotification([...notification,"Password Changed Successfully!"])
+      setNotification([...notification, {message:"Password Changed Successfully!",success:res?.data}])
 
       setTimeout(() => {
         navigate('/')

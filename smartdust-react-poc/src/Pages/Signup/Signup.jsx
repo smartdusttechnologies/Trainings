@@ -20,7 +20,7 @@ const Signup = () => {
     mail:"",
     phone:0,
     country:"",
-    org:"",
+    org:null,
     password:"",
     confirmpassword:""
   })
@@ -28,8 +28,9 @@ const Signup = () => {
 
 
   const handleChange = (e)=>{
+    console.log(e)
     const newdata = {...newuser}
-    newdata[e.target.id] = e.target.value
+    newdata[e.target.name] = e.target.value
     setNewuser(newdata)
     console.log(newuser)
   }
@@ -104,28 +105,30 @@ const Signup = () => {
           </div>
         </div>
         <form onSubmit={(e)=>handleSubmit(e)} action="">
-          <TextField size='small' onChange={(e)=>handleChange(e)} id='firstname' label='Enter FirstName' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} id='lastname' label='Enter LastName' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} id='username' label='Enter UserName' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} id='mail' label='Enter Email' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} id='phone' label='Enter MobileNumber' type="number"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='firstname' label='Enter FirstName' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='lastname' label='Enter LastName' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='username' label='Enter UserName' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='mail' label='Enter Email' type="text"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='phone' label='Enter MobileNumber' type="number"/>
 
           <FormControl>
           <InputLabel id="demo-select-small-label">Country</InputLabel>
-            <Select onChange={(e)=>handleChange(e)} size='small' label='Country' id="country">
+            <Select onChange={(e)=>handleChange(e)} size='small' label='Country' name="country">
               <MenuItem value="india">India</MenuItem>
+              <MenuItem value="Australia">Australia</MenuItem>
+              <MenuItem value="England">England</MenuItem>
             </Select>
           </FormControl>
 
           <FormControl>
           <InputLabel id="demo-select-small-label">SYSORG</InputLabel>
-            <Select onChange={(e)=>handleChange(e)} size='small' label='SYSORG' id='org'>
+            <Select onChange={(e)=>handleChange(e)} size='small' label='SYSORG' name='org'>
               <MenuItem value={0}>ORG 1</MenuItem>
             </Select>
           </FormControl>
 
-          <TextField size='small' onChange={(e)=>handleChange(e)} id='password' label='Enter Password' type="password"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} id='confirmpassword' label='Re-Enter Password' type="password"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='password' label='Enter Password' type="password"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='confirmpassword' label='Re-Enter Password' type="password"/>
           <button className='submit-btn'>Sign up</button>
         </form>
         <div>

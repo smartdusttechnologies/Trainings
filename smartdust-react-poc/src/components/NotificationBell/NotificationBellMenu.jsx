@@ -18,6 +18,7 @@ export default function NotificationBellMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    setReadStatus(Array(notification.length).fill(true))
   };
 
   const handleReadStatus = (i)=>{
@@ -26,6 +27,10 @@ export default function NotificationBellMenu() {
     console.log(i)
     UpdatedReadStatus[i] = !UpdatedReadStatus[i]
     setReadStatus(UpdatedReadStatus)
+  };
+
+  const handleViewAll = ()=>{
+   setReadStatus(Array(notification.length).fill(true))
   }
   return (
     <div>
@@ -39,7 +44,7 @@ export default function NotificationBellMenu() {
         current-count={notification.length}
       >
         <NotificationsIcon
-        sx={{ width: 26, height: 26 ,color:'gray'}}        
+        sx={{ width: 26, height: 26 ,color:'gray'}}      
         />
         {/* <div >{notification.length}</div> */}
       </button>
@@ -53,21 +58,33 @@ export default function NotificationBellMenu() {
         }}
         sx={{textAlign:"center",alignItems:"center"}}
       >
-        <MenuItem sx={{color:"blue"}} onClick={()=>setNotification([]) }>clear</MenuItem>
         <MenuItem sx={{fontSize:"22px" , fontWeight:"500" ,minWidth:300,display:'block'}} onClick={handleClose}>Notification</MenuItem>
+        <MenuItem sx={{color:"blue",pt:0,pb:0}} onClick={()=>setNotification([]) }>clear</MenuItem>
         {
           notification.length == 0 ?  <MenuItem sx={{display:'block'}}>No Notification</MenuItem> : <span></span>
         }
         {notification.map((el,i)=>(
-          <MenuItem>
             <MenuItem 
-            onClick={handleClose} 
-            key={i} 
-            style={{fontWeight: !readStatus[i] ? 'bold' : 500 , color: !readStatus[i] ? 'rgb(78, 78, 78)' : 'none'}}
-            > {el} </MenuItem> 
-            <Button onClick={()=>handleReadStatus(i)}>{readStatus[i] ? 'Unread' : 'Read'}</Button>
-          </MenuItem>
+              onClick={handleClose} 
+              key={i} 
+              style={{
+                fontWeight: !readStatus[i] ? 'bold' : 500 ,
+                backgroundColor: !readStatus[i] ? "rgb(239, 239, 239)":'white',
+                color: el.success ? 'rgb(55, 169, 87)' : 'rgb(249, 64, 64)',
+              }}
+            > {el.message} </MenuItem> 
         ))}
+        {
+          notification.length > 0 ?  <MenuItem 
+          sx={{
+            fontSize:"18px" , fontWeight:"500" ,display:'block',bgcolor:"rgb(55, 169, 87)",color:"rgb(238, 238, 238)",
+            '&:hover':{bgcolor:"rgb(55, 159, 87)"}
+          }}
+          onClick={handleViewAll}
+          
+         >View All</MenuItem> : <span></span>
+        }
+        
       </Menu>
     </div>
   );

@@ -15,14 +15,13 @@ const Login = () => {
 
   const [email , setEmail] = useState('');
   const [password , setPassword] = useState('');
-  const [msg , setMsg] = useState('')
 
   
   const handleSubmit = async (e)=>{
     e.preventDefault()
 
     try {
-      const response = await axios.post(loginurl , 
+      const response = await axios.post(loginurl ,
       {
         userName:email,
         password:password
@@ -30,18 +29,12 @@ const Login = () => {
       )
       .then(response=> {
         console.log(response?.data)
-        // console.log(response?.data.validationMessages[0].reason)
-        const accessToken = response?.data.requestedObject.accessToken 
-        const userName = response?.data.requestedObject.userName
-        const userId = response?.data.requestedObject.userId
+        console.log(response?.data.message[0].reason)
         const isAuthenticated = response?.data.isSuccessful
-        // const errmsg = response?.data.validationMessages[0].reason
-        console.log(accessToken,userName,userId)
-        
-        setAuth({accessToken , userName , userId , isAuthenticated})
-        // setMsg(errmsg)
 
-          toast.success("Sign in Successful!",{
+        // For Error 
+        if(!isAuthenticated){
+          toast.error(response?.data.message[0].reason,{
             position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: true,
@@ -51,25 +44,34 @@ const Login = () => {
             progress: undefined,
             theme: "colored",
           });
-          setNotification([...notification,"Sign in Successful!"])
+          setNotification([...notification, {message:response?.data.message[0].reason,success:isAuthenticated}])
+        }
 
-        setTimeout(() => {
-          navigate('/')
-        }, 3000);
+        // For Success
+        if(isAuthenticated){
+            const accessToken = response?.data.requestedObject.accessToken 
+            const userName = response?.data.requestedObject.userName
+            const userId = response?.data.requestedObject.userId
+            console.log(accessToken,userName,userId)
+            setAuth({accessToken , userName , userId , isAuthenticated})
+            toast.success(response?.data.message[0].reason,{
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+            setNotification([...notification, {message:response?.data.message[0].reason,success:isAuthenticated}])
+
+            setTimeout(() => {
+              navigate('/')
+            }, 3000);
+          }
       })
       .catch(err=>{
-        // console.log(err)
-        toast.error("UserName or password mismatch.",{
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          });
-          setNotification([...notification,"Sign Failed! UserName or password mismatch."])
 
       })
       
@@ -109,11 +111,11 @@ const Login = () => {
            <div> <label htmlFor="">Remember me</label> <input type="checkbox" /></div>
           <Link to={'/forgotpassword'} className='forgot-pass'>Forgot password</Link>
           </div>
-          <input className='submit-btn' type="submit" value={'Sign-in'}/>
+          <input className='submit-btn' type="submit" value={'Sign in'}/>
         </form>
-        <div>
+        {/* <div>
           {msg}
-        </div>
+        </div> */}
         <div className='Or-div'>
           <div><hr /></div>
           <div><p>or</p></div>
