@@ -20,9 +20,7 @@ const initialState = {
 
 const Contact = () => {
   const navigate = useNavigate()
-
   const {auth , setAuth , notification , setNotification} = useContext(AuthContext)
-
 
   // User Details 
   const [userdata , setUserdata] = useState(initialState)
@@ -70,22 +68,34 @@ const Contact = () => {
       }
 
       // For Error 
-      if(!isSuccessful){
-        toast.error(response?.data.message[0].reason,{
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-        setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
-      }
+      // if(!isSuccessful){
+      //   toast.error('All Fields Are Required',{
+      //     position: "bottom-center",
+      //     autoClose: 5000,
+      //     hideProgressBar: true,
+      //     closeOnClick: true,
+      //     pauseOnHover: false,
+      //     draggable: true,
+      //     progress: undefined,
+      //     theme: "dark",
+      //   });
+      //   setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
+      // }
     })
     .catch(err=>{
       console.log(err)
+      toast.error('All Fields Are Required',{
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setNotification([...notification, {message:'All Fields Are Required',success:false}])
+
     })
   }
 
@@ -116,7 +126,7 @@ const Contact = () => {
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Phone</label> <br />
-              <input onChange={(e)=>handleChange(e)} required id='phone' type="number" placeholder='Enter your phone number' />
+              <input onChange={(e)=>handleChange(e)} required id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' />
             </div>
             <div>
               <label htmlFor="">Address</label> <br />

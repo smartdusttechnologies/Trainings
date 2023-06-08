@@ -5,11 +5,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AuthContext from '../../context/AuthProvider';
-import { MenuList } from '@mui/material';
 
 export default function NotificationBellMenu() {
   const {setNotification,notification} = React.useContext(AuthContext);
   const [readStatus, setReadStatus] = React.useState(Array(notification.length).fill(false));
+  
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -41,12 +41,11 @@ export default function NotificationBellMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         className='NotificationBell-button'
-        current-count={notification.length}
+        current-count={notification.length - readStatus.filter(el => el == true).length}
       >
         <NotificationsIcon
-        sx={{ width: 26, height: 26 ,color:'gray'}}      
+         sx={{ width: 26, height: 26 ,color:'gray'}}      
         />
-        {/* <div >{notification.length}</div> */}
       </button>
       <Menu
         id="basic-menu"
@@ -63,14 +62,16 @@ export default function NotificationBellMenu() {
         {
           notification.length == 0 ?  <MenuItem sx={{display:'block'}}>No Notification</MenuItem> : <span></span>
         }
-        {notification.map((el,i)=>(
+        {[...notification].reverse().map((el,i)=>(
             <MenuItem 
               onClick={handleClose} 
               key={i} 
               style={{
-                fontWeight: !readStatus[i] ? 'bold' : 500 ,
-                backgroundColor: !readStatus[i] ? "rgb(253, 245, 245)":'white',
+                fontWeight: !readStatus[notification.length-1-i] ? 'bold' : 500 ,
+                backgroundColor: !readStatus[notification.length-1-i] ? "rgb(234, 226, 226)":'white',
                 color: el.success ? 'rgb(55, 169, 87)' : 'rgb(249, 64, 64)',
+                marginTop:2,
+                marginBottom:2
               }}
             > {el.message} </MenuItem> 
         ))}
