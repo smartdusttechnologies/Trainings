@@ -56,10 +56,14 @@ const ChangePassword = () => {
           navigate('/')
         }, 3000);
       }
+    })
+    .catch(error =>{
+      console.log(error)
+      const isSuccessful = error.response?.data.isSuccessful
 
       // For Error 
       if(!isSuccessful){
-        toast.error(response?.data.message[0].reason,{
+        toast.error(error.response?.data.message[0].reason,{
           position: "bottom-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -69,23 +73,8 @@ const ChangePassword = () => {
           progress: undefined,
           theme: "colored",
         });
-        setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
+        setNotification([...notification, {message:error.response?.data.message[0].reason,success:isSuccessful}])
       }
-    })
-    .catch(err =>{
-      console.log(err)
-      
-      toast.error("Enter Right Password!",{
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      setNotification([...notification,"Password Not Changed Enter Right Password!"])
 
     })
   }

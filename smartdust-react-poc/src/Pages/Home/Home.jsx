@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 import SlickGoTo from '../../components/AutoSlider/AutoSlider'
 import Contact from '../Contact/Contact'
-
+import Image_Slider_2 from '../../assets/images/Image_Slider_2.webp'
 
 const Home = () => {
   return (
@@ -50,7 +50,7 @@ const Home = () => {
       {/* Quote For Small screen  */}
       <div className='small-screen-quote'>
         <div>
-        <img src="https://static.wixstatic.com/media/11062b_0f162ab89785432f9b834066fa96982b~mv2.jpg/v1/fill/w_1899,h_700,fp_0.23_0.40,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_0f162ab89785432f9b834066fa96982b~mv2.jpg" alt="" />
+        <img src={Image_Slider_2} alt="" />
         </div>
         <div className='s-quote-div'>
           <div>

@@ -17,11 +17,10 @@ const Login = () => {
   const [password , setPassword] = useState('');
 
   
-  const handleSubmit = async (e)=>{
+  const handleSubmit = (e)=>{
     e.preventDefault()
-
-    try {
-      const response = await axios.post(loginurl ,
+    
+      axios.post(loginurl ,
       {
         userName:email,
         password:password
@@ -32,9 +31,14 @@ const Login = () => {
         console.log(response?.data.message[0].reason)
         const isAuthenticated = response?.data.isSuccessful
 
-        // For Error 
-        if(!isAuthenticated){
-          toast.error(response?.data.message[0].reason,{
+        // For Success
+        if(isAuthenticated){
+          const accessToken = response?.data.requestedObject.accessToken 
+          const userName = response?.data.requestedObject.userName
+          const userId = response?.data.requestedObject.userId
+          console.log(accessToken,userName,userId)
+          setAuth({accessToken , userName , userId , isAuthenticated})
+          toast.success(response?.data.message[0].reason,{
             position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: true,
@@ -45,40 +49,34 @@ const Login = () => {
             theme: "colored",
           });
           setNotification([...notification, {message:response?.data.message[0].reason,success:isAuthenticated}])
-        }
 
-        // For Success
-        if(isAuthenticated){
-            const accessToken = response?.data.requestedObject.accessToken 
-            const userName = response?.data.requestedObject.userName
-            const userId = response?.data.requestedObject.userId
-            console.log(accessToken,userName,userId)
-            setAuth({accessToken , userName , userId , isAuthenticated})
-            toast.success(response?.data.message[0].reason,{
-              position: "bottom-center",
-              autoClose: 5000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-            });
-            setNotification([...notification, {message:response?.data.message[0].reason,success:isAuthenticated}])
-            setEmail('')
-            setPassword('')
-            setTimeout(() => {
-              navigate('/')
-            }, 3000);
-          }
+          setEmail('')
+          setPassword('')
+          
+          setTimeout(() => {
+            navigate('/')
+          }, 3000);
+        }
       })
-      .catch(err=>{
-        console.log(err)
+      .catch(error=>{
+        console.log(error.response.data)
+        const isAuthenticated = error.response?.data.isSuccessful
+
+        // For Error 
+        if(!isAuthenticated){
+          toast.error(error.response?.data.message[0].reason,{
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setNotification([...notification, {message:error.response?.data.message[0].reason,success:isAuthenticated}])
+        }
       })
-      
-    } catch (err) {
-      console.log(err);
-    }
   }
 
 
@@ -114,9 +112,7 @@ const Login = () => {
           </div>
           <input className='submit-btn' type="submit" value={'Sign in'}/>
         </form>
-        {/* <div>
-          {msg}
-        </div> */}
+        
         <div className='Or-div'>
           <div><hr /></div>
           <div><p>or</p></div>

@@ -4,22 +4,23 @@ import AuthTokenProvider from '../../context/AuthTokenProvider'
 import AuthContext from '../../context/AuthProvider'
 import axios from 'axios'
 
+const api = 'https://localhost:7023/Security'
+
 const About = () => {
   const {auth} = useContext(AuthContext)
-  const api = 'https://localhost:7023/Security'
-  console.log(auth)
-  console.log(auth.accessToken)
-      const handleAuth = ()=>{
 
-        axios.get(api, { headers: {"Authorization" : `${auth.accessToken}`} })
-        .then(res => {
-          console.log(res.data);
-          })
-      }
+  console.log(auth.accessToken)
+      // const handleAuth = ()=>{
+
+      //   axios.get(api, { headers: {"Authorization" : `${auth.accessToken}`} })
+      //   .then(res => {
+      //     console.log(res.data);
+      //     })
+      // }
   
-        useEffect(() => {
-          handleAuth()
-        })
+      //   useEffect(() => {
+      //     handleAuth()
+      //   })
 
   return (
     <div>

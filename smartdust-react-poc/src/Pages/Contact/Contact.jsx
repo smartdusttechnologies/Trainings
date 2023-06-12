@@ -82,8 +82,8 @@ const Contact = () => {
       //   setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
       // }
     })
-    .catch(err=>{
-      console.log(err)
+    .catch(error=>{
+      console.log(error)
       toast.error('All Fields Are Required',{
         position: "bottom-center",
         autoClose: 5000,
@@ -116,17 +116,17 @@ const Contact = () => {
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Name</label> <br />
-              <input onChange={(e)=>handleChange(e)} required id='name' value={userdata.name} type="text" placeholder='Enter your name' />
+              <input onChange={(e)=>handleChange(e)} id='name' value={userdata.name} type="text" placeholder='Enter your name' />
             </div>
             <div>
               <label htmlFor="">Email</label> <br />
-              <input onChange={(e)=>handleChange(e)} required id='mail' value={userdata.mail} type="email" placeholder='Enter your email' />
+              <input onChange={(e)=>handleChange(e)} id='mail' value={userdata.mail} type="email" placeholder='Enter your email' />
             </div>
           </div>
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Phone</label> <br />
-              <input onChange={(e)=>handleChange(e)} required id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' />
+              <input onChange={(e)=>handleChange(e)} id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' />
             </div>
             <div>
               <label htmlFor="">Address</label> <br />

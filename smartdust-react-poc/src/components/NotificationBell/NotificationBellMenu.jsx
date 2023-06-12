@@ -11,8 +11,9 @@ export default function NotificationBellMenu() {
   const [readStatus, setReadStatus] = React.useState(Array(notification.length).fill(false));
   
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -32,6 +33,16 @@ export default function NotificationBellMenu() {
   const handleViewAll = ()=>{
    setReadStatus(Array(notification.length).fill(true))
   }
+
+  const NotificationCount = ()=>{
+    const notificationCount = notification.length - readStatus.filter(el => el == true).length
+    if(notificationCount < 0){
+      return 0
+    }else{
+      return notificationCount
+    }
+  }
+
   return (
     <div>
       <button
@@ -41,7 +52,7 @@ export default function NotificationBellMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         className='NotificationBell-button'
-        current-count={notification.length - readStatus.filter(el => el == true).length}
+        current-count={NotificationCount()}
       >
         <NotificationsIcon
          sx={{ width: 26, height: 26 ,color:'gray'}}      
@@ -57,8 +68,9 @@ export default function NotificationBellMenu() {
         }}
         sx={{textAlign:"center",alignItems:"center"}}
       >
-        <MenuItem sx={{fontSize:"22px" , fontWeight:"500" ,minWidth:300,display:'block'}} onClick={handleClose}>Notification</MenuItem>
-        <MenuItem sx={{color:"blue",pt:0,pb:0}} onClick={()=>setNotification([]) }>clear</MenuItem>
+        <MenuItem sx={{fontSize:"22px" , fontWeight:"500" ,display:'block'}} onClick={handleClose} className='Notification-header' >Notification</MenuItem>
+        <MenuItem sx={{color:"rgb(28, 120, 239)",pt:0}} onClick={()=>setNotification([]) }>clear</MenuItem>
+        <hr />
         {
           notification.length == 0 ?  <MenuItem sx={{display:'block'}}>No Notification</MenuItem> : <span></span>
         }
@@ -68,10 +80,12 @@ export default function NotificationBellMenu() {
               key={i} 
               style={{
                 fontWeight: !readStatus[notification.length-1-i] ? 'bold' : 500 ,
-                backgroundColor: !readStatus[notification.length-1-i] ? "rgb(234, 226, 226)":'white',
+                backgroundColor: !readStatus[notification.length-1-i] ? "rgb(245, 235, 235)":'white',
                 color: el.success ? 'rgb(55, 169, 87)' : 'rgb(249, 64, 64)',
-                marginTop:2,
-                marginBottom:2
+                // marginTop:1,
+                // marginBottom:1,
+                height:'55px',
+                borderBottom:'1px solid rgb(171, 171, 171)'
               }}
             > {el.message} </MenuItem> 
         ))}

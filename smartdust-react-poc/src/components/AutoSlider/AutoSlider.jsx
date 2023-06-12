@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import './AutoSlider.css'
+import Image_Slider_1 from '../../assets/images/Image_Slider_1.webp'
+import Image_Slider_2 from '../../assets/images/Image_Slider_2.webp'
+import Image_Slider_3 from '../../assets/images/Image_Slider_3.webp'
+import Image_Slider_4 from '../../assets/images/Image_Slider_4.webp'
+import Image_Slider_5 from '../../assets/images/Image_Slider_5.webp'
+import Image_Slider_6 from '../../assets/images/Image_Slider_6.webp'
+
 
 export default class SlickGoTo extends React.Component {
   state = {
@@ -24,17 +32,15 @@ export default class SlickGoTo extends React.Component {
     beforeChange: (current, next) => this.setState({ slideIndex: next })
     };
 
-    const images = [
-        'https://static.wixstatic.com/media/a00e7791c7984675a5c2439fdf4a37c6.jpg/v1/fill/w_1108,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Modern%20Digital%20Watch.jpg' , 'https://static.wixstatic.com/media/11062b_0f162ab89785432f9b834066fa96982b~mv2.jpg/v1/fill/w_1108,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Father%20and%20Son.jpg' , 'https://static.wixstatic.com/media/57d1fed6beee4982a729978553fb8ae2.jpg/v1/fill/w_1108,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Computer%20Circuit%20Board.jpg' , 'https://static.wixstatic.com/media/ab483cd71cf946eaaf88b772ed132f63.jpg/v1/fill/w_1115,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Motherboard%20Installation.jpg' , 'https://static.wixstatic.com/media/11062b_8818cb77a1be44d093816fa55b25cb57~mv2.jpg/v1/fill/w_1106,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Gaming.jpg' , 'https://static.wixstatic.com/media/11062b_02f3dbceab3f4181a0ea4767efbf280d~mv2.jpg/v1/fill/w_1239,h_739,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Servers.jpg'
-    ]
+    const images = [ Image_Slider_1 , Image_Slider_2,Image_Slider_3,Image_Slider_4,Image_Slider_5,Image_Slider_6]
 
     return (
       <div style={{width:'100%'}}>
         <Slider ref={slider => (this.slider = slider)} {...settings} arrows={false}>
             {
                 images.map((i)=>(
-                    <div style={{width:'100%'}} key={i}>
-                        <img src={i} style={{width:'100%'}} alt="" />
+                    <div className="image-slider-body" key={i}>
+                        <img src={i} alt="" />
                     </div>
                 ))
             }
