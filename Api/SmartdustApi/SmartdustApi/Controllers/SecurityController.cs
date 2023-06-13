@@ -41,7 +41,7 @@ namespace SmartdustApi.Controllers
                 result.Message = success;
                 return Json(result);
             }
-            return Json(result);
+            return BadRequest(result);
         }
         /// <summary>
         /// Method to get the Login details from UI and Process Login.
@@ -60,9 +60,9 @@ namespace SmartdustApi.Controllers
                     new ValidationMessage { Reason = "Login Successfully", Severity = ValidationSeverity.Information, SourceId = "fields" }
                 };
                 result.Message = success;
-                return Json(result);
+                return Ok(result);
             }
-            return Json(result);
+            return BadRequest(result);
         }
         [HttpPost]
         [Route("ChangePassword")]
@@ -88,7 +88,7 @@ namespace SmartdustApi.Controllers
                     result.Message = success;
                     return Ok(result);
                 }
-                return Json(result);
+                return BadRequest(result);
             }
             else
             {

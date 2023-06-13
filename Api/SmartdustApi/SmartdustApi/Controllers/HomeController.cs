@@ -35,7 +35,7 @@ namespace SmartdustApi.Controllers
                 {
                     new ValidationMessage { Reason = "All Fields Are Required", Severity = ValidationSeverity.Error, SourceId = "fields" }
                 };
-            return Json(new RequestResult<bool>(errors));
+            return BadRequest(new RequestResult<bool>(errors));
 
         }
 
