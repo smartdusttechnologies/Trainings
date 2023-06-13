@@ -92,7 +92,7 @@ export default function NotificationBellMenu() {
         {
           notification.length > 0 ?  <MenuItem 
           sx={{
-            fontSize:"18px" , fontWeight:"500" ,display:'block',bgcolor:"rgb(55, 169, 87)",color:"rgb(238, 238, 238)",
+            fontSize:"18px" , fontWeight:"500" ,display:'block',marginBottom:'-8px',bgcolor:"rgb(55, 169, 87)",color:"rgb(238, 238, 238)",
             '&:hover':{bgcolor:"rgb(55, 159, 87)"}
           }}
           onClick={handleViewAll}

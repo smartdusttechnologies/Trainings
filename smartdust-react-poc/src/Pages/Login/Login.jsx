@@ -60,7 +60,7 @@ const Login = () => {
       })
       .catch(error=>{
         console.log(error.response.data)
-        const isAuthenticated = error.response?.data.isSuccessful
+        const isAuthenticated = error?.response?.data.isSuccessful
 
         // For Error 
         if(!isAuthenticated){
@@ -98,13 +98,15 @@ const Login = () => {
         <form onSubmit={(e)=>handleSubmit(e)} action="">
           <TextField size='small'
            onChange={(e)=>setEmail(e.target.value)}
-          label='Username or Email ID' type="text"
-          value={email}
+           label='Username or Email ID' type="text"
+           value={email}
+           required
           />
           <TextField size='small'
            onChange={(e)=>setPassword(e.target.value)}
-          label='Password' type="password"
-          value={password}
+           label='Password' type="password"
+           value={password}
+           required
           />
           <div className='remeber-me-forgot-pass'>
            <div> <label htmlFor="">Remember me</label> <input type="checkbox" /></div>

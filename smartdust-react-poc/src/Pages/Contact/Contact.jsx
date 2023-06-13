@@ -83,19 +83,26 @@ const Contact = () => {
       // }
     })
     .catch(error=>{
-      console.log(error)
-      toast.error('All Fields Are Required',{
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-      setNotification([...notification, {message:'All Fields Are Required',success:false}])
-
+      console.log(error?.response.data?.errors)
+      const errormessages = error?.response.data?.errors
+      if(errormessages){
+        for(let key in errormessages){
+          console.log(errormessages[key][0])
+          let msg = errormessages[key][0]
+          toast.error(msg,{
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          setNotification([...notification, {message:msg,success:false}])
+          break;
+        }
+      }
     })
   }
 

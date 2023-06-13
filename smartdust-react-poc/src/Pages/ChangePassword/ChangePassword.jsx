@@ -87,9 +87,9 @@ const ChangePassword = () => {
         {/* <form > */}
           <div className='changepass-inputs'>
 
-          <TextField onChange={(e)=> setOldpassword(e.target.value)} label='OldPassword' size='small' type="password" />
-          <TextField onChange={(e)=> setNewpassword(e.target.value)} label='NewPassword' size='small' type="password" />
-          <TextField onChange={(e)=> setConfirmpassword(e.target.value)} label='ConfirmPassword' size='small' type="password" />
+          <TextField onChange={(e)=> setOldpassword(e.target.value)} label='OldPassword' required size='small' type="password" />
+          <TextField onChange={(e)=> setNewpassword(e.target.value)} label='NewPassword' required size='small' type="password" />
+          <TextField onChange={(e)=> setConfirmpassword(e.target.value)} label='ConfirmPassword' required size='small' type="password" />
           </div>
           {/* <div>
             {msg}

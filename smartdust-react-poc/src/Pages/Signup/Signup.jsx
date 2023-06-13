@@ -112,11 +112,11 @@ const Signup = () => {
           </div>
         </div>
         <form onSubmit={(e)=>handleSubmit(e)} action="">
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='firstname' label='Enter FirstName' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='lastname' label='Enter LastName' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='username' label='Enter UserName' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='mail' label='Enter Email' type="text"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='phone' label='Enter MobileNumber' type="number"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='firstname' label='Enter FirstName' type="text" required/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='lastname' label='Enter LastName' type="text" required/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='username' label='Enter UserName' type="text" required/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='mail' label='Enter Email' type="text" required/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='phone' label='Enter MobileNumber' type="number" required/>
 
           <FormControl>
           <InputLabel id="demo-select-small-label">Country</InputLabel>
@@ -134,8 +134,8 @@ const Signup = () => {
             </Select>
           </FormControl>
 
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='password' label='Enter Password' type="password"/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='confirmpassword' label='Re-Enter Password' type="password"/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='password' label='Enter Password' type="password"  required/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='confirmpassword' label='Re-Enter Password' type="password"  required/>
           <button className='submit-btn'>Sign up</button>
         </form>
         <div>

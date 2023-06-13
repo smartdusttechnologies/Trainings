@@ -67,14 +67,18 @@
         flex-direction: column;
         justify-content: space-between;
         height: 100vh;
+        padding-bottom: 5vh;
     }
     .flex-input-div{
         display: flex;
         flex-direction: column;
         gap: 20px;
     }
+    .flex-input-div input{
+        width: 300px;
+    }
     .long-input input{
-        width: 200px;
+        width: 300px;
         height: 4vh;
     }
     #title{
@@ -86,10 +90,10 @@
         margin: 10px 0px;
     }
     .submit-user-details{
-        width: 200px;
+        width: 300px;
     }
     .submit-user-details input{
-        width: 200px;
-        height: 4vh;
+        width: 300px;
+        height: 5vh;
     }
 }
