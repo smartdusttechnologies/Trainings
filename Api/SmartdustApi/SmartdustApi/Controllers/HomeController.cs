@@ -15,7 +15,6 @@ namespace SmartdustApi.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IContactService _contactService;
         private readonly IOrganizationService _organizationService;
-        private readonly IEmailService _emailService;
 
         public HomeController(ILogger<HomeController> logger, IContactService contactService, IOrganizationService organizationService)
         {

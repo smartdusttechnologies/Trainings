@@ -13,6 +13,8 @@ using SmartdustApi.Services;
 using SmartdustApi.Common;
 using SmartdustApi.Repository.Interface;
 using SmartdustApi.Model;
+using TestingAndCalibrationLabs.Business.Core.Interfaces;
+using TestingAndCalibrationLabs.Business.Services;
 
 namespace SmartdustApi
 {
@@ -91,7 +93,8 @@ namespace SmartdustApi
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
             services.AddScoped<ISecurityParameterService, SecurityParameterService>();
 
-            //
+            //Email service
+            services.AddScoped<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace TestingAndCalibrationLabs.Business.Core.Model
@@ -12,12 +13,18 @@ namespace TestingAndCalibrationLabs.Business.Core.Model
         /// <summary>
         /// It will be used as Email address, where the mail will be sent
         /// </summary>
-        public List<string> Email { get; set; }
-          
+        //public List<string> Email { get; set; }
+        public string Email { get; set; }
+
+
         /// <summary>
         /// Email Template is used to send a decorative mail message 
         /// </summary>
         public string EmailTemplate { get; set; }
+
+        public string Mail { get; set; }
+        public int Phone { get; set; }
+        public string Address { get; set; }
 
         /// <summary>
         /// It is used for the Logo Image
