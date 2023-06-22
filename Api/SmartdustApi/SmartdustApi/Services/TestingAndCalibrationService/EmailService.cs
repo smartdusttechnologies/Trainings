@@ -56,9 +56,10 @@ namespace TestingAndCalibrationLabs.Business.Services
                         smtp.Host = host;
                         smtp.EnableSsl = true;
                         NetworkCredential NetworkCred = new NetworkCredential(userName, password);
-                        smtp.UseDefaultCredentials = true;
+                        smtp.UseDefaultCredentials = false;
                         smtp.Credentials = NetworkCred;
                         smtp.Port = port;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtp.Send(mm);
                         return true;
                     }

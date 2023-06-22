@@ -11,26 +11,40 @@ namespace SmartdustApi.Services
     {
         private readonly IContactRepository _contactRepository;
         private readonly IEmailService _emailService;
+        private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public ContactService(IContactRepository contactRepository, IEmailService emailservice)
+
+        public ContactService(IContactRepository contactRepository, IEmailService emailservice, IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             _contactRepository = contactRepository;
             _emailService = emailservice;
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public RequestResult<bool> Save(ContactDTO contact)
         {
             
             EmailModel model = new EmailModel();
-            model.Name = contact.Name;
-            model.Mail = contact.Mail;
-            model.Phone = contact.Phone;
-            model.Subject = contact.Subject;
-            model.Address = contact.Address;
-            model.Message = contact.Message;
-            //model.Email = "yashrajsmartdust@gmail.com";
-            //model.Email.RemoveAt(0);
-            model.Email = "yashrajsmartdust@gmail.com";
+
+            //Read other values from Appsetting .Json 
+            model.EmailTemplate = _configuration["TestingAndCalibrationSurvey:UserTemplate"];
+            model.Subject = _configuration["TestingAndCalibrationSurvey:Subject"];
+
+            //Create User Mail
+            model.HtmlMsg = CreateBody(model.EmailTemplate);
+            model.HtmlMsg = model.HtmlMsg.Replace("*name*", contact.Name);
+            model.HtmlMsg = model.HtmlMsg.Replace("*Emailid*", contact.Mail);
+            //model.HtmlMsg = model.HtmlMsg.Replace("*mobilenumber*", contact.Phone);
+            model.HtmlMsg = model.HtmlMsg.Replace("*Subject*", contact.Subject);
+            model.HtmlMsg = model.HtmlMsg.Replace("*Address*", contact.Address);
+            model.HtmlMsg = model.HtmlMsg.Replace("*Message*", contact.Message);
+            model.Subject = model.Subject;
+
+            model.Email = new List<string>();
+            model.Email.Add("yashrajsmartdust@gmail.com");
+
             var isemailsendsuccessfully = _emailService.Sendemail(model);
 
             var result = _contactRepository.Save(contact);
@@ -49,6 +63,21 @@ namespace SmartdustApi.Services
                 };
             result.Message = error;
             return result;
+        }
+
+        /// <summary>
+        /// To use the email Template to send mail to the User participated.
+        /// </summary>
+        /// <param name="emailTemplate"></param>
+        ///returns></returns>
+        private string CreateBody(string emailTemplate)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(Path.Combine(_hostingEnvironment.WebRootPath, _configuration["TestingAndCalibrationSurvey:UserTemplate"])))
+            {
+                body = reader.ReadToEnd();
+            }
+            return body;
         }
     }
 }

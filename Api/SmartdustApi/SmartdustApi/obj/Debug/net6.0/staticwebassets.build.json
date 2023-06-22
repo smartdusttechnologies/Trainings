@@ -1,11 +1,71 @@
 {
   "Version": 1,
-  "Hash": "/3/9z0eQdHFHnj4pyAs2L3O2mOv7xEQqJQJXpTSw6PI=",
+  "Hash": "dmqPErEdleLTRLxHiYhvTGlaZo09qZumrbu6sYej+PE=",
   "Source": "SmartdustApi",
   "BasePath": "_content/SmartdustApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "SmartdustApi\\wwwroot",
+      "Source": "SmartdustApi",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\",
+      "BasePath": "_content/SmartdustApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\emailformat\\TestingAndCalibrationsSurveyAdminMailTemplate.html",
+      "SourceId": "SmartdustApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\",
+      "BasePath": "_content/SmartdustApi",
+      "RelativePath": "emailformat/TestingAndCalibrationsSurveyAdminMailTemplate.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emailformat\\TestingAndCalibrationsSurveyAdminMailTemplate.html"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\emailformat\\TestingAndCalibrationsSurveyMailTemplate.html",
+      "SourceId": "SmartdustApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\",
+      "BasePath": "_content/SmartdustApi",
+      "RelativePath": "emailformat/TestingAndCalibrationsSurveyMailTemplate.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emailformat\\TestingAndCalibrationsSurveyMailTemplate.html"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\emailformat\\TestingAndCalibrationsTestReportWebLinkMail.html",
+      "SourceId": "SmartdustApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\",
+      "BasePath": "_content/SmartdustApi",
+      "RelativePath": "emailformat/TestingAndCalibrationsTestReportWebLinkMail.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emailformat\\TestingAndCalibrationsTestReportWebLinkMail.html"
+    }
+  ]
 }

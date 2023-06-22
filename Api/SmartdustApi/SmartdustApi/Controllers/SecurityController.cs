@@ -36,7 +36,7 @@ namespace SmartdustApi.Controllers
             {
                 List<ValidationMessage> success = new List<ValidationMessage>
                 {
-                    new ValidationMessage { Reason = "Sign Up Successfully", Severity = ValidationSeverity.Information, SourceId = "fields" }
+                    new ValidationMessage { Reason = "Sign Up Successful", Severity = ValidationSeverity.Information, SourceId = "fields" }
                 };
                 result.Message = success;
                 return Json(result);
@@ -57,7 +57,7 @@ namespace SmartdustApi.Controllers
             {
                 List<ValidationMessage> success = new List<ValidationMessage>
                 {
-                    new ValidationMessage { Reason = "Login Successfully", Severity = ValidationSeverity.Information, SourceId = "fields" }
+                    new ValidationMessage { Reason = "Login Successful", Severity = ValidationSeverity.Information, SourceId = "fields" }
                 };
                 result.Message = success;
                 return Ok(result);
