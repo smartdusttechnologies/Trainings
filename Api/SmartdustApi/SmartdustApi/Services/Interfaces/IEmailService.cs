@@ -1,4 +1,5 @@
-﻿using TestingAndCalibrationLabs.Business.Core.Model;
+﻿using SmartdustApi.Common;
+using TestingAndCalibrationLabs.Business.Core.Model;
 
 namespace TestingAndCalibrationLabs.Business.Core.Interfaces
 {
@@ -9,6 +10,6 @@ namespace TestingAndCalibrationLabs.Business.Core.Interfaces
         /// </summary>
         /// <param name="surveyModel"></param>
         /// <returns></returns>
-        bool Sendemail(EmailModel emailModel);        
+        RequestResult<bool> Sendemail(EmailModel emailModel);        
     }
 }

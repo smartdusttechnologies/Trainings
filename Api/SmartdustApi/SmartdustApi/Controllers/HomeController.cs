@@ -27,16 +27,17 @@ namespace SmartdustApi.Controllers
         [Route("Contactus")]
         public IActionResult Contactsus(ContactDTO contact)
         {
-            if (ModelState.IsValid)
+            var result = _contactService.Save(contact);
+            if (result.RequestedObject)
             {
-                return Json(_contactService.Save(contact));
+                return Json(result);
             }
-
-            List<ValidationMessage> errors = new List<ValidationMessage>
-                {
-                    new ValidationMessage { Reason = "All Fields Are Required", Severity = ValidationSeverity.Error, SourceId = "fields" }
-                };
-            return BadRequest(new RequestResult<bool>(errors));
+            return BadRequest(result);
+            //List<ValidationMessage> errors = new List<ValidationMessage>
+            //    {
+            //        new ValidationMessage { Reason = "All Fields Are Required", Severity = ValidationSeverity.Error, SourceId = "fields" }
+            //    };
+            //return BadRequest(new RequestResult<bool>(errors));
 
         }
 

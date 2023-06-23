@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dmqPErEdleLTRLxHiYhvTGlaZo09qZumrbu6sYej+PE=",
+  "Hash": "tWwSNyZj0pp5ynJenTfiEoh1ZIB243gG8C9mmkMdnfU=",
   "Source": "SmartdustApi",
   "BasePath": "_content/SmartdustApi",
   "Mode": "Default",
@@ -17,23 +17,6 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\emailformat\\TestingAndCalibrationsSurveyAdminMailTemplate.html",
-      "SourceId": "SmartdustApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\",
-      "BasePath": "_content/SmartdustApi",
-      "RelativePath": "emailformat/TestingAndCalibrationsSurveyAdminMailTemplate.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\emailformat\\TestingAndCalibrationsSurveyAdminMailTemplate.html"
-    },
-    {
       "Identity": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\emailformat\\TestingAndCalibrationsSurveyMailTemplate.html",
       "SourceId": "SmartdustApi",
       "SourceType": "Discovered",
@@ -49,23 +32,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\emailformat\\TestingAndCalibrationsSurveyMailTemplate.html"
-    },
-    {
-      "Identity": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\emailformat\\TestingAndCalibrationsTestReportWebLinkMail.html",
-      "SourceId": "SmartdustApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\HP\\Desktop\\API-for-react-app\\Trainings\\Api\\SmartdustApi\\SmartdustApi\\wwwroot\\",
-      "BasePath": "_content/SmartdustApi",
-      "RelativePath": "emailformat/TestingAndCalibrationsTestReportWebLinkMail.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\emailformat\\TestingAndCalibrationsTestReportWebLinkMail.html"
     }
   ]
 }

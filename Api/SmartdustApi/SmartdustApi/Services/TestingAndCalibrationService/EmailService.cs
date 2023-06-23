@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SmartdustApi.Common;
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -32,7 +33,7 @@ namespace TestingAndCalibrationLabs.Business.Services
         /// </summary>
         /// <param name="surveyModel"></param>
         /// <returns></returns>
-        public bool Sendemail(EmailModel emailModel)
+        public RequestResult<bool> Sendemail(EmailModel emailModel)
         {
             try
             {
@@ -61,13 +62,13 @@ namespace TestingAndCalibrationLabs.Business.Services
                         smtp.Port = port;
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtp.Send(mm);
-                        return true;
+                        return new RequestResult<bool>(true);
                     }
                 }
             }
             catch(Exception)
             {
-                return false;
+                return new RequestResult<bool>(false);
             }                           
         }   
     }

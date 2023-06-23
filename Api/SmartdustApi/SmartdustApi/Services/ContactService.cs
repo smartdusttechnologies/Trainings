@@ -48,21 +48,21 @@ namespace SmartdustApi.Services
             var isemailsendsuccessfully = _emailService.Sendemail(model);
 
             var result = _contactRepository.Save(contact);
-            if (isemailsendsuccessfully)
+            if (isemailsendsuccessfully.RequestedObject)
             {
                 List<ValidationMessage> success = new List<ValidationMessage>()
                 {
                     new ValidationMessage(){Reason = "Thank You We Will Contact You As soon As Possible",Severity=ValidationSeverity.Information}
                 };
-                result.Message = success;
-                return result;
+                isemailsendsuccessfully.Message = success;
+                return isemailsendsuccessfully;
             }
             List<ValidationMessage> error = new List<ValidationMessage>()
                 {
                     new ValidationMessage(){Reason = "Unable To take Your Request Right Now",Severity=ValidationSeverity.Information}
                 };
-            result.Message = error;
-            return result;
+            isemailsendsuccessfully.Message = error;
+            return isemailsendsuccessfully;
         }
 
         /// <summary>
