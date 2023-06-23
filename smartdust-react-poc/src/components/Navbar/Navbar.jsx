@@ -5,6 +5,7 @@ import Drawer from '../ThreedotDrawer/Drawer'
 import UserAccountMenu from '../UserProfile/UserAccountMenu'
 import AuthContext from '../../context/AuthProvider'
 import NotificationBellMenu from '../NotificationBell/NotificationBellMenu'
+import logo from '../../assets/images/Smartdust_logo.webp'
 
 const Navbar = () => {
   const {auth} = useContext(AuthContext);
@@ -15,7 +16,7 @@ const Navbar = () => {
         <div className='left'>
           <Link to={'/'}>
           <div>
-            <img src="https://static.wixstatic.com/media/d8046d_8943b656e6a5451faea805bd3fff9196~mv2.png/v1/crop/x_11,y_0,w_2772,h_668/fill/w_274,h_66,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo_edited.png" alt="" />
+            <img src={logo} alt="" />
           </div>
           </Link>
         </div>
