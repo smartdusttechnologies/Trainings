@@ -46,7 +46,7 @@ const Contact = () => {
     .then(response=>{
       console.log(response?.data)
       console.log(response?.data.message[0].reason)
-      const isSuccessful = response?.data.isSuccessful
+      const isSuccessful = response?.data.requestedObject
 
       // For Success
       if(isSuccessful){
@@ -83,26 +83,44 @@ const Contact = () => {
       // }
     })
     .catch(error=>{
-      console.log(error?.response.data?.errors)
-      const errormessages = error?.response.data?.errors
-      if(errormessages){
-        for(let key in errormessages){
-          console.log(errormessages[key][0])
-          let msg = errormessages[key][0]
-          toast.error(msg,{
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          setNotification([...notification, {message:msg,success:false}])
-          break;
-        }
+      console.log(error?.response.data)
+      const isSuccessful = error?.response.data.requestedObject
+
+      // For Error 
+      if(!isSuccessful){
+        toast.error(error.response?.data.message[0].reason,{
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setNotification([...notification, {message:error.response?.data.message[0].reason,success:isSuccessful}])
       }
+
+      // console.log(error?.response.data?.errors)
+      // const errormessages = error?.response.data?.errors
+      // if(errormessages){
+      //   for(let key in errormessages){
+      //     console.log(errormessages[key][0])
+      //     let msg = errormessages[key][0]
+      //     toast.error(msg,{
+      //       position: "bottom-center",
+      //       autoClose: 5000,
+      //       hideProgressBar: true,
+      //       closeOnClick: true,
+      //       pauseOnHover: false,
+      //       draggable: true,
+      //       progress: undefined,
+      //       theme: "dark",
+      //     });
+      //     setNotification([...notification, {message:msg,success:false}])
+      //     break;
+      //   }
+      // }
     })
   }
 
@@ -123,30 +141,30 @@ const Contact = () => {
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Name</label> <br />
-              <input onChange={(e)=>handleChange(e)} id='name' value={userdata.name} type="text" placeholder='Enter your name' />
+              <input onChange={(e)=>handleChange(e)} id='name' value={userdata.name} type="text" placeholder='Enter your name' required />
             </div>
             <div>
               <label htmlFor="">Email</label> <br />
-              <input onChange={(e)=>handleChange(e)} id='mail' value={userdata.mail} type="email" placeholder='Enter your email' />
+              <input onChange={(e)=>handleChange(e)} id='mail' value={userdata.mail} type="email" placeholder='Enter your email' required />
             </div>
           </div>
           <div className='flex-input-div'>
             <div>
               <label htmlFor="">Phone</label> <br />
-              <input onChange={(e)=>handleChange(e)} id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' />
+              <input onChange={(e)=>handleChange(e)} id='phone' value={userdata.phone} type="number" placeholder='Enter your phone number' required />
             </div>
             <div>
               <label htmlFor="">Address</label> <br />
-              <input onChange={(e)=>handleChange(e)} id='address' value={userdata.address} type="text" placeholder='Enter your address' />
+              <input onChange={(e)=>handleChange(e)} id='address' value={userdata.address} type="text" placeholder='Enter your address' required />
             </div>
           </div>
           <div className='long-input'>
             <label htmlFor="">Subject</label> <br />
-            <input onChange={(e)=>handleChange(e)} id='subject' value={userdata.subject} type="text" placeholder='Type your subject' />
+            <input onChange={(e)=>handleChange(e)} id='subject' value={userdata.subject} type="text" placeholder='Type your subject' required />
           </div>
           <div className='long-input'>
             <label htmlFor="">Message</label> <br />
-            <input onChange={(e)=>handleChange(e)} id='message' value={userdata.message} type="text" placeholder='Type your message here' />
+            <input onChange={(e)=>handleChange(e)} id='message' value={userdata.message} type="text" placeholder='Type your message here' required />
           </div>
           <div  className='submit-user-details'>
             <input type="submit" />

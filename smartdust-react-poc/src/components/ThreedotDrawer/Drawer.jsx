@@ -42,7 +42,7 @@ export default function Drawer() {
     >
       <List className='drawer-menu'>
         <Link to={'/'}><ListItem>Home</ListItem></Link>
-        {!auth.isAuthenticated && (<Link to={'/login'}><ListItem>Login</ListItem></Link>)}
+        {!auth.isAuthenticated && (<Link to={'/login'}><ListItem>Sign in</ListItem></Link>)}
         <Link to={'/contact'}><ListItem>Contact</ListItem></Link>
         <Link to={'/about'}><ListItem>About</ListItem></Link>
         <NotificationBellMenu/>

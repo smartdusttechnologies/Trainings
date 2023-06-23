@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import SlickGoTo from '../../components/AutoSlider/AutoSlider'
-import AuthTokenProvider from '../../context/AuthTokenProvider'
 import AuthContext from '../../context/AuthProvider'
 import axios from 'axios'
 

@@ -84,7 +84,7 @@ const ChangePassword = () => {
     <div className='Changepass-body'>
       <div className='Changepass-container'>
         <p>Change Password</p>
-        {/* <form > */}
+        <form  onSubmit={(e)=>handleSubmit(e)}>
           <div className='changepass-inputs'>
 
           <TextField onChange={(e)=> setOldpassword(e.target.value)} label='OldPassword' required size='small' type="password" />
@@ -96,14 +96,13 @@ const ChangePassword = () => {
           </div> */}
           <div className='changepass-save'>
             <div>
-              <Button onClick={(e)=>handleSubmit(e)} id='save-btn'>Save</Button>
+              <Button type='submit' id='save-btn'>Save</Button>
             </div>
             <div>
-
-              <Button id='cancel-btn'>Cancel</Button>
+              <Button onClick={()=> navigate('/')} id='cancel-btn'>Cancel</Button>
             </div>
           </div>
-        {/* </form> */}
+        </form>
       </div>
       <ToastContainer/>
     </div>
