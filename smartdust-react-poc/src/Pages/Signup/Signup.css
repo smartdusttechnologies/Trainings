@@ -9,7 +9,7 @@
     width: 350px;
     border: 1px solid rgb(196, 194, 194);
     padding: 0px 20px;
-    height: 97vh;
+    height: 47rem;
     margin-top: 20px;
     background-color: #fff;
 }
@@ -35,7 +35,7 @@
     background-color: rgb(61, 147, 85);
     color: white;
     width: 350px;
-    height: 4vh;
+    height: 2rem;
     margin: auto;
     font-size: 16px;
     font-weight: 500;
@@ -73,7 +73,7 @@
     text-decoration: none;
     align-items: center;
     width: 150px;
-    height: 4vh;
+    height: 2rem;
     margin: auto;
     border-radius: 5px;
     color: white;
@@ -101,7 +101,7 @@
     }
     .social-media-login a{
         width: 100px;
-        height: 4vh;
+        height: 2rem;
         margin: auto;
     }
 }

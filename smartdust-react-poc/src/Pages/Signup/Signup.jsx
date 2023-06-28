@@ -71,7 +71,7 @@ const Signup = () => {
             setNotification([...notification, {message:response?.data.message[0].reason,success:isSuccessful}])
 
             setTimeout(() => {
-              navigate('/')
+              navigate('/login')
             }, 3000);
           }
 

@@ -37,7 +37,7 @@
 
 }
 .About{
-    height: 50vh;
+    height: 27rem;
     background-color: #000000;
     color: white;
     text-align: center;
@@ -64,7 +64,7 @@
 }
 .Quote-div{
     background-image: url(../../assets/images/Image_Slider_2.webp);
-    height: 70vh;
+    height: 34rem;
     background-position: center;
     display: flex;
     justify-content: center;
@@ -94,10 +94,10 @@
         font-weight: 400;
     }
     .About{
-        height: 70vh;
+        height: 34rem;
     }
     .work{
-        height: 50vh;
+        height: 22rem;
     }
     .About-container{
         width: 90%;
