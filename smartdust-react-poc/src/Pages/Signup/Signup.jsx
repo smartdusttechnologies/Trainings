@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Signup.css'
 import axios from 'axios'
@@ -20,11 +20,11 @@ const Signup = () => {
     mail:"",
     phone:0,
     country:"",
-    org:null,
+    org:0,
     password:"",
     confirmpassword:""
   })
-  const [msg , setMsg] = useState('');
+  const [organizations , setOrganizations] = useState([]);
 
 
   const handleChange = (e)=>{
@@ -96,6 +96,22 @@ const Signup = () => {
           }
         })
   }
+
+  const handleGetOrganizations = ()=>{
+    axios.get('https://localhost:7023/Home/GetOrganizations')
+    .then(response=>{
+      console.log(response?.data?.requestedObject)
+      setOrganizations(response?.data?.requestedObject)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+
+  useEffect(()=>{
+    handleGetOrganizations()
+  },[])
+
   return (
     <div className='signup-page'>
       <div className='signup-container'>
@@ -130,7 +146,11 @@ const Signup = () => {
           <FormControl>
           <InputLabel id="demo-select-small-label">SYSORG</InputLabel>
             <Select onChange={(e)=>handleChange(e)} size='small' label='SYSORG' name='org'>
-              <MenuItem value={0}>ORG 1</MenuItem>
+              {
+                organizations.map((el)=>(
+                  <MenuItem value={el.id}>{el.orgName}</MenuItem>
+                ))
+              }
             </Select>
           </FormControl>
 
@@ -138,9 +158,6 @@ const Signup = () => {
           <TextField size='small' onChange={(e)=>handleChange(e)} name='confirmpassword' label='Re-Enter Password' type="password"  required/>
           <button className='submit-btn'>Sign up</button>
         </form>
-        <div>
-          {msg}
-        </div>
         
         <div className='Or-div'>
           <div><hr /></div>
