@@ -1,7 +1,7 @@
 .login-page{
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 47.7rem;
     background-image: url(../../assets/images/LoginPagebackgroundImage.jpg);
 }
 .login-container{

@@ -1,7 +1,7 @@
 .signup-page{
     display: flex;
     justify-content: center;
-    height: 110vh;
+    height: 50rem;;
     background-image: url(../../assets/images/LoginPagebackgroundImage.jpg);
 }
 .signup-container{
@@ -27,7 +27,6 @@
     border-radius: 5px;
 }
 .signup-container form select{
-    height: 4vh;
     border-radius: 5px;
     border: 1px solid rgb(177, 175, 175);
 }
@@ -87,7 +86,7 @@
 @media screen and (min-width:101px) and (max-width:600px){
     .signup-container{
         width: 240px;
-        height: 88vh;
+        height: 46rem;;
     }
     .submit-btn{
         width: 240px;
