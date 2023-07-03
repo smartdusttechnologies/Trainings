@@ -72,7 +72,21 @@ BEGIN
                (1, N'uiPageType.add', 1, 1, 0),
                (2, N'uiPageType.edit', 1, 2, 0),
                (3, N'uiPageType.read', 1, 3, 0),
-               (4, N'uiPageType.delete', 1, 4, 0)
+               (4, N'uiPageType.delete', 1, 4, 0),
+               (5, N'uiPageMetadata.add', 2, 1, 0),
+               (6, N'uiPageMetadata.edit', 2, 2, 0),
+               (7, N'uiPageMetadata.read', 2, 3, 0),
+               (8, N'uiPageMetadata.delete', 2, 4, 0),
+               (9, N'testPlan.add', 3, 1, 0),
+               (10, N'testPlan.read', 3, 3, 0),
+               (12, N'sample.add', 4, 1, 0),
+               (13, N'sample.read', 4, 3, 0),
+               (1011, N'uiControlType.add', 8, 1, 0),
+               (1012, N'uiControlType.read', 8, 3, 1),
+               (1013, N'uiC.ad', 5, 3, 0),
+               (1014, N'uiC.read', 5, 1, 0),
+               (1015, N'j', 4, 2, 0),
+               (1016, N'k', 4, 4, 0)
     SET IDENTITY_INSERT [dbo].[Permission]  OFF
 END
 GO
