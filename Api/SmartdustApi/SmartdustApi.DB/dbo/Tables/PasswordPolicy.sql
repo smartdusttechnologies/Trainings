@@ -11,6 +11,9 @@
     [ChangeIntervalDays] SMALLINT      NOT NULL,
     [OrgId]              INT           NOT NULL,
     [IsDeleted]          BIT           CONSTRAINT [D_PasswordPolicy_IsDeleted] DEFAULT ((0)) NOT NULL,
-    CONSTRAINT [PK_PasswordPolicy] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK_PasswordPolicy] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_PasswordPolicy_Organization] FOREIGN KEY ([OrgId]) REFERENCES [dbo].[Organization] ([Id])
 );
+
+
 

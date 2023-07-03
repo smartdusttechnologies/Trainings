@@ -15,6 +15,9 @@
     [OrgId]                  INT            NOT NULL,
     [AdminLevel]             SMALLINT       NOT NULL,
     [IsDeleted]              BIT            CONSTRAINT [D_User_IsDeleted] DEFAULT ((0)) NOT NULL,
-    CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_User_Organization] FOREIGN KEY ([OrgId]) REFERENCES [dbo].[Organization] ([Id])
 );
+
+
 

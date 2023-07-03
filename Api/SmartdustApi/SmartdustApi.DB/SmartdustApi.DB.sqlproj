@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{40336d5b-d7b8-4de2-a78c-57e7a779be8f}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -67,5 +67,13 @@
     <Build Include="dbo\Tables\LoginTokenLog.sql" />
     <Build Include="dbo\Tables\LoginToken.sql" />
     <Build Include="dbo\Tables\LoginLog.sql" />
+    <Build Include="dbo\SeedData.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\PermissionType.sql" />
+    <Build Include="dbo\Tables\PermissionModuleType.sql" />
+    <Build Include="dbo\Tables\Permission.sql" />
+    <Build Include="dbo\Tables\Organization.sql" />
+    <Build Include="dbo\Tables\ClaimType.sql" />
   </ItemGroup>
 </Project>
