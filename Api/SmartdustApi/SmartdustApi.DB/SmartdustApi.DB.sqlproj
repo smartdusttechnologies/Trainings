@@ -67,7 +67,6 @@
     <Build Include="dbo\Tables\LoginTokenLog.sql" />
     <Build Include="dbo\Tables\LoginToken.sql" />
     <Build Include="dbo\Tables\LoginLog.sql" />
-    <Build Include="dbo\SeedData.sql" />
     <Build Include="dbo\Tables\UserRole.sql" />
     <Build Include="dbo\Tables\Role.sql" />
     <Build Include="dbo\Tables\PermissionType.sql" />
