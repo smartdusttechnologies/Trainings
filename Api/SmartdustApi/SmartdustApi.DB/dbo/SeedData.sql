@@ -17,24 +17,9 @@ BEGIN
     INSERT INTO [dbo].[User]
                ([Id], [UserName], [FirstName], [LastName], [Email], [Mobile], [Country], [ISDCode], [TwoFactor], [Locked], [IsActive], [EmailValidationStatus], [MobileValidationStatus], [OrgId], [AdminLevel], [IsDeleted])
          VALUES
-               (5, N'Yashraj', N'string', N'string', N'string', N'string', N'string', N'string', 1, 0, 1, 0, 0, 0, 0, 0)
+               (4, N'Yashraj', N'string', N'string', N'string', N'string', N'string', N'string', 1, 0, 1, 0, 0, 0, 0, 0)
 
     SET IDENTITY_INSERT [dbo].[User]  OFF
-END
-GO
-IF NOT EXISTS (SELECT 1 FROM [Role]  WHERE Id = 0)
-BEGIN
-    SET IDENTITY_INSERT [dbo].[Role]  ON
-
-    INSERT INTO [dbo].[Role]
-               ([Id], [Name], [Level], [IsDeleted])
-         VALUES
-               (1, N'Sysadmin', 0, 0),
-               (2, N'Admin', 1, 0),
-               (3, N'ApplicationAdmin', 2, 0),
-               (4, N'Manager', 3, 0),
-               (5, N'GeneralUser', 6, 0)
-    SET IDENTITY_INSERT [dbo].[Role]  OFF
 END
 GO
 IF NOT EXISTS (SELECT 1 FROM [PasswordPolicy]  WHERE Id = 0)
@@ -90,6 +75,21 @@ BEGIN
     SET IDENTITY_INSERT [dbo].[Permission]  OFF
 END
 GO
+IF NOT EXISTS (SELECT 1 FROM [Role]  WHERE Id = 0)
+BEGIN
+    SET IDENTITY_INSERT [dbo].[Role]  ON
+
+    INSERT INTO [dbo].[Role]
+               ([Id], [Name], [Level], [IsDeleted])
+         VALUES
+               (1, N'Sysadmin', 0, 0),
+               (2, N'Admin', 1, 0),
+               (3, N'ApplicationAdmin', 2, 0),
+               (4, N'Manager', 3, 0),
+               (5, N'GeneralUser', 6, 0)
+    SET IDENTITY_INSERT [dbo].[Role]  OFF
+END
+GO
 IF NOT EXISTS (SELECT 1 FROM [UserRole]  WHERE Id = 0)
 BEGIN
     SET IDENTITY_INSERT [dbo].[UserRole]  ON
@@ -143,7 +143,7 @@ BEGIN
     INSERT INTO [dbo].[PasswordLogin]
                ([Id], [PasswordHash], [PasswordSalt], [UserId], [ChangeDate])
          VALUES
-               (0, N'qnVDMZYlsGjs4chNs1/qPidI70eDUZ1fzUF5EdCqdl0=', N'NDlzcm0GY1GqMgn+urXX9Q==', 0, CAST(N'2022-11-12T14:25:35.763' AS DateTime))
+               (0, N'qnVDMZYlsGjs4chNs1/qPidI70eDUZ1fzUF5EdCqdl0=', N'NDlzcm0GY1GqMgn+urXX9Q==', 4, CAST(N'2022-11-12T14:25:35.763' AS DateTime))
     SET IDENTITY_INSERT [dbo].[PasswordLogin]  OFF
 END
 GO
