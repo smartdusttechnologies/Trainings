@@ -108,7 +108,7 @@ BEGIN
     INSERT INTO [dbo].[LoginLog]
                ([Id], [UserId], [LoginDate], [Status], [UserName], [PasswordHash], [IPAddress], [Browser], [DeviceCode], [DeviceName])
          VALUES
-               (1, 5, CAST(N'2023-05-25T11:39:42.380' AS DateTime), 0, N'Yashraj', N'vZi70awIXXhSRjz8hK3fO/xZn4yOgspRKxcKpcQ3Fik=', NULL, NULL, NULL, NULL)
+               (1, 4, CAST(N'2023-05-25T11:39:42.380' AS DateTime), 0, N'Yashraj', N'vZi70awIXXhSRjz8hK3fO/xZn4yOgspRKxcKpcQ3Fik=', NULL, NULL, NULL, NULL)
                
     SET IDENTITY_INSERT [dbo].[LoginLog]  OFF
 END
@@ -120,7 +120,7 @@ BEGIN
     INSERT INTO [dbo].[LoginToken]
                ([Id], [UserId], [AccessToken], [RefreshToken], [AccessTokenExpiry], [DeviceCode], [DeviceName], [RefreshTokenExpiry])
          VALUES
-               (1, 5, N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiYWFhN2U1NDUtMzg3Yy00NWZkLThjMGYtNjdhZDFiMmM3NTkzIiwiaWF0IjoxNjg3Nzc2MzcxLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg3Nzc2MzcwLCJleHAiOjE2ODc4NjI3NzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.SzVu75FEz9_zmgpAhq--gbl_suFUt-X_HNegM2AcmTY', N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiYWFhN2U1NDUtMzg3Yy00NWZkLThjMGYtNjdhZDFiMmM3NTkzIiwiaWF0IjoxNjg3Nzc2MzcxLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg3Nzc2MzcwLCJleHAiOjE2OTAzNjgzNzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.AxhC32ks4-IGiBDmSNUkbiD0PudW4rM7N17a3xbfx0c', CAST(N'2023-06-27T16:16:10.743' AS DateTime), NULL, NULL, CAST(N'2023-07-26T16:16:10.743' AS DateTime))
+               (1, 4, N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiYWFhN2U1NDUtMzg3Yy00NWZkLThjMGYtNjdhZDFiMmM3NTkzIiwiaWF0IjoxNjg3Nzc2MzcxLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg3Nzc2MzcwLCJleHAiOjE2ODc4NjI3NzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.SzVu75FEz9_zmgpAhq--gbl_suFUt-X_HNegM2AcmTY', N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiYWFhN2U1NDUtMzg3Yy00NWZkLThjMGYtNjdhZDFiMmM3NTkzIiwiaWF0IjoxNjg3Nzc2MzcxLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg3Nzc2MzcwLCJleHAiOjE2OTAzNjgzNzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.AxhC32ks4-IGiBDmSNUkbiD0PudW4rM7N17a3xbfx0c', CAST(N'2023-06-27T16:16:10.743' AS DateTime), NULL, NULL, CAST(N'2023-07-26T16:16:10.743' AS DateTime))
                
     SET IDENTITY_INSERT [dbo].[LoginToken]  OFF
 END
@@ -132,7 +132,7 @@ BEGIN
     INSERT INTO [dbo].[LoginTokenLog]
                ([Id], [UserId], [AccessToken], [RefreshTokenExpiry], [DeviceCode], [DeviceName], [RefreshToken], [AccessTokenExpiry])
          VALUES
-               (1, 5, N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiNjdmYjBmMTQtYzJlMy00M2U1LWEyMTItMDY5YTgzYjVlNzI4IiwiaWF0IjoxNjg0OTk0OTgyLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg0OTk0OTgyLCJleHAiOjE2ODUwODEzODIsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.-9t9wT04beCkDBuMJ9mxF1jkT2JobghD_vd61grfMKs', CAST(N'2023-06-24T11:39:42.363' AS DateTime), NULL, NULL, N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiNjdmYjBmMTQtYzJlMy00M2U1LWEyMTItMDY5YTgzYjVlNzI4IiwiaWF0IjoxNjg0OTk0OTgyLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg0OTk0OTgyLCJleHAiOjE2ODc1ODY5ODIsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.9EKBnO1wIpo0sSF8pQNlutbPTb_9zrTL9lD_taDZtW8', CAST(N'2023-05-26T11:39:42.363' AS DateTime))
+               (1, 4, N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiNjdmYjBmMTQtYzJlMy00M2U1LWEyMTItMDY5YTgzYjVlNzI4IiwiaWF0IjoxNjg0OTk0OTgyLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg0OTk0OTgyLCJleHAiOjE2ODUwODEzODIsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.-9t9wT04beCkDBuMJ9mxF1jkT2JobghD_vd61grfMKs', CAST(N'2023-06-24T11:39:42.363' AS DateTime), NULL, NULL, N'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJZYXNocmFqIiwianRpIjoiNjdmYjBmMTQtYzJlMy00M2U1LWEyMTItMDY5YTgzYjVlNzI4IiwiaWF0IjoxNjg0OTk0OTgyLCJVc2VySWQiOiI1IiwiT3JnYW5pemF0aW9uSWQiOiIwIiwibmJmIjoxNjg0OTk0OTgyLCJleHAiOjE2ODc1ODY5ODIsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM3LyJ9.9EKBnO1wIpo0sSF8pQNlutbPTb_9zrTL9lD_taDZtW8', CAST(N'2023-05-26T11:39:42.363' AS DateTime))
     SET IDENTITY_INSERT [dbo].[LoginTokenLog]  OFF
 END
 GO
