@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import LocationMap from '../../components/Localtionmap/Locationmap';
 
 // API Link 
 const APIurl = 'https://localhost:7023/Home/Contactus';
@@ -172,6 +173,10 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      
+      {/* Location Map  */}
+      <LocationMap/>
+
       <ToastContainer/>
     </div>
   )

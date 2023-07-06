@@ -8,6 +8,7 @@ import Signup from '../../Pages/Signup/Signup'
 import ChangePassword from '../../Pages/ChangePassword/ChangePassword'
 import ForgotPassword from '../../Pages/Login/ForgotPassword/ForgotPassword'
 import PrivateRoute from './PrivateRoute'
+import LeaveDashboard from '../../Pages/Leaves/LeaveDashboard/LeaveDashboard'
 
 const AllRoutes = () => {
   return (
@@ -26,6 +27,14 @@ const AllRoutes = () => {
         }
       ></Route>
       <Route path='/forgotpassword' element={<ForgotPassword/>}></Route>
+      <Route
+        path='/leavedashboard'
+        element={
+          //<PrivateRoute>
+            <LeaveDashboard/>
+          //</PrivateRoute>
+        }
+      ></Route>
     </Routes>
   )
 }
