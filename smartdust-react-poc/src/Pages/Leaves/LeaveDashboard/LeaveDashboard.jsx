@@ -3,8 +3,11 @@ import './LeaveDashboard.css'
 import LeavesDataTable from './LeavesTable'
 import LeaveBalanceMenu from './LeaveBalance'
 import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const LeaveDashboard = () => {
+  const navigate = useNavigate()
+
   return (
     <div className='leave-dashboard'>
         <div className='leaveboard-head'>
@@ -14,6 +17,7 @@ const LeaveDashboard = () => {
             <div>
              <Button variant="outlined" 
               sx={{color:'black' , border:'1px solid rgb(128, 127, 127)'}}
+              onClick={()=> navigate('/leaveapplication')}
              >
               Apply a Leave
              </Button>

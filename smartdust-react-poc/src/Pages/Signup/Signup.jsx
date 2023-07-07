@@ -131,7 +131,7 @@ const Signup = () => {
           <TextField size='small' onChange={(e)=>handleChange(e)} name='firstname' label='Enter FirstName' type="text" required/>
           <TextField size='small' onChange={(e)=>handleChange(e)} name='lastname' label='Enter LastName' type="text" required/>
           <TextField size='small' onChange={(e)=>handleChange(e)} name='username' label='Enter UserName' type="text" required/>
-          <TextField size='small' onChange={(e)=>handleChange(e)} name='mail' label='Enter Email' type="text" required/>
+          <TextField size='small' onChange={(e)=>handleChange(e)} name='mail' label='Enter Email' type="email" required/>
           <TextField size='small' onChange={(e)=>handleChange(e)} name='phone' label='Enter MobileNumber' type="number" required/>
 
           <FormControl>
