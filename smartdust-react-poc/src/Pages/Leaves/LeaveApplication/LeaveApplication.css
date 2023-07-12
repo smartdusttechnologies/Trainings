@@ -12,12 +12,12 @@
 .leave-application{
     width: 600px;
     margin: auto;
-    height: 19rem;
+    height: 21rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
     padding: 30px;
     padding-top: 30px;
     border-radius: 20px;

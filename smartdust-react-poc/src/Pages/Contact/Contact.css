@@ -21,7 +21,7 @@
 .user-details-form input{
     border: none;
     background-color: transparent;
-    border: 2px transparent;
+    border: solid transparent 1px;
     border-bottom: solid white 1px;
     color: white;
     height: 31px;
@@ -62,7 +62,9 @@
     font-weight: 500;
     margin-top: 10px;
 }
-
+.submit-user-details button:hover{
+    background-color: #fff;
+}
 @media screen and (min-width:101px) and (max-width:600px){
     .Contact-details{
         flex-direction: column;

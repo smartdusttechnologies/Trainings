@@ -138,8 +138,6 @@ const Signup = () => {
           <InputLabel id="demo-select-small-label">Country</InputLabel>
             <Select onChange={(e)=>handleChange(e)} size='small' label='Country' name="country">
               <MenuItem value="india">India</MenuItem>
-              <MenuItem value="Australia">Australia</MenuItem>
-              <MenuItem value="England">England</MenuItem>
             </Select>
           </FormControl>
 

@@ -1,9 +1,8 @@
 import React from 'react'
 import './LeaveApplication.css'
-import { Button, Divider, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { Button, Divider, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import Input from '@mui/joy/Input';
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 
 const LeaveApplication = () => {
   return (
@@ -31,12 +30,12 @@ const LeaveApplication = () => {
         
         <FormControl className='leave-type'>
           <InputLabel id="demo-select-small-label">Leave Type</InputLabel>
-            <Select size='small' label='Leave Type'>
+            <Select size='small' label='Leave Type' required>
               <MenuItem value="medicalleave">Medical Leave</MenuItem>
             </Select>
         </FormControl>
         
-        <Input placeholder='Reason/Comments' required type='text' sx={{height:'50px'}}/>
+        <TextField label='Reason/Comments' required type='text' sx={{height:'50px'}}/>
 
         <Button
           type='submit'
