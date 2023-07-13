@@ -7,7 +7,7 @@ import LocationMap from './components/Localtionmap/Locationmap';
 
 function App() {
   return (
-    <div>
+    <div className='App'>
       <Navbar/>
       <AllRoutes/>
       <Footer/>

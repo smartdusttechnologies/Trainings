@@ -37,6 +37,7 @@ const Signup = () => {
 
   const handleSubmit = (e)=>{
     e.preventDefault()
+    if(validateForm()){
       axios.post( signupapi , {
         id:0,
         userName: newuser.username,
@@ -94,8 +95,25 @@ const Signup = () => {
             });
             setNotification([...notification, {message:error.response?.data.message[0].reason,success:isSuccessful}])
           }
-        })
+      })
+    }
   }
+
+  const validateForm = () => {
+		const errors = {};
+
+		if (!/^[a-zA-Z\s]+$/.test(newuser.firstname)) {
+		  errors.name = 'First Name can only contain letters and spaces';
+      toast.warn(errors.name,{position: "bottom-center"});
+		}
+
+		if (!/^\d{10}$/.test(newuser.phone)) {
+		  errors.phone = 'Phone number must be a 10-digit number';
+      toast.warn(errors.phone,{position: "bottom-center"});
+		}
+
+		return Object.keys(errors).length === 0;
+	};
 
   const handleGetOrganizations = ()=>{
     axios.get('https://localhost:7023/Home/GetOrganizations')
@@ -136,14 +154,14 @@ const Signup = () => {
 
           <FormControl>
           <InputLabel id="demo-select-small-label">Country</InputLabel>
-            <Select onChange={(e)=>handleChange(e)} size='small' label='Country' name="country">
+            <Select onChange={(e)=>handleChange(e)} size='small' label='Country' name="country" required>
               <MenuItem value="india">India</MenuItem>
             </Select>
           </FormControl>
 
           <FormControl>
           <InputLabel id="demo-select-small-label">SYSORG</InputLabel>
-            <Select onChange={(e)=>handleChange(e)} size='small' label='SYSORG' name='org'>
+            <Select onChange={(e)=>handleChange(e)} size='small' label='SYSORG' name='org' required>
               {
                 organizations.map((el)=>(
                   <MenuItem value={el.id}>{el.orgName}</MenuItem>
