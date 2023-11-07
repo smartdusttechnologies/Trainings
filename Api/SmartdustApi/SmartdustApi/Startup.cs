@@ -69,10 +69,12 @@ namespace SmartdustApi
             });
             //Repository DI
             services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<ILeaveRepository, LeaveRepository>();
             //Service DI
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IConnectionFactory, ConnectionFactory>();
-            //
+            services.AddScoped<ILeaveService, LeaveService>();
+
 
             services.AddScoped<Services.Interfaces.ILogger, Infrastructure.Logger>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();

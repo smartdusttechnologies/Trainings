@@ -32,11 +32,12 @@ namespace SmartdustApi.Services
             model.EmailTemplate = _configuration["TestingAndCalibrationSurvey:UserTemplate"];
             model.Subject = _configuration["TestingAndCalibrationSurvey:Subject"];
 
+            string phone = $"{contact.Phone}";
             //Create User Mail
             model.HtmlMsg = CreateBody(model.EmailTemplate);
             model.HtmlMsg = model.HtmlMsg.Replace("*name*", contact.Name);
             model.HtmlMsg = model.HtmlMsg.Replace("*Emailid*", contact.Mail);
-            //model.HtmlMsg = model.HtmlMsg.Replace("*mobilenumber*", contact.Phone);
+            model.HtmlMsg = model.HtmlMsg.Replace("*mobilenumber*", phone);
             model.HtmlMsg = model.HtmlMsg.Replace("*Subject*", contact.Subject);
             model.HtmlMsg = model.HtmlMsg.Replace("*Address*", contact.Address);
             model.HtmlMsg = model.HtmlMsg.Replace("*Message*", contact.Message);

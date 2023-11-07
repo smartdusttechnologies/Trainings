@@ -33,12 +33,6 @@ namespace SmartdustApi.Controllers
                 return Json(result);
             }
             return BadRequest(result);
-            //List<ValidationMessage> errors = new List<ValidationMessage>
-            //    {
-            //        new ValidationMessage { Reason = "All Fields Are Required", Severity = ValidationSeverity.Error, SourceId = "fields" }
-            //    };
-            //return BadRequest(new RequestResult<bool>(errors));
-
         }
 
         [HttpGet]
