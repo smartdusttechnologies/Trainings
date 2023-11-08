@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {}
+    "C:\\Users\\HP\\Desktop\\Smartdust\\CookWithUs-React-Poc\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {}
   },
   "projects": {
-    "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
+    "C:\\Users\\HP\\Desktop\\Smartdust\\CookWithUs-React-Poc\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Smartdust\\CookWithUs-React-Poc\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
         "projectName": "ToDo.Dal",
-        "projectPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "E:\\SmartDustTechn\\Trainings\\Trainings\\ToDo.Dal\\obj\\",
+        "projectPath": "C:\\Users\\HP\\Desktop\\Smartdust\\CookWithUs-React-Poc\\Trainings\\ToDo.Dal\\ToDo.Dal.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\Smartdust\\CookWithUs-React-Poc\\Trainings\\ToDo.Dal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,16 +55,31 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
