@@ -7,6 +7,8 @@ import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const data = [
     {
@@ -16,7 +18,7 @@ const data = [
       channel: 'Don Diablo',
       views: '396k views',
       createdAt: 'a week ago',
-      price: '₹ 350',
+      price: 350,
       quantity: 0,
     },
     {
@@ -26,7 +28,7 @@ const data = [
       channel: 'Queen Official',
       views: '40M views',
       createdAt: '3 years ago',
-      price: '₹ 350',
+      price: 350,
       quantity: 0,
     },
     {
@@ -36,7 +38,7 @@ const data = [
       channel: 'Calvin Harris',
       views: '130M views',
       createdAt: '10 months ago',
-      price: '₹ 350',
+      price: 350,
       quantity: 0,
     },
     {
@@ -46,7 +48,7 @@ const data = [
       channel: 'Don Diablo',
       views: '396k views',
       createdAt: 'a week ago',
-      price: '₹ 350',
+      price: 350,
       quantity: 0,
     },
     {
@@ -56,7 +58,7 @@ const data = [
       channel: 'Calvin Harris',
       views: '130M views',
       createdAt: '10 months ago',
-      price: '₹ 350',
+      price: 350,
       quantity: 0,
     },
   ];
@@ -85,21 +87,26 @@ const Products = () => {
 
     if (itemInCart) {
       // If the item is already in the cart, update its quantity
-      const updatedCart = cartData.map((cartItem) => {
-        if (cartItem.id === item.id) {
-          return {
-            ...cartItem,
-            quantity: cartItem.quantity + 1,
-          };
-        }
-        return cartItem;
-      });
-      cartData = updatedCart;
-      setCart(updatedCart);
+      // const updatedCart = cartData.map((cartItem) => {
+      //   if (cartItem.id === item.id) {
+      //     return {
+      //       ...cartItem,
+      //       quantity: cartItem.quantity + 1,
+      //     };
+      //   }
+      //   return cartItem;
+      // });
+      // cartData = updatedCart;
+      // setCart(updatedCart);
+      console.log('Item is already in the cart.')
+      toast.warn('Item is already in the cart.', { position: "bottom-center", theme: "dark" });
     } else {
       // If the item is not in the cart, add it with a quantity of 1
       cartData = [...cartData, { ...item, quantity: 1 }]
       setCart([...cartData, { ...item, quantity: 1 }]);
+      toast.success('Item Added to cart', { position: "bottom-center", theme: "dark" });
+
+      console.log('Item Added to cart')
     }
     localStorage.setItem('cart', JSON.stringify(cartData));
     console.log(cartData)
@@ -145,11 +152,8 @@ const Products = () => {
                         <Typography gutterBottom variant="body2" noWrap>
                             {item.title}
                         </Typography>
-                        {/* <Typography display="block" variant="caption" color="text.secondary">
-                            {item.channel}
-                        </Typography> */}
                         <Typography  display="block" variant="caption" >
-                            {item.price}
+                            {`₹ ${item.price}`}
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
                             {`${item.views} • ${item.createdAt}`}
@@ -161,31 +165,18 @@ const Products = () => {
                     </Box>
                     
                     <Box sx={{ pr: 2,ml:1 }}>
-                      <ButtonGroup variant="outlined" size="small">
-                        <Button
-                         onClick={() => handleAddToCart(item)}
-                        >
-                          <AddCircleIcon/>  
-                        </Button>
-                        <Button>
-                          1
-                        </Button>
-                        <Button>
-                          <RemoveCircleIcon/>
-                        </Button>
-                      </ButtonGroup>
-
-                      {/* <Button 
+                      <Button 
                         variant='outlined'
                         size='small'
                         onClick={() => handleAddToCart(item)}
                       >
                         Add to Cart
-                      </Button> */}
+                      </Button>
                     </Box>
                 </Box>
            ))}
         </Grid>
+        <ToastContainer />
     </div>
   )
 }
