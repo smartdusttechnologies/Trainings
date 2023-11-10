@@ -5,14 +5,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/AuthProvider';
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from "./state";
+
+const store = configureStore({
+  reducer: {
+    cart: cartReducer,
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </AuthProvider>
+  <Provider store={store}>
+    <AuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

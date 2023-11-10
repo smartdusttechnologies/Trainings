@@ -74,21 +74,49 @@ const Cart = () => {
     getCartData()
   }, []);
 
+  
   return (
     <div 
       style={{
               height:'43rem'
       }}
     >
+    {
+      cart.length === 0 ? (
+        <Box
+          sx={{
+            display:'flex',
+            justifyContent:'center',
+            textAlign:'center',
+            height:'35rem'
+          }}
+        >
+          <Box
+            sx={{
+              margin:'auto'
+            }}
+          >
+            <Typography fontSize='20px' color="text.secondary" sx={{ flex: 1 }}>
+              Your cart is empty
+            </Typography>
+            <Typography color="text.secondary" sx={{ flex: 1 }}>
+              You can go to home page to view more restaurants
+            </Typography>
+          </Box>
+        </Box>
+      ) : 
+      (
+        <>
         <Grid container 
           sx={{
               width:'75%',
+              minHeight:'10rem',
               margin:'auto',
               display:'grid',
               gridTemplateColumns:"repeat(4, 1fr)",
           }}
         >
-           { cart.map((item, index) => (
+           { cart.length > 0 && cart.map((item, index) => (
                 <Box 
                     key={index} 
                     sx={{ 
@@ -232,14 +260,15 @@ const Cart = () => {
               }}
               onClick={() => {
                 navigate("/checkout");
-                // dispatch(setIsCartOpen({}));
               }}
             >
               CHECKOUT
             </Button>
           </Box>
         </FlexBox>
-
+        </>
+      )
+    }
     </div>
   )
 }

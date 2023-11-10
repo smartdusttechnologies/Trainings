@@ -19,6 +19,9 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useTheme } from '../../context/ThemeContext';
 import LocationSelector from '../LocationSelector/LocationSelector';
+import { useDispatch, useSelector } from 'react-redux';
+import { setisSideNavOpen } from '../../state';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -81,6 +84,8 @@ const darkTheme = createTheme({
 export default function NavBar() {
   const { auth } = React.useContext(AuthContext);
   const { darkMode, toggleDarkMode } = useTheme();
+  const dispatch = useDispatch();
+  const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -92,9 +97,12 @@ export default function NavBar() {
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              sx={{ mr: 2 }}
+              onClick={() => dispatch(setisSideNavOpen({}))}
+              sx={{
+                marginRight: '36px',
+                }}
             >
-              <MenuIcon />
+              {!isSideNavOpen ? <MenuIcon /> : <ChevronLeftIcon/>}
             </IconButton>
             <Typography
               variant="h6"

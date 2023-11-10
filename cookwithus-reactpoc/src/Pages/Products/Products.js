@@ -19,7 +19,6 @@ const data = [
       views: '396k views',
       createdAt: 'a week ago',
       price: 350,
-      quantity: 0,
     },
     {
       id: 2,
@@ -29,7 +28,6 @@ const data = [
       views: '40M views',
       createdAt: '3 years ago',
       price: 350,
-      quantity: 0,
     },
     {
       id: 3,
@@ -39,7 +37,6 @@ const data = [
       views: '130M views',
       createdAt: '10 months ago',
       price: 350,
-      quantity: 0,
     },
     {
       id: 4,
@@ -49,7 +46,6 @@ const data = [
       views: '396k views',
       createdAt: 'a week ago',
       price: 350,
-      quantity: 0,
     },
     {
       id: 5,
@@ -59,7 +55,6 @@ const data = [
       views: '130M views',
       createdAt: '10 months ago',
       price: 350,
-      quantity: 0,
     },
   ];
   
@@ -68,48 +63,18 @@ const Products = () => {
   const [cart, setCart] = useState([]);
 
   const handleAddToCart = (item) => {
-    // let cartData = JSON.parse(localStorage.getItem('cart')) || [];
-    // const alreadyInCart = cartData.some((i) => i.id === item.id);
-
-
-    // if (alreadyInCart) {
-    //   console.log('Item is already in the cart.');
-    // } else {
-    //   cartData = [...cartData, item];
-    //   localStorage.setItem('cart', JSON.stringify(cartData));
-    //   console.log('Item added to the cart');
-
-    //   setCart(cartData);
-    // }
-
     let cartData = JSON.parse(localStorage.getItem('cart')) || [];
     const itemInCart = cartData.find((cartItem) => cartItem.id === item.id);
 
     if (itemInCart) {
-      // If the item is already in the cart, update its quantity
-      // const updatedCart = cartData.map((cartItem) => {
-      //   if (cartItem.id === item.id) {
-      //     return {
-      //       ...cartItem,
-      //       quantity: cartItem.quantity + 1,
-      //     };
-      //   }
-      //   return cartItem;
-      // });
-      // cartData = updatedCart;
-      // setCart(updatedCart);
-      console.log('Item is already in the cart.')
       toast.warn('Item is already in the cart.', { position: "bottom-center", theme: "dark" });
     } else {
       // If the item is not in the cart, add it with a quantity of 1
       cartData = [...cartData, { ...item, quantity: 1 }]
       setCart([...cartData, { ...item, quantity: 1 }]);
       toast.success('Item Added to cart', { position: "bottom-center", theme: "dark" });
-
-      console.log('Item Added to cart')
     }
     localStorage.setItem('cart', JSON.stringify(cartData));
-    console.log(cartData)
   }
 
   return (
@@ -126,7 +91,7 @@ const Products = () => {
             gridTemplateColumns:"repeat(4, 1fr)",
         }}
         >
-           {data.map((item, index) => (
+           {meals.map((item, index) => (
                 <Box 
                     key={index} 
                     sx={{ 
