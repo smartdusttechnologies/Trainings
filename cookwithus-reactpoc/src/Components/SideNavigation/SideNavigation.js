@@ -16,7 +16,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -55,6 +55,12 @@ const SideNavigation = () => {
         <Drawer variant="permanent" open={isSideNavOpen}>
           <List component="nav">
             <React.Fragment>
+              <ListItemButton onClick={() => navigate('/')}>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItemButton>
               <ListItemButton onClick={() => navigate('/meals')}>
                 <ListItemIcon>
                   <DashboardIcon />
