@@ -78,7 +78,9 @@ const Cart = () => {
   return (
     <div 
       style={{
-              height:'43rem'
+              height:'43rem',
+              width:'100%',
+              margin:'auto',
       }}
     >
     {

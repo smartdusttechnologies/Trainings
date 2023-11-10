@@ -7,6 +7,17 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector, useDispatch } from "react-redux";
 import { setisSideNavOpen } from '../../state';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PeopleIcon from '@mui/icons-material/People';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import LayersIcon from '@mui/icons-material/Layers';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -38,35 +49,47 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const SideNavigation = () => {
     const dispatch = useDispatch();
     const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
+    const navigate = useNavigate();
 
   return (
-    <div>
         <Drawer variant="permanent" open={isSideNavOpen}>
-          {/* <Toolbar
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              px: [1],
-            }}
-          >
-            <IconButton
-                onClick={() => dispatch(setisSideNavOpen({}))} 
-                sx={{
-                  ...(!isSideNavOpen && { display: 'none' }),
-                  }}
-            >
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider /> */}
           <List component="nav">
-            {mainListItems}
+            <React.Fragment>
+              <ListItemButton onClick={() => navigate('/meals')}>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Products" />
+              </ListItemButton>
+              <ListItemButton onClick={() => navigate('/cart')}>
+                <ListItemIcon>
+                  <ShoppingCartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Cart" />
+              </ListItemButton>
+              <ListItemButton>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Customers" />
+              </ListItemButton>
+              <ListItemButton>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Reports" />
+              </ListItemButton>
+              <ListItemButton>
+                <ListItemIcon>
+                  <LayersIcon />
+                </ListItemIcon>
+                <ListItemText primary="Integrations" />
+              </ListItemButton>
+            </React.Fragment>
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
         </Drawer>
-    </div>
   )
 }
 

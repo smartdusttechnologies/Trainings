@@ -89,6 +89,7 @@ const Products = () => {
             margin:'auto',
             display:'grid',
             gridTemplateColumns:"repeat(4, 1fr)",
+            gap:'20px'
         }}
         >
            {meals.map((item, index) => (

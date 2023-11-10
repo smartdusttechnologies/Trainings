@@ -4,14 +4,17 @@ import NavBar from './Components/NavBar/NavBar';
 import AllRoutes from './Components/Routes/AllRoutes';
 import SideNavigation from './Components/SideNavigation/SideNavigation';
 import { ThemeProvider } from './context/ThemeContext';
+import Box from '@mui/material/Box';
 
 function App() {
   return (
     <ThemeProvider>
       <div>
         <NavBar/>
-        <SideNavigation/>
-        <AllRoutes/>
+        <Box sx={{ display: 'flex' }}>
+          <SideNavigation/>
+          <AllRoutes/>
+        </Box>
         <Footer/>
       </div>
     </ThemeProvider>
