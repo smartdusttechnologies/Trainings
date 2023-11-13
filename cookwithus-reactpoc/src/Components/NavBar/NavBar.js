@@ -17,10 +17,9 @@ import AuthContext from '../../context/AuthProvider';
 import { ThemeProvider, Tooltip, createTheme } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { useTheme } from '../../context/ThemeContext';
 import LocationSelector from '../LocationSelector/LocationSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { setisSideNavOpen } from '../../state';
+import { setisSideNavOpen,toggleDarkMode } from '../../state';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const Search = styled('div')(({ theme }) => ({
@@ -83,9 +82,9 @@ const darkTheme = createTheme({
 
 export default function NavBar() {
   const { auth } = React.useContext(AuthContext);
-  const { darkMode, toggleDarkMode } = useTheme();
   const dispatch = useDispatch();
   const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
+  const darkMode = useSelector((state) => state.cart.darkMode)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -124,7 +123,7 @@ export default function NavBar() {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex',alignItems:'center' } }}>
               <Tooltip title={!darkMode ? "Switch to Dark Mode" : "Switch to Light Mode"}>
-                  <IconButton size="large" color="inherit" onClick={toggleDarkMode}>
+                  <IconButton size="large" color="inherit" onClick={() => dispatch(toggleDarkMode({}))}>
                     {darkMode ? <LightModeIcon sx={{ width: 26, height: 26,color:'white' }} /> 
                     : <DarkModeIcon sx={{ width: 26, height: 26,color:'white' }}/>}  
                   </IconButton>

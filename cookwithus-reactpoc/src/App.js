@@ -1,14 +1,13 @@
 import './App.css';
+import BottomNav from './Components/BottomNavigation/BottomNav';
 import Footer from './Components/Footer/Footer';
 import NavBar from './Components/NavBar/NavBar';
 import AllRoutes from './Components/Routes/AllRoutes';
 import SideNavigation from './Components/SideNavigation/SideNavigation';
-import { ThemeProvider } from './context/ThemeContext';
 import Box from '@mui/material/Box';
 
 function App() {
   return (
-    <ThemeProvider>
       <div>
         <NavBar/>
         <Box sx={{ display: 'flex' }}>
@@ -16,8 +15,8 @@ function App() {
           <AllRoutes/>
         </Box>
         <Footer/>
+        <BottomNav/>
       </div>
-    </ThemeProvider>
   );
 }
 

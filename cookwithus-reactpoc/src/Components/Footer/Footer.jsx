@@ -2,11 +2,11 @@ import React from 'react'
 import './Footer.css'
 import { GrFacebookOption,GrLinkedinOption } from 'react-icons/gr';
 import { AiOutlineTwitter } from 'react-icons/ai';
-import { useTheme } from '../../context/ThemeContext';
+import { useSelector } from 'react-redux';
 
 
 const Footer = () => {
-  const { darkMode } = useTheme();
+  const darkMode = useSelector((state) => state.cart.darkMode)
 
   return (
     <div className='Footer-body' style={{backgroundColor: !darkMode ? '#489bee' : '#101418' }}>

@@ -2,57 +2,26 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isSideNavOpen: false,
-  cart: [],
-  items: [],
+  darkMode: false,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setItems: (state, action) => {
-      state.items = action.payload;
-    },
-
-    addToCart: (state, action) => {
-      state.cart = [...state.cart, action.payload.item];
-    },
-
-    removeFromCart: (state, action) => {
-      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
-    },
-
-    increaseCount: (state, action) => {
-      state.cart = state.cart.map((item) => {
-        if (item.id === action.payload.id) {
-          item.count++;
-        }
-        return item;
-      });
-    },
-
-    decreaseCount: (state, action) => {
-      state.cart = state.cart.map((item) => {
-        if (item.id === action.payload.id && item.count > 1) {
-          item.count--;
-        }
-        return item;
-      });
-    },
-
     setisSideNavOpen: (state) => {
       state.isSideNavOpen = !state.isSideNavOpen;
+    },
+
+    toggleDarkMode: (state) => {
+      state.darkMode = !state.darkMode;
     },
   },
 });
 
 export const {
-  setItems,
-  addToCart,
-  removeFromCart,
-  increaseCount,
-  decreaseCount,
   setisSideNavOpen,
+  toggleDarkMode,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

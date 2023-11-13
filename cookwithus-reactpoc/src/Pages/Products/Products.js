@@ -9,6 +9,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
 
 const data = [
     {
@@ -61,6 +62,7 @@ const data = [
 const Products = () => {
   const [meals, setMeals] = useState(data);
   const [cart, setCart] = useState([]);
+  const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
 
   const handleAddToCart = (item) => {
     let cartData = JSON.parse(localStorage.getItem('cart')) || [];
@@ -80,7 +82,7 @@ const Products = () => {
   return (
     <div 
     style={{
-            height:'43rem'
+            height:'100%',
     }}
     >
         <Grid container 
@@ -89,7 +91,16 @@ const Products = () => {
             margin:'auto',
             display:'grid',
             gridTemplateColumns:"repeat(4, 1fr)",
-            gap:'20px'
+            gap:'20px',
+            '@media (max-width: 1100px)': {
+                gridTemplateColumns: isSideNavOpen ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+            },
+            '@media (max-width: 800px)': {
+                gridTemplateColumns: isSideNavOpen ? 'repeat(1, 1fr)' : 'repeat(2, 1fr)',
+            },
+            '@media (max-width: 600px)': {
+                gridTemplateColumns: 'repeat(1, 1fr)',
+            }
         }}
         >
            {meals.map((item, index) => (
