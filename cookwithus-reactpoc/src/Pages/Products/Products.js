@@ -82,7 +82,10 @@ const Products = () => {
   return (
     <div 
     style={{
-            height:'100%',
+      height:'100%',
+      minHeight:'43rem',
+      width:'100%',
+      margin:'auto',
     }}
     >
         <Grid container 
@@ -103,7 +106,7 @@ const Products = () => {
             }
         }}
         >
-           {meals.map((item, index) => (
+           { meals.length > 0 && meals.map((item, index) => (
                 <Box 
                     key={index} 
                     sx={{ 
@@ -114,7 +117,11 @@ const Products = () => {
                         transition: 'transform 0.3s',
                         '&:hover': {
                             transform: 'scale(1.1)'
-                        }
+                        },
+                        '@media (max-width: 500px)': {
+                          margin:'auto',
+                          my: 5,
+                        },
                     }}
                 >
                     <img
