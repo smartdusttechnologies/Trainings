@@ -11,6 +11,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
@@ -18,6 +23,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
+import ExpandableAccordion from '../Accordion/Accordion';
 
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -61,12 +67,10 @@ const SideNavigation = () => {
                 </ListItemIcon>
                 <ListItemText primary="Home" />
               </ListItemButton>
-              <ListItemButton onClick={() => navigate('/meals')}>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Products" />
-              </ListItemButton>
+
+              {/* ExpandableAccordion */}
+              <ExpandableAccordion/>
+              
               <ListItemButton onClick={() => navigate('/cart')}>
                 <ListItemIcon>
                   <ShoppingCartIcon />
