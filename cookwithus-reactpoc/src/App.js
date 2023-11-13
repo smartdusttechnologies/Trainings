@@ -11,7 +11,15 @@ function App() {
       <div>
         <NavBar/>
         <Box sx={{ display: 'flex' }}>
-          <SideNavigation/>
+          <Box
+           sx={{
+            '@media (max-width: 500px)': {
+              display:'none'
+            },
+           }}
+          >
+            <SideNavigation/>
+          </Box>
           <AllRoutes/>
         </Box>
         <Footer/>

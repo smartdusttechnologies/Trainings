@@ -90,9 +90,9 @@ const Products = () => {
             width:'75%',
             margin:'auto',
             display:'grid',
-            gridTemplateColumns:"repeat(4, 1fr)",
+            gridTemplateColumns: isSideNavOpen ? 'repeat(4, 1fr)' : "repeat(5, 1fr)",
             gap:'20px',
-            '@media (max-width: 1100px)': {
+            '@media (max-width: 1200px)': {
                 gridTemplateColumns: isSideNavOpen ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
             },
             '@media (max-width: 800px)': {

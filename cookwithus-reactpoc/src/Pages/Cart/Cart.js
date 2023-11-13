@@ -10,6 +10,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { useSelector } from 'react-redux';
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -21,6 +22,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
 
   const increaseQuantity = (item)=>{
       const updatedCart = cart.map((cartItem) => {
@@ -78,9 +80,10 @@ const Cart = () => {
   return (
     <div 
       style={{
-              height:'43rem',
-              width:'100%',
-              margin:'auto',
+        height:'100%',
+        minHeight:'43rem',
+        width:'100%',
+        margin:'auto',
       }}
     >
     {
@@ -115,25 +118,40 @@ const Cart = () => {
               minHeight:'10rem',
               margin:'auto',
               display:'grid',
-              gridTemplateColumns:"repeat(4, 1fr)",
+              gridTemplateColumns: isSideNavOpen ? 'repeat(4, 1fr)' : "repeat(5, 1fr)",
+              gap:'20px',
+              '@media (max-width: 1200px)': {
+                  gridTemplateColumns: isSideNavOpen ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+              },
+              '@media (max-width: 800px)': {
+                  gridTemplateColumns: isSideNavOpen ? 'repeat(1, 1fr)' : 'repeat(2, 1fr)',
+              },
+              '@media (max-width: 600px)': {
+                  gridTemplateColumns: 'repeat(1, 1fr)',
+                  width:'85%',
+              }
           }}
         >
            { cart.length > 0 && cart.map((item, index) => (
                 <Box 
                     key={index} 
                     sx={{ 
-                        width: 210, 
+                        width: '210px',
                         marginRight: 0.5,
                         my: 5,
                         cursor:'pointer',
                         transition: 'transform 0.3s',
                         '&:hover': {
                             transform: 'scale(1.1)'
-                        }
+                        },
+                        '@media (max-width: 500px)': {
+                          margin:'auto',
+                          my: 5,
+                        },
                     }}
                 >
                     <img
-                        style={{ width: 210, height: 118,borderRadius:'10px' }}
+                        style={{ width: '210px', height: 118,borderRadius:'10px' }}
                         alt={item.title}
                         src={item.src}
                     />
@@ -144,9 +162,6 @@ const Cart = () => {
                         <Typography gutterBottom variant="body2" noWrap>
                             {item.title}
                         </Typography>
-                        {/* <Typography display="block" variant="caption" color="text.secondary">
-                            {item.channel}
-                        </Typography> */}
                         <Typography  display="block" variant="caption" >
                             {`₹ ${item.price}`}
                         </Typography>
@@ -180,12 +195,27 @@ const Cart = () => {
            ))}
         </Grid>
 
-        <FlexBox
+        <Grid container 
+          sx={{
+              width:'75%',
+              minHeight:'10rem',
+              margin:'auto',
+              display:'grid',
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap:'20px',
+              '@media (max-width: 900px)': {
+                  gridTemplateColumns: 'repeat(1, 1fr)',
+                  gap:'5px'
+              },
+          }}
         >
           <Box
             sx={{
               width:'400px',
-              margin:'auto'
+              margin:'auto',
+              '@media (max-width: 600px)': {
+                width:'250px',
+              },
             }}
           >
             <Typography fontSize='18px' gutterBottom variant="body2" fontWeight="bold">
@@ -193,7 +223,7 @@ const Cart = () => {
             </Typography>
             <Box 
               sx={{ 
-                width: '280px', 
+                width: '280px',
                 height:'130px',
                 padding:'10px',
                 my: 2,
@@ -206,7 +236,10 @@ const Cart = () => {
                 display:'flex',
                 flexDirection:'column',
                 alignItems:'center',
-                gap:'30px'
+                gap:'30px',
+                '@media (max-width: 600px)': {
+                  width:'220px',
+                },
               }}   
             >
               <Box
@@ -219,9 +252,7 @@ const Cart = () => {
                   gap:'20px'
                 }}
               >
-                {/* <Typography component="p" variant="h5"> */}
                   <LocationOnIcon/>
-                {/* </Typography> */}
                 <Typography color="text.secondary" sx={{ flex: 1 }}>
                   Add New Address
                 </Typography>
@@ -241,7 +272,10 @@ const Cart = () => {
             m="20px 0"
             sx={{
               width:'400px',
-              margin:'auto'
+              margin:'auto',
+              '@media (max-width: 600px)': {
+                width:'250px',
+              },
             }}
           >
             <FlexBox m="20px 0">
@@ -267,7 +301,7 @@ const Cart = () => {
               CHECKOUT
             </Button>
           </Box>
-        </FlexBox>
+        </Grid>
         </>
       )
     }

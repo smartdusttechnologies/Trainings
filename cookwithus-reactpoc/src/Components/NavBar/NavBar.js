@@ -111,7 +111,7 @@ export default function NavBar() {
             >
               Cook With Us
             </Typography>
-            <Search>
+            {/* <Search>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -119,9 +119,17 @@ export default function NavBar() {
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
               />
-            </Search>
+            </Search> */}
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'none', md: 'flex',alignItems:'center' } }}>
+            <Box 
+              sx={{
+                display: 'flex',
+                alignItems:'center',
+                '@media (max-width: 500px)': {
+                  display: 'none',
+                },
+              }}
+            >
               <Tooltip title={!darkMode ? "Switch to Dark Mode" : "Switch to Light Mode"}>
                   <IconButton size="large" color="inherit" onClick={() => dispatch(toggleDarkMode({}))}>
                     {darkMode ? <LightModeIcon sx={{ width: 26, height: 26,color:'white' }} /> 
@@ -137,7 +145,15 @@ export default function NavBar() {
 
               {/* {!auth.isAuthenticated && (<Link to={'/login'}><span>Sign in </span></Link>)}  */}
             </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <Box 
+              sx={{
+                display: 'none',
+                alignItems:'center',
+                '@media (max-width: 500px)': {
+                  display: 'flex',
+                },
+              }}
+            >
                 <ShowMoreDrawer />
             </Box>
           </Toolbar>
