@@ -9,14 +9,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home';
-import { useNavigate } from 'react-router-dom';
 import { Divider } from '@mui/material';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import IcecreamIcon from '@mui/icons-material/Icecream';
 
-const ExpandableAccordion = () => {
-    const navigate = useNavigate();
+const ExpandableAccordion = ({handleNavigationAndCloseMenu}) => {
     
   return (
     <div>
@@ -33,14 +31,14 @@ const ExpandableAccordion = () => {
                 </ListItemButton>
             </AccordionSummary>
             <AccordionDetails>
-                    <ListItemButton onClick={() => navigate('/meals')}>
+                    <ListItemButton onClick={() => handleNavigationAndCloseMenu('/meals')}>
                         <ListItemIcon>
                             <FastfoodIcon />
                         </ListItemIcon>
                         <ListItemText primary="Fast Food" />
                     </ListItemButton>
                     <Divider/>
-                    <ListItemButton onClick={() => navigate('/meals')}>
+                    <ListItemButton onClick={() => handleNavigationAndCloseMenu('/meals')}>
                     <ListItemIcon>
                         <IcecreamIcon />
                     </ListItemIcon>

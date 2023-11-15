@@ -19,7 +19,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LocationSelector from '../LocationSelector/LocationSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { setisSideNavOpen,toggleDarkMode } from '../../state';
+import { setisMenuOpen, setisSideNavOpen,toggleDarkMode } from '../../state';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const Search = styled('div')(({ theme }) => ({
@@ -99,7 +99,10 @@ export default function NavBar() {
               onClick={() => dispatch(setisSideNavOpen({}))}
               sx={{
                 marginRight: '36px',
-                }}
+                '@media (max-width: 500px)': {
+                  display: 'none',
+                },
+              }}
             >
               {!isSideNavOpen ? <MenuIcon /> : <ChevronLeftIcon/>}
             </IconButton>
@@ -107,7 +110,11 @@ export default function NavBar() {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: 'block', sm: 'block' } }}
+              sx={{
+                '@media (max-width: 500px)': {
+                  marginLeft:'30px'
+                },
+              }}
             >
               Cook With Us
             </Typography>
@@ -154,7 +161,16 @@ export default function NavBar() {
                 },
               }}
             >
-                <ShowMoreDrawer />
+                {/* ShowMore For Phone Mode  */}
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={() => dispatch(setisMenuOpen({}))}
+              >
+                <MenuIcon />
+              </IconButton>
             </Box>
           </Toolbar>
         </AppBar>

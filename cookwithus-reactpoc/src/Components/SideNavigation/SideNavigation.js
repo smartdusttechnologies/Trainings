@@ -57,6 +57,10 @@ const SideNavigation = () => {
     const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
     const navigate = useNavigate();
 
+    const handleNavigationAndKeepMenuOpen = (route) => {
+      navigate(route);
+    };
+
   return (
         <Drawer variant="permanent" open={isSideNavOpen}>
           <List component="nav">
@@ -69,7 +73,7 @@ const SideNavigation = () => {
               </ListItemButton>
 
               {/* ExpandableAccordion */}
-              <ExpandableAccordion/>
+              <ExpandableAccordion handleNavigationAndCloseMenu={handleNavigationAndKeepMenuOpen}/>
               
               <ListItemButton onClick={() => navigate('/cart')}>
                 <ListItemIcon>

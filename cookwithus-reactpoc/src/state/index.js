@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isSideNavOpen: false,
   darkMode: false,
+  isMenuOpen: false,
 };
 
 export const cartSlice = createSlice({
@@ -13,6 +14,10 @@ export const cartSlice = createSlice({
       state.isSideNavOpen = !state.isSideNavOpen;
     },
 
+    setisMenuOpen: (state) => {
+      state.isMenuOpen = !state.isMenuOpen;
+    },
+
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
     },
@@ -21,6 +26,7 @@ export const cartSlice = createSlice({
 
 export const {
   setisSideNavOpen,
+  setisMenuOpen,
   toggleDarkMode,
 } = cartSlice.actions;
 
