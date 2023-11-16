@@ -6,6 +6,7 @@ import NavBar from './Components/NavBar/NavBar';
 import AllRoutes from './Components/Routes/AllRoutes';
 import SideNavigation from './Components/SideNavigation/SideNavigation';
 import Box from '@mui/material/Box';
+import BottomNavThreedot from './Components/ThreedotDrawer/BottomNavThreedot';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <AllRoutes/>
         </Box>
         <ShowMoreMenu/>
+        <BottomNavThreedot/>
         <Footer/>
         <BottomNav/>
       </div>

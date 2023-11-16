@@ -4,6 +4,7 @@ const initialState = {
   isSideNavOpen: false,
   darkMode: false,
   isMenuOpen: false,
+  isBottomNavMenuOpen: false,
 };
 
 export const cartSlice = createSlice({
@@ -18,6 +19,10 @@ export const cartSlice = createSlice({
       state.isMenuOpen = !state.isMenuOpen;
     },
 
+    setisBottomNavMenuOpen: (state) => {
+      state.isBottomNavMenuOpen = !state.isBottomNavMenuOpen;
+    },
+
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
     },
@@ -27,6 +32,7 @@ export const cartSlice = createSlice({
 export const {
   setisSideNavOpen,
   setisMenuOpen,
+  setisBottomNavMenuOpen,
   toggleDarkMode,
 } = cartSlice.actions;
 

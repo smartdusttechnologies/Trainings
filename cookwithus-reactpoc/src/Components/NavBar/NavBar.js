@@ -12,7 +12,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationBellMenu from '../NotificationBell/NotificationBellMenu';
 import UserAccountMenu from '../UserProfile/UserAccountMenu';
-import ShowMoreDrawer from '../ThreedotDrawer/Drawer';
 import AuthContext from '../../context/AuthProvider';
 import { ThemeProvider, Tooltip, createTheme } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
