@@ -10,7 +10,8 @@ function PrivateRoute({ children }) {
     return (
       <Navigate
         to={{
-          pathname: `/login/?redirect=${location.pathname}`,
+          pathname: `/login/`,
+          search: `?redirect=${location.pathname}`,
         }}
         state={{ from: location.pathname }}
       />

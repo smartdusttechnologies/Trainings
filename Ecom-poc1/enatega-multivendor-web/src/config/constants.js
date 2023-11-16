@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const WS_SERVER_URL = process.env.REACT_APP_WS_SERVER_URL;
+const SERVER_URL ='https://enatega-multivendor.up.railway.app/';
+const WS_SERVER_URL = 'wss://enatega-multivendor.up.railway.app/';
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const STRIPE_PUBLIC_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 const PAYPAL_KEY = process.env.REACT_APP_PAYPAL_KEY;
