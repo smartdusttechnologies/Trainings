@@ -5,22 +5,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { setisBottomNavMenuOpen } from "../../state";
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import HomeIcon from '@mui/icons-material/Home';
-import ExpandableAccordion from '../Accordion/Accordion';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import FastfoodIcon from '@mui/icons-material/Fastfood';
-import IcecreamIcon from '@mui/icons-material/Icecream';
 
 const FlexBox = styled(Box)`
   display: flex;

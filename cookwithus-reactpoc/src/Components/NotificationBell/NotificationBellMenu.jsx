@@ -5,7 +5,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AuthContext from '../../context/AuthProvider';
-import { Tooltip } from '@mui/material';
+import { Badge, Tooltip } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 
 export default function NotificationBellMenu() {
   const {setNotification,notification} = React.useContext(AuthContext);
@@ -37,7 +38,7 @@ export default function NotificationBellMenu() {
 
   const NotificationCount = ()=>{
     const notificationCount = notification.length - readStatus.filter(el => el == true).length
-    if(notificationCount < 0){
+    if(notificationCount < 1){
       return 0
     }else{
       return notificationCount
@@ -47,19 +48,22 @@ export default function NotificationBellMenu() {
   return (
     <div>
       <Tooltip title="Notifications">
-        <button
+        <IconButton
           id="basic-button"
           aria-controls={open ? 'basic-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
+          size='large'
           onClick={handleClick}
-          className='NotificationBell-button'
-          current-count={NotificationCount()}
+          // className='NotificationBell-button'
+          // current-count={NotificationCount()}
           >
-          <NotificationsIcon
-          sx={{ width: 24, height: 24 ,color:'white'}}      
-          />
-        </button>
+          <Badge badgeContent={NotificationCount()} color="error">
+            <NotificationsIcon
+              sx={{ width: 25, height: 25 ,color:'white'}}    
+            />
+          </Badge>
+        </IconButton>
       </Tooltip>
       <Menu
         id="basic-menu"

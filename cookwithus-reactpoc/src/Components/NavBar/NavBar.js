@@ -86,94 +86,103 @@ export default function NavBar() {
   const darkMode = useSelector((state) => state.cart.darkMode)
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => dispatch(setisSideNavOpen({}))}
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static" >
+            <Toolbar 
               sx={{
-                marginRight: '36px',
                 '@media (max-width: 500px)': {
-                  display: 'none',
+                  flexDirection: 'column'
                 },
               }}
             >
-              {!isSideNavOpen ? <MenuIcon /> : <ChevronLeftIcon/>}
-            </IconButton>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{
-                '@media (max-width: 500px)': {
-                  marginLeft:'30px'
-                },
-              }}
-            >
-              Cook With Us
-            </Typography>
-            {/* <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search> */}
-            <Box sx={{ flexGrow: 1 }} />
-            <Box 
-              sx={{
-                display: 'flex',
-                alignItems:'center',
-                '@media (max-width: 500px)': {
-                  display: 'none',
-                },
-              }}
-            >
-              <Tooltip title={!darkMode ? "Switch to Dark Mode" : "Switch to Light Mode"}>
-                  <IconButton size="large" color="inherit" onClick={() => dispatch(toggleDarkMode({}))}>
-                    {darkMode ? <LightModeIcon sx={{ width: 26, height: 26,color:'white' }} /> 
-                    : <DarkModeIcon sx={{ width: 26, height: 26,color:'white' }}/>}  
-                  </IconButton>
-              </Tooltip>
-
-              <LocationSelector/>
-
-              <NotificationBellMenu/>
-
-              <UserAccountMenu />
-
-              {/* {!auth.isAuthenticated && (<Link to={'/login'}><span>Sign in </span></Link>)}  */}
-            </Box>
-            <Box 
-              sx={{
-                display: 'none',
-                alignItems:'center',
-                '@media (max-width: 500px)': {
-                  display: 'flex',
-                },
-              }}
-            >
-                {/* ShowMore For Phone Mode  */}
               <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
-                onClick={() => dispatch(setisMenuOpen({}))}
+                onClick={() => dispatch(setisSideNavOpen({}))}
+                sx={{
+                  marginRight: '36px',
+                  '@media (max-width: 500px)': {
+                    display: 'none',
+                  },
+                }}
               >
-                <MenuIcon />
+                {!isSideNavOpen ? <MenuIcon /> : <ChevronLeftIcon/>}
               </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </ThemeProvider>
-    </Box>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{
+                  '@media (max-width: 500px)': {
+                    marginLeft:'30px'
+                  },
+                }}
+              >
+                Cook With Us
+              </Typography>
+              {/* <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </Search> */}
+              <Box sx={{ flexGrow: 1 }} />
+              <Box 
+                sx={{
+                  display: 'flex',
+                  alignItems:'center',
+                  '@media (max-width: 500px)': {
+                    width:'100%',
+                    justifyContent:'space-around'
+                  },
+                  // '@media (max-width: 500px)': {
+                  //   display: 'none',
+                  // },
+                }}
+              >
+               {/* ShowMore For Phone Mode  */}
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={() => dispatch(setisMenuOpen({}))}
+                  sx={{
+                    display: 'none',
+                    alignItems:'center',
+                    '@media (max-width: 500px)': {
+                      display: 'flex',
+                    },
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+               {/* ShowMore For Phone Mode  */}
+
+                <Tooltip title={!darkMode ? "Switch to Dark Mode" : "Switch to Light Mode"}>
+                    <IconButton size="large" color="inherit" onClick={() => dispatch(toggleDarkMode({}))}>
+                      {darkMode ? <LightModeIcon sx={{ width: 26, height: 26,color:'white' }} /> 
+                      : <DarkModeIcon sx={{ width: 26, height: 26,color:'white' }}/>}  
+                    </IconButton>
+                </Tooltip>
+
+                <LocationSelector/>
+
+                <NotificationBellMenu/>
+
+                <UserAccountMenu />
+
+                {/* {!auth.isAuthenticated && (<Link to={'/login'}><span>Sign in </span></Link>)}  */}
+              </Box>
+            </Toolbar>
+          </AppBar>
+      </Box>
+    </ThemeProvider>
   );
 }
