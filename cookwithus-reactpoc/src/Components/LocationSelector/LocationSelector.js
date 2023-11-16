@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, Tooltip } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, Tooltip, Typography } from '@mui/material';
+import axios from 'axios';
+import Map from './Map';
 
 function LocationSelector() {
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState('');
+  const [latitude , setLatitude] = useState(0);
+  const [longitude , setLongitude] = useState(0);
+  const [selectedLocation, setSelectedLocation] = useState({
+    latitude: 0,
+    longitude: 0,
+    address: '',
+  });
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -16,13 +24,35 @@ function LocationSelector() {
 
   const handleLocationSelection = () => {
         navigator.geolocation.getCurrentPosition((position) => {
-          const userLocation = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          };
-      
-          console.log('User location:', userLocation);
+          setLatitude(position.coords.latitude)
+          setLongitude(position.coords.longitude)
+          console.log(position.coords.latitude , position.coords.longitude , 'position.coords.')
         });
+
+        const apiKey = 'c5b7441c5f00403e91fadb5fa6db09ef';
+        const geocodingUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
+
+        axios.get(geocodingUrl)
+          .then((response) => {
+            console.log(response)
+            const results = response.data.results;
+            if (results.length > 0) {
+              console.log(results[0].formatted)
+              const address = results[0].formatted;
+              setSelectedLocation({
+                latitude,
+                longitude,
+                address,
+              });
+            } else {
+              console.error('No results found');
+            }
+            // setLoading(false);
+          })
+          .catch((error) => {
+            console.error('Error fetching address:', error);
+            // setLoading(false);
+          });
   };
 
   return (
@@ -38,12 +68,35 @@ function LocationSelector() {
         <Divider/>
         <DialogContent>
             <Button 
-            variant="outlined"
-            size="small"
-            onClick={handleLocationSelection}
+              variant="outlined"
+              size="small"
+              onClick={handleLocationSelection}
             >
                 Click here to pick your current location
             </Button>
+
+            {selectedLocation.address && (
+              <Box>
+                <Typography>
+                  Address: {selectedLocation.address}
+                </Typography>
+              </Box>
+            )}
+            {selectedLocation && (
+              <Box
+              sx={{
+                margin:'20px 0px',
+                height:'300px',
+                width:'100%'
+              }}
+              >
+                <Map
+                  latitude={latitude}
+                  longitude={longitude}
+                  address={selectedLocation.address}
+                />
+              </Box>
+            )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleLocationSelection} color="primary">

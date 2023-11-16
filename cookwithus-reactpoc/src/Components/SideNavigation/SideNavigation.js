@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, IconButton, List, Toolbar } from '@mui/material';
+import { CssBaseline, Divider, IconButton, List, Toolbar } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
 import { mainListItems, secondaryListItems } from './list';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -51,18 +51,40 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       },
     }),
   );
+  
+  const lightTheme = createTheme({
+    palette: {
+      mode: 'light',
+    },
+  });
+  
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 const SideNavigation = () => {
     const dispatch = useDispatch();
-    const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
     const navigate = useNavigate();
+    const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
+    const darkMode = useSelector((state) => state.cart.darkMode);
 
     const handleNavigationAndKeepMenuOpen = (route) => {
       navigate(route);
     };
 
   return (
-        <Drawer variant="permanent" open={isSideNavOpen}>
+      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+        <CssBaseline/>
+        <Drawer 
+          variant="permanent" 
+          open={isSideNavOpen}
+          sx={{
+            bgcolor: 'background.default',
+            color: 'text.primary',
+          }}
+        >
           <List component="nav">
             <React.Fragment>
               <ListItemButton onClick={() => navigate('/')}>
@@ -104,6 +126,7 @@ const SideNavigation = () => {
             {secondaryListItems}
           </List>
         </Drawer>
+      </ThemeProvider>  
   )
 }
 

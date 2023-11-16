@@ -23,6 +23,7 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
+  const darkMode = useSelector((state) => state.cart.darkMode);
 
   const increaseQuantity = (item)=>{
       const updatedCart = cart.map((cartItem) => {
@@ -101,10 +102,16 @@ const Cart = () => {
               margin:'auto'
             }}
           >
-            <Typography fontSize='20px' color="text.secondary" sx={{ flex: 1 }}>
+            <Typography fontSize='20px' 
+              color={!darkMode ? "text.secondary" : 'white'} 
+              sx={{ flex: 1 }}
+            >
               Your cart is empty
             </Typography>
-            <Typography color="text.secondary" sx={{ flex: 1 }}>
+            <Typography 
+              color={!darkMode ? "text.secondary" : 'white'} 
+              sx={{ flex: 1 }}
+            >
               You can go to home page to view more restaurants
             </Typography>
           </Box>
@@ -165,7 +172,9 @@ const Cart = () => {
                         <Typography  display="block" variant="caption" >
                             {`₹ ${item.price}`}
                         </Typography>
-                        <Typography variant="caption" color="text.secondary">
+                        <Typography variant="caption" 
+                          color={!darkMode ? "text.secondary" : 'white'} 
+                        >
                             {`${item.views} • ${item.createdAt}`}
                         </Typography>
                     </Box>
@@ -253,7 +262,10 @@ const Cart = () => {
                 }}
               >
                   <LocationOnIcon/>
-                <Typography color="text.secondary" sx={{ flex: 1 }}>
+                <Typography 
+                  color={!darkMode ? "text.secondary" : 'white'} 
+                  sx={{ flex: 1 }}
+                >
                   Add New Address
                 </Typography>
               </Box>

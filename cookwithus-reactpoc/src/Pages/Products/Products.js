@@ -63,6 +63,7 @@ const Products = () => {
   const [meals, setMeals] = useState(data);
   const [cart, setCart] = useState([]);
   const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
+  const darkMode = useSelector((state) => state.cart.darkMode);
 
   const handleAddToCart = (item) => {
     let cartData = JSON.parse(localStorage.getItem('cart')) || [];
@@ -139,7 +140,9 @@ const Products = () => {
                         <Typography  display="block" variant="caption" >
                             {`₹ ${item.price}`}
                         </Typography>
-                        <Typography variant="caption" color="text.secondary">
+                        <Typography variant="caption" 
+                         color={!darkMode ? "text.secondary" : 'white'} 
+                        >
                             {`${item.views} • ${item.createdAt}`}
                         </Typography>
                     </Box>

@@ -13,9 +13,11 @@ import { Divider } from '@mui/material';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import IcecreamIcon from '@mui/icons-material/Icecream';
+import { useSelector } from 'react-redux';
 
 const ExpandableAccordion = ({handleNavigationAndCloseMenu}) => {
-    
+    const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
+
   return (
     <div>
         <Accordion sx={{boxShadow:'none'}}>
@@ -23,11 +25,21 @@ const ExpandableAccordion = ({handleNavigationAndCloseMenu}) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
             >
-                <ListItemButton sx={{ padding: 0, '&:hover': { backgroundColor: 'transparent' } }}>
+                <ListItemButton 
+                    sx={{
+                        padding: 0, '&:hover': { backgroundColor: 'transparent' },
+                        marginLeft: !isSideNavOpen ? '40px' : 0
+                    }}
+                >
                     <ListItemIcon>
                         <RestaurantIcon />
                     </ListItemIcon>
-                <ListItemText primary="Products" />
+                    <ListItemText
+                        primary="Products" 
+                        sx={{
+                            display: isSideNavOpen ? 'block' : 'none',
+                        }}
+                    />
                 </ListItemButton>
             </AccordionSummary>
             <AccordionDetails>
@@ -39,10 +51,10 @@ const ExpandableAccordion = ({handleNavigationAndCloseMenu}) => {
                     </ListItemButton>
                     <Divider/>
                     <ListItemButton onClick={() => handleNavigationAndCloseMenu('/meals')}>
-                    <ListItemIcon>
-                        <IcecreamIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Icecream" />
+                        <ListItemIcon>
+                            <IcecreamIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Icecream" />
                     </ListItemButton>
             </AccordionDetails>
         </Accordion>
