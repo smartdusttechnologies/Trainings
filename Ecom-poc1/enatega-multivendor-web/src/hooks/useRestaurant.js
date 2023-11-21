@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { restaurant } from "../apollo/server";
-
+import data from './data.json';
 const RESTAURANT = gql`
   ${restaurant}
 `;

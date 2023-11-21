@@ -8,6 +8,7 @@ import FlashMessage from "../../components/FlashMessage";
 import Footer from "../../components/Footer/Footer";
 import { Header, LoginHeader } from "../../components/Header";
 import { ClearCart } from "../../components/Modals";
+import data from './data.json';
 import {
   RestaurantGrid,
   RestaurantRow,
@@ -67,16 +68,20 @@ function Restaurants() {
     setMessage({});
   }, []);
   
-  const { data, loading, error } = useQuery(RESTAURANTS, {
-    variables: {
-      longitude: location?.longitude || null,
-      latitude: location?.latitude || null,
-      ip: null,
-    },
-    fetchPolicy: "network-only",
-    skip:!location
-  });
-
+  // const { data, loading, error } = useQuery(RESTAURANTS, {
+  //   variables: {
+  //     longitude: location?.longitude || null,
+  //     latitude: location?.latitude || null,
+  //     ip: null,
+  //   },
+  //   fetchPolicy: "network-only",
+  //   skip:!location
+  // });
+  const loading = false;
+  const error = false;
+console.log(data);
+console.log(loading);
+console.log(error);
   if (loading || error) {
     return (
       <Grid container>
