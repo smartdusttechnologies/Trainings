@@ -18,7 +18,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LocationSelector from '../LocationSelector/LocationSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { setisMenuOpen, setisSideNavOpen,toggleDarkMode } from '../../state';
+import { setBottomNavinDesktopMode, setisMenuOpen, setisSideNavOpen,toggleDarkMode } from '../../state';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const Search = styled('div')(({ theme }) => ({
@@ -83,7 +83,9 @@ export default function NavBar() {
   const { auth } = React.useContext(AuthContext);
   const dispatch = useDispatch();
   const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
-  const darkMode = useSelector((state) => state.cart.darkMode)
+  const darkMode = useSelector((state) => state.cart.darkMode);
+  const BottomNavinDesktopMode = useSelector((state) => state.cart.BottomNavinDesktopMode);
+
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -177,6 +179,19 @@ export default function NavBar() {
                 <NotificationBellMenu/>
 
                 <UserAccountMenu />
+
+                <Tooltip title={"Open"}>
+                    <IconButton size="large" color="inherit" 
+                      onClick={() => dispatch(setBottomNavinDesktopMode({}))}
+                      sx={{
+                        '@media (max-width: 500px)': {
+                          display: 'none',
+                        },
+                      }}
+                    >
+                      <ChevronLeftIcon/>
+                    </IconButton>
+                </Tooltip>
 
                 {/* {!auth.isAuthenticated && (<Link to={'/login'}><span>Sign in </span></Link>)}  */}
               </Box>

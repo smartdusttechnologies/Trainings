@@ -7,6 +7,7 @@ import AllRoutes from './Components/Routes/AllRoutes';
 import SideNavigation from './Components/SideNavigation/SideNavigation';
 import Box from '@mui/material/Box';
 import BottomNavThreedot from './Components/ThreedotDrawer/BottomNavThreedot';
+import DesktopBottomNav from './Components/BottomNavigation/DesktopBottomNav';
 
 function App() {
   return (
@@ -23,6 +24,15 @@ function App() {
             <SideNavigation/>
           </Box>
           <AllRoutes/>
+          <Box
+           sx={{
+            '@media (max-width: 500px)': {
+              display:'none'
+            },
+           }}
+          >
+            <DesktopBottomNav/>
+          </Box>
         </Box>
         <ShowMoreMenu/>
         <BottomNavThreedot/>
