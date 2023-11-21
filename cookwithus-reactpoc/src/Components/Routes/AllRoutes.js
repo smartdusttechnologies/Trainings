@@ -5,6 +5,7 @@ import Products from '../../Pages/Products/Products'
 import Cart from '../../Pages/Cart/Cart'
 import Checkout from '../../Pages/Checkout/Checkout'
 import Confirmation from '../../Pages/Checkout/Confirmation'
+import PaymentCard from '../../Pages/Checkout/PaymentCard'
 
 const AllRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AllRoutes = () => {
         <Route path='/cart' element={<Cart/>}></Route>
         <Route path='/checkout' element={<Checkout/>}></Route>
         <Route path="/success" element={<Confirmation />} />
+        <Route path="/payment" element={<PaymentCard />} />
     </Routes>
   )
 }
