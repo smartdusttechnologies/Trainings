@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useSelector } from 'react-redux';
+import emptyCart from '../../assets/Cart.webp'
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -102,6 +103,13 @@ const Cart = () => {
               margin:'auto'
             }}
           >
+            <img 
+              src={emptyCart} 
+              style={{
+                width:'50%',
+                marginBottom:'20px'
+              }}
+            />
             <Typography fontSize='20px' 
               color={!darkMode ? "text.secondary" : 'white'} 
               sx={{ flex: 1 }}

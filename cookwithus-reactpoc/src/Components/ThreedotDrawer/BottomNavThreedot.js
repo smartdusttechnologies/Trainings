@@ -43,9 +43,6 @@ const BottomNavThreedot = () => {
           top="0"
           overflow="auto"
           sx={{
-          '@media (min-width: 500px)': {
-            display:'none'
-          },
           bgcolor: 'background.default',
           color: 'text.primary',
           }}

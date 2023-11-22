@@ -57,7 +57,7 @@ const Checkout = () => {
     //   body: JSON.stringify(requestBody),
     // });
     // const session = await response.json();
-    navigate("/success")
+    navigate("/payment")
   }
 
   return (

@@ -17,6 +17,7 @@ import VisaIcon from "../../assets/icons/VisaIcon";
 // import useStyles from "./styles";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 
 const PAYMENT_OPTIONS = [
   {
@@ -47,6 +48,8 @@ function PaymentCard({
   onPayment,
   loading,
 }) {
+  const navigate = useNavigate();
+
   const theme = createTheme();
   // const classes = useStyles();
 
@@ -59,22 +62,11 @@ function PaymentCard({
           paddingBottom: theme.spacing(2),
           paddingTop: theme.spacing(2),
           marginTop: theme.spacing(4),
+          margin:'auto',
         }}
       >
         <Container>
           <Box display="flex" alignItems="center">
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              style={{
-                background: theme.palette.primary.main,
-                width: "32px",
-                height: "32px",
-              }}
-            >
-              <Typography style={theme.typography.body1}><ArrowForwardIcon style={{ paddingTop: 5}} /></Typography>
-            </Box>
             <Box ml={theme.spacing(1)} />
             <Typography variant="h5" color="textSecondary">
               Payment
@@ -127,7 +119,8 @@ function PaymentCard({
               borderRadius: 0,
             }}
             onClick={() => {
-              if (validateOrder()) onPayment();
+              navigate('/success')
+              // if (validateOrder()) onPayment();
             }}
           >
             {loading ? (
