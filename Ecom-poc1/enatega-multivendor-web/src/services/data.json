@@ -1,0 +1,735 @@
+{
+    "restaurant": {
+        "__typename": "Restaurant",
+        "_id": "6465f4ae1bcf26ebed3b8cbf",
+        "orderId": 62,
+        "orderPrefix": "K8NQD-East",
+        "name": "Pizza Shop-East",
+        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684229966/food/v1vvom3f8ktgml0wfyvm.jpg",
+        "slug": "pizza-shop-east",
+        "address": "Islamabad",
+        "location": {
+            "__typename": "Point",
+            "coordinates": [
+                "73.36534452304494",
+                "33.97726277545968"
+            ]
+        },
+        "deliveryTime": 20,
+        "minimumOrder": 5,
+        "tax": 1,
+        "reviewData": {
+            "__typename": "ReviewData",
+            "total": 1,
+            "ratings": 0,
+            "reviews": [
+                {
+                    "__typename": "Review",
+                    "_id": "64a3f725457d0de1a0b674a5",
+                    "order": {
+                        "__typename": "Order",
+                        "user": {
+                            "__typename": "User",
+                            "_id": "646da0024a23700ce959395b",
+                            "name": "Muhammad Adnan",
+                            "email": "adnanawancs@gmail.com"
+                        }
+                    },
+                    "rating": 0,
+                    "description": "",
+                    "createdAt": "1688467237040"
+                }
+            ]
+        },
+        "categories": [
+            {
+                "__typename": "Category",
+                "_id": "646350b62e05958d543ba3a8",
+                "title": "Signature Pizzas",
+                "foods": [
+                    {
+                        "__typename": "Food",
+                        "_id": "64635d412e05958d543bb907",
+                        "title": "Pepperoni",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684233560/food/xqecd26wsoi1a8othjlj.jpg",
+                        "description": "Loaded with Pepperoni and extra Cheese on a Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b38f2e05958d543ddf28",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b38f2e05958d543ddf29",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b38f2e05958d543ddf2a",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635de62e05958d543bb98e",
+                        "title": "Spicy Italian",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684233700/food/yq2eij4myipdw2tum4z1.jpg",
+                        "description": "Pepperoni, Double Italian Sausage, Red Chilli Flakes and a Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2f82e05958d543dddb4",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2f82e05958d543dddb5",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2f82e05958d543dddb6",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635e302e05958d543bb9d8",
+                        "title": "Papa's Favourite",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684233790/food/fgpejrpgyqo6n3rchvjk.jpg",
+                        "description": "Pepperoni, Italian Sausage, Mozzarella Cheeses, Italian Seasoning on a Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3b02e05958d543ddf85",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3b02e05958d543ddf86",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3b02e05958d543ddf87",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635ea82e05958d543bba6f",
+                        "title": "American Hot",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684233893/food/qz7ibkj46udxx6yyqkdy.jpg",
+                        "description": "Loaded with Pepperoni, Jalapenos and Extra Cheese on a Pizza Sauce Base with Red Chilli Flakes Sprinkle",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7292e05958d543de4b3",
+                                "title": "Small",
+                                "price": 5.6,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7292e05958d543de4b4",
+                                "title": "Medium",
+                                "price": 6.6,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7292e05958d543de4b5",
+                                "title": "Large",
+                                "price": 7.6,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635f332e05958d543bbb0d",
+                        "title": "Super Papa's",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684234071/food/p0ewfh7kfooxp8xl2xfr.jpg",
+                        "description": "Pepperoni, Italian Sausage, Mushrooms, Onions, Green Peppers, Black Olives on a Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2d72e05958d543ddd57",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2d72e05958d543ddd58",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2d72e05958d543ddd59",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "__typename": "Category",
+                "_id": "646350c12e05958d543ba3be",
+                "title": "Pizzas",
+                "foods": [
+                    {
+                        "__typename": "Food",
+                        "_id": "646352962e05958d543ba589",
+                        "title": "Fajita Chicken",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684232130/food/yxnzlvxoes4e9cjwxodf.jpg",
+                        "description": "Spicy Chicken,Jalapenos, Onions, Corn, Green Pepper, Ranch Drizzle on a Peri Peri Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b42a2e05958d543de09c",
+                                "title": "Small",
+                                "price": 5.6,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b42a2e05958d543de09d",
+                                "title": "Medium",
+                                "price": 6.6,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b42a2e05958d543de09e",
+                                "title": "Large",
+                                "price": 7.6,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "646353592e05958d543ba69e",
+                        "title": "Peri Peri Chicken",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684232243/food/axigav3fcq6andrusb5w.jpg",
+                        "description": "Peri Peri Chicken, Onion, Green Pepper, Jalapenos , PERI PERI Sauce Drizzle on a Cheese Mayo Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3462e05958d543dde6e",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3462e05958d543dde6f",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3462e05958d543dde70",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "646358be2e05958d543bb0d7",
+                        "title": "Garden Special",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684232380/food/pyo3oj9swzqmk3lzmjqb.jpg",
+                        "description": "Green Peppers, Mushrooms, Onions, Tomatoes, Black Olives, Italian Seasoning on a Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b4052e05958d543de03f",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b4052e05958d543de040",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b4052e05958d543de041",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "646359962e05958d543bb197",
+                        "title": "Tandoori Chicken",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684232611/food/jj7ebrtcfsq9ppltn4fe.jpg",
+                        "description": "Spicy Chicken, Green Chilli, Green Peppers, Onions on a Tandoori Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2b42e05958d543ddcfa",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2b42e05958d543ddcfb",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b2b42e05958d543ddcfc",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635a0b2e05958d543bb222",
+                        "title": "Chicken BBQ Ranch",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684232712/food/nstiz6jbdoog75iierfc.jpg",
+                        "description": "Grilled Chicken, Mushrooms, Onions, BBQ Sauce Drizzle on a Ranch Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "64635a0b2e05958d543bb21f",
+                                "title": "Small",
+                                "price": 770,
+                                "discounted": 700,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "64635a0b2e05958d543bb220",
+                                "title": "Medium",
+                                "price": 1270,
+                                "discounted": 1200,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "64635a0b2e05958d543bb221",
+                                "title": "Large",
+                                "price": 1470,
+                                "discounted": 1400,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635a8f2e05958d543bb258",
+                        "title": "Spicy Buffalo Ranch",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684232845/food/qyuzhtpfxuxjj83dzmlx.jpg",
+                        "description": "Sliced Chicken Poppers, Green Peppers, Mushrooms, Onions, Tomatoes, Ranch Drizzle on a Buffalo Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3192e05958d543dde11",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3192e05958d543dde12",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3192e05958d543dde13",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635c142e05958d543bb773",
+                        "title": "Hot Popper Passion",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684234543/food/nei3soiay21ldndnkk5k.jpg",
+                        "description": "Tandoori Chicken Popper, Jalapeno, Green Pepper, Onion, Buffalo Sauce Drizzle with Red Chilli Flake Sprinkle",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3d32e05958d543ddfe2",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3d32e05958d543ddfe3",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3d32e05958d543ddfe4",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64635c9e2e05958d543bb889",
+                        "title": "Cheese",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684233372/food/anwg5p4mo0bbcmozlwur.jpg",
+                        "description": "Cheese and Pizza Sauce Base",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7032e05958d543de456",
+                                "title": "Small",
+                                "price": 5.5,
+                                "discounted": 5,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7032e05958d543de457",
+                                "title": "Medium",
+                                "price": 6.5,
+                                "discounted": 6,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7032e05958d543de458",
+                                "title": "Large",
+                                "price": 7.5,
+                                "discounted": 7,
+                                "addons": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "__typename": "Category",
+                "_id": "646350c82e05958d543ba3d5",
+                "title": "Beverages",
+                "foods": [
+                    {
+                        "__typename": "Food",
+                        "_id": "646360be2e05958d543bbc54",
+                        "title": "Pepsi",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684235065/food/f25ec5hd8el7fuubsvyi.jpg",
+                        "description": "Cold Drink",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3682e05958d543ddecb",
+                                "title": "500ml",
+                                "price": 1,
+                                "discounted": 0,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3682e05958d543ddecc",
+                                "title": "1000ml",
+                                "price": 1.5,
+                                "discounted": 0,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b3682e05958d543ddecd",
+                                "title": "1500ml",
+                                "price": 2,
+                                "discounted": 0,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "6463640a2e05958d543bc3fa",
+                        "title": "7up",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684235272/food/zouwx12wlgbaxoucgow4.jpg",
+                        "description": "Cold Drink",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7572e05958d543de61c",
+                                "title": "500ml",
+                                "price": 1,
+                                "discounted": 0,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7572e05958d543de61d",
+                                "title": "1000ml",
+                                "price": 1.5,
+                                "discounted": 0,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b7572e05958d543de61e",
+                                "title": "1500ml",
+                                "price": 2,
+                                "discounted": 0,
+                                "addons": []
+                            }
+                        ]
+                    },
+                    {
+                        "__typename": "Food",
+                        "_id": "64636b2b2e05958d543bddfe",
+                        "title": "Water Bottle",
+                        "image": "https://res.cloudinary.com/do1ia4vzf/image/upload/v1684237098/food/xsep2e3nszybfjfz9syx.jpg",
+                        "description": "Drink",
+                        "variations": [
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b26d2e05958d543ddc9d",
+                                "title": "500ml",
+                                "price": 1,
+                                "discounted": 0,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b26d2e05958d543ddc9e",
+                                "title": "1000ml",
+                                "price": 1.5,
+                                "discounted": 0,
+                                "addons": []
+                            },
+                            {
+                                "__typename": "Variation",
+                                "_id": "6465b26d2e05958d543ddc9f",
+                                "title": "1500ml",
+                                "price": 2,
+                                "discounted": 0,
+                                "addons": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "options": [
+            {
+                "__typename": "Option",
+                "_id": "646364fb2e05958d543bc8ba",
+                "title": "Pepsi 500ml",
+                "description": "Cold Drink",
+                "price": 100
+            },
+            {
+                "__typename": "Option",
+                "_id": "646365292e05958d543bcb1c",
+                "title": "7up 500ml",
+                "description": "Cold Drink",
+                "price": 100
+            }
+        ],
+        "addons": [
+            {
+                "__typename": "Addon",
+                "_id": "5fda4075b651daa22b242a36",
+                "options": [],
+                "title": "Default Addon",
+                "description": "Default Addon Description",
+                "quantityMinimum": 1,
+                "quantityMaximum": 1
+            }
+        ],
+        "zone": null,
+        "rating": null,
+        "isAvailable": true,
+        "openingTimes": [
+            {
+                "__typename": "OpeningTimes",
+                "day": "MON",
+                "times": [
+                    {
+                        "__typename": "Timings",
+                        "startTime": [
+                            "00",
+                            "00"
+                        ],
+                        "endTime": [
+                            "23",
+                            "59"
+                        ]
+                    }
+                ]
+            },
+            {
+                "__typename": "OpeningTimes",
+                "day": "TUE",
+                "times": [
+                    {
+                        "__typename": "Timings",
+                        "startTime": [
+                            "00",
+                            "00"
+                        ],
+                        "endTime": [
+                            "23",
+                            "59"
+                        ]
+                    }
+                ]
+            },
+            {
+                "__typename": "OpeningTimes",
+                "day": "WED",
+                "times": [
+                    {
+                        "__typename": "Timings",
+                        "startTime": [
+                            "00",
+                            "00"
+                        ],
+                        "endTime": [
+                            "23",
+                            "59"
+                        ]
+                    }
+                ]
+            },
+            {
+                "__typename": "OpeningTimes",
+                "day": "THU",
+                "times": [
+                    {
+                        "__typename": "Timings",
+                        "startTime": [
+                            "00",
+                            "00"
+                        ],
+                        "endTime": [
+                            "23",
+                            "59"
+                        ]
+                    }
+                ]
+            },
+            {
+                "__typename": "OpeningTimes",
+                "day": "FRI",
+                "times": []
+            },
+            {
+                "__typename": "OpeningTimes",
+                "day": "SAT",
+                "times": [
+                    {
+                        "__typename": "Timings",
+                        "startTime": [
+                            "00",
+                            "00"
+                        ],
+                        "endTime": [
+                            "23",
+                            "59"
+                        ]
+                    }
+                ]
+            },
+            {
+                "__typename": "OpeningTimes",
+                "day": "SUN",
+                "times": [
+                    {
+                        "__typename": "Timings",
+                        "startTime": [
+                            "00",
+                            "00"
+                        ],
+                        "endTime": [
+                            "23",
+                            "59"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

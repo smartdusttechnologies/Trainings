@@ -3,12 +3,13 @@ import { gql, useQuery } from "@apollo/client";
 import { Box, CircularProgress, Grid, Typography, Button } from "@mui/material";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { restaurantList } from "../../apollo/server";
+//import { restaurantList } from "../../apollo/server";
 import FlashMessage from "../../components/FlashMessage";
 import Footer from "../../components/Footer/Footer";
 import { Header, LoginHeader } from "../../components/Header";
 import { ClearCart } from "../../components/Modals";
-import data from './data.json';
+import { getRestaurents } from "../../services/resturantServices";
+//import data from './data.json';
 import {
   RestaurantGrid,
   RestaurantRow,
@@ -22,9 +23,6 @@ import Analytics from "../../utils/analytics";
 import useStyles from "./styles";
 import DeliveryTabs from "../../components/Tabs/Tabs";
 
-const RESTAURANTS = gql`
-  ${restaurantList}
-`;
 
 function Restaurants() {
   const navigate = useNavigate();
@@ -68,15 +66,7 @@ function Restaurants() {
     setMessage({});
   }, []);
   
-  // const { data, loading, error } = useQuery(RESTAURANTS, {
-  //   variables: {
-  //     longitude: location?.longitude || null,
-  //     latitude: location?.latitude || null,
-  //     ip: null,
-  //   },
-  //   fetchPolicy: "network-only",
-  //   skip:!location
-  // });
+  const data = getRestaurents();
   const loading = false;
   const error = false;
 console.log(data);

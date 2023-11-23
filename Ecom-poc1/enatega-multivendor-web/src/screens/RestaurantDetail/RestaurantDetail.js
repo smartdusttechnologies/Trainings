@@ -30,7 +30,7 @@ import {
   RestaurantHeader,
 } from "../../components/RestaurantDetailComponent";
 import UserContext from "../../context/User";
-import { useRestaurant } from "../../hooks";
+import { getRestaurent } from "../../services/resturantServices.js";
 import { DAYS } from "../../utils/constantValues";
 import useStyles from "./styles";
 
@@ -45,10 +45,11 @@ function RestaurantDetail() {
   const [addonData, setAddonData] = useState(null);
   const [reviewModal, setReviewModal] = useState(false);
   const [variationModal, setVariationModal] = useState(false);
-  const { data, loading, error } = useRestaurant(state?.id, query.slug);
+  const { data, loading, error } = getRestaurent(state?.id, query.slug);
   const allDeals = data?.restaurant?.categories.filter(
     (cat) => cat.foods.length
   );
+console.log(allDeals);
   const {
     restaurant: restaurantCart,
     setCartRestaurant,

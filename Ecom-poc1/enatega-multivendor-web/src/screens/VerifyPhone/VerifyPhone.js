@@ -41,7 +41,7 @@ function VerifyPhone() {
     onCompleted: onOtpCompleted,
     onError: onOtpError,
   });
-
+  console.log(sendOtp);
   useEffect(() => {
     const myInterval = setInterval(() => {
       if (seconds > 0) {
