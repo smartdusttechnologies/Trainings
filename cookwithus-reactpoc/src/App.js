@@ -7,7 +7,7 @@ import AllRoutes from './Components/Routes/AllRoutes';
 import SideNavigation from './Components/SideNavigation/SideNavigation';
 import Box from '@mui/material/Box';
 import BottomNavThreedot from './Components/ThreedotDrawer/BottomNavThreedot';
-import DesktopBottomNav from './Components/BottomNavigation/DesktopBottomNav';
+import RightSideNavigation from './Components/SideNavigation/RightSideNavigation';
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
             },
            }}
           >
-            <DesktopBottomNav/>
+            <RightSideNavigation/>
           </Box>
         </Box>
         <ShowMoreMenu/>

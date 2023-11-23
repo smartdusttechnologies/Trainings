@@ -5,6 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { setisBottomNavMenuOpen } from "../../state";
+import { secondaryListItems } from '../SideNavigation/list';
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -66,6 +67,11 @@ const BottomNavThreedot = () => {
                   <CloseIcon />
                 </IconButton>
               </FlexBox>
+
+              {/* Actions  */}
+              <Box width='80%' margin='auto'>
+                {secondaryListItems}
+              </Box>
 
             </Box>
           </Box>

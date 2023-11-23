@@ -18,8 +18,10 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LocationSelector from '../LocationSelector/LocationSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBottomNavinDesktopMode, setisMenuOpen, setisSideNavOpen,toggleDarkMode } from '../../state';
+import { setRightSideNavigationOpen, setisMenuOpen, setisSideNavOpen,toggleDarkMode } from '../../state';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -84,7 +86,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
   const darkMode = useSelector((state) => state.cart.darkMode);
-  const BottomNavinDesktopMode = useSelector((state) => state.cart.BottomNavinDesktopMode);
+  const isRightSideNavigationOpen = useSelector((state) => state.cart.isRightSideNavigationOpen);
 
 
   return (
@@ -182,14 +184,14 @@ export default function NavBar() {
 
                 <Tooltip title={"Open"}>
                     <IconButton size="large" color="inherit" 
-                      onClick={() => dispatch(setBottomNavinDesktopMode({}))}
+                      onClick={() => dispatch(setRightSideNavigationOpen({}))}
                       sx={{
                         '@media (max-width: 500px)': {
                           display: 'none',
                         },
                       }}
                     >
-                      <ChevronLeftIcon/>
+                      {!isRightSideNavigationOpen ? <MoreVertIcon /> : <ChevronRightIcon/>}
                     </IconButton>
                 </Tooltip>
 

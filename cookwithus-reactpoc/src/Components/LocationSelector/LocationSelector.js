@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, Tooltip, Typography } from '@mui/material';
 import axios from 'axios';
-import Map from './Map';
 
 function LocationSelector() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -82,21 +81,7 @@ function LocationSelector() {
                 </Typography>
               </Box>
             )}
-            {selectedLocation && (
-              <Box
-              sx={{
-                margin:'20px 0px',
-                height:'300px',
-                width:'100%'
-              }}
-              >
-                <Map
-                  latitude={latitude}
-                  longitude={longitude}
-                  address={selectedLocation.address}
-                />
-              </Box>
-            )}
+            
         </DialogContent>
         <DialogActions>
           <Button onClick={handleLocationSelection} color="primary">
