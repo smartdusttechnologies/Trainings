@@ -69,9 +69,7 @@ function Restaurants() {
   const data = getRestaurents();
   const loading = false;
   const error = false;
-console.log(data);
-console.log(loading);
-console.log(error);
+
   if (loading || error) {
     return (
       <Grid container>
