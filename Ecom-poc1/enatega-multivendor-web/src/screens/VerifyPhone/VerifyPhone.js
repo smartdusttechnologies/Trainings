@@ -16,13 +16,38 @@ import { Avatar } from "@mui/material";
 import OtpInput from "react-otp-input";
 import { Link as RouterLink } from "react-router-dom";
 import { sendOtpToPhoneNumber, updateUser } from "../../apollo/server";
-
+import {sendOtp} from "../../services/verifyPhoneServices";
+import axios from "axios";
 const SEND_OTP_TO_PHONE = gql`
   ${sendOtpToPhoneNumber}
 `;
 const UPDATEUSER = gql`
   ${updateUser}
 `;
+function otpSend (){
+
+
+const options = {
+  method: 'POST',
+  url: 'https://control.msg91.com/api/v5/otp',
+  params: {template_id: '336b76777978353731323938', mobile: '919308337022'},
+  headers: {
+    accept: 'application/json',
+    'content-type': 'application/json',
+    authkey: '410462TuXnjGns655e40afP1'
+  },
+  data: {Param1: 'value1', Param2: 'value2', Param3: 'value3'}
+};
+
+axios
+  .request(options)
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
+}
 function VerifyPhone() {
   const theme = useTheme();
   const classes = useStyles();
@@ -41,6 +66,7 @@ function VerifyPhone() {
     onCompleted: onOtpCompleted,
     onError: onOtpError,
   });
+  otpSend();
   console.log(sendOtp);
   useEffect(() => {
     const myInterval = setInterval(() => {
