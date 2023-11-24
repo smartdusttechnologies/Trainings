@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, Tooltip, Typography } from '@mui/material';
 import axios from 'axios';
+import LiveLocationTracker from './LiveLocationTracker ';
+import Map from './Map';
+import GoogleMap from './GoogleMap';
 
 function LocationSelector() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -54,6 +57,10 @@ function LocationSelector() {
           });
   };
 
+  useEffect(() => {
+    handleLocationSelection()
+  }, []);
+
   return (
     <div>
       <Tooltip title="Select Location">
@@ -81,6 +88,16 @@ function LocationSelector() {
                 </Typography>
               </Box>
             )}
+            <Box
+            sx={{
+              width:'500px',
+              height:'500px',
+            }}
+            >
+            <Box>
+              <GoogleMap latitude={selectedLocation?.latitude} longitude={selectedLocation?.longitude} />
+            </Box>
+            </Box>
             
         </DialogContent>
         <DialogActions>

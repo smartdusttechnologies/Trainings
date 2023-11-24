@@ -182,7 +182,7 @@ export default function NavBar() {
 
                 <UserAccountMenu />
 
-                <Tooltip title={"Open"}>
+                <Tooltip title={!isRightSideNavigationOpen ? "Open" : " Close"}>
                     <IconButton size="large" color="inherit" 
                       onClick={() => dispatch(setRightSideNavigationOpen({}))}
                       sx={{

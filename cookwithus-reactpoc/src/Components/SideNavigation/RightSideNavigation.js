@@ -100,19 +100,19 @@ const RightSideNavigation = () => {
             <React.Fragment>
               <ListItemButton onClick={() => handlePhoneClick()}>
                 <ListItemIcon>
-                  <LocalPhoneIcon />
+                  <LocalPhoneIcon sx={{color:'rgb(39, 197, 60)'}} />
                 </ListItemIcon>
                 <ListItemText primary="Phone" />
               </ListItemButton>
               <ListItemButton onClick={() => handleEmailClick()}>
                 <ListItemIcon>
-                  <EmailIcon />
+                  <EmailIcon sx={{color:'rgb(161, 34, 34)'}} />
                 </ListItemIcon>
                 <ListItemText primary="Email" />
               </ListItemButton>
               <ListItemButton onClick={() => handleFavoritesClick()}>
                 <ListItemIcon>
-                  <FacebookIcon />
+                  <FacebookIcon sx={{color:'rgb(11, 83, 207)'}} />
                 </ListItemIcon>
                 <ListItemText primary="Facebook" />
               </ListItemButton>

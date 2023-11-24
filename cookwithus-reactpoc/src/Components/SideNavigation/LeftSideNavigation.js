@@ -64,7 +64,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     },
   });
 
-const SideNavigation = () => {
+const LeftSideNavigation = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isSideNavOpen = useSelector((state) => state.cart.isSideNavOpen);
@@ -130,4 +130,4 @@ const SideNavigation = () => {
   )
 }
 
-export default SideNavigation
+export default LeftSideNavigation

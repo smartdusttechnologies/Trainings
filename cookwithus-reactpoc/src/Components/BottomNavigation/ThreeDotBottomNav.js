@@ -25,7 +25,7 @@ const darkTheme = createTheme({
   },
 });
 
-const BottomNavThreedot = () => {
+const ThreeDotBottomNav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isBottomNavMenuOpen = useSelector((state) => state.cart.isBottomNavMenuOpen);
@@ -80,4 +80,4 @@ const BottomNavThreedot = () => {
   );
 };
 
-export default BottomNavThreedot;
+export default ThreeDotBottomNav;

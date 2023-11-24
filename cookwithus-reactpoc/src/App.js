@@ -4,9 +4,9 @@ import Footer from './Components/Footer/Footer';
 import ShowMoreMenu from './Components/Menu/ShowMoreMenu';
 import NavBar from './Components/NavBar/NavBar';
 import AllRoutes from './Components/Routes/AllRoutes';
-import SideNavigation from './Components/SideNavigation/SideNavigation';
+import LeftSideNavigation from './Components/SideNavigation/LeftSideNavigation';
 import Box from '@mui/material/Box';
-import BottomNavThreedot from './Components/ThreedotDrawer/BottomNavThreedot';
+import ThreeDotBottomNav from './Components/BottomNavigation/ThreeDotBottomNav';
 import RightSideNavigation from './Components/SideNavigation/RightSideNavigation';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
             },
            }}
           >
-            <SideNavigation/>
+            <LeftSideNavigation/>
           </Box>
           <AllRoutes/>
           <Box
@@ -35,7 +35,7 @@ function App() {
           </Box>
         </Box>
         <ShowMoreMenu/>
-        <BottomNavThreedot/>
+        <ThreeDotBottomNav/>
         <Footer/>
         <BottomNav/>
       </div>

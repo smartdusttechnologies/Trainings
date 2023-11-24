@@ -6,6 +6,7 @@ import Cart from '../../Pages/Cart/Cart'
 import Checkout from '../../Pages/Checkout/Checkout'
 import Confirmation from '../../Pages/Checkout/Confirmation'
 import PaymentCard from '../../Pages/Checkout/PaymentCard'
+import LiveLocationTracker from '../LocationSelector/LiveLocationTracker '
 
 const AllRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AllRoutes = () => {
         <Route path='/checkout' element={<Checkout/>}></Route>
         <Route path="/success" element={<Confirmation />} />
         <Route path="/payment" element={<PaymentCard />} />
+        <Route path="/livelocationmap" element={<LiveLocationTracker />} />
     </Routes>
   )
 }
