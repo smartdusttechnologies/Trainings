@@ -5,6 +5,10 @@
   "dependencies": {
     "@amplitude/analytics-react-native": "^1.1.1",
     "@apollo/client": "^3.3.6",
+    "@babel/core": "7.22.5",
+    "@babel/eslint-parser": "7.22.5",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "@babel/preset-env": "7.22.5",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@expo/webpack-config": "^18.0.1",
@@ -16,12 +20,9 @@
     "@sentry/react": "^6.16.1",
     "@sentry/tracing": "^6.16.1",
     "@types/react": "^17.0.24",
-    "@babel/core": "7.22.5",
-    "@babel/eslint-parser": "7.22.5",
-    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
-    "@babel/preset-env": "7.22.5",
     "amplitude-js": "^8.14.1",
     "autosuggest-highlight": "^3.1.1",
+    "axios": "^1.6.2",
     "babel-loader": "^8.1.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.0.0-beta.5",
@@ -29,6 +30,7 @@
     "firebase": "^9.4.0",
     "flatlist-react": "^1.5.0",
     "graphql": "^15.4.0",
+    "http-proxy-middleware": "^2.0.6",
     "husky": "^8.0.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -77,5 +79,6 @@
     ">0.2%",
     "not dead",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "https://control.msg91.com"
 }
