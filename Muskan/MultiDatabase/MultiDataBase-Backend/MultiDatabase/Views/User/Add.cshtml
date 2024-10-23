@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model MultiDatabase.Models.AddViewModel2
+
+<h1>Add User</h1>
+<div class="container">
+    <form asp-action="Add" method="post" enctype="multipart/form-data">
+        <div class="form-group mt-3">
+            <label asp-for="Name" for="Name">Enter Name</label>
+            <input asp-for="Name" type="text" class="form-control mt-3" id="Name" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="Address" for="Address">Enter Address</label>
+            <input asp-for="Address" type="text" class="form-control mt-3" id="Address" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="Email" for="Email">Email:</label>
+            <input asp-for="Email" type="email" class="form-control mt-3" required />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="File" for="File">Upload File:</label>
+            <input type="file" asp-for="File" required />
+            <span asp-validation-for="File" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="Phone" for="Phone">Enter Phone</label>
+            <input asp-for="Phone" type="text" class="form-control mt-3" minlength="10" maxlength="10" required />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+
+        <div class="btn mt-3">
+            <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+    </form>
+</div>
