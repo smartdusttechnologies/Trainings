@@ -4,28 +4,33 @@ using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using MultiDatabase.Data; 
 using Microsoft.EntityFrameworkCore.SqlServer;
+using TestProject.DbContexts;
 
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-//var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
 
-//if (environment == "Test" && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
-//{
-//    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//        options.UseInMemoryDatabase("TestDb"));
-//}
-//else
-//{
+if (environment == "Test" && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
+{
+    builder.Services.AddDbContext<EmployeeDbContext>(options =>
+        options.UseInMemoryDatabase("TestDb"));
+    builder.Services.AddDbContext<UserTestDbContext>(options =>
+    options.UseInMemoryDatabase("TestDb"));
+}
+else
+{
     // Configure MySQL DbContext
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
         new MySqlServerVersion(new Version(8, 0, 21))));
-//}
-// Configure SQL Server DbContext
-builder.Services.AddDbContext<Application2DbContext>(options =>
+
+    builder.Services.AddDbContext<Application2DbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
+}
+// Configure SQL Server DbContext
+
 
 //if (provider == "MySql")
 //{

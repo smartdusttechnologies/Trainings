@@ -175,7 +175,7 @@ namespace TestProject.Controller
             var result = await _employeeController.Delete(employee.Id);
 
             // Assert
-            Assert.IsType<NoContentResult>(result);
+            var noContentResult = Assert.IsType<NoContentResult>(result);
             Assert.Null(await _employeeContext.Employees.FindAsync(employee.Id));
         }
 

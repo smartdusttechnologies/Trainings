@@ -38,7 +38,7 @@ namespace TestProject.Controller
         public async Task Add_ValidModel_ShouldRedirectToIndex()
         {
             // Arrange
-            await ClearDatabaseAsync(); // Clear database before running the test
+            await ClearDatabaseAsync(); 
 
             byte[] imageBytes = Encoding.UTF8.GetBytes("Test image content");
             using var stream = new MemoryStream(imageBytes);
