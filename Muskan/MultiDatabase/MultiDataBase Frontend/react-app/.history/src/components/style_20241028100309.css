@@ -125,9 +125,9 @@ th {
   transition: all 0.3s ease-in;
 }
 .download-btn:hover {
-  color: rgb(5, 156, 106);
+  color: rgb(236, 139, 194);
   background-color: white;
-  border: 1px solid rgb(5, 156, 106);
+  border: 1px solid rgb(236, 139, 194);
 }
 .btn-del:hover {
   color: rgb(255, 0, 0);

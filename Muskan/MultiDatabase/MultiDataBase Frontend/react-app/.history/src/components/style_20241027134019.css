@@ -96,43 +96,34 @@ th {
 } */
 .btn-edi {
   height: 35px;
-  width: 60px;
   background-color: rgb(72, 139, 194);
   padding: 10px;
   margin-right: 10px;
-  transition: all 0.3s ease-in;
 }
 .btn-del {
   background-color: rgb(255, 0, 0);
   padding: 10px;
-  height: 35px;
-  width: 60px;
-  transition: all 0.3s ease-in;
 }
 .btn-edi:hover {
   color: rgb(72, 139, 194);
-  height: 35px;
-  width: 60px;
+
   background-color: white;
   border: 1px solid rgb(72, 139, 194);
 }
 .download-btn {
-  background-color: rgb(5, 156, 106);
+  background-color: rgb(72, 139, 194);
   padding: 10px;
-  color: white;
   margin-right: 10px;
-  border: none;
-  transition: all 0.3s ease-in;
 }
 .download-btn:hover {
-  color: rgb(5, 156, 106);
+  color: rgb(72, 139, 194);
+
   background-color: white;
-  border: 1px solid rgb(5, 156, 106);
+  border: 1px solid rgb(72, 139, 194);
 }
 .btn-del:hover {
   color: rgb(255, 0, 0);
-  height: 35px;
-  width: 60px;
+
   background-color: white;
   border: 1px solid rgb(255, 0, 0);
 }

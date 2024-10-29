@@ -1,48 +1,33 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MultiDatabase.Data;
+using Moq;
+using MultiDatabase.Controllers;
 using MultiDatabase.Models;
 using MultiDatabase.Models.Entities;
-using MultiDatabase.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using MultiDatabase.Repository.Interface;
+using System.IO;
 using System.Threading.Tasks;
+using Xunit;
 
-namespace TestProject.Controller
+namespace TestProject.Controllers
 {
-   public class UserControllerTest
+    public class UserControllerTest
     {
         private readonly UserController _controller;
-        private readonly Application2DbContext _mockDbContext;
+        private readonly Mock<IUserRepository> _userRepositoryMock;
 
         public UserControllerTest()
         {
-            var options = new DbContextOptionsBuilder<Application2DbContext>()
-                .UseInMemoryDatabase(databaseName: "AddUserTest")
-                .Options;
-
-            _mockDbContext = new Application2DbContext(options);
-            _controller = new UserController(_mockDbContext);
-        }
-
-        private async Task ClearDatabaseAsync()
-        {
-            _mockDbContext.Users.RemoveRange(_mockDbContext.Users);
-            await _mockDbContext.SaveChangesAsync();
+            _userRepositoryMock = new Mock<IUserRepository>();
+            _controller = new UserController(_userRepositoryMock.Object);
         }
 
         [Fact]
         public async Task Add_ValidModel_ShouldRedirectToIndex()
         {
             // Arrange
-            await ClearDatabaseAsync(); 
-
-            byte[] imageBytes = Encoding.UTF8.GetBytes("Test image content");
-            using var stream = new MemoryStream(imageBytes);
-
+            var imageBytes = new byte[] { 1, 2, 3, 4 }; 
+            var stream = new MemoryStream(imageBytes);
             var mockFile = new FormFile(stream, 0, stream.Length, "File", "testimage.jpg")
             {
                 Headers = new HeaderDictionary(),
@@ -53,9 +38,9 @@ namespace TestProject.Controller
             {
                 Name = "test name",
                 Address = "test address",
-                Phone = "4589636897",
+                Phone = "1234567890",
                 Email = "test@gmail.com",
-                File = mockFile,
+                File = mockFile
             };
 
             // Act
@@ -64,33 +49,28 @@ namespace TestProject.Controller
             // Assert
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirectToActionResult.ActionName);
-            Assert.Equal(1, await _mockDbContext.Users.CountAsync());
 
-            var addedUser = await _mockDbContext.Users.FirstOrDefaultAsync();
-            Assert.NotNull(addedUser);
+            
+            _userRepositoryMock.Verify(repo => repo.AddUserAsync(It.IsAny<User>()), Times.Once);
         }
 
         [Fact]
-        public async Task Edit_ValidModel_ShouldRedirectToIndex()
+        public async Task Edit_ExistingUser_ShouldRedirectToIndex()
         {
             // Arrange
-            await ClearDatabaseAsync(); // Clear database before running the test
-
-            var user = new User
+            var existingUser = new User
             {
                 Id = 1,
                 Name = "test name",
-                Address = "test address",
-                Phone = "4589636897",
                 Email = "test@gmail.com",
-                FileName = "oldimage.jpg"
+                Phone = "1234567890",
+                Address = "test address"
             };
-            await _mockDbContext.Users.AddAsync(user);
-            await _mockDbContext.SaveChangesAsync();
 
-            byte[] updatedImageBytes = Encoding.UTF8.GetBytes("Updated image content");
+            _userRepositoryMock.Setup(repo => repo.GetUserById(existingUser.Id)).ReturnsAsync(existingUser);
+
+            var updatedImageBytes = new byte[] { 5, 6, 7, 8 }; 
             var updatedStream = new MemoryStream(updatedImageBytes);
-
             var updatedMockFile = new FormFile(updatedStream, 0, updatedStream.Length, "File", "updatedimage.jpg")
             {
                 Headers = new HeaderDictionary(),
@@ -100,11 +80,10 @@ namespace TestProject.Controller
             var updatedUser = new User
             {
                 Id = 1,
-                Name = "test2 name",
-                Address = "test address updated",
-                Phone = "9876543210",
+                Name = "updated name",
                 Email = "updated@gmail.com",
-                FileName = "updatedimage.jpg"
+                Phone = "0987654321",
+                Address = "updated address"
             };
 
             // Act
@@ -114,40 +93,34 @@ namespace TestProject.Controller
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirectToActionResult.ActionName);
 
-            var updatedUserDb = await _mockDbContext.Users.FindAsync(1);
-            Assert.Equal("test2 name", updatedUserDb?.Name);
-            Assert.Equal("test address updated", updatedUserDb?.Address);
-            Assert.Equal("9876543210", updatedUserDb?.Phone);
-            Assert.Equal("updated@gmail.com", updatedUserDb?.Email);
-            Assert.Equal("updatedimage.jpg", updatedUserDb?.FileName);
+           
+            _userRepositoryMock.Verify(repo => repo.UpdateUserAsync(It.IsAny<User>()), Times.Once);
         }
 
         [Fact]
-        public async Task Delete_ExistingUser_ShouldRedirectToIndex_AndDeleteFile()
+        public async Task Delete_ExistingUser_ShouldReturnNoContent()
         {
             // Arrange
-            await ClearDatabaseAsync(); // Clear database before running the test
-
-            var userDelete = new User
+            var userIdToDelete = 1;
+            var existingUser = new User
             {
-                Id = 1,
+                Id = userIdToDelete,
                 Name = "test name",
-                Address = "test address",
-                Phone = "4589636897",
                 Email = "test@gmail.com",
-                FileName = "testimage.jpg"
+                Phone = "1234567890",
+                Address = "test address"
             };
 
-            await _mockDbContext.Users.AddAsync(userDelete);
-            await _mockDbContext.SaveChangesAsync();
+            _userRepositoryMock.Setup(repo => repo.GetUserById(userIdToDelete)).ReturnsAsync(existingUser);
 
             // Act
-            var result = await _controller.Delete(userDelete.Id);
+            var result = await _controller.Delete(userIdToDelete);
 
             // Assert
-            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
-            Assert.Equal(0, await _mockDbContext.Users.CountAsync()); // Ensure user is deleted
+            var noContentResult = Assert.IsType<NoContentResult>(result);
+
+          
+            _userRepositoryMock.Verify(repo => repo.DeleteUserAsync(userIdToDelete), Times.Once);
         }
     }
 }

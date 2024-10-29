@@ -30,7 +30,7 @@ const List = ({ data, handleDelete, handleEdit }) => {
               <td>{user.designation}</td>
               <td>{user.employeeSurname}</td>
               <td>
-                {user.fileName && (
+                {user.fileNam && (
                   <button
                     className="download-btn"
                     onClick={() => handleDownload(user.id)}

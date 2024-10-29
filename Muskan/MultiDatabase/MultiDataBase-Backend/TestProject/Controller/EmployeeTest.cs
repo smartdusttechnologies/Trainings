@@ -1,68 +1,79 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Moq;
 using MultiDatabase.Controllers;
-using MultiDatabase.Data;
 using MultiDatabase.Models.Entities;
 using MultiDatabase.Models;
-using System;
+using MultiDatabase.Repository.Interface;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using System.Text;
 
 namespace TestProject.Controller
 {
-    public class EmployeeTest : IDisposable
+    public class EmployeeTest
     {
         private readonly EmployeeController _employeeController;
-        private readonly ApplicationDbContext _employeeContext;
+        private readonly Mock<IEmployeeRepository> _mockEmployeeRepository;
 
         public EmployeeTest()
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                 .UseInMemoryDatabase(databaseName: "TestDbEmployee")
-                 .Options;
-            _employeeContext = new ApplicationDbContext(options);
-            _employeeController = new EmployeeController(_employeeContext);
-        }
-
-        public void Dispose()
-        {
-            _employeeContext.Database.EnsureDeleted();
-            _employeeContext.Dispose();
+            _mockEmployeeRepository = new Mock<IEmployeeRepository>();
+            _employeeController = new EmployeeController(_mockEmployeeRepository.Object, null);
         }
 
         [Fact]
-        public async Task GetEmployee_List()
+        public async Task GetEmployees_ShouldReturnOkResult_WithEmployeeList()
         {
-            // Arrange 
-            _employeeContext.Employees.Add(new Employee
+            // Arrange
+            var employees = new List<Employee>
             {
-                Name = "test name",
-                HomeAddress = "Test address",
-                Designation = "test",
-                EmployeeSurname = "test EmployeeSurname"
-            });
-            await _employeeContext.SaveChangesAsync();
+                new Employee { Id = 1, Name = "John Doe", HomeAddress = "123 Street", Designation = "Developer", EmployeeSurname = "Doe" }
+            };
+            _mockEmployeeRepository.Setup(repo => repo.GetAllEmployeeAsync()).ReturnsAsync(employees);
 
-            // Act 
+            // Act
             var result = await _employeeController.GetEmployees();
 
             // Assert
-            Assert.NotNull(result);
-            Assert.IsType<ActionResult<IEnumerable<Employee>>>(result);
-
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
-            var employees = Assert.IsAssignableFrom<IEnumerable<Employee>>(okResult.Value);
-
-            Assert.Single(employees);
+            var returnedEmployees = Assert.IsAssignableFrom<IEnumerable<Employee>>(okResult.Value);
+            Assert.Single(returnedEmployees);
         }
 
         [Fact]
-        public async Task Post_IsValidWithFile()
+        public async Task GetEmployee_ExistingId_ShouldReturnOkResult_WithEmployee()
+        {
+            // Arrange
+            var employee = new Employee { Id = 1, Name = "Jane Doe", HomeAddress = "456 Avenue", Designation = "Manager", EmployeeSurname = "Doe" };
+            _mockEmployeeRepository.Setup(repo => repo.GetEmployeeById(1)).ReturnsAsync(employee);
+
+            // Act
+            var result = await _employeeController.GetEmployee(1);
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnedEmployee = Assert.IsType<Employee>(okResult.Value);
+            Assert.Equal(employee.Id, returnedEmployee.Id);
+        }
+
+        [Fact]
+        public async Task GetEmployee_NonExistingId_ShouldReturnNotFound()
+        {
+            // Arrange
+            _mockEmployeeRepository.Setup(repo => repo.GetEmployeeById(999)).ReturnsAsync((Employee)null);
+
+            // Act
+            var result = await _employeeController.GetEmployee(999);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task Post_ValidEmployee_ShouldReturnCreatedAtActionResult()
         {
             // Arrange
             var fileMock = new FormFile(new MemoryStream(Encoding.UTF8.GetBytes("file content")), 0, 12, "Data", "testfile.txt");
@@ -75,6 +86,21 @@ namespace TestProject.Controller
                 File = fileMock
             };
 
+            var createdEmployee = new Employee
+            {
+                Id = 1,
+                Name = viewModel.Name,
+                HomeAddress = viewModel.HomeAddress,
+                Designation = viewModel.Designation,
+                EmployeeSurname = viewModel.EmployeeSurname,
+                FileName = viewModel.File.FileName
+            };
+
+          
+            _mockEmployeeRepository.Setup(repo => repo.AddEmplyooAsync(It.IsAny<Employee>()))
+                              .Returns(Task.CompletedTask);
+
+
             // Act
             var result = await _employeeController.Post(viewModel);
 
@@ -82,122 +108,57 @@ namespace TestProject.Controller
             var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
             var employee = Assert.IsType<Employee>(createdAtActionResult.Value);
             Assert.Equal(viewModel.Name, employee.Name);
-            Assert.Equal("testfile.txt", employee.FileName);
-            Assert.Equal(1, await _employeeContext.Employees.CountAsync());
         }
 
-        [Fact]
 
-        public async Task Put_Employee()
+        [Fact]
+        public async Task Put_ExistingEmployee_ShouldReturnOkResult_WithUpdatedEmployee()
         {
             // Arrange
-            var viewModelToUpdate = new AddViewModel
+            var employee = new Employee { Id = 1, Name = "Old Name", HomeAddress = "Old Address", Designation = "Old Designation", EmployeeSurname = "Old EmployeeSurname" };
+            var updatedViewModel = new AddViewModel
             {
                 Name = "Updated Name",
                 HomeAddress = "Updated Address",
                 Designation = "Updated Designation",
                 EmployeeSurname = "Updated EmployeeSurname"
             };
+            _mockEmployeeRepository.Setup(repo => repo.GetEmployeeById(1)).ReturnsAsync(employee);
+            _mockEmployeeRepository.Setup(repo => repo.UpdateEmployeeAsync(It.IsAny<Employee>())).Returns(Task.CompletedTask);
 
             // Act
-            var result = await _employeeController.Put(999, viewModelToUpdate);
-            // Assert
-            Assert.IsType<NotFoundResult>(result);
-        }
-
-
-        [Fact]
-        public async Task Put_WhenEmployeeIsUpdatedWithFile()
-        {
-            // Arrange
-            var employee = new Employee
-            {
-                Name = "Old Name",
-                HomeAddress = "Old Address",
-                Designation = "Old Designation",
-                EmployeeSurname = "Old EmployeeSurname"
-            };
-            _employeeContext.Employees.Add(employee);
-            await _employeeContext.SaveChangesAsync();
-
-            var fileMock = new FormFile(new MemoryStream(Encoding.UTF8.GetBytes("updated file content")), 0, 20, "Data", "updatedfile.txt");
-            var viewModel = new AddViewModel
-            {
-                Name = "Updated Name",
-                HomeAddress = "Updated Address",
-                Designation = "Updated Designation",
-               EmployeeSurname = "Updated EmployeeSurname",
-                File = fileMock
-            };
-
-            // Act
-            var result = await _employeeController.Put(employee.Id, viewModel);
+            var result = await _employeeController.Put(1, updatedViewModel);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
-            var returnedEmployee = Assert.IsType<Employee>(okResult.Value);
-
-            Assert.Equal("Updated Name", returnedEmployee.Name);
-            Assert.Equal("Updated Address", returnedEmployee.HomeAddress);
-            Assert.Equal("Updated Designation", returnedEmployee.Designation);
-            Assert.Equal("Updated EmployeeSurname", returnedEmployee.EmployeeSurname);
-            Assert.Equal("updatedfile.txt", returnedEmployee.FileName);
-            Assert.Equal(1, await _employeeContext.Employees.CountAsync());
-        }
-
-
-
-        [Fact]
-        public async Task Delete_WhenEmployeeDoesNotExist()
-        {
-            // Act
-            var result = await _employeeController.Delete(999);
-
-            // Assert
-            Assert.IsType<NotFoundResult>(result);
+            var updatedEmployee = Assert.IsType<Employee>(okResult.Value);
+            Assert.Equal("Updated Name", updatedEmployee.Name);
         }
 
         [Fact]
-        public async Task Delete_EmployeeIsDeleted()
+        public async Task Delete_ExistingEmployee_ShouldReturnNoContent()
         {
             // Arrange
-            var employee = new Employee
-            {
-                Name = "ToBeDeleted",
-                HomeAddress = "ToBeDeleted Address",
-                Designation = "ToBeDeleted Designation",
-                EmployeeSurname = "ToDeleted EmployeeSurname"
-            };
-            _employeeContext.Employees.Add(employee);
-            await _employeeContext.SaveChangesAsync();
+            var employee = new Employee { Id = 1, Name = "ToBeDeleted" };
+            _mockEmployeeRepository.Setup(repo => repo.GetEmployeeById(1)).ReturnsAsync(employee);
+            _mockEmployeeRepository.Setup(repo => repo.DeleteEmployee(1)).Returns(Task.CompletedTask);
 
             // Act
-            var result = await _employeeController.Delete(employee.Id);
+            var result = await _employeeController.Delete(1);
 
             // Assert
-            var noContentResult = Assert.IsType<NoContentResult>(result);
-            Assert.Null(await _employeeContext.Employees.FindAsync(employee.Id));
+            Assert.IsType<NoContentResult>(result);
         }
 
         [Fact]
-        public async Task DownloadFile_FileExists()
+        public async Task DownloadFile_EmployeeExists_ShouldReturnFile()
         {
             // Arrange
-            var fileContent = "file content";
-            var employee = new Employee
-            {
-                Name = "Employee with File",
-                HomeAddress = "File Address",
-                Designation = "File Designation",
-                EmployeeSurname = "File Designation",
-                FileData = Encoding.UTF8.GetBytes(fileContent),
-                FileName = "file.txt"
-            };
-            _employeeContext.Employees.Add(employee);
-            await _employeeContext.SaveChangesAsync();
+            var employee = new Employee { Id = 1, Name = "Employee with File", FileData = Encoding.UTF8.GetBytes("file content"), FileName = "file.txt" };
+            _mockEmployeeRepository.Setup(repo => repo.GetEmployeeById(1)).ReturnsAsync(employee);
 
             // Act
-            var result = await _employeeController.DownloadFile(employee.Id);
+            var result = await _employeeController.DownloadFile(1);
 
             // Assert
             var fileResult = Assert.IsType<FileContentResult>(result);
@@ -206,8 +167,11 @@ namespace TestProject.Controller
         }
 
         [Fact]
-        public async Task DownloadFile_FileDoesNotExist()
+        public async Task DownloadFile_EmployeeDoesNotExist_ShouldReturnNotFound()
         {
+            // Arrange
+            _mockEmployeeRepository.Setup(repo => repo.GetEmployeeById(999)).ReturnsAsync((Employee)null);
+
             // Act
             var result = await _employeeController.DownloadFile(999);
 

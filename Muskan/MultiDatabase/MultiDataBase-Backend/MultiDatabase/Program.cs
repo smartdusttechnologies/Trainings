@@ -5,30 +5,54 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using MultiDatabase.Data; 
 using Microsoft.EntityFrameworkCore.SqlServer;
 using TestProject.DbContexts;
+using MultiDatabase.Repository.Interface;
+using MultiDatabase.Repository;
 
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+var environment = builder.Configuration["Environment"] ?? "Production"; 
 
-
-if (environment == "Test" && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
+if (environment.Equals("Development", StringComparison.OrdinalIgnoreCase))
 {
-    builder.Services.AddDbContext<EmployeeDbContext>(options =>
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseInMemoryDatabase("DevDb")); 
+}
+else if (environment.Equals("Test", StringComparison.OrdinalIgnoreCase) && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseInMemoryDatabase("TestData"));
+    builder.Services.AddDbContext<Application2DbContext>(options =>
         options.UseInMemoryDatabase("TestDb"));
-    builder.Services.AddDbContext<UserTestDbContext>(options =>
-    options.UseInMemoryDatabase("TestDb"));
 }
 else
 {
-    // Configure MySQL DbContext
+    // Configure MySQL DbContext for Production
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
         new MySqlServerVersion(new Version(8, 0, 21))));
-
     builder.Services.AddDbContext<Application2DbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
 }
+
+//if (environment == "Test" && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
+//{
+//    builder.Services.AddDbContext<EmployeeDbContext>(options =>
+//        options.UseInMemoryDatabase("TestDb"));
+//    builder.Services.AddDbContext<UserTestDbContext>(options =>
+//    options.UseInMemoryDatabase("TestDb"));
+//}
+//else
+//{
+//    // Configure MySQL DbContext
+//    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//        options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
+//        new MySqlServerVersion(new Version(8, 0, 21))));
+
+//    builder.Services.AddDbContext<Application2DbContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
+//}
+
 // Configure SQL Server DbContext
 
 
@@ -60,7 +84,8 @@ else
 
 //}
 
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddControllers();
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
