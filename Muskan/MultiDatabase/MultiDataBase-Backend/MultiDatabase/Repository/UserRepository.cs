@@ -3,11 +3,11 @@ using MultiDatabase.Data;
 using MultiDatabase.Models.Entities;
 using MultiDatabase.Repository.Interface;
 
-namespace MultiDatabase.Repository
+namespace MultiDatabase.Repository//sql //mysql //inmemory
 {
     public class UserRepository : IUserRepository
     {
-        private readonly Application2DbContext _context;
+        private readonly Application2DbContext _context; //generic repository
 
         public UserRepository(Application2DbContext context)
         {

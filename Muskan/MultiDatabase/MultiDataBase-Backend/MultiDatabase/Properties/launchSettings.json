@@ -15,7 +15,7 @@
       "applicationUrl": "https://localhost:7122;http://localhost:5123",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "USE_IN_MEMORY_DB": "true"
+        //"USE_IN_MEMORY_DB": "false"
       }
     },
     "IIS Express": {

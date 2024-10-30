@@ -15,7 +15,7 @@ namespace MultiDatabase.Controllers
     {
         //private readonly DbContext dbContext;
         //private readonly UserTestDbContext _ucontext;
-        private readonly IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository; //data access layer
 
 
         public UserController(IUserRepository userRepository)

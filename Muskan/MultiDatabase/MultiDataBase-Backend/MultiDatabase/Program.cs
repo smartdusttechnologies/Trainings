@@ -11,29 +11,49 @@ using MultiDatabase.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-var environment = builder.Configuration["Environment"] ?? "Production"; 
+bool useInMemoryDb = builder.Configuration.GetValue<bool>("UseInMemoryDb"); 
 
-if (environment.Equals("Development", StringComparison.OrdinalIgnoreCase))
+if (useInMemoryDb)
 {
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseInMemoryDatabase("DevDb")); 
-}
-else if (environment.Equals("Test", StringComparison.OrdinalIgnoreCase) && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
-{
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseInMemoryDatabase("TestData"));
+    
     builder.Services.AddDbContext<Application2DbContext>(options =>
-        options.UseInMemoryDatabase("TestDb"));
+        options.UseInMemoryDatabase("InMemoryDb"));
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseInMemoryDatabase("InMemoryDb"));
 }
 else
 {
-    // Configure MySQL DbContext for Production
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
-        new MySqlServerVersion(new Version(8, 0, 21))));
+    
     builder.Services.AddDbContext<Application2DbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+      options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
+      new MySqlServerVersion(new Version(8, 0, 21))));
 }
+
+//var environment = builder.Configuration["Environment"] ?? "Production"; 
+
+//if (environment.Equals("Development", StringComparison.OrdinalIgnoreCase))
+//{
+//    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//        options.UseInMemoryDatabase("DevDb")); 
+//}
+//else if (environment.Equals("Test", StringComparison.OrdinalIgnoreCase) && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
+//{
+//    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//        options.UseInMemoryDatabase("TestData"));
+//    builder.Services.AddDbContext<Application2DbContext>(options =>
+//        options.UseInMemoryDatabase("TestDb"));
+//}
+//else
+//{
+    // Configure MySQL DbContext for Production
+    //builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    //    options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
+    //    new MySqlServerVersion(new Version(8, 0, 21))));
+    //builder.Services.AddDbContext<Application2DbContext>(options =>
+    //    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
+//}
 
 //if (environment == "Test" && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")
 //{
@@ -95,7 +115,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:3000")
+        builder => builder.WithOrigins("http://localhost:3000", "http://localhost:3001")
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
