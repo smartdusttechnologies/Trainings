@@ -1,0 +1,147 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\20241014104525_Initial2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MultiDatabase\\Migrations\\20241014104525_Initial2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\Application2Db\\20241014104513_Initial1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MultiDatabase\\Migrations\\Application2Db\\20241014104513_Initial1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\Application2Db\\20241014103744_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MultiDatabase\\Migrations\\Application2Db\\20241014103744_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\users\\raj\\source\\repos\\multidatabase\\multidatabase\\migrations\\20241014103729_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\migrations\\20241014103729_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\users\\raj\\source\\repos\\multidatabase\\multidatabase\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\users\\raj\\source\\repos\\multidatabase\\multidatabase\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\users\\raj\\source\\repos\\multidatabase\\multidatabase\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 372,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20241014104525_Initial2.cs",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\20241014104525_Initial2.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Migrations\\20241014104525_Initial2.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\20241014104525_Initial2.cs",
+              "RelativeToolTip": "MultiDatabase\\Migrations\\20241014104525_Initial2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T10:45:26.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20241014104513_Initial1.cs",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\Application2Db\\20241014104513_Initial1.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Migrations\\Application2Db\\20241014104513_Initial1.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\Application2Db\\20241014104513_Initial1.cs",
+              "RelativeToolTip": "MultiDatabase\\Migrations\\Application2Db\\20241014104513_Initial1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T10:45:13.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20241014103744_Initial.cs",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\Application2Db\\20241014103744_Initial.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Migrations\\Application2Db\\20241014103744_Initial.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\Application2Db\\20241014103744_Initial.cs",
+              "RelativeToolTip": "MultiDatabase\\Migrations\\Application2Db\\20241014103744_Initial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T10:37:44.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20241014103729_Initial.cs",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\20241014103729_Initial.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Migrations\\20241014103729_Initial.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Migrations\\20241014103729_Initial.cs",
+              "RelativeToolTip": "MultiDatabase\\Migrations\\20241014103729_Initial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T10:37:30.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\appsettings.json",
+              "RelativeDocumentMoniker": "MultiDatabase\\appsettings.json",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\appsettings.json",
+              "RelativeToolTip": "MultiDatabase\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-14T10:31:14.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MultiDatabase\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T10:29:19.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Program.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Program.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\MultiDatabase\\MultiDatabase\\Program.cs",
+              "RelativeToolTip": "MultiDatabase\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowA8AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T10:25:30.482Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

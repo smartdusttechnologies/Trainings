@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<MultiDatabase.Models.Entities.User>
+
+<h1>This is User data section</h1>
+<div>
+    <a  class="btn btn-dark" asp-controller="User" asp-action="Add">Create</a>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+           
+            @foreach (var user in Model)
+        {
+        <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Address</td>
+                <td>@user.Phone</td>
+               
+
+                <td>
+                    <a class="btn btn-primary" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@user.Id" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                    </form>
+                </td>
+        </tr>
+            }
+        
+      
+    </tbody>
+</table>

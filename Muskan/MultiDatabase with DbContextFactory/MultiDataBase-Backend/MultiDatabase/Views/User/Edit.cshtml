@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model MultiDatabase.Models.Entities.User
+<h1>Edit User</h1>
+
+
+<div class="container">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <!-- Added enctype for file upload -->
+        <div class="form-group mt-3">
+            <label asp-for="Name" for="formGroupExampleInput">Enter Name</label>
+            <input asp-for="Name" type="text" class="form-control mt-3" id="formGroupExampleInput">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="Address" for="formGroupExampleInput">Enter Address</label>
+            <input asp-for="Address" type="text" class="form-control mt-3" id="formGroupExampleInput">
+            <span class="text-danger" asp-validation-for="Address"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="Email" for="formGroupExampleInput">Enter Email</label>
+            <input asp-for="Email" type="email" class="form-control mt-3" id="formGroupExampleInput">
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="Phone" for="formGroupExampleInput">Enter Phone</label>
+            <input asp-for="Phone" type="number" minlength="10" maxlength="10" class="form-control mt-3" id="formGroupExampleInput">
+            <span class="text-danger" asp-validation-for="Phone"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="File" style="border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;">
+                Upload New File
+                <input style="display:none;" type="file" asp-for="File" class="form-control" />
+            </label>
+            <span asp-validation-for="File" class="text-danger"></span>
+
+            @if (Model.FileName != null)
+            {
+                <p>Current File: @Model.FileName</p>
+            }
+        </div>
+
+        <div class="btn mt-3">
+            <button class="btn btn-primary" type="submit">Update</button>
+            <a asp-action="DownloadFile" asp-route-id="@Model.Id" class="btn btn-primary">
+                Download File
+            </a>
+        </div>
+    </form>
+</div>

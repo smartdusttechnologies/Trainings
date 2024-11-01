@@ -47,12 +47,12 @@ else
 //}
 //else
 //{
-    // Configure MySQL DbContext for Production
-    //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    //    options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
-    //    new MySqlServerVersion(new Version(8, 0, 21))));
-    //builder.Services.AddDbContext<Application2DbContext>(options =>
-    //    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
+// Configure MySQL DbContext for Production
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseMySql(builder.Configuration.GetConnectionString("EmployeePortal"),
+//    new MySqlServerVersion(new Version(8, 0, 21))));
+//builder.Services.AddDbContext<Application2DbContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerUserPortal")));
 //}
 
 //if (environment == "Test" && Environment.GetEnvironmentVariable("USE_IN_MEMORY_DB") == "true")

@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  align-items: center;
+  background-color: beige;
+}
+.navbar {
+  background-color: #333;
+  height: 60px;
+
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+.navbar a:hover {
+  color: #b3074c;
+}
+.bold {
+  font-size: 30px;
+}
+/* .bold:hover {
+  color: #b3074c;
+} */
+.container {
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+}
+.form {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  margin-top: 50px;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+.form-input {
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 18px;
+  padding: 5px;
+}
+.btn {
+  color: white;
+  background-color: green;
+  border: none;
+  font-size: 18px;
+  padding: 5px;
+}
+.btn:hover {
+  color: green;
+  background-color: white;
+  border: 2px solid green;
+}
+.table {
+  background-color: white;
+  margin: auto;
+  margin-top: 20px;
+  width: 90%;
+}
+.action {
+  padding: 10px;
+}
+.table-heading,
+td,
+th {
+  padding: 15px;
+  text-align: left;
+}
+.table-heading {
+  color: white;
+  background-color: #333;
+}
+.btn1 {
+  border: none;
+  color: white;
+}
+.btn-edi {
+  background-color: rgb(72, 139, 194);
+  padding: 10px;
+}
+.btn-del {
+  background-color: rgb(255, 0, 0);
+  padding: 10px;
+}
+.btn-edi:hover {
+  color: rgb(72, 139, 194);
+
+  background-color: white;
+  border: 1px solid rgb(72, 139, 194);
+}
+.btn-del:hover {
+  color: rgb(255, 0, 0);
+
+  background-color: white;
+  border: 1px solid rgb(255, 0, 0);
+}

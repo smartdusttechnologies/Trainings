@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  align-items: center;
+  background-color: beige;
+}
+.navbar {
+  background-color: #333;
+  height: 60px;
+
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+.navbar a:hover {
+  color: #b3074c;
+}
+.bold {
+  font-size: 30px;
+}
+/* .bold:hover {
+  color: #b3074c;
+} */
+.container {
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+}
+.form {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  margin-top: 50px;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+.form-input {
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 18px;
+  padding: 5px;
+}
+.btn {
+  color: white;
+  background-color: green;
+  border: none;
+  font-size: 18px;
+  padding: 5px;
+}
+.btn:hover {
+  color: green;
+  background-color: white;
+  border: 2px solid green;
+}
+.table {
+  background-color: white;
+  margin: auto;
+  margin-top: 20px;
+  width: 90%;
+}
+.table-heading,
+td,
+th {
+  padding: 15px;
+  text-align: left;
+}
+.table-heading {
+  color: white;
+  background-color: #333;
+}
+.table-heading:hover {
+  color: #333;
+  background-color: rgb(252, 239, 243);
+  transition: all 0.4s ease-in-out;
+}
+.btn1 {
+  border: none;
+  color: white;
+  width: 60px;
+  cursor: pointer;
+}
+/* td:hover {
+  background-color: #333;
+  color: white;
+  transition: all 0.4s ease-in-out;
+} */
+.btn-edi {
+  height: 35px;
+  width: 60px;
+  background-color: rgb(72, 139, 194);
+  padding: 10px;
+  margin-right: 10px;
+}
+.btn-del {
+  background-color: rgb(255, 0, 0);
+  padding: 10px;
+  height: 35px;
+  width: 60px;
+}
+.btn-edi:hover {
+  color: rgb(72, 139, 194);
+  height: 35px;
+  width: 60px;
+  background-color: white;
+  border: 1px solid rgb(72, 139, 194);
+}
+.download-btn {
+  background-color: rgb(236, 139, 194);
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+}
+.download-btn:hover {
+  color: rgb(236, 139, 194);
+  background-color: white;
+  background-color: white;
+  border: 1px solid rgb(236, 139, 194);
+}
+.btn-del:hover {
+  color: rgb(255, 0, 0);
+  height: 35px;
+  width: 60px;
+  background-color: white;
+  border: 1px solid rgb(255, 0, 0);
+}
