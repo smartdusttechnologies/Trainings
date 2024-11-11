@@ -1,0 +1,17 @@
+FROM node20
+
+
+WORKDIR /react-app
+COPY public /react-app/
+COPY package*.json ./react-app/
+
+RUN npm install
+
+
+COPY . ./
+RUN npm run build
+
+EXPOSE 300
+
+
+CMD ["npm", "start"]

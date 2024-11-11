@@ -1,0 +1,41 @@
+# Build directories
+Multidatabase/bin/
+TestProject/bin/
+Multidatabase/obj/
+TestProject/obj/
+
+# User-specific files
+.user
+.vs/
+.vscode/
+.idea/
+history/
+
+# Compiled binary files
+*.dll
+*.exe
+
+# Logs and temporary files
+*.log
+*.tmp
+tmp/
+
+# Environment and secrets
+secrets/
+.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Package directories
+node_modules/
+dist/
+
+# Rider project files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp

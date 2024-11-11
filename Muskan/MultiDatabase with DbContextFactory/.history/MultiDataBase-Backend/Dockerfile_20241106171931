@@ -1,0 +1,32 @@
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /multiDatabase
+
+# Copy only the necessary project files and directories
+COPY MultiDatabase/MultiDatabase.csproj MultiDatabase/
+COPY TestProject/TestProject.csproj TestProject/
+RUN dotnet restore MultiDatabase/MultiDatabase.csproj
+
+# Copy the entire project directories
+COPY MultiDatabase/ MultiDatabase/
+COPY TestProject/ TestProject/
+
+# Build and publish the application
+RUN dotnet publish MultiDatabase/MultiDatabase.csproj -c Release -o /app
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+
+# Copy the build output from the build stage to the runtime stage
+COPY --from=build /app .
+
+# Expose the required port
+EXPOSE 7122
+
+# Set environment variables
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=http://+:7122
+
+# Run the application
+ENTRYPOINT ["dotnet", "MultiDatabase.dll"]

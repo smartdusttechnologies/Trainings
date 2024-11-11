@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Backend service
+  app:
+    build:
+      context: ./Multidatabase-Backend
+      dockerfile: Dockerfile
+    ports:
+      - "7122:7122"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:7122
+      - ConnectionStrings__EmployeePortal=Server=mysql-db;port=3306;Database=users;username=root;password=admin@123
+      - ConnectionStrings__SqlServerUserPortal=Server=sqlserver-db,1433;Database=userdb;User Id=sa;Password=admin@123
+    depends_on:
+      - mysql-db
+      - sqlserver-db
+
+  # MySQL database service
+  mysql-db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin@123
+      MYSQL_DATABASE: users
+    ports:
+      - "3306:3306"
+    networks:
+      - multiDatabaseNetwork
+
+  # SQL Server database service
+  sqlserver-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "admin@123"
+    ports:
+      - "1433:1433"
+    networks:
+      - multiDatabaseNetwork
+
+  # Frontend service (React app)
+  frontend:
+    build:
+      context: ./Multidatabase-Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - app
+    networks:
+      - multiDatabaseNetwork
+
+networks:
+  multiDatabaseNetwork:
+    driver: bridge

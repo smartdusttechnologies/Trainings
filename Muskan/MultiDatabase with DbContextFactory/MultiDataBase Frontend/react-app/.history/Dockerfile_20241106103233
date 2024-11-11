@@ -1,0 +1,18 @@
+
+FROM node
+
+
+WORKDIR /react-app
+
+COPY package*.json ./
+
+RUN npm install
+
+
+COPY . ./
+RUN npm run build
+
+EXPOSE 300
+
+
+CMD ["npm", "start"]

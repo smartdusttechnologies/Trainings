@@ -18,7 +18,7 @@ void ConfigureDbContexts(IServiceCollection services, IConfiguration configurati
     ConfigureDbContext<ApplicationDbContext>(services, configuration, "ApplicationDbContext");
     ConfigureDbContext<Application2DbContext>(services, configuration, "Application2DbContext");
 }
-
+//service
 void ConfigureDbContext<TContext>(IServiceCollection services, IConfiguration configuration, string dbContextKey) where TContext : DbContext
 {
     var dbType = configuration[$"DbContextSettings:{dbContextKey}:Type"];

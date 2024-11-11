@@ -1,0 +1,6 @@
+FROM node 
+WORKDIR /react-app
+Copy ./package.json /react-app
+RUN npm install 
+COPY ./react-app 
+CMD ["npm","start"]

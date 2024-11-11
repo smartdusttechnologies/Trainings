@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7122:7122"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:7122
+      - ConnectionStrings__EmployeePortal=Server=mysql-db;port=3306;Database=users;username=root;password=admin@123
+      - ConnectionStrings__SqlServerUserPortal=Server=sqlserver-db,1433;Database=userdb;User Id=sa;Password=admin@123
+    depends_on:
+      - mysql-db
+      - sqlserver-db
+
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: admin@123
+      MYSQL_DATABASE: users
+    ports:
+      - "3306:3306"
+
+  sqlserver-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "admin@123"
+    ports:
+      - "1433:1433"

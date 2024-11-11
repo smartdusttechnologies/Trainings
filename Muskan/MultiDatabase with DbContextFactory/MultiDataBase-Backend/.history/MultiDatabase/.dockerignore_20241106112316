@@ -1,0 +1,29 @@
+# Ignore .NET build folders
+**/bin/
+**/obj/
+
+# Ignore user-specific files
+*.user
+*.vs/
+.vscode/
+.idea/
+
+# Ignore build artifacts
+*.dll
+*.exe
+
+# Ignore logs and temporary files
+*.log
+tmp/
+*.tmp
+
+# Ignore any secrets or sensitive files (if not using env variables)
+secrets/
+.env
+
+# Ignore Dockerfile itself (optional if you want to keep your image minimal)
+Dockerfile
+docker-compose.yml
+
+# Ignore test projects (if not needed in production)
+**/TestProjectName/
