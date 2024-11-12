@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  # Backend service
   app:
     build:
-      context: ./Multidatabase-Backend
-      dockerfile: Dockerfile
+      context: .  # Assuming this is set to the root containing MultiDataBase-Backend
+      dockerfile: ./MultiDataBase-Backend/Dockerfile
+    container_name: basic_container
     ports:
       - "7122:7122"
     environment:
@@ -16,6 +16,9 @@ services:
     depends_on:
       - mysql-db
       - sqlserver-db
+    networks:
+      - multiDatabaseNetwork
+ 
 
   # MySQL database service
   mysql-db:
@@ -42,7 +45,7 @@ services:
   # Frontend service (React app)
   frontend:
     build:
-      context: ./Multidatabase-Frontend
+      context: ./MultiDataBase Frontend/react-app
       dockerfile: Dockerfile
     ports:
       - "3000:3000"

@@ -1,23 +1,22 @@
-# Use Node 20 for the build stage
-FROM node:20
-WORKDIR /react-app
 
-# Copy files into the container
-COPY package.json /react-app/package.json
-COPY public /react-app/public
-COPY src /react-app/src
+FROM node:20 AS build
+WORKDIR /reacts
 
-# Install dependencies
+
+COPY ./MultiDataBase Frontend/react-app/package.json ./package.json
+COPY ./MultiDataBase Frontend/react-app/package-lock.json ./package-lock.json
+
+
 RUN npm install
 
-# Copy all source files
-COPY . ./ 
 
-# Build the React app
+COPY ./MultiDataBase Frontend/react-app/ ./reacts
+
+
 RUN npm run build
 
-# Expose port 3000 for the React app
+
 EXPOSE 3000
 
-# Start the React app
-CMD ["npm", "start"]
+
+CMD ["npm", "run", "start"]
