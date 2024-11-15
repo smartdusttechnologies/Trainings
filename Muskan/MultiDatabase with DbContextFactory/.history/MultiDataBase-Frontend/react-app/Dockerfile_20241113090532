@@ -1,0 +1,18 @@
+
+FROM node:20
+
+WORKDIR /reacts
+# C:\testing\Trainings\Muskan\MultiDatabase with DbContextFactory\MultiDataBase-Frontend\react-app\package.json
+COPY ./MultiDataBase-Frontend/react-app/package.json ./
+COPY ./MultiDatabase with DbContextFactoryMultiDataBase-Frontend/react-app/package-lock.json ./
+
+
+
+
+RUN npm install
+
+
+EXPOSE 3000
+
+
+CMD ["npm", "run", "start"]

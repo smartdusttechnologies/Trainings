@@ -1,0 +1,16 @@
+FROM node:20
+
+WORKDIR /reacts
+
+# Copy package.json and package-lock.json for dependency installation
+COPY "./MultiDataBase-Frontend/react-app/package.json" ./package.json
+COPY "./MultiDataBase-Frontend/react-app/package-lock.json" ./package-lock.json
+
+# Install dependencies
+RUN npm install
+
+# Expose the port React uses for development
+EXPOSE 3000
+
+# Run the React app in development mode
+CMD ["npm", "run", "start"]

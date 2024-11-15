@@ -1,0 +1,20 @@
+
+FROM node:20
+
+WORKDIR /reacts
+
+COPY "./MultiDataBase Frontend/react-app/package.json" ./
+COPY "./MultiDataBase Frontend/react-app/package-lock.json" ./
+
+COPY "./MultiDataBase Frontend/react-app/src" ./src
+COPY "./MultiDataBase Frontend/react-app/public" ./
+
+RUN npm install
+
+
+COPY "./MultiDataBase Frontend/react-app/" ./
+
+EXPOSE 3000
+
+
+CMD ["npm", "run", "start"]

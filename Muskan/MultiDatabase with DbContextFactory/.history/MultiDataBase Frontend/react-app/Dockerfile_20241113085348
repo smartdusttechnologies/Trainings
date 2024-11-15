@@ -1,0 +1,64 @@
+
+FROM node:20 AS build
+
+WORKDIR /reacts
+
+FROM node:20 AS build
+
+
+WORKDIR /reacts
+
+COPY ./MultiDataBase\ Frontend/react-app/package.json ./
+COPY ./MultiDataBase\ Frontend/react-app/package-lock.json ./
+
+
+RUN npm install
+
+# Copy the rest of the application code
+COPY ./MultiDataBase\ Frontend/react-app/ ./
+
+# Build the application
+RUN npm run build
+
+# Stage 2: Serve the React App
+FROM node:20 AS production
+
+# Install a lightweight static server (e.g., serve)
+RUN npm install -g serve
+
+# Copy the build output from Stage 1
+COPY --from=build /reacts/build /app
+
+# Expose the port
+EXPOSE 3000
+
+# Use serve to serve the static files on port 3000
+CMD ["serve", "-s", "/app", "-l", "3000"]
+tely for dependency caching
+COPY ./MultiDataBase Frontend/react-app/package.json ./
+COPY ./MultiDataBase Frontend/react-app/package-lock.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY ./MultiDataBase Frontend/react-app/ ./
+
+# Build the application
+RUN npm run build
+
+
+# Stage 2: Serve the React App
+FROM node:20 AS production
+
+# Install a lightweight static server (e.g., serve)
+RUN npm install -g serve
+
+# Copy the build output from Stage 1
+COPY --from=build /reacts/build /app
+
+# Expose the port
+EXPOSE 3000
+
+# Use serve to serve the static files on port 3000
+CMD ["serve", "-s", "/app", "-l", "3000"]
