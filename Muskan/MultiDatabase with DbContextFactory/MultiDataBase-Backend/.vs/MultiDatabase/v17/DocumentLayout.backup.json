@@ -51,12 +51,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MultiDatabase",
+              "Title": "MultiDatabase.csproj",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\MultiDatabase.csproj",
               "RelativeDocumentMoniker": "MultiDatabase\\MultiDatabase.csproj",
               "ToolTip": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\MultiDatabase.csproj",
               "RelativeToolTip": "MultiDatabase\\MultiDatabase.csproj",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAABWAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwAwAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-11-06T12:21:44.713Z",
               "EditorCaption": ""
@@ -71,8 +71,7 @@
               "RelativeToolTip": "MultiDatabase\\Properties\\launchSettings.json",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-06T11:40:04.68Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-06T11:40:04.68Z"
             },
             {
               "$type": "Document",
@@ -120,8 +119,7 @@
               "RelativeToolTip": "MultiDatabase\\appsettings.json",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-04T17:09:51.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-04T17:09:51.898Z"
             },
             {
               "$type": "Document",
@@ -133,8 +131,7 @@
               "RelativeToolTip": "MultiDatabase\\Dockerfile",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAAA8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-04T03:08:52.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-04T03:08:52.204Z"
             },
             {
               "$type": "Document",
@@ -146,8 +143,7 @@
               "RelativeToolTip": "MultiDatabase\\Program.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T03:05:58.454Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-04T03:05:58.454Z"
             },
             {
               "$type": "Document",
