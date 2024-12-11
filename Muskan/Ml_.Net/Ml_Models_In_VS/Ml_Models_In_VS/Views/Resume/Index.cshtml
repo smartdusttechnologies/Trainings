@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Resume Prediction and Similarity";
+}
+
+
+
+
+<form asp-action="PredictCategory" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="resumes">Upload Resumes (PDF):</label>
+        <input type="file" name="resumes" id="resumes" accept="application/pdf" multiple class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit for Prediction</button>
+</form>
+
+@{
+    var predictedCategories = ViewBag.PredictedCategories as List<Ml_Models_In_VS.Models.PredictedCategoryItem>;
+}
+
+@if (predictedCategories != null && predictedCategories.Any())
+{
+    <h3 class="mt-4">Prediction Results</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Predicted Category</th>
+                <th>Resume Name</th>   
+                <th>Confidence</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in predictedCategories)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.PredictedCategory</td>
+                    <td>@item.ResumeName</td>
+                    <td>@item.ConfidenceScore %</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3 class="mt-4">Select Predicted Category for Similarity Check</h3>
+    <form asp-action="GetSimilarResumes" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="target_role">Select Category:</label>
+            <select name="target_role" id="target_role" class="form-control">
+                @foreach (var category in ViewBag.UniqueCategories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="resumes">Upload Resumes (PDF):</label>
+            <input type="file" name="resumes" id="resumes" accept="application/pdf" multiple class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Submit for Similarity</button>
+    </form>
+}
+else
+{
+    <p>No prediction results to display.</p>
+}
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color:red">@ViewBag.ErrorMessage</p>
+}
