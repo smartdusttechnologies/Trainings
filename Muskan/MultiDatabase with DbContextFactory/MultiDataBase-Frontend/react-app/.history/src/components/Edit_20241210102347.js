@@ -57,10 +57,10 @@ const Edit = ({ handleUpdate, editData, setEditData }) => {
           <input
             className="form-input"
             type="text"
-            name="homeAddress"
+            name="HomeAddress"
             value={editData.address || ""}
             onChange={handleChange}
-
+            required
           />
         </label>
         <label>

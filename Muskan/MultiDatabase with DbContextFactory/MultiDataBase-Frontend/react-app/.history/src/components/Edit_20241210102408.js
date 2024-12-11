@@ -60,7 +60,7 @@ const Edit = ({ handleUpdate, editData, setEditData }) => {
             name="homeAddress"
             value={editData.address || ""}
             onChange={handleChange}
-
+            required
           />
         </label>
         <label>

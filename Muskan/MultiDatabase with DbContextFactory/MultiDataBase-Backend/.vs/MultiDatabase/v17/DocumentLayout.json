@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\testing\\trainings\\muskan\\multidatabase with dbcontextfactory\\multidatabase-backend\\multidatabase\\models\\addviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\models\\addviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\testing\\trainings\\muskan\\multidatabase with dbcontextfactory\\multidatabase-backend\\multidatabase\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\testing\\trainings\\muskan\\multidatabase with dbcontextfactory\\multidatabase-backend\\multidatabase\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|c:\\testing\\trainings\\muskan\\multidatabase with dbcontextfactory\\multidatabase-backend\\multidatabase\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D7B44E2-0098-4449-BB54-65B86F043D01}|MultiDatabase\\MultiDatabase.csproj|solutionrelative:multidatabase\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -46,11 +58,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 761,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "AddViewModel.cs",
+              "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Models\\AddViewModel.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Models\\AddViewModel.cs",
+              "ToolTip": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Models\\AddViewModel.cs",
+              "RelativeToolTip": "MultiDatabase\\Models\\AddViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T04:53:36.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "MultiDatabase\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T04:53:28.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "MultiDatabase\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Controllers\\UserController.cs",
+              "RelativeToolTip": "MultiDatabase\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAwwHoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T04:50:42.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "MultiDatabase.csproj",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\MultiDatabase.csproj",
               "RelativeDocumentMoniker": "MultiDatabase\\MultiDatabase.csproj",
@@ -58,12 +109,11 @@
               "RelativeToolTip": "MultiDatabase\\MultiDatabase.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-11-06T12:21:44.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-06T12:21:44.713Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "MultiDatabase\\Properties\\launchSettings.json",
@@ -71,25 +121,24 @@
               "RelativeToolTip": "MultiDatabase\\Properties\\launchSettings.json",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-06T11:40:04.68Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-06T11:40:04.68Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "MultiDatabase\\Controllers\\EmployeeController.cs",
               "ToolTip": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Controllers\\EmployeeController.cs",
               "RelativeToolTip": "MultiDatabase\\Controllers\\EmployeeController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAAAD8AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAkwEQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-04T17:20:27.152Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "MultiDatabase\\Repository\\UserRepository.cs",
@@ -97,12 +146,11 @@
               "RelativeToolTip": "MultiDatabase\\Repository\\UserRepository.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T17:14:08.83Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-04T17:14:08.83Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Repository\\Interface\\IUserRepository.cs",
               "RelativeDocumentMoniker": "MultiDatabase\\Repository\\Interface\\IUserRepository.cs",
@@ -110,12 +158,11 @@
               "RelativeToolTip": "MultiDatabase\\Repository\\Interface\\IUserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T17:14:07.268Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-04T17:14:07.268Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\appsettings.json",
               "RelativeDocumentMoniker": "MultiDatabase\\appsettings.json",
@@ -127,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Dockerfile",
               "RelativeDocumentMoniker": "MultiDatabase\\Dockerfile",
@@ -139,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Program.cs",
               "RelativeDocumentMoniker": "MultiDatabase\\Program.cs",
@@ -151,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Employee.cs",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\MultiDatabase with DbContextFactory\\MultiDataBase-Backend\\MultiDatabase\\Models\\Entities\\Employee.cs",
               "RelativeDocumentMoniker": "MultiDatabase\\Models\\Entities\\Employee.cs",
@@ -159,8 +206,7 @@
               "RelativeToolTip": "MultiDatabase\\Models\\Entities\\Employee.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAYwA8AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T12:52:31.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-03T12:52:31.971Z"
             }
           ]
         }
