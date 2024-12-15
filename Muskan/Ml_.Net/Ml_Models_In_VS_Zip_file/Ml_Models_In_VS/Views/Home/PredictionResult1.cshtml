@@ -1,0 +1,16 @@
+﻿@model Ml_Models_In_VS.Models.FlowerOutput
+
+@{
+    ViewData["Title"] = "Prediction Result";
+}
+
+<h2>Prediction Result</h2>
+
+@if (Model?.species != null && Model.species.Length > 0)
+{
+        <p>The predicted species is: @Model.species[0]</p>
+}
+else
+{
+        <p>No prediction available.</p>
+}

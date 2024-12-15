@@ -1,0 +1,26 @@
+﻿@if (ViewBag.SimilarityResults != null && ViewBag.SimilarityResults.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Resume Name</th>
+                <th>Name</th>
+                <th>Similarity Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resume in ViewBag.SimilarityResults)
+            {
+                <tr>
+                    <td>@resume.ResumeName</td>
+                    <td>@resume.Name</td>
+                    <td>@resume.SimilarityScore %</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No similar resumes found.</p>
+}

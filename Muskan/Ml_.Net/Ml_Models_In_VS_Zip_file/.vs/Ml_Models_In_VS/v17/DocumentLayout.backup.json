@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|c:\\testing\\trainings\\muskan\\ml_.net\\ml_models_in_vs_zip_file\\ml_models_in_vs\\controllers\\resumecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|solutionrelative:ml_models_in_vs\\controllers\\resumecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 326,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ResumeController.cs",
+              "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\Ml_Models_In_VS\\Controllers\\ResumeController.cs",
+              "RelativeDocumentMoniker": "Ml_Models_In_VS\\Controllers\\ResumeController.cs",
+              "ToolTip": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\Ml_Models_In_VS\\Controllers\\ResumeController.cs*",
+              "RelativeToolTip": "Ml_Models_In_VS\\Controllers\\ResumeController.cs*",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAswHYAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T10:22:57.482Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
