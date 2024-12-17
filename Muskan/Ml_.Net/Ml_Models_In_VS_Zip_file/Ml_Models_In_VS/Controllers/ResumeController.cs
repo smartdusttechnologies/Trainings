@@ -34,7 +34,7 @@ namespace Ml_Models_In_VS.Controllers
                 return View("Index");
             }
 
-            using (var memoryStream = new MemoryStream()) //Ensure the MemoryStream object is properly disposed once it is no longer needeeed ,it prevent memory leaks by ensuring the MemoryStream is clean up even if an exception occurs within the block 
+            using (var memoryStream = new MemoryStream())// Create a MemoryStream to temporarily hold the uploaded file.,::: //Ensure the MemoryStream object is properly disposed once it is no longer needeeed ,it prevent memory leaks by ensuring the MemoryStream is clean up even if an exception occurs within the block 
             // var memoryStream = new MemoryStream()   : MemoryStream: represent a stream of data stored in memory ,It allows you to store, read, and write data directly to memory, instead of using files or other physical storage.                                       //var memoryStream = new MemoryStream()
           //temporarily store the uploaded file in memmory 
             {

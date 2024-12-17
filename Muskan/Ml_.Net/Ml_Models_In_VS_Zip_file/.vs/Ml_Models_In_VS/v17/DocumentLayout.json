@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|c:\\testing\\trainings\\muskan\\ml_.net\\ml_models_in_vs_zip_file\\ml_models_in_vs\\models\\resumesimilarityresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|solutionrelative:ml_models_in_vs\\models\\resumesimilarityresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|c:\\testing\\trainings\\muskan\\ml_.net\\ml_models_in_vs_zip_file\\ml_models_in_vs\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|solutionrelative:ml_models_in_vs\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|c:\\testing\\trainings\\muskan\\ml_.net\\ml_models_in_vs_zip_file\\ml_models_in_vs\\models\\resumepredictionresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|solutionrelative:ml_models_in_vs\\models\\resumepredictionresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|c:\\testing\\trainings\\muskan\\ml_.net\\ml_models_in_vs_zip_file\\ml_models_in_vs\\models\\resumesimilarityresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|solutionrelative:ml_models_in_vs\\models\\resumesimilarityresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1E4E2A81-572C-4CE1-8BA9-F18B4CC41ACA}|Ml_Models_In_VS\\Ml_Models_In_VS.csproj|c:\\testing\\trainings\\muskan\\ml_.net\\ml_models_in_vs_zip_file\\ml_models_in_vs\\controllers\\resumecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,12 +31,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\Ml_Models_In_VS\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Ml_Models_In_VS\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\Ml_Models_In_VS\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Ml_Models_In_VS\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T03:37:07.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ResumeSimilarityResult.cs",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\Ml_Models_In_VS\\Models\\ResumeSimilarityResult.cs",
               "RelativeDocumentMoniker": "Ml_Models_In_VS\\Models\\ResumeSimilarityResult.cs",
               "ToolTip": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\Ml_Models_In_VS\\Models\\ResumeSimilarityResult.cs",
               "RelativeToolTip": "Ml_Models_In_VS\\Models\\ResumeSimilarityResult.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-15T11:08:42.67Z",
               "EditorCaption": ""
@@ -52,7 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ResumeController.cs",
               "DocumentMoniker": "C:\\testing\\Trainings\\Muskan\\Ml_.Net\\Ml_Models_In_VS_Zip_file\\Ml_Models_In_VS\\Controllers\\ResumeController.cs",
               "RelativeDocumentMoniker": "Ml_Models_In_VS\\Controllers\\ResumeController.cs",
@@ -60,8 +77,7 @@
               "RelativeToolTip": "Ml_Models_In_VS\\Controllers\\ResumeController.cs",
               "ViewState": "AgIAAGcAAAAAAAAAAAAswHYAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T10:22:57.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-15T10:22:57.482Z"
             }
           ]
         }

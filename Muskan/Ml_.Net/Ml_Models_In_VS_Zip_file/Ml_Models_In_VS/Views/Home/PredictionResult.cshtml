@@ -1,12 +1,16 @@
-﻿
-<div>
-    @if (ViewBag.PredictedCategory != null)
-    {
-        <p>Predicted Category: @ViewBag.PredictedCategory</p>
-    }
-</div>
+﻿@model Ml_Models_In_VS.Models.FlowerOutput
 
-<form method="post" enctype="multipart/form-data">
-    <input type="file" name="resumes" multiple />
-    <button type="submit">Upload and Predict</button>
-</form>
+@{
+    ViewData["Title"] = "Prediction Result";
+}
+
+<h2>Prediction Result</h2>
+
+@if (Model?.species != null && Model.species.Length > 0)
+{
+    <p>The predicted species is: @Model.species[0]</p>
+}
+else
+{
+    <p>No prediction available.</p>
+}
