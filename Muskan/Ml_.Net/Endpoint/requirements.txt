@@ -26,3 +26,4 @@ pyarrow
 termcolor
 scipy
 zipfile36
+gensim

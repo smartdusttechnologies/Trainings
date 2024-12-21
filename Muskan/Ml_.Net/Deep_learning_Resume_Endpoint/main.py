@@ -24,6 +24,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 from collections import Counter
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+nltk.download('vader_lexicon', force=True)
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 # print("Flask:", flask.__version__)
 # print("Flask-Cors:", flask_cors.__version__)

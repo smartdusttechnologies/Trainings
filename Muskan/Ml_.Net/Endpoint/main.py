@@ -23,6 +23,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 from collections import Counter
 from gensim.models import Word2Vec
 
+nltk.download('vader_lexicon', force=True)
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 # print("Flask:", flask.__version__)
 # print("Flask-Cors:", flask_cors.__version__)

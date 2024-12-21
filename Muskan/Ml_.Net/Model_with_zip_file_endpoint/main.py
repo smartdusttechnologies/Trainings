@@ -23,6 +23,11 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import zipfile
 import tempfile
 
+nltk.download('vader_lexicon', force=True)
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 
 # print("Flask:", flask.__version__)
