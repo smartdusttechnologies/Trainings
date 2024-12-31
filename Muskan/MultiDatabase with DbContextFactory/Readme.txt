@@ -41,7 +41,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/yourrepository.git
+    git clone https://github.com/smartdusttechnologies/Trainings.git
     ```
 
 2. Navigate to the project folder:
@@ -68,10 +68,12 @@ Make sure you have the following installed:
    - For the user database (SQL Server):
      ```bash
      Add-Migration Initial -context Application2DbContext
+     update-database -context Application2DbContext
      ```
    - For the employee database (MySQL):
      ```bash
      Add-Migration Initial -context ApplicationDbContext
+     update-database -context ApplicationDbContext
      ```
 
 5. Run the project:
