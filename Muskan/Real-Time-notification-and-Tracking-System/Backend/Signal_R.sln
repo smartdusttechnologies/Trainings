@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signal_R", "Signal_R\Signal_R.csproj", "{259631C5-D6FD-4B7D-BAF3-069F37011CBF}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "chat-app", "..\frontend\chat-app\", "{A3F66AE8-1F57-429B-A598-08C5C0E87BC5}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60475"
+		Debug.AspNetCompiler.PhysicalPath = "..\frontend\chat-app\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60475\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60475"
+		Release.AspNetCompiler.PhysicalPath = "..\frontend\chat-app\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60475\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60475"
+		SlnRelativePath = "..\frontend\chat-app\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{259631C5-D6FD-4B7D-BAF3-069F37011CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259631C5-D6FD-4B7D-BAF3-069F37011CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259631C5-D6FD-4B7D-BAF3-069F37011CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259631C5-D6FD-4B7D-BAF3-069F37011CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F66AE8-1F57-429B-A598-08C5C0E87BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F66AE8-1F57-429B-A598-08C5C0E87BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F66AE8-1F57-429B-A598-08C5C0E87BC5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F66AE8-1F57-429B-A598-08C5C0E87BC5}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {737C417E-797F-4616-B41E-7E9A9C3D30D4}
+	EndGlobalSection
+EndGlobal

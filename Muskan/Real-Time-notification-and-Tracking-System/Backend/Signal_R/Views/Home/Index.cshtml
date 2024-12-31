@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- Load jQuery -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+
+    <!-- Load SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft.signalr/5.0.11/signalr.min.js"></script>
+
+    <style>
+        #messages {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Chat Room</h2>
+        <div class="mb-3">
+            <input type="text" id="user" placeholder="Enter your name" class="form-control">
+            <input type="text" id="room" placeholder="Enter room name" class="form-control mt-2">
+            <button id="join" class="btn btn-primary mt-2">Join</button>
+        </div>
+        <div id="messages"></div>
+        <div class="input-group mt-3">
+            <input type="text" id="messageInput" class="form-control" placeholder="Type a message...">
+            <button id="sendMessage" class="btn btn-success">Send</button>
+        </div>
+        <div class="mt-3">
+            <h5>Connected Users:</h5>
+            <ul id="connectedUsers" class="list-group"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Ensure this code runs after SignalR is loaded
+        $(document).ready(function () {
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("/chatHub")
+                .build();
+
+            connection.on("RecieveMsg", (user, message, time) => {
+                const msg = `${user}: ${message} (${new Date(time).toLocaleTimeString()})`;
+                $("#messages").append(`<div>${msg}</div>`);
+            });
+
+            connection.on("ConnectUser", (users) => {
+                $("#connectedUsers").empty();
+                users.forEach(user => {
+                    $("#connectedUsers").append(`<li class="list-group-item">${user}</li>`);
+                });
+            });
+
+            $("#join").click(() => {
+                const user = $("#user").val();
+                const room = $("#room").val();
+                connection.invoke("JoinUser", { User: user, Room: room });
+            });
+
+            $("#sendMessage").click(() => {
+                const msg = $("#messageInput").val();
+                connection.invoke("SendMsg", msg);
+                $("#messageInput").val(''); // Clear the input after sending
+            });
+
+            connection.start().catch(err => console.error(err.toString()));
+        });
+    </script>
+</body>
+</html>
