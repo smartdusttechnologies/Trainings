@@ -1,0 +1,5 @@
+C:\Users\82941\Downloads\NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\dataset\generated_nlp_sql_dataset.csv
+C:\Users\82941\Downloads\NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\python_model\label_encoder.pkl
+C:\Users\82941\Downloads\NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\python_model\sql_model.pkl
+C:\Users\82941\Downloads\NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\python_model\vectorizer.pkl
+C:\Users\82941\Downloads\NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\PythonScripts\FeedbackData\corrections.csv

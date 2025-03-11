@@ -1,3 +1,0 @@
-C:\Users\82941\Desktop\Training Repo\Trainings\Prem_NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\python_model\label_encoder.pkl
-C:\Users\82941\Desktop\Training Repo\Trainings\Prem_NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\python_model\sql_modelOld.pkl
-C:\Users\82941\Desktop\Training Repo\Trainings\Prem_NLPtoSQLMVC\NLPtoSQLMVC\wwwroot\python_model\vectorizer.pkl

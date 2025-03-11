@@ -1,0 +1,267 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\pythonscripts\\train_model1.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\pythonscripts\\train_model1.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\pythonscripts\\train_model.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\pythonscripts\\train_model.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\controllers\\nlpcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\controllers\\nlpcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\views\\nlp\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\views\\nlp\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\pythonscripts\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\pythonscripts\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\pythonscripts\\retrain_model.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\pythonscripts\\retrain_model.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\pythonscripts\\apimodel.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\pythonscripts\\apimodel.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\python_model\\execute_apisql.py||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\python_model\\execute_apisql.py||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\python_model\\predict1.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\python_model\\predict1.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\python_model\\predict.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\python_model\\predict.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\models\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\models\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|c:\\users\\82941\\downloads\\nlptosqlmvc\\nlptosqlmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591C3DCC-5AD9-4D74-B01D-5FF99F16EDFE}|NLPtoSQLMVC\\NLPtoSQLMVC.csproj|solutionrelative:nlptosqlmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "train_model.py",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model.py",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model.py",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model.py",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model.py",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-02-13T16:35:16.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "retrain_model.py",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\retrain_model.py",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\retrain_model.py",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\retrain_model.py",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\retrain_model.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-03-09T16:05:47.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "predict1.py",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\python_model\\predict1.py",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\python_model\\predict1.py",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\python_model\\predict1.py",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\python_model\\predict1.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-03-04T16:33:44.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "execute_apisql.py",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\python_model\\execute_apisql.py",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\python_model\\execute_apisql.py",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\python_model\\execute_apisql.py",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\python_model\\execute_apisql.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-02-24T18:21:26.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApiModel.py",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\ApiModel.py",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\ApiModel.py",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\ApiModel.py",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\ApiModel.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-02-24T18:20:05.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "train_model1.py",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model1.py",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model1.py",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model1.py*",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\train_model1.py*",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-03-03T04:33:08.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Views\\NLP\\Index.cshtml",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\Views\\NLP\\Index.cshtml",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Views\\NLP\\Index.cshtml",
+              "RelativeToolTip": "NLPtoSQLMVC\\Views\\NLP\\Index.cshtml",
+              "ViewState": "AgIAABEAAAAAAAAAAAAcwBwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T19:00:38.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NLPController.cs",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Controllers\\NLPController.cs",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\Controllers\\NLPController.cs",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Controllers\\NLPController.cs",
+              "RelativeToolTip": "NLPtoSQLMVC\\Controllers\\NLPController.cs",
+              "ViewState": "AgIAALEAAAAAAAAAAAAowKYAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T18:59:20.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "requirements.txt",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\requirements.txt",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\requirements.txt",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\PythonScripts\\requirements.txt",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\PythonScripts\\requirements.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-03-11T07:37:01.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "predict.py",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\python_model\\predict.py",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\python_model\\predict.py",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\python_model\\predict.py",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\python_model\\predict.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-02-11T18:58:25.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\appsettings.json",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\appsettings.json",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\appsettings.json",
+              "RelativeToolTip": "NLPtoSQLMVC\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-06T04:20:40.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-24T16:49:48.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\css\\styles.css",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\wwwroot\\css\\styles.css",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\wwwroot\\css\\styles.css",
+              "RelativeToolTip": "NLPtoSQLMVC\\wwwroot\\css\\styles.css",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAowLsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-24T16:47:17.049Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "NLPtoSQLMVC\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T19:01:10.776Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Enum.cs",
+              "DocumentMoniker": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Models\\Enum.cs",
+              "RelativeDocumentMoniker": "NLPtoSQLMVC\\Models\\Enum.cs",
+              "ToolTip": "C:\\Users\\82941\\Downloads\\NLPtoSQLMVC\\NLPtoSQLMVC\\Models\\Enum.cs",
+              "RelativeToolTip": "NLPtoSQLMVC\\Models\\Enum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T17:08:13.401Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
