@@ -1,4 +1,5 @@
 
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//Application Services
 //Add Carter 
 builder.Services.AddCarter();
 //builder.Services.AddControllers();
@@ -18,7 +20,7 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
     config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
 });
-builder.Services.AddValidatorsFromAssembly(assembly);
+//Data Services
 builder.Services.AddMarten(opt =>
 {
 opt.Connection(builder.Configuration.GetConnectionString("Marten"));
@@ -32,10 +34,27 @@ builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 //});
 //Scrutor Library
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+
+//Cache 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
+//Grpc Service
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSetting:DiscountUrl"]);
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+
+    return handler;
+}); 
+//Exceptional Handling
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Marten"))
