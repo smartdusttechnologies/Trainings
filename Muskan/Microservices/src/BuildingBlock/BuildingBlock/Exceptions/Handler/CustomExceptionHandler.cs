@@ -40,6 +40,7 @@ public class CustomExceptionHandler
         // _ default case to handle all other exceptions
         (string Detail, string Title, int StatusCode) details = exception switch
         {
+            
             InternalServerException =>
             (
                 exception.Message,

@@ -23,7 +23,7 @@ namespace Ordering.Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Order.Domain.Models.Customer", b =>
+            modelBuilder.Entity("Ordering.Domain.Models.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -58,7 +58,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("Order.Domain.Models.OrderItem", b =>
+            modelBuilder.Entity("Ordering.Domain.Models.OrderItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -96,7 +96,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("Order.Domain.Models.Orders", b =>
+            modelBuilder.Entity("Ordering.Domain.Models.Orders", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -123,7 +123,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ComplexProperty<Dictionary<string, object>>("Billingadress", "Order.Domain.Models.Orders.Billingadress#Address", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("Billingadress", "Ordering.Domain.Models.Orders.Billingadress#Address", b1 =>
                         {
                             b1.IsRequired();
 
@@ -162,7 +162,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                                 .HasColumnType("nvarchar(10)");
                         });
 
-                    b.ComplexProperty<Dictionary<string, object>>("OrderName", "Order.Domain.Models.Orders.OrderName#OrderName", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("OrderName", "Ordering.Domain.Models.Orders.OrderName#OrderName", b1 =>
                         {
                             b1.IsRequired();
 
@@ -172,7 +172,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                                 .HasColumnType("nvarchar(100)");
                         });
 
-                    b.ComplexProperty<Dictionary<string, object>>("Payment", "Order.Domain.Models.Orders.Payment#Payment", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("Payment", "Ordering.Domain.Models.Orders.Payment#Payment", b1 =>
                         {
                             b1.IsRequired();
 
@@ -199,7 +199,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                                 .HasColumnType("int");
                         });
 
-                    b.ComplexProperty<Dictionary<string, object>>("ShippingAdress", "Order.Domain.Models.Orders.ShippingAdress#Address", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("ShippingAdress", "Ordering.Domain.Models.Orders.ShippingAdress#Address", b1 =>
                         {
                             b1.IsRequired();
 
@@ -245,7 +245,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Order.Domain.Models.Product", b =>
+            modelBuilder.Entity("Ordering.Domain.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -275,31 +275,31 @@ namespace Ordering.Infrastructure.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Order.Domain.Models.OrderItem", b =>
+            modelBuilder.Entity("Ordering.Domain.Models.OrderItem", b =>
                 {
-                    b.HasOne("Order.Domain.Models.Orders", null)
+                    b.HasOne("Ordering.Domain.Models.Orders", null)
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Order.Domain.Models.Product", null)
+                    b.HasOne("Ordering.Domain.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Order.Domain.Models.Orders", b =>
+            modelBuilder.Entity("Ordering.Domain.Models.Orders", b =>
                 {
-                    b.HasOne("Order.Domain.Models.Customer", null)
+                    b.HasOne("Ordering.Domain.Models.Customer", null)
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Order.Domain.Models.Orders", b =>
+            modelBuilder.Entity("Ordering.Domain.Models.Orders", b =>
                 {
                     b.Navigation("OrderItems");
                 });

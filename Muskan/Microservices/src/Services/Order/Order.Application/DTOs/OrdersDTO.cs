@@ -2,12 +2,12 @@
 {
     public record OrdersDTO
     (
-         Guid Id,
+            Guid Id,
             Guid CustomerId,
             string OrderName ,
             AddressDTO ShippingAddress,
             AddressDTO BillingAddress,
-            PaymentDTO payment,
+            PaymentDTO Payment,
             OrderStatus Status,
             List<OrderItemDTO> OrderItems
 
