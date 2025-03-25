@@ -5,11 +5,15 @@ namespace Discount.Grpc.Data
 {
     public static class Extensions
     {
-        public static IApplicationBuilder UseMigration(this IApplicationBuilder app)
+        public static async  Task<IApplicationBuilder> UseMigration(this IApplicationBuilder app)
         {
             using var scope = app.ApplicationServices.CreateScope();
             using var context = scope.ServiceProvider.GetRequiredService<DiscountDbContext>();
-            context.Database.MigrateAsync();
+            var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+            if (pendingMigrations.Any())
+            {
+                await context.Database.MigrateAsync();
+            }
             return app;
         }
     }

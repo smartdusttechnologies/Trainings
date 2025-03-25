@@ -44,7 +44,13 @@ namespace Discount.Grpc.Services
                 var couponModel = coupon.Adapt<CouponModel>();
                 _logger.LogInformation("Discount is created successfully");
                 return couponModel;
-            }catch(Exception ex)
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError("Database update error: {Message}", ex.InnerException?.Message ?? ex.Message);
+                throw;
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 throw new Exception(ex.Message);
@@ -52,7 +58,6 @@ namespace Discount.Grpc.Services
             }
        
         }
-
         public async override Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
         {
             _logger.LogInformation("Received UpdateDiscount request: {@Request}", request);

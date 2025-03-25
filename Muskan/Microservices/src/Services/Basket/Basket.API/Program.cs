@@ -1,4 +1,5 @@
 
+using BuildingBlock.Messaging.MassTransit;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -53,7 +54,10 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
     };
 
     return handler;
-}); 
+});
+
+//Async Service RabbiMQ
+builder.Services.AddMessageBroker(builder.Configuration);
 //Exceptional Handling
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()

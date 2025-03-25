@@ -1,0 +1,1078 @@
+{
+	"info": {
+		"_postman_id": "92074208-0f84-4183-81f9-7c4f541016f9",
+		"name": "Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40008743"
+	},
+	"item": [
+		{
+			"name": "Catalog",
+			"item": [
+				{
+					"name": "GetProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products?pageNumber=1&pageSize=5",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetProduct",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{category_url}}/products",
+									"host": [
+										"{{category_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "GetProductWith",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products?pageNumber=1&pageSize=5",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetProduct",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{category_url}}/products",
+									"host": [
+										"{{category_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "HelathCheck",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/health",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/catgory/Fruits",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"catgory",
+								"Fruits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductByCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/category/Hello",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"Hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"Id\" : \"01959eb8-f7cc-4314-be7e-a4609a7265fa\",\r\n        \"Name\": \"\",\r\n        \"Description\": \"Yellow\",\r\n        \"Category\": [\"Fruits\", \"Hii\"],\r\n        \"Price\": 12,\r\n        \"Image\" : \"Hello\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog_url}}/products",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/01959ece-f1a1-4f8c-8270-6c4912e59038",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"01959ece-f1a1-4f8c-8270-6c4912e59038"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"Name\": \"Logger Behavoiur Test\",\r\n        \"Description\": \"Green\",\r\n        \"Category\": [\"Vegetable\", \"Necessary\"],\r\n        \"Price\": 12,\r\n        \"Image\" : \"Hello\"\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog_url}}/products",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Basket",
+			"item": [
+				{
+					"name": "GEtBasket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url}}/basket/Jmes watt",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket",
+								"Jmes watt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBasket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url}}/basket/Sam_Peter",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket",
+								"Sam_Peter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StoreBasket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cart\": {\r\n  \"userName\": \"Jmes\",\r\n  \"items\": [\r\n    {\r\n      \"quantity\": 1,\r\n      \"color\": \"White\",\r\n      \"price\": 500,\r\n      \"productId\": \"550e8400-e29b-41d4-a716-446655440007\",\r\n      \"productName\": \"IPhone\"\r\n    },\r\n    {\r\n      \"quantity\": 3,\r\n      \"color\": \"Black\",\r\n      \"price\":500,\r\n      \"productId\": \"660f7410-c53a-4b66-8a5e-6ef3cda835c1\",\r\n      \"productName\": \"Vivo12\"\r\n    }\r\n  ],\r\n  \"totalPrice\": 89.97\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url}}/basket",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BasketCheckout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\"basketCheckOutDto\" : {\r\n  \"Username\": \"Jmes\",\r\n  \"CustomerId\": \"f5a16d9a-bbfc-4fd9-b2cd-34b8b8b2129f\",\r\n  \"TotalPrice\": 129.99,\r\n  \"FirstName\": \"John\",\r\n  \"LastName\": \"Doe\",\r\n  \"EmailAdress\": \"johndoe@example.com\",\r\n  \"AdressLine\": \"123 Main St\",\r\n  \"Country\": \"USA\",\r\n  \"State\": \"California\",\r\n  \"ZipCode\": \"90210\",\r\n  \"CardName\": \"John Doe\",\r\n  \"CardNumber\": \"1234567890123456\",\r\n  \"ExpiryDate\": \"12/25\",\r\n  \"CVV\": \"123\",\r\n  \"PaymentMethod\": 1\r\n}}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url}}/basket/checkout",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HealthCheck",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cart\": {\r\n  \"userName\": \"Sam_Peter\",\r\n  \"items\": [\r\n    {\r\n      \"quantity\": 1,\r\n      \"color\": \"White\",\r\n      \"price\": 299.00,\r\n      \"productId\": \"550e8400-e29b-41d4-a716-446655440007\",\r\n      \"productName\": \"Monitor\"\r\n    },\r\n    {\r\n      \"quantity\": 3,\r\n      \"color\": \"Black\",\r\n      \"price\": 49.99,\r\n      \"productId\": \"660f7410-c53a-4b66-8a5e-6ef3cda835c1\",\r\n      \"productName\": \"Mechanical Keyboard\"\r\n    }\r\n  ],\r\n  \"totalPrice\": 89.97\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url}}/health",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Discount",
+			"item": []
+		},
+		{
+			"name": "Ordering",
+			"item": [
+				{
+					"name": "GetOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{order_url}}/orders?pageIndex=0&pageSize=10",
+							"host": [
+								"{{order_url}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HealthCheck",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{order_url}}/orders?pageIndex=0&pageSize=10",
+							"host": [
+								"{{order_url}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{order_url}}/orders/Jmes",
+							"host": [
+								"{{order_url}}"
+							],
+							"path": [
+								"orders",
+								"Jmes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderByCustomerID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{order_url}}/orders/customer/789dc832-990f-48e0-a37b-e6f2b60b9d7d",
+							"host": [
+								"{{order_url}}"
+							],
+							"path": [
+								"orders",
+								"customer",
+								"789dc832-990f-48e0-a37b-e6f2b60b9d7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Order\": {\r\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"customerId\": \"789dc832-990f-48e0-a37b-e6f2b60b9d7d\",\r\n    \"orderName\": \"ORDER_4\",\r\n    \"shippingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Kumari\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"Bihar No.10\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"billingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Kumari\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 12\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801106\"\r\n    },\r\n    \"Payment\": {\r\n      \"cardName\": \"Viv\",\r\n      \"cardNumber\": \"fs\",\r\n      \"expiration\": \"fssa\",\r\n     \"CVV\": \"123\",   \r\n\r\n      \"paymentMethod\": 1\r\n    },\r\n    \"status\": 1,\r\n    \"orderItems\": [\r\n      {\r\n        \"orderId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n        \"productId\": \"6ec1297b-ec0a-4aa1-be25-6726e3b51a27\",\r\n        \"quantity\": 10,\r\n        \"price\": 1000\r\n      }\r\n    ]\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{order_url}}/orders",
+							"host": [
+								"{{order_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrder",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order\": {\r\n    \"id\": \"d5a1f80c-a51d-44e1-9b1c-d2b730663acb\",\r\n    \"customerId\": \"789dc832-990f-48e0-a37b-e6f2b60b9d7d\",\r\n    \"orderName\": \"ORD_004\",\r\n    \"shippingAddress\": {\r\n       \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"billingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"payment\": {\r\n      \"cardName\": \"Vivo\",\r\n      \"cardNumber\": \"125\",\r\n      \"expiration\": \"12/5\",\r\n      \"cvv\": \"125\",\r\n      \"paymentMethod\": 2\r\n    },\r\n    \"status\": 3,\r\n    \"orderItems\": [\r\n      {\r\n        \"orderId\": \"d5a1f80c-a51d-44e1-9b1c-d2b730663acb\",\r\n        \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n        \"quantity\": 5,\r\n        \"price\": 1500\r\n      }\r\n    ]\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{order_url}}/orders",
+							"host": [
+								"{{order_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteOrder",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order\": {\r\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"customerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"orderName\": \"ORD_004\",\r\n    \"shippingAddress\": {\r\n       \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"billingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"payment\": {\r\n      \"cardName\": \"Vivo\",\r\n      \"cardNumber\": \"125\",\r\n      \"expiration\": \"12/5\",\r\n      \"cvv\": \"125\",\r\n      \"paymentMethod\": 2\r\n    },\r\n    \"status\": 3,\r\n    \"orderItems\": [\r\n      {\r\n        \"orderId\": \"d5a1f80c-a51d-44e1-9b1c-d2b730663acb\",\r\n        \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n        \"quantity\": 5,\r\n        \"price\": 1500\r\n      }\r\n    ]\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{order_url}}/orders/d5a1f80c-a51d-44e1-9b1c-d2b730663acb",
+							"host": [
+								"{{order_url}}"
+							],
+							"path": [
+								"orders",
+								"d5a1f80c-a51d-44e1-9b1c-d2b730663acb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "YarpGateway",
+			"item": [
+				{
+					"name": "Catalog",
+					"item": [
+						{
+							"name": "GetProduct",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products?pageNumber=1&pageSize=5",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GetProduct",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{category_url}}/products",
+											"host": [
+												"{{category_url}}"
+											],
+											"path": [
+												"products"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "GetProductWith",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{catalog_url}}/products?pageNumber=1&pageSize=5",
+									"host": [
+										"{{catalog_url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GetProduct",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{category_url}}/products",
+											"host": [
+												"{{category_url}}"
+											],
+											"path": [
+												"products"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "HelathCheck",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{catalog_url}}/health",
+									"host": [
+										"{{catalog_url}}"
+									],
+									"path": [
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProductById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{catalog_url}}/products/catgory/Fruits",
+									"host": [
+										"{{catalog_url}}"
+									],
+									"path": [
+										"products",
+										"catgory",
+										"Fruits"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProductByCategory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{catalog_url}}/products/category/Hello",
+									"host": [
+										"{{catalog_url}}"
+									],
+									"path": [
+										"products",
+										"category",
+										"Hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProduct",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"Id\" : \"01959eb8-f7cc-4314-be7e-a4609a7265fa\",\r\n        \"Name\": \"\",\r\n        \"Description\": \"Yellow\",\r\n        \"Category\": [\"Fruits\", \"Hii\"],\r\n        \"Price\": 12,\r\n        \"Image\" : \"Hello\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProduct",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{catalog_url}}/products/01959ece-f1a1-4f8c-8270-6c4912e59038",
+									"host": [
+										"{{catalog_url}}"
+									],
+									"path": [
+										"products",
+										"01959ece-f1a1-4f8c-8270-6c4912e59038"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateProduct",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"Name\": \"Logger\",\r\n        \"Description\": \"Green\",\r\n        \"Category\": [\"Vegetable\", \"Necessary\"],\r\n        \"Price\": 12,\r\n        \"Image\" : \"Hello\"\r\n    }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Basket",
+					"item": [
+						{
+							"name": "GEtBasket",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{basket_url}}/basket/Jmes watt",
+									"host": [
+										"{{basket_url}}"
+									],
+									"path": [
+										"basket",
+										"Jmes watt"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteBasket",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{basket_url}}/basket/Sam_Peter",
+									"host": [
+										"{{basket_url}}"
+									],
+									"path": [
+										"basket",
+										"Sam_Peter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "StoreBasket",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cart\": {\r\n  \"userName\": \"swn\",\r\n  \"items\": [\r\n    {\r\n      \"quantity\": 1,\r\n      \"color\": \"White\",\r\n      \"price\": 500,\r\n      \"productId\": \"550e8400-e29b-41d4-a716-446655440007\",\r\n      \"productName\": \"IPhone\"\r\n    },\r\n    {\r\n      \"quantity\": 3,\r\n      \"color\": \"Black\",\r\n      \"price\":500,\r\n      \"productId\": \"660f7410-c53a-4b66-8a5e-6ef3cda835c1\",\r\n      \"productName\": \"Vivo12\"\r\n    }\r\n  ],\r\n  \"totalPrice\": 89.97\r\n}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BasketCheckout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\"basketCheckOutDto\" : {\r\n  \"Username\": \"johndoe\",\r\n  \"CustomerId\": \"f5a16d9a-bbfc-4fd9-b2cd-34b8b8b2129f\",\r\n  \"TotalPrice\": 129.99,\r\n  \"FirstName\": \"John\",\r\n  \"LastName\": \"Doe\",\r\n  \"EmailAdress\": \"johndoe@example.com\",\r\n  \"AdressLine\": \"123 Main St\",\r\n  \"Country\": \"USA\",\r\n  \"State\": \"California\",\r\n  \"ZipCode\": \"90210\",\r\n  \"CardName\": \"John Doe\",\r\n  \"CardNumber\": \"1234567890123456\",\r\n  \"ExpiryDate\": \"12/25\",\r\n  \"CVV\": \"123\",\r\n  \"PaymentMethod\": 1\r\n}}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{basket_url}}/basket/checkout",
+									"host": [
+										"{{basket_url}}"
+									],
+									"path": [
+										"basket",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HealthCheck",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cart\": {\r\n  \"userName\": \"Sam_Peter\",\r\n  \"items\": [\r\n    {\r\n      \"quantity\": 1,\r\n      \"color\": \"White\",\r\n      \"price\": 299.00,\r\n      \"productId\": \"550e8400-e29b-41d4-a716-446655440007\",\r\n      \"productName\": \"Monitor\"\r\n    },\r\n    {\r\n      \"quantity\": 3,\r\n      \"color\": \"Black\",\r\n      \"price\": 49.99,\r\n      \"productId\": \"660f7410-c53a-4b66-8a5e-6ef3cda835c1\",\r\n      \"productName\": \"Mechanical Keyboard\"\r\n    }\r\n  ],\r\n  \"totalPrice\": 89.97\r\n}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{basket_url}}/health",
+									"host": [
+										"{{basket_url}}"
+									],
+									"path": [
+										"health"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ordering",
+					"item": [
+						{
+							"name": "GetOrder",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders?pageIndex=0&pageSize=10",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "pageIndex",
+											"value": "0"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HealthCheck",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{order_url}}/orders?pageIndex=0&pageSize=10",
+									"host": [
+										"{{order_url}}"
+									],
+									"path": [
+										"orders"
+									],
+									"query": [
+										{
+											"key": "pageIndex",
+											"value": "0"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetOrderByName",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{order_url}}/orders/Jmes",
+									"host": [
+										"{{order_url}}"
+									],
+									"path": [
+										"orders",
+										"Jmes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetOrderByCustomerID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{order_url}}/orders/customer/789dc832-990f-48e0-a37b-e6f2b60b9d7d",
+									"host": [
+										"{{order_url}}"
+									],
+									"path": [
+										"orders",
+										"customer",
+										"789dc832-990f-48e0-a37b-e6f2b60b9d7d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateOrder",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"Order\": {\r\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"customerId\": \"789dc832-990f-48e0-a37b-e6f2b60b9d7d\",\r\n    \"orderName\": \"ORDER_4\",\r\n    \"shippingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Kumari\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"Bihar No.10\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"billingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Kumari\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 12\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801106\"\r\n    },\r\n    \"Payment\": {\r\n      \"cardName\": \"Viv\",\r\n      \"cardNumber\": \"fs\",\r\n      \"expiration\": \"fssa\",\r\n     \"CVV\": \"123\",   \r\n\r\n      \"paymentMethod\": 1\r\n    },\r\n    \"status\": 1,\r\n    \"orderItems\": [\r\n      {\r\n        \"orderId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n        \"productId\": \"6ec1297b-ec0a-4aa1-be25-6726e3b51a27\",\r\n        \"quantity\": 10,\r\n        \"price\": 1000\r\n      }\r\n    ]\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{order_url}}/orders",
+									"host": [
+										"{{order_url}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateOrder",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"order\": {\r\n    \"id\": \"d5a1f80c-a51d-44e1-9b1c-d2b730663acb\",\r\n    \"customerId\": \"789dc832-990f-48e0-a37b-e6f2b60b9d7d\",\r\n    \"orderName\": \"ORD_004\",\r\n    \"shippingAddress\": {\r\n       \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"billingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"payment\": {\r\n      \"cardName\": \"Vivo\",\r\n      \"cardNumber\": \"125\",\r\n      \"expiration\": \"12/5\",\r\n      \"cvv\": \"125\",\r\n      \"paymentMethod\": 2\r\n    },\r\n    \"status\": 3,\r\n    \"orderItems\": [\r\n      {\r\n        \"orderId\": \"d5a1f80c-a51d-44e1-9b1c-d2b730663acb\",\r\n        \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n        \"quantity\": 5,\r\n        \"price\": 1500\r\n      }\r\n    ]\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{order_url}}/orders",
+									"host": [
+										"{{order_url}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteOrder",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"order\": {\r\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"customerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"orderName\": \"ORD_004\",\r\n    \"shippingAddress\": {\r\n       \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"billingAddress\": {\r\n      \"firstname\": \"Muskan\",\r\n      \"lastname\": \"Gupta\",\r\n      \"emailAdress\": \"Muskan@gmail.com\",\r\n      \"addressLine\": \"N 13\",\r\n      \"country\": \"India\",\r\n      \"state\": \"Bihar\",\r\n      \"zipCode\": \"801105\"\r\n    },\r\n    \"payment\": {\r\n      \"cardName\": \"Vivo\",\r\n      \"cardNumber\": \"125\",\r\n      \"expiration\": \"12/5\",\r\n      \"cvv\": \"125\",\r\n      \"paymentMethod\": 2\r\n    },\r\n    \"status\": 3,\r\n    \"orderItems\": [\r\n      {\r\n        \"orderId\": \"d5a1f80c-a51d-44e1-9b1c-d2b730663acb\",\r\n        \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n        \"quantity\": 5,\r\n        \"price\": 1500\r\n      }\r\n    ]\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{order_url}}/orders/d5a1f80c-a51d-44e1-9b1c-d2b730663acb",
+									"host": [
+										"{{order_url}}"
+									],
+									"path": [
+										"orders",
+										"d5a1f80c-a51d-44e1-9b1c-d2b730663acb"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

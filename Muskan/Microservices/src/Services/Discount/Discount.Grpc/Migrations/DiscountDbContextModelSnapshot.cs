@@ -50,7 +50,7 @@ namespace Discount.Grpc.Migrations
                             Id = 2,
                             Amount = 200,
                             Description = "Samsung Discount",
-                            ProductName = "IPhone"
+                            ProductName = "Samsung"
                         });
                 });
 #pragma warning restore 612, 618

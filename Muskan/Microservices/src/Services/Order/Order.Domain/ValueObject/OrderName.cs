@@ -15,10 +15,10 @@ namespace Ordering.Domain.ValueObject
         public static OrderName Of(string value)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(value);
-            if (value.Length <= DefaultLength)
-            {
-                throw new ArgumentOutOfRangeException(nameof(value), $"Value must be greater than {DefaultLength} characters.");
-            }
+            //if (value.Length <= DefaultLength)
+            //{
+            //    throw new ArgumentOutOfRangeException(nameof(value), $"Value must be greater than {DefaultLength} characters.");
+            //}
 
             return new OrderName(value);
         }

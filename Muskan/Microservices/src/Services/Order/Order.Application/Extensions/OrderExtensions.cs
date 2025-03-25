@@ -1,5 +1,7 @@
 ﻿
 
+using Ordering.Application.DTOs;
+
 namespace Ordering.Application.Extensions
 {
     /// <summary>
@@ -55,7 +57,24 @@ namespace Ordering.Application.Extensions
                         )).ToList()
                         ));
 
-        } 
+        }
+        public static OrdersDTO ToOrderDTO(this Orders order)
+        {
+            return DtoFromOrder(order);
+        }
+        private static OrdersDTO DtoFromOrder(Orders order)
+        {
+            return new OrdersDTO(
+                        Id: order.Id.Value,
+                        CustomerId: order.CustomerId.Value,
+                        OrderName: order.OrderName.Value,
+                        ShippingAddress: new AddressDTO(order.ShippingAdress.FirstName, order.ShippingAdress.LastName, order.ShippingAdress.EmailAdress!, order.ShippingAdress.AdressLine, order.ShippingAdress.Country, order.ShippingAdress.State, order.ShippingAdress.ZipCode),
+                        BillingAddress: new AddressDTO(order.Billingadress.FirstName, order.Billingadress.LastName, order.Billingadress.EmailAdress!, order.Billingadress.AdressLine, order.Billingadress.Country, order.Billingadress.State, order.Billingadress.ZipCode),
+                        Payment: new PaymentDTO(order.Payment.CardName!, order.Payment.CardNumber, order.Payment.ExpiryDate, order.Payment.CVV, order.Payment.PaymentMethod),
+                        Status: order.Status,
+                        OrderItems: order.OrderItems.Select(oi => new OrderItemDTO(oi.OrderId.Value, oi.ProductId.Value, oi.Quantity, oi.Price)).ToList()
+                    );
+        }
     }
 }
 /// <summary>

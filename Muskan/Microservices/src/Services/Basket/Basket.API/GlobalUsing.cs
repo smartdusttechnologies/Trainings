@@ -7,6 +7,7 @@ global using MediatR;
 global using BuildingBlock.Behaviour;
 global using BuildingBlock.Exceptions;
 global using Marten;
+global using Basket.API.DTOs;
 global using Basket.API.Data;
 global using Basket.API.Exceptions;
 global using BuildingBlock.Exceptions.Handler;

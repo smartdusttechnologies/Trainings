@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Discount.Grpc.Migrations
 {
     [DbContext(typeof(DiscountDbContext))]
-    [Migration("20250318111604_Initial")]
+    [Migration("20250322142443_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -53,7 +53,7 @@ namespace Discount.Grpc.Migrations
                             Id = 2,
                             Amount = 200,
                             Description = "Samsung Discount",
-                            ProductName = "IPhone"
+                            ProductName = "Samsung"
                         });
                 });
 #pragma warning restore 612, 618
