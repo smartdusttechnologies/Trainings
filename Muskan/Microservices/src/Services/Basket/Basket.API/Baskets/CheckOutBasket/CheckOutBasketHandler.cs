@@ -21,7 +21,7 @@ namespace Basket.API.Baskets.CheckOutBasket
         {
             //get the existing basket with total price 
             var basket = await repository.GetBasket(command.BasketCheckOutDto.Username, cancellationToken);
-           if (basket == null)
+            if (basket == null)
             {
                 return new CheckOutBasketResult(false);
             }

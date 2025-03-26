@@ -4,15 +4,13 @@ namespace Catalog.API.Products. GetProductByCategory
 {
     public record GetProductByCategoryQuery(string Category ) : IQuery<GetProductByCategoryResult>;
     public record GetProductByCategoryResult(IEnumerable<Product> Products);
-    internal class GetProductByCategoryQueryHandler(IDocumentSession session, ILogger<GetProductByCategoryQueryHandler> logger) : IQueryHandler<GetProductByCategoryQuery, GetProductByCategoryResult>
+    internal class GetProductByCategoryQueryHandler(IProductRepository repository, ILogger<GetProductByCategoryQueryHandler> logger) : IQueryHandler<GetProductByCategoryQuery, GetProductByCategoryResult>
     {
         public async Task<GetProductByCategoryResult> Handle(GetProductByCategoryQuery query, CancellationToken cancellationToken)
         {
             logger.LogInformation("GetProductByCategoryQuery.Handle", query);
 
-            var product = await session.Query<Product>()
-                .Where(p => p.Category.Contains(query.Category))
-                .ToListAsync();
+           var product = await repository.GetProductsByCategoryAsync(query.Category, cancellationToken);
             return new GetProductByCategoryResult(product);
 
                 }

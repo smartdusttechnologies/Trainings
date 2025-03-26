@@ -17,6 +17,10 @@ namespace Basket.API.Baskets.StoreBasket
     {
         public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
         {
+            if (command.Cart.Items == null || !command.Cart.Items.Any())
+            {               
+                Console.WriteLine("Items list is empty or null.");
+            }
             await DeductDiscount(command.Cart, cancellationToken);
             await repository.StoreBasket(command.Cart);
             return new StoreBasketResult(command.Cart.UserName);

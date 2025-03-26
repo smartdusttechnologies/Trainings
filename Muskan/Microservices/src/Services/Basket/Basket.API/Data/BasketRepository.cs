@@ -1,28 +1,59 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
+
 namespace Basket.API.Data
 {
-    public class BasketRepository(IDocumentSession session) : IBasketRepository
+    public class BasketRepository(ApplicationDbContext context) : IBasketRepository
     {
-        async Task<ShoppingCart> IBasketRepository.GetBasket(string userName, CancellationToken cancellationToken)
+        public async Task<ShoppingCart> GetBasket(string userName, CancellationToken cancellationToken)
         {
-            var basket = await session.LoadAsync<ShoppingCart>(userName, cancellationToken);
+            var basket = await context.ShoppingCarts
+                                      .Include(sc => sc.Items)  // Include related items
+                                      .FirstOrDefaultAsync(sc => sc.UserName == userName, cancellationToken);
+
             return basket is null ? throw new BasketNotFoundException(userName) : basket;
         }
-       
 
-        async Task<ShoppingCart> IBasketRepository.StoreBasket(ShoppingCart basket, CancellationToken cancellationToken)
+
+        public async Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken)
         {
-            session.Store(basket);
-            await session.SaveChangesAsync(cancellationToken);
-            return basket;
+            try
+            {
+                context.ShoppingCarts.Add(basket);
+                foreach (var item in basket.Items)
+                {
+                    item.ShoppingCartId = basket.Id;  // Link item to the basket
+                    context.ShoppingCartItems.Add(item);  // Add each item
+                }
+
+                // Save changes to the database
+                await context.SaveChangesAsync(cancellationToken);
+                return basket;
+
+            }
+          
+            catch (DbUpdateException ex)
+{
+                
+                Console.WriteLine(ex.InnerException?.Message);
+                throw;
+            }
         }
 
-        async Task<bool> IBasketRepository.DeleteBasket(string userName, CancellationToken cancellationToken)
+        public async Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken)
         {
-            session.Delete<ShoppingCart>(userName);
-            await session.SaveChangesAsync(cancellationToken);
-            return true;
+            var basket = await context.ShoppingCarts
+                                        .FirstOrDefaultAsync(sc => sc.UserName == userName, cancellationToken);
+
+            if (basket != null)
+            {
+                context.ShoppingCarts.Remove(basket);
+                await context.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+
+            return false;
         }
     }
 }

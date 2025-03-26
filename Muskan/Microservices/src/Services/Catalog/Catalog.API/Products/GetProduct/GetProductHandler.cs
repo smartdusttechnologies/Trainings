@@ -2,18 +2,17 @@
 {
     public record  GetProductQuery(int? PageNumber = 1, int? PageSize = 10) : IQuery<GetProductResult>;
     public record  GetProductResult(IEnumerable<Product> Products);
-    internal class GetProductQueryHandler(IDocumentSession session ,ILogger<GetProductQueryHandler> logger) : IQueryHandler<GetProductQuery,  GetProductResult>
+    internal class GetProductQueryHandler(IProductRepository _productRepository, ILogger<GetProductQueryHandler> logger) : IQueryHandler<GetProductQuery,  GetProductResult>
     {
         public async Task< GetProductResult> Handle(GetProductQuery query , CancellationToken cancellationToken)
         
-        {       
-           var product = await session.Query<Product>().ToPagedListAsync(query.PageNumber ?? 1 , query.PageSize ?? 10, cancellationToken);
-            // Assuming SaveProductAsync is a method that saves the product and returns the product ID
-
+        {
+            var products = await _productRepository.GetProductsByPaginationAsync(query.PageNumber ?? 1, query.PageSize ?? 10, cancellationToken);
+          
 
             // Return the product iddocker-compose up --build
+            return new GetProductResult(products);
 
-            return new  GetProductResult(product);
         }
 
 

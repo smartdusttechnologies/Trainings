@@ -1,3 +1,4 @@
+using Catalog.API.Extensions;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
@@ -13,24 +14,18 @@ config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
 config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
 });
 builder.Services.AddValidatorsFromAssembly(assembly);
-builder.Services.AddMarten(opt =>
-{
-    opt.Connection(builder.Configuration.GetConnectionString("Marten"));
-    opt.AutoCreateSchemaObjects = Weasel.Core.AutoCreate.All;
-})
-.UseLightweightSessions();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDb")));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-if(builder.Environment.IsDevelopment())
-{
-    builder.Services.InitializeMartenWith<CatalogInitialData>();
-}
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
-    .AddNpgSql(builder.Configuration.GetConnectionString("Marten"));
+    .AddSqlServer(builder.Configuration.GetConnectionString("SqlServerDb"));
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
+app.UseMigration();
 app.MapCarter();
 app.UseExceptionHandler(option => { });
 app.UseHealthChecks("/health",

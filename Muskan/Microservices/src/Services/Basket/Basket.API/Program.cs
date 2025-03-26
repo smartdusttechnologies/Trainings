@@ -1,8 +1,11 @@
 
+using Basket.API.Extensions;
 using BuildingBlock.Messaging.MassTransit;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,11 +25,8 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
 });
 //Data Services
-builder.Services.AddMarten(opt =>
-{
-opt.Connection(builder.Configuration.GetConnectionString("Marten"));
-    opt.Schema.For<ShoppingCart>().Identity(x => x.UserName);
-}).UseLightweightSessions();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDb")));
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 //builder.Services.AddScoped<IBasketRepository>(provider =>
 //{
@@ -61,7 +61,7 @@ builder.Services.AddMessageBroker(builder.Configuration);
 //Exceptional Handling
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
-    .AddNpgSql(builder.Configuration.GetConnectionString("Marten"))
+    .AddSqlServer(builder.Configuration.GetConnectionString("SqlServerDb"))
     .AddRedis(builder.Configuration.GetConnectionString("Redis"));
 
 var app = builder.Build();
@@ -79,6 +79,7 @@ if (app.Environment.IsDevelopment())
 
 //app.MapControllers();
 app.MapCarter();
+app.UseMigration();
 app.UseExceptionHandler(options => { });
 app.UseHealthChecks("/health",
     new HealthCheckOptions

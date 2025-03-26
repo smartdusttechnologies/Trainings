@@ -15,19 +15,16 @@ namespace Catalog.API.Products.DeleteProduct
             RuleFor(x => x.id).NotEmpty().WithMessage("Id is required");
           }
     }
-    internal class DeleteProductHandler(IDocumentSession session) : ICommandHandler<DeleteProductCommand, DeleteProductResult>
+    internal class DeleteProductHandler(IProductRepository _productRepository) : ICommandHandler<DeleteProductCommand, DeleteProductResult>
     {
         public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
         {
-            var product = await session.LoadAsync<Product>(command.id, cancellationToken);
-            if (product == null)
+            var result = await _productRepository.DeleteProductAsync(command.id, cancellationToken);
+
+            if (!result)
             {
                 throw new ProductNotFoundException(command.id);
             }
-
-            session.Delete(product);
-            await session.SaveChangesAsync(cancellationToken);
-
             Console.WriteLine($"Product {command.id} deleted successfully.");
             return new DeleteProductResult(true);
 

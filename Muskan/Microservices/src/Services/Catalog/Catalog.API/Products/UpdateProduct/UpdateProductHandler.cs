@@ -20,26 +20,28 @@ namespace Catalog.API.Products.UpdateProduct
         }
     }
     internal class UpdateProductCommandHandler
-        (IDocumentSession session)
+        (IProductRepository _productRepository)
         : ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
         public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
-            var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
+            var product = await _productRepository.GetProductByIdAsync(command.Id, cancellationToken);
 
             if (product is null)
             {
                 throw new ProductNotFoundException(command.Id);
             }
 
+            // Update the product's properties
             product.Name = command.Name;
             product.Category = command.Category;
             product.Description = command.Description;
             product.ImageFile = command.ImageFile;
             product.Price = command.Price;
-            session.Update(product);
-            await session.SaveChangesAsync(cancellationToken);
 
+            // Save changes via the repository
+            var updatedProduct = await _productRepository.UpdateProductAsync(product, cancellationToken);
+            
             return new UpdateProductResult(true);
         }
     }

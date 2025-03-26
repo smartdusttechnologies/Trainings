@@ -16,7 +16,7 @@ namespace Catalog.API.Products.CreateProduct
             RuleFor(x => x.Image).NotEmpty().WithMessage("Image is required");
         }
     }
-    internal class CreateProductHandler(IDocumentSession session ) : ICommandHandler<CreateProductCommand, CreateProductResult>
+    internal class CreateProductHandler(IProductRepository _productRepository) : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
@@ -32,14 +32,10 @@ namespace Catalog.API.Products.CreateProduct
             };
 
             // Save product entity to database
-            session.Store(product);
-            await session.SaveChangesAsync(cancellationToken);
-            // Assuming SaveProductAsync is a method that saves the product and returns the product ID
-
-
-            // Return the product iddocker-compose up --build
-
-            return new CreateProductResult(product.Id);
+            var createdProduct = await _productRepository.AddProductAsync(product, cancellationToken);
+         
+            // Return the product 
+            return new CreateProductResult(createdProduct.Id);
         }
 
 
