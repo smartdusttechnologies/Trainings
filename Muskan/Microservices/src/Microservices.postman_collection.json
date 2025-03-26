@@ -89,7 +89,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{category_url}}/products",
+									"raw": "{{category_url}}/products/01959ece-f1a1-4f8c-8270-6c4912e59038",
 									"host": [
 										"{{category_url}}"
 									],
@@ -128,7 +128,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{catalog_url}}/products/catgory/Fruits",
+							"raw": "{{catalog_url}}/products/",
 							"host": [
 								"{{catalog_url}}"
 							],
