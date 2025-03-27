@@ -1,42 +1,53 @@
  
 services:
-  catalogdb:
-    container_name: catalogdb  
+  commondb:
+    container_name: commondb  
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=admin@123
-      - POSTGRES_DB=CatalogDb
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=admin@123
     restart: always
     ports:
-        - "5432:5432"
-    volumes:
-      - postgres_catalog:/var/lib/postgresql/data/ 
+      - "1433:1433"
+    # volumes:
+      # - sqlserver_commondb:/var/opt/mssql/data 
+
+  # catalogdb:
+  #   container_name: catalogdb  
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=admin@123
+  #   restart: always
+  #   ports:
+  #     - "1433:1433"
+  #   volumes:
+  #     - sqlserver_catalog:/var/opt/mssql/data 
   
-  basketdb:
-    container_name: basketdb  
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=admin@123
-      - POSTGRES_DB=BasketDb
-    restart: always
-    ports:
-        - "5433:5432"
-    volumes:
-      - postgres_basket:/var/lib/postgresql/data/ 
+  # basketdb:
+  #   container_name: basketdb  
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=admin@123
+  #   restart: always
+  #   ports:
+  #     - "1434:1433"
+  #   volumes:
+  #    - sqlserver_basket:/var/opt/mssql/data
+
+  # orderdb:
+  #    container_name: orderdb
+  #    environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=admin@123
+  #    restart: always
+  #    ports:
+  #     - "1435:1433"
+  #    volumes:
+  #    - sqlserver_order:/var/opt/mssql/data
   distributedcache:
     container_name: distributedcache
     restart: always
     ports:
       - "6379:6379"
-  orderdb:
-     container_name: orderdb
-     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=admin@123
-     restart: always
-     ports:
-      - "1433:1433"
-
   messagebroker:
      container_name: messagebroker
      hostname: ecommerce-mq
@@ -53,9 +64,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ConnectionStrings__Marten=Server=catalogdb;Port=5432;Database=CatalogDb;User Id=postgres;Password=admin@123;Include Error Detail=true
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=CatalogDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
     depends_on:
-        - catalogdb
+        - commondb
     ports:
     - "6000:8080"
     - "6060:8081"
@@ -71,7 +82,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ConnectionStrings__Marten=Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=admin@123;Include Error Detail=true
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=BasketDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
       - ConnectionStrings__Redis=distributedcache:6379
       - GrpcSetting__DiscountUrl=https://discount.grpc:8081
       - MessageBroker__Host=amqp://ecommerce-mq:5672
@@ -79,7 +90,7 @@ services:
       - MessageBroker__Password=guest
 
     depends_on:
-      - basketdb
+      - commondb
       - distributedcache
       - discount.grpc
       - messagebroker
@@ -115,13 +126,13 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ConnectionStrings__SqlServerDb=Server=orderdb;Database=orderDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=OrderDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
       - MessageBroker__Host=amqp://ecommerce-mq:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
       - FeatureManagement__OrderFullFillment=false
     depends_on:
-      - orderdb      
+      - commondb      
       - messagebroker
     ports:
       - "6003:8080"

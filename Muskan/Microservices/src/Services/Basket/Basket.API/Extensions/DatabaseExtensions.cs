@@ -5,11 +5,21 @@
         public static async Task<IApplicationBuilder> UseMigration(this IApplicationBuilder app)
         {
             using var scope = app.ApplicationServices.CreateScope();
-            using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
-            if (pendingMigrations.Any())
+            try
             {
-                await context.Database.MigrateAsync();
+                using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+                if (pendingMigrations.Any())
+                {
+                    Console.WriteLine("Data base migration started");
+                    await context.Database.MigrateAsync(); 
+                    Console.WriteLine("Data base migration ended");
+                }
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.InnerException);
+
             }
             return app;
         }

@@ -20,9 +20,17 @@ namespace Basket.API.Data
         {
             try
             {
+                if (basket.Id == Guid.Empty)
+                {
+                    basket.Id = Guid.NewGuid();
+                }
                 context.ShoppingCarts.Add(basket);
                 foreach (var item in basket.Items)
                 {
+                    if (item.Id == Guid.Empty)
+                    {
+                        item.Id = Guid.NewGuid(); // Assign unique ID
+                    }
                     item.ShoppingCartId = basket.Id;  // Link item to the basket
                     context.ShoppingCartItems.Add(item);  // Add each item
                 }

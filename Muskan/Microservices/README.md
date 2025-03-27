@@ -162,7 +162,6 @@ cd Muskan/Microservices
 ```sh
 docker-compose up -d
 ```
-
 ### Access API Gateway:
 ```
 http://localhost:5005/
