@@ -152,16 +152,91 @@ DELETE /basket/{id}                         # Delete Basket
 
 ## 🛠️ How to Run the Microservices?
 
+## Prerequisites
+
+Ensure you have the following installed on your system before proceeding:
+
+- **Git** - [Download Git](https://git-scm.com/downloads)
+- **Visual Studio 2022** (with .NET Core Workloads) - [Download Visual Studio](https://visualstudio.microsoft.com/)
+- **Docker Desktop** - [Download Docker](https://www.docker.com/products/docker-desktop/)
+- **SQL Server** (if using SQL-based databases) - [Download SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- **SSMS (SQL Server Management Studio)** - [Download SSMS](https://aka.ms/ssmsfullsetup)
+
+---
+
 ### Clone the Repository:
 ```sh
 git clone https://github.com/smartdusttechnologies/Trainings.git
 cd Muskan/Microservices
 ```
 
+## Change the Connection String of All Microservices
+
+### **For Basket Service**
+```json
+"ConnectionStrings": {      
+  "SqlServerDb": "Server=YOUR_SERVER;Database=BasketDb;User Id=YOUR_ID;Password=YOUR_PASSWORD;TrustServerCertificate=True",
+  "Redis": "localhost:6379"
+}
+```
+
+### **For Catalog Service**
+```json
+"ConnectionStrings": {
+  "SqlServerDb": "Server=YOUR_SERVER;Database=CatalogDb;User Id=YOUR_ID;Password=YOUR_PASSWORD;TrustServerCertificate=True"   
+}
+```
+
+### **For Order Service**
+```json
+"ConnectionStrings": {  
+  "SqlServerDb": "Server=YOUR_SERVER;Database=OrderDb;User Id=YOUR_ID;Password=YOUR_PASSWORD;TrustServerCertificate=True"
+}
+```
+
+---
+
+
+### **For Basket Service**
+```sh
+Add-Migration Initial -StartupProject Basket.API 
+```
+
+### **For Catalog Service**
+```sh
+Add-Migration Initial -StartupProject Catalog.API 
+```
+
+### **For Order Service**
+```sh
+Add-Migration Initial -StartupProject Ordering.API -Project Ordering.Infrastructure -OutDir Data/Migrations 
+```
+
+---
+
 ### Run Docker Containers:
+Ensure Docker Desktop is running, then execute the following command:
+
 ```sh
 docker-compose up -d
 ```
+This will start all microservices in detached mode.
+ ---
+
+### Run the Shopping Web App
+
+## Or 
+
+### Using Visual Studio
+1. Open **Visual Studio 2022**.
+2. Load the `Muskan/Microservices` solution.
+3. Set **Multiple Startup Projects**.
+4. Select **docker-compose** and **Shopping.Web**.
+5. Run the project (`F5` or `Ctrl + F5`).
+
+---
+
 ### Access API Gateway:
+Once the application is running, you can access the API Gateway at:
 ```
 http://localhost:5005/
