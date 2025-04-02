@@ -1,0 +1,56 @@
+ 
+services:
+   
+  basket.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=BasketDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - ConnectionStrings__Redis=distributedcache:6379,abortConnect=false,connectTimeout=20000,asyncTimeout=20000
+      - GrpcSetting__DiscountUrl=https://discount.grpc:8081
+      - MessageBroker__Host=amqp://messagebroker:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+
+    # depends_on:
+      # commondb :
+      #   condition: service_healthy
+      # distributedcache : 
+      #   condition: service_started
+      # - discount.grpc
+      # messagebroker: 
+      #  condition: service_started
+
+    ports:
+      - "6001:8080"
+      - "6061:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+
+  discount.grpc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlLite=Data Source=discountdb
+
+    ports:
+      - "6002:8080"
+      - "6062:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+networks:
+  microservices_network:
+    external: true
+
