@@ -5,7 +5,15 @@
 }
 
 <hr />
-
+@if (User.Identity.IsAuthenticated)
+{
+     <p>Hello, @User.Identity.Name!</p>
+     <a asp-page="/Logout">Logout</a>
+}
+else
+{
+     <a asp-page="/Login">Login with Auth0</a>
+}
 <div class="container">
     <div class="row">
         <div class="col">

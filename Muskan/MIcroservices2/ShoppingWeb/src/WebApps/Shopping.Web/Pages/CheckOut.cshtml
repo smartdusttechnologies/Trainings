@@ -112,7 +112,8 @@
                         <label asp-for="Order.Country" for="country">Country</label>
                         <select asp-for="Order.Country" class="custom-select d-block w-100" id="country" required>
                             <option value="">Choose...</option>
-                            <option>United States</option>
+                            <option>India</option>
+
                         </select>
                         <div class="invalid-feedback">
                             Please select a valid country.
@@ -122,7 +123,43 @@
                         <label asp-for="Order.State" for="state">State</label>
                         <select asp-for="Order.State" class="custom-select d-block w-100" id="state" required>
                             <option value="">Choose...</option>
-                            <option>California</option>
+                                   <option>Andhra Pradesh</option>
+                                   <option>Arunachal Pradesh</option>
+                                   <option>Assam</option>
+                                   <option>Bihar</option>
+                                   <option>Chhattisgarh</option>
+                                   <option>Goa</option>
+                                   <option>Gujarat</option>
+                                   <option>Haryana</option>
+                                   <option>Himachal Pradesh</option>
+                                   <option>Jharkhand</option>
+                                   <option>Karnataka</option>
+                                   <option>Kerala</option>
+                                   <option>Madhya Pradesh</option>
+                                   <option>Maharashtra</option>
+                                   <option>Manipur</option>
+                                   <option>Meghalaya</option>
+                                   <option>Mizoram</option>
+                                   <option>Nagaland</option>
+                                   <option>Odisha</option>
+                                   <option>Punjab</option>
+                                   <option>Rajasthan</option>
+                                   <option>Sikkim</option>
+                                   <option>Tamil Nadu</option>
+                                   <option>Telangana</option>
+                                   <option>Tripura</option>
+                                   <option>Uttar Pradesh</option>
+                                   <option>Uttarakhand</option>
+                                   <option>West Bengal</option>
+                                   <!-- Union Territories -->
+                                   <option>Andaman and Nicobar Islands</option>
+                                   <option>Chandigarh</option>
+                                   <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                                   <option>Delhi</option>
+                                   <option>Jammu and Kashmir</option>
+                                   <option>Ladakh</option>
+                                   <option>Lakshadweep</option>
+                                   <option>Puducherry</option>
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid state.
@@ -188,13 +225,15 @@
                             Expiration date required
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label asp-for="Order.CVV" for="cc-expiration">CVV</label>
-                        <input asp-for="Order.CVV" type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                        <div class="invalid-feedback">
-                            Security code required
-                        </div>
-                    </div>
+                         <div class="col-md-3 mb-3">
+                              <label asp-for="Order.CVV" for="cc-cvv">CVV</label>
+                              <input asp-for="Order.CVV" type="text" class="form-control" id="cc-cvv" placeholder="" required
+                                     pattern="^\d{3}$" maxlength="3">
+                              <div class="invalid-feedback">
+                                   Security code must be exactly 3 digits.
+                              </div>
+                         </div>
+
                 </div>
                 <hr class="mb-4">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Checkout Order</button>

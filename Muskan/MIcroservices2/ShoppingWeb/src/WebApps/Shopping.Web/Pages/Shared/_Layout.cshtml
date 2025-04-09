@@ -17,7 +17,7 @@
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">AspnetRunBasics</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Microservices</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,6 +39,15 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Contact">Contact</a>
                         </li>
+                              @if (User.Identity.IsAuthenticated)
+                              {
+                                   <li class="nav-item"><a class="nav-link " asp-page="/Account/Logout">Logout</a></li>
+                                   <li class="nav-item"><a class="nav-link " asp-page="/Account/Profile">Profile</a></li>
+                              }
+                              else
+                              {
+                                   <li class="nav-item"><a class="nav-link " asp-page="/Account/Login">Login</a></li>
+                              }              
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0">

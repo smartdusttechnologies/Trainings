@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   commondb:
     image: mcr.microsoft.com/mssql/server
@@ -21,7 +23,7 @@ services:
       - microservices_network
 
   messagebroker:
-    image: rabbitmq:3-management
+    image: rabbitmq:management
     container_name: messagebroker
     hostname: ecommerce-mq
     environment:
@@ -31,6 +33,49 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - microservices_network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.17
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    networks:
+      - microservices_network
+    healthcheck:
+      test:
+        ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 15s
+      retries: 15
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.17.17
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+    ports:
+      - "5000:5000"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - microservices_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.17
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
     networks:
       - microservices_network
 

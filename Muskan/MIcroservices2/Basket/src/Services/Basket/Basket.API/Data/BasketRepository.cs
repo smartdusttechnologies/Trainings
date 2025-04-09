@@ -70,6 +70,7 @@ namespace Basket.API.Data
             {
                 context.ShoppingCarts.Remove(existingCart);
             }
+
             await context.ShoppingCarts.AddAsync(cart);
             await context.SaveChangesAsync();
             return true;

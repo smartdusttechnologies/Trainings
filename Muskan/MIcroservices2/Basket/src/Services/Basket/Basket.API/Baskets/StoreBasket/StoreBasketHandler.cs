@@ -15,6 +15,7 @@ namespace Basket.API.Baskets.StoreBasket
     }
     public class StoreBasketCommandHandler(IBasketRepository repository , DiscountProtoService.DiscountProtoServiceClient discountPrice) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
     {
+
         public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
         {
             if (command.Cart.Items == null || !command.Cart.Items.Any())
