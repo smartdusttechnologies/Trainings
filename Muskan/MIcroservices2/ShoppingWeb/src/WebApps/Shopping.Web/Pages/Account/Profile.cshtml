@@ -1,0 +1,57 @@
+﻿@page
+@model Shopping.Web.Pages.Account.ProfileModel
+@{
+    ViewData["Title"] = "User Profile";
+}
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">@ViewData["Title"]</h2>
+            <hr class="w-25 mx-auto border-primary" />
+        </div>
+        <div class="row g-4 align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="@Model.UserProfileImage" alt="Profile Image"
+                     class="rounded-circle img-thumbnail shadow-sm border border-3 border-primary"
+                     style="width: 160px; height: 160px; object-fit: cover;">
+            </div>
+            <div class="col-md-8">
+                <h3 class="text-dark mb-3">@Model.UserName</h3>
+                <ul class="list-unstyled fs-5">
+                    <li class="mb-2">
+                        <i class="fa fa-envelope text-primary me-2"></i>
+                        <strong>Email:</strong> @Model.UserEmailAddress
+                    </li>
+                    <li class="mb-2">
+                        <i class="fa fa-phone text-success me-2"></i>
+                        <strong>Phone:</strong> @Model.UserPhoneNumber
+                    </li>
+                    <li class="mb-2">
+                        <i class="fa fa-map-marker-alt text-danger me-2"></i>
+                        <strong>Address:</strong> @Model.UserAddress
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JavaScript for Dynamic Greeting -->
+@section Scripts {
+    <script>
+        window.onload = function () {
+            const now = new Date();
+            const hour = now.getHours();
+            let greeting = "Welcome!";
+
+            if (hour < 12) {
+                greeting = "🌅 Good Morning!";
+            } else if (hour < 17) {
+                greeting = "☀️ Good Afternoon!";
+            } else {
+                greeting = "🌙 Good Evening!";
+            }
+
+            document.getElementById("greeting").innerText = greeting + " Best wishes for your day!";
+        };
+    </script>
+}

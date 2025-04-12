@@ -1,0 +1,6 @@
+services:
+  yarpapigateway:
+    image: ${DOCKER_REGISTRY-}yarpapigateway
+    build:
+      context: .
+      dockerfile: APiGateway/YarpAPIGateway/Dockerfile

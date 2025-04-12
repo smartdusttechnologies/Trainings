@@ -1,0 +1,13 @@
+services:
+  security:
+    image: ${DOCKER_REGISTRY-}security
+    build:
+      context: .
+      dockerfile: src/Security/Security/Dockerfile
+
+  logging.api:
+    image: ${DOCKER_REGISTRY-}loggingapi
+    build:
+      context: .
+      dockerfile: src/Logging/Logging.API/Dockerfile
+
