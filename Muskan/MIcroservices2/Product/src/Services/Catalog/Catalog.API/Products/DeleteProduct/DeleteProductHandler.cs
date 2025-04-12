@@ -13,27 +13,27 @@ namespace Catalog.API.Products.DeleteProduct
                RuleFor(x => x.id).NotEmpty().WithMessage("Id is required");
           }
      }
-     internal class DeleteProductHandler(IProductRepository _productRepository, ILoggingService logger) : ICommandHandler<DeleteProductCommand, DeleteProductResult>
+     internal class DeleteProductHandler(IProductRepository _productRepository, ILoggingService<DeleteProductHandler> logger) : ICommandHandler<DeleteProductCommand, DeleteProductResult>
      {
           public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
           {
                try
                {
-                    await logger.LogInformationAsync("Deleting a product...", "DeleteProductHandler");
+                    await logger.LogInformationAsync("Deleting a product...");
                     var result = await _productRepository.DeleteProductAsync(command.id, cancellationToken);
 
                     if (!result)
                     {
-                         await logger.LogErrorAsync("Product not found", "DeleteProductHandler", new ProductNotFoundException(command.id));
+                         await logger.LogErrorAsync("Product not found", new ProductNotFoundException(command.id));
                          throw new ProductNotFoundException(command.id);
                     }
-                    Console.WriteLine($"Product {command.id} deleted successfully.");
+                    //Console.WriteLine($"Product {command.id} deleted successfully.");
                     return new DeleteProductResult(true);
                }
                catch (Exception ex)
                {
-
-                    Console.WriteLine("Error in delting the product");
+                    await logger.LogErrorAsync("An Unhandled exception occured ", ex);
+                    //Console.WriteLine("Error in delting the product");
                     return new DeleteProductResult(false);
                }
 

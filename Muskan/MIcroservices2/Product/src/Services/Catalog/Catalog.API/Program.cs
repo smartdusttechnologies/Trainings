@@ -1,18 +1,11 @@
+using BuildingBlock.Messaging.MassTransit;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
-using Serilog.Formatting.Elasticsearch;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Add services to the container.
-Log.Logger = new LoggerConfiguration()
-      .Enrich.WithProperty("service", "ProductService")
-       .Enrich.FromLogContext()
-    .WriteTo.Http("http://localhost:5000",
-        queueLimitBytes: null,
-        textFormatter: new ElasticsearchJsonFormatter())
-    .CreateLogger();
+builder.Services.AddHttpContextAccessor();
 
 builder.Host.UseSerilog();
 builder.Services.AddEndpointsApiExplorer();
@@ -29,9 +22,10 @@ builder.Services.AddMediatR(config =>
 builder.Services.AddValidatorsFromAssembly(assembly);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDb")));
+builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddHttpClient<LoggingServices>();
-builder.Services.AddScoped<ILoggingService, LoggingServices>();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
     .AddSqlServer(builder.Configuration.GetConnectionString("SqlServerDb"));

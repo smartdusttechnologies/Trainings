@@ -13,12 +13,22 @@
           }
           public void AddRoutes(IEndpointRouteBuilder app)
           {
-               app.MapPost("/basket", async (StoreBasketRequest request, ISender sender, HttpContext httpContext) =>
+               app.MapPost("/basket", async (StoreBasketRequest request, ISender sender, HttpContext httpContext, ILoggingService<StoreBasketEndpoint> logger) =>
                {
-                    var command = new StoreBasketCommand(request.Cart);
-                    var result = await sender.Send(command);
-                    var response = new StoreBasketResponse(result.userName);
-                    return Results.Created($"/basket/{response.userName}", response);
+                    try
+                    {
+                         await logger.LogInformationAsync("Storing basket for user: " + request.Cart.UserName);
+                         var command = new StoreBasketCommand(request.Cart);
+                         var result = await sender.Send(command);
+                         var response = new StoreBasketResponse(result.userName);
+                         return Results.Created($"/basket/{response.userName}", response);
+
+                    }
+                    catch (Exception ex)
+                    {
+                         await logger.LogErrorAsync("Error storing basket", ex);
+                         return Results.Problem("An error occurred while storing the basket.", statusCode: StatusCodes.Status500InternalServerError);
+                    }
 
                })
                      .RequireCustomAuth()

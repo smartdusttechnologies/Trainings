@@ -1,6 +1,4 @@
- 
 services:
-   
   basket.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -14,13 +12,13 @@ services:
       - MessageBroker__Password=guest
 
     # depends_on:
-      # commondb :
-      #   condition: service_healthy
-      # distributedcache : 
-      #   condition: service_started
-      # - discount.grpc
-      # messagebroker: 
-      #  condition: service_started
+    # commondb :
+    #   condition: service_healthy
+    # distributedcache :
+    #   condition: service_started
+    # - discount.grpc
+    # messagebroker:
+    #  condition: service_started
 
     ports:
       - "6001:8080"
@@ -53,4 +51,3 @@ services:
 networks:
   microservices_network:
     external: true
-

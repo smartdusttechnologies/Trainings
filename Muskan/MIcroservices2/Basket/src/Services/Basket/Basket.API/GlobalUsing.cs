@@ -11,5 +11,6 @@ global using Carter;
 global using Discount.Grpc;
 global using FluentValidation;
 global using Mapster;
+global using Basket.API.Services;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;

@@ -6,6 +6,9 @@ services:
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       - ConnectionStrings__SqlServerDb=Server=commondb;Database=CatalogDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - MessageBroker__Host=amqp://messagebroker:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
     # depends_on:
     #     - commondb
     ports:

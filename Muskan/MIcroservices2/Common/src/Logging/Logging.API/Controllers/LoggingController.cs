@@ -1,61 +1,54 @@
 ﻿using Logging.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Nest;
 
 namespace Logging.API.Controllers
 {
      [ApiController]
      [Route("api/[controller]")]
-     public class LoggingController(ILogger<LoggingController> logger, IElasticClient elasticClient) : ControllerBase
+     public class LoggingController(ILogger<LoggingController> logger) : ControllerBase
      {
-
-
           [HttpPost]
           public async Task<IActionResult> ReceiveLog([FromBody] LogEntry logEntry)
           {
-               // Send to Elasticsearch
-               var indexResponse = await elasticClient.IndexDocumentAsync(logEntry);
-               if (logEntry.Level == "Information")
-               {
+               // Set NLog context variables
+               NLog.MappedDiagnosticsLogicalContext.Set("MachineName", logEntry.MachineName);
+               NLog.MappedDiagnosticsLogicalContext.Set("ServiceName", logEntry.ServiceName);
+               NLog.MappedDiagnosticsLogicalContext.Set("ControllerName", logEntry.ControllerName);
+               NLog.MappedDiagnosticsLogicalContext.Set("CorrelationId", logEntry.CorrelationId);
+               NLog.MappedDiagnosticsLogicalContext.Set("RequestPath", logEntry.RequestPath);
+               NLog.MappedDiagnosticsLogicalContext.Set("HttpMethod", logEntry.HttpMethod);
+               NLog.MappedDiagnosticsLogicalContext.Set("UserId", logEntry.UserId);
+               NLog.MappedDiagnosticsLogicalContext.Set("SourceIP", logEntry.SourceIP);
 
-                    logger.LogInformation(logEntry.Message);
+
+
+               // Log based on level
+               switch (logEntry.Level?.ToLower())
+               {
+                    case "information":
+                         logger.LogInformation(logEntry.Message);
+                         break;
+                    case "warning":
+                         logger.LogWarning(logEntry.Message);
+                         break;
+                    case "error":
+                         logger.LogError(logEntry.Message);
+                         break;
+                    case "critical":
+                         logger.LogCritical(logEntry.Message);
+                         break;
+                    case "debug":
+                         logger.LogDebug(logEntry.Message);
+                         break;
+                    case "trace":
+                         logger.LogTrace(logEntry.Message);
+                         break;
+                    default:
+                         logger.LogInformation(logEntry.Message);
+                         break;
                }
-               else if (logEntry.Level == "Warning")
-               {
 
-                    logger.LogWarning(logEntry.Message);
-               }
-               else if (logEntry.Level == "Error")
-               {
-
-                    logger.LogError(logEntry.Message);
-               }
-               else if (logEntry.Level == "Critical")
-               {
-
-                    logger.LogCritical(logEntry.Message);
-               }
-               else if (logEntry.Level == "Debug")
-               {
-
-                    logger.LogDebug(logEntry.Message);
-               }
-               else if (logEntry.Level == "Trace")
-               {
-
-                    logger.LogTrace(logEntry.Message);
-               }
-               else
-               {
-
-                    logger.LogInformation(logEntry.Message);
-               }
-
-               return Ok(new
-               {
-                    Success = true,
-                    DocumentId = indexResponse.Id
-               });
+               return Ok(new { Success = true });
           }
      }
 }

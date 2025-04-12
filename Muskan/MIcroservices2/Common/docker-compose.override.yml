@@ -4,6 +4,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - MessageBroker__Host=amqp://messagebroker:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
     ports:
       - "6006:8080"
       - "6066:8081"
@@ -20,6 +23,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=LoggingDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - MessageBroker__Host=amqp://messagebroker:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
     ports:
       - "6007:8080"
       - "6067:8081"

@@ -1,8 +1,11 @@
 ﻿namespace Catalog.API.Services
 {
-     public interface ILoggingService
+     public interface ILoggingService<T>
      {
-          Task LogInformationAsync(string message, string controllerName);
-          Task LogErrorAsync(string message, string controllerName, Exception exception);
+          Task LogInformationAsync(string message);
+          Task LogErrorAsync(string message, Exception exception);
+          Task LogWarningAsync(string message);
+          Task LogDebugAsync(string message);
+          Task LogCriticalAsync(string message, Exception exception);
      }
 }

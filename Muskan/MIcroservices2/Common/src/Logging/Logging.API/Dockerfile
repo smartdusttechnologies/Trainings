@@ -13,6 +13,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Logging/Logging.API/Logging.API.csproj", "src/Logging/Logging.API/"]
+COPY ["src/BuildingBlock/BuildingBlock.Messaging/BuildingBlock.Messaging.csproj", "src/BuildingBlock/BuildingBlock.Messaging/"]
 RUN dotnet restore "./src/Logging/Logging.API/Logging.API.csproj"
 COPY . .
 WORKDIR "/src/src/Logging/Logging.API"

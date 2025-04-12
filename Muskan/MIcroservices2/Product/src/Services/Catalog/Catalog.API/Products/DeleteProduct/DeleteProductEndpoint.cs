@@ -7,18 +7,18 @@
      {
           public void AddRoutes(IEndpointRouteBuilder app)
           {
-               app.MapDelete("/products/{id}", async (Guid id, ISender sender, ILoggingService logger) =>
+               app.MapDelete("/products/{id}", async (Guid id, ISender sender, ILoggingService<DeleteProductEndpoint> logger) =>
                {
                     try
                     {
-                         await logger.LogInformationAsync("Deleting a product...", "DeleteProductEndpoint");
+                         await logger.LogInformationAsync("Deleting a product...");
                          var result = await sender.Send(new DeleteProductCommand(id));
                          var response = new DeleteProductResponse(result.isSuccess);
                          return Results.Ok(response);
                     }
                     catch (Exception ex)
                     {
-                         await logger.LogErrorAsync("An error occurred while deleting a product.", "DeleteProductEndpoint", ex);
+                         await logger.LogErrorAsync("An error occurred while deleting a product.", ex);
                          Console.WriteLine(ex.Message);
                          return Results.Problem(ex.Message);
                     }

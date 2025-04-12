@@ -1,76 +1,47 @@
-﻿using System.Text;
-using Newtonsoft.Json;
+﻿using BuildingBlock.Messaging.Events;
+using MassTransit;
 
 namespace Catalog.API.Services
 {
-
-     public class LoggingServices : ILoggingService
+     public class LoggingService<T> : ILoggingService<T>
      {
-          private readonly HttpClient _httpClient;
-          private readonly IConfiguration _configuration;
-          private readonly string _loggingEndpoint;
+          private readonly IPublishEndpoint _publishEndpoint;
+          private readonly IHttpContextAccessor _httpContextAccessor;
+          private readonly string _controllerName;
 
-          public LoggingServices(HttpClient httpClient, IConfiguration configuration)
+          public LoggingService(IPublishEndpoint publishEndpoint, IHttpContextAccessor httpContextAccessor)
           {
-               _httpClient = httpClient;
-               _configuration = configuration;
-               _loggingEndpoint = _configuration["CommonService:Logging"];
+               _publishEndpoint = publishEndpoint;
+               _httpContextAccessor = httpContextAccessor;
+               _controllerName = typeof(T).Name;
           }
 
-          public async Task LogInformationAsync(string message, string controllerName)
+          private async Task PublishLogAsync(string level, string message, Exception? exception = null)
           {
-               var logEntry = new LogEntry
+               var context = _httpContextAccessor.HttpContext;
+
+               var logEntry = new LogEntryMessage
                {
                     Timestamp = DateTime.UtcNow,
-                    Level = "Information",
-                    Message = message,
+                    Level = level,
+                    Message = exception != null ? $"{message} - {exception.Message}" : message,
                     ServiceName = "Products",
-                    ControllerName = controllerName,
-                    CorrelationId = Guid.NewGuid().ToString()
-
-               };
-               try
-               {
-                    await SendLogAsync(logEntry);
-               }
-               catch (Exception ex)
-               {
-
-                    Console.WriteLine($"Logging failed: {ex.Message}");
-               }
-
-
-          }
-
-          public async Task LogErrorAsync(string message, string controllerName, Exception exception)
-          {
-               var logEntry = new LogEntry
-               {
-                    Timestamp = DateTime.UtcNow,
-                    Level = "Error",
-                    Message = $"{message}: {exception.Message}",
-                    ServiceName = "Products",
-                    ControllerName = controllerName,
+                    ControllerName = _controllerName,
                     CorrelationId = Guid.NewGuid().ToString(),
-
+                    MachineName = Environment.MachineName,
+                    HttpMethod = context?.Request?.Method ?? "N/A",
+                    RequestPath = context?.Request?.Path ?? "N/A",
+                    UserId = context?.User?.Identity?.Name ?? "anonymous",
+                    SourceIP = context?.Connection?.RemoteIpAddress?.ToString() ?? "unknown"
                };
 
-               try
-               {
-                    await SendLogAsync(logEntry);
-               }
-               catch (Exception ex)
-               {
-
-                    Console.WriteLine($"Logging failed: {ex.Message}");
-               }
+               await _publishEndpoint.Publish(logEntry);
           }
 
-          private async Task SendLogAsync(LogEntry logEntry)
-          {
-               var json = JsonConvert.SerializeObject(logEntry);
-               var content = new StringContent(json, Encoding.UTF8, "application/json");
-               await _httpClient.PostAsync(_loggingEndpoint, content);
-          }
+          public Task LogInformationAsync(string message) => PublishLogAsync("Information", message);
+          public Task LogErrorAsync(string message, Exception exception) => PublishLogAsync("Error", message, exception);
+          public Task LogWarningAsync(string message) => PublishLogAsync("Warning", message);
+          public Task LogDebugAsync(string message) => PublishLogAsync("Debug", message);
+          public Task LogCriticalAsync(string message, Exception exception) => PublishLogAsync("Critical", message, exception);
      }
 }

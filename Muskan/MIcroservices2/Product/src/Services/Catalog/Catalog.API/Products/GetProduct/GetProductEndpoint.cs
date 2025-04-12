@@ -7,11 +7,11 @@ namespace Catalog.API.Products.GetProduct
      {
           public void AddRoutes(IEndpointRouteBuilder app)
           {
-               app.MapGet("/products", async ([AsParameters] GetProductRequest request, ISender sender, ILoggingService logger) =>
+               app.MapGet("/products", async ([AsParameters] GetProductRequest request, ISender sender, ILoggingService<GetProductByIdEndpoint> logger) =>
                {
                     try
                     {
-                         await logger.LogInformationAsync("Getting a product...", "GetProductEndpoint");
+                         await logger.LogInformationAsync("Getting a product...");
                          var query = request.Adapt<GetProductQuery>();
 
                          var result = await sender.Send(query);
@@ -24,7 +24,7 @@ namespace Catalog.API.Products.GetProduct
                     }
                     catch (Exception ex)
                     {
-                         await logger.LogErrorAsync("Error occured in the GetProduct endpoint", "GetProductEndpoint", ex);
+                         await logger.LogErrorAsync("Error occured in the GetProduct endpoint", ex);
                          return Results.BadRequest(ex);
                     }
 

@@ -31,15 +31,15 @@
                //Defines a POST route /products to create a new product.
                //            CreateProductRequest request(the incoming request DTO).
                //ISender sender(MediatR's sender to dispatch commands).
-               app.MapPost("/products", async (CreateProductRequest request, ISender sender, ILoggingService loggingService) =>
+               app.MapPost("/products", async (CreateProductRequest request, ISender sender, ILoggingService<CreateProductEndpoint> loggingService) =>
                {
                     var correlationId = Guid.NewGuid().ToString(); // Generate a new correlation ID
-                    await loggingService.LogInformationAsync("Creating a new product...", "CreateProductEndpoint");
+                    await loggingService.LogInformationAsync("Creating a new product...");
                     try
                     {
                          if (request == null)
                          {
-                              await loggingService.LogErrorAsync("Received a null request!", "CreateProductEndpoint", new ArgumentNullException(nameof(request)));
+                              await loggingService.LogErrorAsync("Received a null request!", new ArgumentNullException(nameof(request)));
                               Console.WriteLine("Received a null request!");
                               return Results.BadRequest("Invalid request");
                          }
@@ -54,7 +54,7 @@
                     }
                     catch (Exception ex)
                     {
-                         await loggingService.LogErrorAsync("An error occurred while creating a product.", "CreateProductEndpoint", ex);
+                         await loggingService.LogErrorAsync("An error occurred while creating a product.", ex);
                          Console.WriteLine(ex.Message);
                          throw new Exception(ex.Message);
                     }

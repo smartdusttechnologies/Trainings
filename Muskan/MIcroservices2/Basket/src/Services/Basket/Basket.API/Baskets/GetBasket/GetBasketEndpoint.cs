@@ -7,13 +7,20 @@
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/basket/{username}", async (string userName, ISender sender) =>
+            app.MapGet("/basket/{username}", async (string userName, ISender sender , ILoggingService<GetBasketEndpoint> logger) =>
             {
-                var result = await sender.Send(new GetBasketQuery(userName));
+                try{
+                    await logger.LogInformationAsync("Getting basket for user: " + userName);
+  var result = await sender.Send(new GetBasketQuery(userName));
 
                 var response = result.Adapt<GetBasketResponse>();
 
                 return Results.Ok(response);
+                }catch{
+                    await logger.LogErrorAsync("Error getting basket for user: " + userName, new Exception("Basket not found"));
+                    return Results.Problem("An error occurred while getting the basket.", statusCode: StatusCodes.Status500InternalServerError);
+                }
+              
 
             })
                 .WithName("GetBasket")

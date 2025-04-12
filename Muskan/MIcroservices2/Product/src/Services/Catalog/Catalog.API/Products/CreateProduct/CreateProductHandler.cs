@@ -12,11 +12,11 @@
                RuleFor(x => x.Image).NotEmpty().WithMessage("Image is required");
           }
      }
-     internal class CreateProductHandler(IProductRepository _productRepository, ILoggingService logger) : ICommandHandler<CreateProductCommand, CreateProductResult>
+     internal class CreateProductHandler(IProductRepository _productRepository, ILoggingService<CreateProductHandler> logger) : ICommandHandler<CreateProductCommand, CreateProductResult>
      {
           public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
           {
-               await logger.LogInformationAsync("Enter into the CreateProducthandler", "CreateProductHandler");
+               await logger.LogInformationAsync("Enter into the CreateProducthandler");
 
                // Create product entity from command
 
@@ -29,10 +29,10 @@
                     Price = command.Price,
                     ImageFile = command.Image
                };
-               await logger.LogInformationAsync($"{product}", "CreateProductHandler");
+               await logger.LogInformationAsync($"{product}");
                try
                {
-                    await logger.LogInformationAsync("Creating a new product...", "CreateProductHandler");
+                    await logger.LogInformationAsync("Creating a new product...");
                     // Save product entity to database
                     var createdProduct = await _productRepository.AddProductAsync(product, cancellationToken);
 
@@ -41,7 +41,7 @@
                }
                catch (Exception ex)
                {
-                    await logger.LogErrorAsync("An error occurred while creating a product.", "CreateProductHandler", ex);
+                    await logger.LogErrorAsync("An error occurred while creating a product.", ex);
                     throw new Exception(ex.Message);
                }
           }

@@ -5,37 +5,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
-
-//Log.Logger = new LoggerConfiguration()
-//            .MinimumLevel.Debug() // Set the minimum log level
-//            .WriteTo.Console() // Log to console
-//                               .WriteTo.Http("http://localhost:5006/api/logs") // URL of the logging service
-//.CreateLogger();
-//Log.Logger = new LoggerConfiguration()
-//            .MinimumLevel.Debug() // Set the minimum log level
-//            .WriteTo.Console() // Log to console
-//            .WriteTo.Http("http://localhost:5006/api/logs",
-//                           queueLimitBytes: null, // Optional: Set to null for default
-//                           batchSizeLimitBytes: 100, // Optional: Number of logs to send in a batch
-//                           period: TimeSpan.FromSeconds(5), // Optional: Time period to wait before sending logs
-//                           textFormatter: null // Optional: Custom text formatter
-//                                               //logEventLimitBytes: Serilog.Events.LogEventLevel.Information
-//                           ) // Optional: Minimum log level for this sink
-//            .CreateLogger();
-// Add services to the container.
-//Application Services
-//Add Carter 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//           .AddJwtBearer(options =>
-//           {
-//               options.Authority = "https://dev-h2hafjnbquckxeji.us.auth0.com/";
-//               options.Audience = "https://localhost:5056";
-//           });
-//builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCarter();
-//builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var assembly = typeof(Program).Assembly;
@@ -49,11 +21,7 @@ builder.Services.AddMediatR(config =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDb")));
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
-//builder.Services.AddScoped<IBasketRepository>(provider =>
-//{
-//    var basketRepository = provider.GetRequiredService<BasketRepository>();
-//    return new CachedBasketRepository(basketRepository , provider.GetRequiredService<IDistributedCache>());
-//});
+
 //Scrutor Library
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
 
@@ -79,6 +47,8 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
 
 //Async Service RabbiMQ
 builder.Services.AddMessageBroker(builder.Configuration);
+builder.Services.AddHttpClient();
+builder.Services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
 //Exceptional Handling
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
