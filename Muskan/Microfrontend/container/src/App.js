@@ -1,50 +1,54 @@
-import React, { lazy, Suspense, useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"; // Use Navigate instead of Redirect in v6
+import React, { lazy, Suspense, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Progress from "./Component/Progress";
 import Header from "./Component/Header";
-
+import ErrorBoundary from "./Component/ErrorBooundary";
+import { useAuth } from "auth/useAuth";
+import { AuthProvider } from "auth/AuthProvider";
+// import Callback from "./Component/Callback";
+import Callback from "auth/Callback";
 const MarketLazy = lazy(() => import("./Component/MarketingApp"));
 const AuthLazy = lazy(() => import("./Component/AuthApp"));
 const DashboardLazy = lazy(() => import("./Component/Dashboard"));
 
-const App = () => {
-  // State to track if the user is signed in
-  const [isSignIn, setIsSignIn] = useState(false);
-  // Effect to log when the user signs in
-  useEffect(() => {
-    if (isSignIn) {
-      console.log("User is signed in");
-    }
-  }, [isSignIn]); // Runs whenever `isSignIn` changes
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, isLoading } = useAuth();
+  console.log("is Authenticated from the protected routes : ", isAuthenticated);
+  if (isLoading) return <Progress />;
 
+  return isAuthenticated ? children : <Navigate to="/auth/login" replace />;
+};
+
+const App = () => {
+  const [isSignIn, setIsSignIn] = useState(false);
+  const { isAuthenticated, isLoading } = useAuth();
+  console.log("isAuthenticated from the home", isAuthenticated);
   return (
-    <BrowserRouter>
-      <Header OnSignOut={() => setIsSignIn(false)} isSignIn={isSignIn} />
-      <Suspense fallback={<Progress />}>
-        <Routes>
-          <Route
-            path="/auth/signup"
-            element={<AuthLazy onSignIn={() => setIsSignIn(true)} />}
-          />
-          <Route
-            path="/auth/login"
-            element={<AuthLazy onSignIn={() => setIsSignIn(true)} />}
-          />
-          <Route path="/" element={<MarketLazy />} />
-          <Route
-            path="/dashboard"
-            element={
-              isSignIn ? (
-                <DashboardLazy />
-              ) : (
-                <Navigate to="/auth/login" replace />
-              )
-            }
-          />
-          <Route path="/pricing" element={<MarketLazy />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <AuthProvider>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <Header OnSignOut={() => setIsSignIn(false)} isSignIn={isSignIn} />
+          <Suspense fallback={<Progress />}>
+            <Routes>
+              <Route
+                path="/auth/*"
+                element={<AuthLazy onSignIn={() => setIsSignIn(true)} />}
+              />
+              <Route path="/callback" element={<Callback />} />
+              <Route path="/*" element={<MarketLazy />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <DashboardLazy />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </ErrorBoundary>
+    </AuthProvider>
   );
 };
 

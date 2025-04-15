@@ -2,12 +2,20 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
-// let root = null;
+
+let root = null;
 // Mount function to start the micro-frontend app
 const mount = (
   el,
   { onSignIn, onNavigate, defaultHistory, initialPath = "/" }
 ) => {
+  // const handleSignIn = () => {
+  //   setIsSignedIn(true);
+  // };
+
+  // Pass this function down to the `App` component
+  // <App history={history} onSignIn={handleSignIn} />;
+
   const history =
     defaultHistory || createMemoryHistory({ initialEntries: [initialPath] });
 
@@ -18,9 +26,9 @@ const mount = (
     }
   });
 
-  // if (!root) {
-  const root = createRoot(el); // only createRoot once
-  // }
+  if (!root) {
+    root = createRoot(el); // Reassign root here, not redeclare it
+  }
 
   // Render the App with the passed history
   root.render(<App history={history} onSignIn={onSignIn} />);

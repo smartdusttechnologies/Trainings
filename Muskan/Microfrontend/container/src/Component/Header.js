@@ -1,8 +1,13 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "auth/LoginButton";
+import LogoutButton from "auth/LogoutButton";
 
-const Header = ({ OnSignOut, isSignIn }) => {
+const Header = ({ onSignOut, isSignIn }) => {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <AppBar position="static" sx={{ backgroundColor: "#003366" }}>
       <Toolbar>
@@ -24,8 +29,9 @@ const Header = ({ OnSignOut, isSignIn }) => {
           Pricing
         </NavLink>
 
-        {isSignIn ? (
+        {isAuthenticated && (
           <>
+            {" "}
             <NavLink
               to="/dashboard"
               style={{
@@ -36,39 +42,26 @@ const Header = ({ OnSignOut, isSignIn }) => {
             >
               Dashboard
             </NavLink>
-            <Button
-              color="inherit"
-              sx={{ marginLeft: "16px" }}
-              onClick={OnSignOut}
-            >
-              Sign Out
-            </Button>
-          </>
-        ) : (
-          <>
             <NavLink
-              to="/auth/login"
+              to="/auth/profile"
               style={{
                 marginLeft: "16px",
                 textDecoration: "none",
                 color: "white",
               }}
             >
-              Login
-            </NavLink>
-
-            <NavLink
-              to="/auth/signup"
-              style={{
-                marginLeft: "16px",
-                textDecoration: "none",
-                color: "white",
-              }}
-            >
-              Sign Up
+              Profile
             </NavLink>
           </>
         )}
+
+        <Box sx={{ marginLeft: "auto" }}>
+          {isAuthenticated ? (
+            <LogoutButton />
+          ) : (
+            <LoginButton onSignIn={() => console.log("User signed in")} />
+          )}
+        </Box>
       </Toolbar>
     </AppBar>
   );

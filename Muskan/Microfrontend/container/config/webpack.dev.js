@@ -2,6 +2,7 @@ const { merge } = require("webpack-merge");
 const commonConfig = require("./webpack.common.js");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const packageJson = require("../package.json");
+const path = require("path");
 const devConfig = {
   mode: "development",
   // output: {
@@ -9,11 +10,12 @@ const devConfig = {
   // },
   devServer: {
     port: 3000,
-    historyApiFallback: {
-      index: "index.html",
-    },
+    // historyApiFallback: {
+    //   index: "index.html",
+    // },
+    historyApiFallback: true,
     static: {
-      directory: "./dist",
+      directory: path.resolve(__dirname, "dist"),
     },
     hot: true,
     open: true,

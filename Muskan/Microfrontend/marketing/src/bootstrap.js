@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
-// let root = null; // Variable to store the root instance of React
+let root = null; // Variable to store the root instance of React
 // Mount function to start the micro-frontend app
 const mount = (el, { onNavigate, defaultHistory, initialPath = "/" }) => {
   // Create a history object. Use defaultHistory if provided, otherwise create a memory history.
@@ -18,9 +18,9 @@ const mount = (el, { onNavigate, defaultHistory, initialPath = "/" }) => {
     }
   });
 
-  // if (!root) {
-  const root = createRoot(el); // only createRoot once
-  // }
+  if (!root) {
+    root = createRoot(el); // Reassign root here, not redeclare it
+  }
 
   // Render the App with the passed history
   root.render(<App history={history} />);

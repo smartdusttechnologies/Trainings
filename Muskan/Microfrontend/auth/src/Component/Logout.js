@@ -2,20 +2,17 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
 
-const LoginButton = ({ onSignIn }) => {
-  const { loginWithRedirect } = useAuth0();
+const LogoutButton = () => {
+  const { logout } = useAuth0();
 
-  const handleLogin = async () => {
-    await loginWithRedirect();
-    onSignIn();
-    console.log(onSignIn());
+  const handleLogout = () => {
+    logout({ returnTo: window.location.origin });
   };
 
   return (
     <Button
-      onClick={handleLogin}
       sx={{
-        color: "white", // White text
+        color: "white",
         backgroundColor: "transparent",
         border: "none",
         boxShadow: "none",
@@ -23,10 +20,11 @@ const LoginButton = ({ onSignIn }) => {
           backgroundColor: "rgba(255, 255, 255, 0.1)",
         },
       }}
+      onClick={handleLogout}
     >
-      Log In
+      Log Out
     </Button>
   );
 };
 
-export default LoginButton;
+export default LogoutButton;
