@@ -15,10 +15,10 @@ const LoginButton = ({ onSignIn }) => {
     <Button
       onClick={handleLogin}
       sx={{
-        color: "white", // White text
-        backgroundColor: "transparent",
-        border: "none",
-        boxShadow: "none",
+        color: "black",
+        backgroundColor: "white",
+        border: "1px solid #003366",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
         "&:hover": {
           backgroundColor: "rgba(255, 255, 255, 0.1)",
         },

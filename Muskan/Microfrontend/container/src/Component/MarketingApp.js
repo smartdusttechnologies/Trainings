@@ -1,29 +1,3 @@
-// import { mount } from "marketing/MarketingApp";
-// import React, { useRef, useEffect } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-
-// export default function MarketingApp({ currentPathname }) {
-//   const ref = useRef(null);
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const { onParentNavigate } = mount(ref.current, {
-//       initialPath: currentPathname,
-//       onNavigate: ({ pathname: nextPathname }) => {
-//         if (currentPathname !== nextPathname) {
-//           navigate(nextPathname);
-//         }
-//       },
-//     });
-
-//     return () => {
-//       console.log("Unmounting MarketingApp");
-//     };
-//   }, [currentPathname, navigate]);
-
-//   return <div ref={ref} />;
-// }
-
 import { mount } from "marketing/MarketingApp";
 import React, { useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -38,22 +12,18 @@ export default function MarketingApp() {
       initialPath: location.pathname,
       onNavigate: ({ pathname: nextPathname }) => {
         if (location.pathname !== nextPathname) {
+          console.log("Next Pathaname", nextPathname);
           navigate(nextPathname); // Navigate inside container
         }
       },
     });
-
+    // Syncing route changes FROM container TO remote
     const unlisten = () => {
-      const observer = new MutationObserver(() => {
-        onParentNavigate({ pathname: location.pathname }); // Notify MFE if container changes
-      });
-
-      observer.observe(ref.current, { childList: true, subtree: true });
-      return () => observer.disconnect();
+      // this effect re-runs when location changes
+      onParentNavigate({ pathname: location.pathname });
     };
 
-    const cleanup = unlisten();
-    return cleanup;
+    unlisten(); // call once on mount
   }, [location, navigate]);
 
   return <div ref={ref} />;

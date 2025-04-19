@@ -1,12 +1,12 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "auth/useAuth";
 import LoginButton from "auth/LoginButton";
 import LogoutButton from "auth/LogoutButton";
 
 const Header = ({ onSignOut, isSignIn }) => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth();
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#003366" }}>
@@ -28,7 +28,24 @@ const Header = ({ onSignOut, isSignIn }) => {
         >
           Pricing
         </NavLink>
-
+        <NavLink
+          to="/product/list"
+          style={{ marginLeft: "16px", textDecoration: "none", color: "white" }}
+        >
+          Product
+        </NavLink>
+        <NavLink
+          to="/order/list"
+          style={{ marginLeft: "16px", textDecoration: "none", color: "white" }}
+        >
+          Order
+        </NavLink>
+        <NavLink
+          to="/basket/list"
+          style={{ marginLeft: "16px", textDecoration: "none", color: "white" }}
+        >
+          Basket
+        </NavLink>
         {isAuthenticated && (
           <>
             {" "}

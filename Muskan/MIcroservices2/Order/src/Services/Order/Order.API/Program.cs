@@ -4,6 +4,7 @@ using Ordering.Infrastructure;
 using Ordering.Infrastructure.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpContextAccessor();
 //Add service to the container
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

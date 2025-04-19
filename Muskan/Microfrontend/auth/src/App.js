@@ -14,7 +14,7 @@ import Callback from "./Component/Callback";
 import LoginButton from "./Component/Login";
 import LogoutButton from "./Component/Logout";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import Unauthorized from "./Pages/LoginPage";
 const App = ({ history, onSignIn }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   useEffect(() => {
@@ -29,11 +29,11 @@ const App = ({ history, onSignIn }) => {
   return (
     <AuthProvider>
       <HistoryRouter history={history}>
-        {/* <AuthHeader onSignIn={onSignIn} /> */}
+        <AuthHeader onSignIn={onSignIn} />
         <Routes>
           <Route path="/auth/callback" element={<Callback />} />
 
-          <Route path="/auth/login" element={<LoginButton />} />
+          <Route path="/auth/login" element={<Unauthorized />} />
           <Route path="/auth/logout" element={<LogoutButton />} />
           <Route path="/auth/profile" element={<Profile />} />
         </Routes>

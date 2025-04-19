@@ -4,15 +4,34 @@ import {
   Route,
   unstable_HistoryRouter as HistoryRouter,
 } from "react-router-dom";
-import Dashboard from "./Component/Dashboard";
+
+import { AuthProvider } from "auth/AuthProvider";
+import ProtectedRoute from "./Component/ProtectedRoute";
+import Home from "./Pages/Home";
+import Unauthorized from "./Component/Unauthorized";
+import Dashboard from "./Pages/Dashboard";
+import Callback from "auth/Callback";
 const App = ({ history }) => {
   return (
     <>
-      <HistoryRouter history={history}>
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </HistoryRouter>
+      <AuthProvider>
+        <HistoryRouter history={history}>
+          <Routes>
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path="/*" element={<Home />} />
+            <Route path="/callback" element={<Callback />} />
+            <Route path="/auth/login" element={<Unauthorized />} />
+          </Routes>
+        </HistoryRouter>
+      </AuthProvider>
     </>
   );
 };

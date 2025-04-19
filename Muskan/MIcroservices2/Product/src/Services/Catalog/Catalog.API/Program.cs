@@ -1,4 +1,5 @@
 using BuildingBlock.Messaging.MassTransit;
+using Catalog.API.Midddleware;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
@@ -29,7 +30,15 @@ builder.Services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
     .AddSqlServer(builder.Configuration.GetConnectionString("SqlServerDb"));
-
+builder.Services.AddHttpClient<TokenValidator>()
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+         var handler = new HttpClientHandler
+         {
+              ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+         };
+         return handler;
+    });
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

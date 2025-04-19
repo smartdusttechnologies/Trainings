@@ -31,7 +31,9 @@ namespace Catalog.API.Products.GetProduct
 
 
 
-               }).WithName(" GetProduct")
+               })
+                    //.RequireCustomAuth()
+                    .WithName(" GetProduct")
                .Produces<GetProductResponse>(StatusCodes.Status200OK).
                ProducesProblem(StatusCodes.Status400BadRequest)
                .WithSummary(" Get Product")

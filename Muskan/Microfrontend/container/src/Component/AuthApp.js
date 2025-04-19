@@ -15,8 +15,8 @@ export default function AuthApp({ onSignIn, onSignOut }) {
       onNavigate: ({ pathname: nextPathname }) => {
         console.log("nextPathname", nextPathname);
         if (location.pathname !== nextPathname) {
-          console.log("location.pathname", location.pathname);
-          console.log("Navigating to the next path:", nextPathname);
+          console.log("Next Pathaname", nextPathname);
+          // console.log("Navigating to the next path:", nextPathname);
           navigate(nextPathname);
         }
       },

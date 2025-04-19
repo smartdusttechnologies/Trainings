@@ -26,6 +26,9 @@ const devConfig = {
     new ModuleFederationPlugin({
       name: "dashboard",
       filename: "remoteEntry.js",
+      remotes: {
+        auth: "auth@http://localhost:3002/remoteEntry.js",
+      },
       exposes: {
         "./DashboardApp": "./src/bootstrap",
       },

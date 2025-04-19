@@ -24,7 +24,8 @@
                     }
 
 
-               }).WithName("DeleteProduct")
+               }).RequireCustomAuth()
+                    .WithName("DeleteProduct")
                .Produces<DeleteProductResponse>(StatusCodes.Status200OK).
                ProducesProblem(StatusCodes.Status400BadRequest)
                .WithSummary("Delete Product")

@@ -8,6 +8,9 @@ This project is part of a microfrontend architecture designed to create a modula
 - **Dashboard Microfrontend**: Displays the dashboard
 - **Container Microfrontend**: Serves as the host application that loads and integrates the other microfrontends.
 - **Marketing (Landing Page) Microfrontend**: Provides the marketing landing page for the application
+- **Product Microfrontend**: Display product list and details
+- **Basket Microfrontend**: Display product list and details Display basket or cart and checkout the order
+- **Order Microfrontend**: Display the list of Order with the customer Id
 
 ### Integration:
 
@@ -128,10 +131,52 @@ npm install
 npm start
 ```
 
-2.  **Go to Dashboard application**
+4.  **Go to Dashboard application**
 
 ```sh
 cd dashboard
+```
+
+```sh
+npm install
+```
+
+```sh
+npm start
+```
+
+5.  **Go to Product application**
+
+```sh
+cd product
+```
+
+```sh
+npm install
+```
+
+```sh
+npm start
+```
+
+6.  **Go to Basket application**
+
+```sh
+cd basket
+```
+
+```sh
+npm install
+```
+
+```sh
+npm start
+```
+
+7.  **Go to Ordering application**
+
+```sh
+cd order
 ```
 
 ```sh
@@ -147,7 +192,10 @@ npm start
 | Auth          | http://localhost:3002 | Handle authentication            |
 | Container     | http://localhost:3000 | Integrate all microservices      |
 | marketing     | http://localhost:3001 | Handle landing page and other .. |
-| dashboard     | http://localhost:3003 | Handle dahboard after login      |
+| Dashboard     | http://localhost:3003 | Handle dahboard after login      |
+| Product       | http://localhost:3004 | Handle Product                   |
+| Basket        | http://localhost:3005 | Handle Basket after login        |
+| Order         | http://localhost:3006 | Handle Order after login         |
 
 #### How to set up Auth0 in react js or Microfrontend
 
@@ -171,9 +219,9 @@ npm start
 
 - **Step 2**: Configure the application settings:
 
-  - **Allowed Callback URLs**: `http://localhost:3002/callback`, `http://localhost:3000/callback` (or wherever your Auth microfrontend runs)
-  - **Allowed Logout URLs**: `http://localhost:3002`, `http://localhost:3000`, `http://localhost:3001`
-  - **Allowed Web Origins**: `http://localhost:3002`, `http://localhost:3000`, `http://localhost:3001`
+  - **Allowed Callback URLs**: `http://localhost:3000/callback`, `http://localhost:3001/callback` ,`http://localhost:3002/callback`,`http://localhost:3003/callback` ,`http://localhost:3004/callback` , `http://localhost:3005/callback` , `http://localhost:3006/callback`(or wherever your Auth microfrontend runs)
+  - **Allowed Logout URLs**: `http://localhost:3002`, `http://localhost:3000`, `http://localhost:3001` ,`http://localhost:3003`, `http://localhost:3004`, `http://localhost:3005`,`http://localhost:3006`
+  - **Allowed Web Origins**: `http://localhost:3002`, `http://localhost:3000`, `http://localhost:3001`,`http://localhost:3003`, `http://localhost:3004`, `http://localhost:3005`,`http://localhost:3006`
   - Save your **Domain** and **Client ID**
 
   ![Step 2](./Readme/Image2.png)
@@ -640,4 +688,46 @@ shared: {
     }
     ```
 
+### 10. ** Auth0 Logout Redirects to the First URL Instead of Current Domain**
+
+- **Problem**: So I Allowed logout url in Auth0
+- `http://localhost:3000`
+- `http://localhost:3001`
+- `http://localhost:3002`
+- `http://localhost:3003`
+- The first logout url is http://localhost:3000
+- I tryied to logout from http://localhost:3002 or http://localhost:3001 it redirect me to the http://localhost:3000
+- **Solution**:
+
+```jsx
+<Button
+  sx={{
+    color: "black",
+    backgroundColor: "white",
+    border: "none",
+    boxShadow: "none",
+    "&:hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+    },
+  }}
+  onClick={() =>
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin, // Dynamically redirects to current domain
+      },
+    })
+  }
+>
+  Log Out
+</Button>
+```
+
 ---
+
+### Articles
+
+[Microfrontend](https://newsletter.systemdesign.one/p/micro-frontends/)
+
+```
+
+```

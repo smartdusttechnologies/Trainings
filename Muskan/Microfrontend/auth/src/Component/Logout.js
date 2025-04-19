@@ -5,22 +5,28 @@ import { Button } from "@mui/material";
 const LogoutButton = () => {
   const { logout } = useAuth0();
 
-  const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
-  };
+  // const handleLogout = () => {
+  //   logout({ returnTo: window.location.origin });
+  // };
 
   return (
     <Button
       sx={{
-        color: "white",
-        backgroundColor: "transparent",
+        color: "black",
+        backgroundColor: "white",
         border: "none",
         boxShadow: "none",
         "&:hover": {
           backgroundColor: "rgba(255, 255, 255, 0.1)",
         },
       }}
-      onClick={handleLogout}
+      onClick={() =>
+        logout({
+          logoutParams: {
+            returnTo: window.location.origin,
+          },
+        })
+      }
     >
       Log Out
     </Button>

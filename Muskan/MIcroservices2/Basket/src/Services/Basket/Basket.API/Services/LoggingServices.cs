@@ -26,6 +26,7 @@ namespace Basket.API.Services
                     Level = level,
                     Message = exception != null ? $"{message} - {exception.Message}" : message,
                     ServiceName = "Basket.API",
+                     Exception = exception?.ToString() ?? "No exception thrown",
                     ControllerName = _controllerName,
                     CorrelationId = Guid.NewGuid().ToString(),
                     MachineName = Environment.MachineName,

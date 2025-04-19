@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { LinearProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Callback = () => {
@@ -19,7 +20,11 @@ const Callback = () => {
     handleLoginRedirect();
   }, [handleRedirectCallback, navigate]);
 
-  return <div>Loading...</div>; // You can show a loading spinner or message while processing
+  return (
+    <div>
+      <LinearProgress />
+    </div>
+  );
 };
 
 export default Callback;

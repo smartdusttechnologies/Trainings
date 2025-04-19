@@ -15,8 +15,7 @@ export default function AuthApp({ onSignIn }) {
       onNavigate: ({ pathname: nextPathname }) => {
         console.log("nextPathname", nextPathname);
         if (location.pathname !== nextPathname) {
-          console.log("location.pathname", location.pathname);
-          console.log("Navigating to the next path:", nextPathname);
+          console.log("Next Pathaname", nextPathname);
           navigate(nextPathname);
         }
       },
@@ -25,9 +24,6 @@ export default function AuthApp({ onSignIn }) {
     });
 
     // React Router DOM 6 handles history internally, no need for manual listeners
-    return () => {
-      console.log("Unmounting MarketingApp");
-    };
   }, [location, navigate]);
 
   return <div ref={ref} />;

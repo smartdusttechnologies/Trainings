@@ -1,4 +1,6 @@
-﻿using Ordering.Application.Order.Commands.CreateOrder;
+﻿
+using Ordering.Application.Order.Commands.CreateOrder;
+using Ordering.Application.Services;
 
 namespace Ordering.API.Endpoints;
 /// <summary>
@@ -16,29 +18,30 @@ public record CreateOrderResponse(Guid Id);
 /// </summary>
 public class CreateOrder : ICarterModule
 {
-    /// <summary>
-    /// Add Endpoint for Create Order
-    /// </summary>
-    /// <param name="app"></param>
-    public void AddRoutes(IEndpointRouteBuilder app)
-    {
-       
-        app.MapPost("/orders", async (CreateOrderRequest request, ISender sender) =>
-        {
-            //Map the CreateOrderRequest and CreateOrderCommand
-            TypeAdapterConfig<CreateOrderRequest, CreateOrderCommand>
-    .NewConfig()
-    .Map(dest => dest.Order.Payment.CVV, src => src.Order.Payment.CVV);                      
-          
-            //request map to the the command 
-            var command = request.Adapt<CreateOrderCommand>();
-            //Command send and then to handler
-            var result = await sender.Send(command);
-            //response get from the command and map to the CreateOrderResponse
-            var response = result.Adapt<CreateOrderResponse>();
-            //Return the results
-            return Results.Created($"/orders/{response.Id}", response);
-        })      
+     /// <summary>
+     /// Add Endpoint for Create Order
+     /// </summary>
+     /// <param name="app"></param>
+     public void AddRoutes(IEndpointRouteBuilder app)
+     {
+
+          app.MapPost("/orders", async (CreateOrderRequest request, ISender sender, ILoggingService<CreateOrder> logger) =>
+          {
+               //Map the CreateOrderRequest and CreateOrderCommand
+               TypeAdapterConfig<CreateOrderRequest, CreateOrderCommand>
+     .NewConfig()
+     .Map(dest => dest.Order.Payment.CVV, src => src.Order.Payment.CVV);
+               await logger.LogInformationAsync($"Create Order Endpoint hit : {request}");
+               //request map to the the command 
+               var command = request.Adapt<CreateOrderCommand>();
+               //Command send and then to handler
+               var result = await sender.Send(command);
+               //response get from the command and map to the CreateOrderResponse
+               var response = result.Adapt<CreateOrderResponse>();
+               //Return the results
+               return Results.Created($"/orders/{response.Id}", response);
+          })
+                 .RequireCustomAuth()
         //Assigns a name "CreateOrder" to the endpoint, making it easier to reference in tools like OpenAPI(Swagger).
         .WithName("CreateOrder")
         //Specifies that the API returns a 201 Created status code with a response of type CreateOrderResponse.
@@ -49,5 +52,5 @@ public class CreateOrder : ICarterModule
         .WithSummary("Create Order")
         //Provides a detailed description of the API endpoint.
         .WithDescription("Create Order");
-    }
+     }
 }

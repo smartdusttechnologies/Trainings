@@ -17,7 +17,7 @@ const App = ({ history }) => {
   // console.log("LandingPage :", LandingPage);
   // console.log("HistoryRouter :", HistoryRouter);
   // console.log("hist :", Pricing);
-  console.log("Pricing : ", Pricing);
+  // console.log("Pricing : ", Pricing);
   return (
     <>
       <HistoryRouter history={history}>

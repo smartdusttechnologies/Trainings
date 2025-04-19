@@ -12,10 +12,9 @@ const devConfig = {
   },
   devServer: {
     port: 3002,
-    historyApiFallback: true,
-    // historyApiFallback: {
-    //   index: "index.html",
-    // },
+    historyApiFallback: {
+      historyApiFallback: true,
+    },
     static: {
       directory: path.resolve(__dirname, "dist"),
       publicPath: "/",

@@ -6,8 +6,8 @@ export function AuthProvider({ children }) {
   //   console.log("Auth0Provider:", children);
   //   console.log("Auth0Provider props:", Auth0Provider.defaultProps);
 
-  const domain = "dev-h2hafjnbquckxeji.us.auth0.com";
-  const clientId = "PpKDMLdEwNYjHRMxYuUMtsjyVger2eAu";
+  const domain = "dev-504gd8ecxjonmiym.us.auth0.com";
+  const clientId = "9FMiuGLoxO78gM56Bmux1tHiWz0sANgf";
 
   return (
     <Auth0Provider
@@ -17,6 +17,9 @@ export function AuthProvider({ children }) {
         redirect_uri: `${window.location.origin}/callback`,
         audience: "https://localhost:6064",
         scope: "openid profile email read:basket",
+      }}
+      logoutParams={{
+        returnTo: window.location.origin,
       }}
     >
       {children}

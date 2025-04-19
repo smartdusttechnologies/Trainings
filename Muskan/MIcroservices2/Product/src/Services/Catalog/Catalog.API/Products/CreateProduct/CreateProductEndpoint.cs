@@ -59,7 +59,9 @@
                          throw new Exception(ex.Message);
                     }
 
-               }).WithName("CreateProduct")
+               })
+                    .RequireCustomAuth()
+                    .WithName("CreateProduct")
                .Produces<CreateProductResponse>(StatusCodes.Status201Created).
                ProducesProblem(StatusCodes.Status400BadRequest)
                .WithSummary("Create Product")

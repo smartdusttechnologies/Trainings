@@ -14,6 +14,7 @@ import PersonIcon from "@mui/icons-material/Person";
 const Profile = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
     useAuth0();
+  console.log(user);
   useEffect(() => {
     const getToken = async () => {
       try {

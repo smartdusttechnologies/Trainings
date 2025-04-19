@@ -1,44 +1,39 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Ordering.Application.Extensions;
-using Ordering.Domain.Abstraction;
-using System.Data;
-using System.Diagnostics;
-using System.Reflection.PortableExecutable;
-using System.Xml.Linq;
+﻿using System.Data;
 
 namespace Ordering.Application.Order.Queries.GetOrderByName
 {
-    /// <summary>
-    /// Get the order with order namme like ORD_004
-    /// </summary>
-    /// <param name="context"></param>
-    public class GetOrderByNameHandler(IApplicationDbContext context) : IQueryHandler<GetOrderByNameQuery, GetOrderByNameResult>
-    {
-        /// <summary>
-        /// Handles the query to retrieve an order by name.
-        /// </summary>
-        /// <param name="query">The query object containing the order name to search for.</param>
-        /// <param name="cancellationToken">A token to observe while waiting for the task to complete.</param>
-        /// <returns>A task that represents the asynchronous operation, returning GetOrderByNameResult.</returns>
-        public async Task<GetOrderByNameResult> Handle(GetOrderByNameQuery query, CancellationToken cancellationToken)
-        {
-             // Find the orders matching the given order name from the database
-            var orders = await context.Orders
-                // Include associated order items in the query result
-                .Include(o => o.OrderItems)
-                // Disable entity tracking to improve performance for read-only queries
-                .AsNoTracking()
-                // Filter the orders where the OrderName contains the query name
-                .Where(o => o.OrderName.Value.Contains(query.Name))
-                // Order the results by OrderName for better readability
-                .OrderBy(o => o.OrderName.Value)
-                // Execute the query asynchronously and return the list of orders
-                .ToListAsync(cancellationToken);
-
-            // Convert the orders to DTO format and return the result
-            return new GetOrderByNameResult(orders.ToOrderDtoList());
-        }
-    }
+     /// <summary>
+     /// Get the order with order namme like ORD_004
+     /// </summary>
+     /// <param name="context"></param>
+     public class GetOrderByNameHandler(IApplicationDbContext context, ILoggingService<GetOrderByNameHandler> logger) : IQueryHandler<GetOrderByNameQuery, GetOrderByNameResult>
+     {
+          /// <summary>
+          /// Handles the query to retrieve an order by name.
+          /// </summary>
+          /// <param name="query">The query object containing the order name to search for.</param>
+          /// <param name="cancellationToken">A token to observe while waiting for the task to complete.</param>
+          /// <returns>A task that represents the asynchronous operation, returning GetOrderByNameResult.</returns>
+          public async Task<GetOrderByNameResult> Handle(GetOrderByNameQuery query, CancellationToken cancellationToken)
+          {
+               await logger.LogInformationAsync($"Order by name : {query}");
+               // Find the orders matching the given order name from the database
+               var orders = await context.Orders
+                   // Include associated order items in the query result
+                   .Include(o => o.OrderItems)
+                   // Disable entity tracking to improve performance for read-only queries
+                   .AsNoTracking()
+                   // Filter the orders where the OrderName contains the query name
+                   .Where(o => o.OrderName.Value.Contains(query.Name))
+                   // Order the results by OrderName for better readability
+                   .OrderBy(o => o.OrderName.Value)
+                   // Execute the query asynchronously and return the list of orders
+                   .ToListAsync(cancellationToken);
+               await logger.LogInformationAsync($"Order ( name )  : {orders.ToOrderDtoList()}");
+               // Convert the orders to DTO format and return the result
+               return new GetOrderByNameResult(orders.ToOrderDtoList());
+          }
+     }
 }
 /// <summary>
 /// What is AsNoTracking() in Entity Framework Core?

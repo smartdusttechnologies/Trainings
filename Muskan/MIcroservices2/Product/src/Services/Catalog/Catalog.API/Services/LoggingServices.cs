@@ -26,6 +26,7 @@ namespace Catalog.API.Services
                     Level = level,
                     Message = exception != null ? $"{message} - {exception.Message}" : message,
                     ServiceName = "Products",
+                    Exception = exception?.ToString() ?? "No exception thrown",
                     ControllerName = _controllerName,
                     CorrelationId = Guid.NewGuid().ToString(),
                     MachineName = Environment.MachineName,
