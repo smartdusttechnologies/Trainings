@@ -87,6 +87,12 @@ Ensure that you have the following installed:
    cd  Muskan/Microfrontend
 ```
 
+3. **Using Docker Desktop**
+
+```sh
+docker-compose up -d
+```
+
 3.  **Open the terminal**  
     Go to different microfrontend
     1. **Go to Authetication application**
