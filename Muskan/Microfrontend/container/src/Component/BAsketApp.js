@@ -22,7 +22,7 @@ export default function AuthApp({ onSignIn }) {
       onSignIn,
       // initialPath: location.pathname,
     });
-
+    onParentNavigate({ pathname: location.pathname });
     // React Router DOM 6 handles history internally, no need for manual listeners
   }, [location, navigate]);
 

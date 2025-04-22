@@ -1,69 +1,96 @@
 ﻿namespace Catalog.API.Data
 {
-    public class ProductRepository(ApplicationDbContext _context) : IProductRepository
-    {
-        // Get all products
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(CancellationToken cancellationToken = default)
-        {
-            return await _context.Products.ToListAsync(cancellationToken);
-        }
+     public class ProductRepository(ApplicationDbContext context,ILoggingService<ProductRepository> logger ): IProductRepository
+     {          
 
-        // Get a product by ID
-        public async Task<Product> GetProductByIdAsync(Guid id, CancellationToken cancellationToken = default)
-        {
-            return await _context.Products
-                .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
-        }
+          public async Task<IEnumerable<Product>> GetAllProductsAsync(CancellationToken cancellationToken = default)
+          {
+               await logger.LogInformationAsync("Fetching all products.");
+               return await context.Products.ToListAsync(cancellationToken);
+          }
 
-        // Add a new product
-        public async Task<Product> AddProductAsync(Product product, CancellationToken cancellationToken = default)
-        {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync(cancellationToken);
-            return product;
-        }
+          public async Task<Product> GetProductByIdAsync(Guid id, CancellationToken cancellationToken = default)
+          {
+               await logger.LogInformationAsync($"Fetching product with ID: {id}");
+               return await context.Products.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+          }
 
-        // Update an existing product
-        public async Task<Product> UpdateProductAsync(Product product, CancellationToken cancellationToken = default)
-        {
-            _context.Products.Update(product);
-            await _context.SaveChangesAsync(cancellationToken);
-            return product;
-        }
+          public async Task<Product> AddProductAsync(Product product, CancellationToken cancellationToken = default)
+          {
+               try
+               {
+                    context.Products.Add(product);
+                    await context.SaveChangesAsync(cancellationToken);
+                    await logger.LogInformationAsync($"Product added successfully. ID: {product.Id}");
+                    return product;
+               }
+               catch (Exception ex)
+               {
+                    await logger.LogErrorAsync("Error adding product.", ex);
+                    throw;
+               }
+          }
 
-        // Delete a product by ID
-        public async Task<bool> DeleteProductAsync(Guid id, CancellationToken cancellationToken = default)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return false;
-            }
+          public async Task<Product> UpdateProductAsync(Product product, CancellationToken cancellationToken = default)
+          {
+               try
+               {
+                    context.Products.Update(product);
+                    await context.SaveChangesAsync(cancellationToken);
+                    await logger.LogInformationAsync($"Product updated successfully. ID: {product.Id}");
+                    return product;
+               }
+               catch (Exception ex)
+               {
+                    await logger.LogErrorAsync("Error updating product.", ex);
+                    throw;
+               }
+          }
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync(cancellationToken);
-            return true;
-        }
+          public async Task<bool> DeleteProductAsync(Guid id, CancellationToken cancellationToken = default)
+          {
+               try
+               {
+                    var product = await context.Products.FindAsync(id);
+                    if (product == null)
+                    {
+                         await logger.LogWarningAsync($"Product not found for deletion. ID: {id}");
+                         return false;
+                    }
 
-        public async  Task<IEnumerable<Product>> GetProductsByCategoryAsync(string category, CancellationToken cancellationToken)
-        {
-            var products =  await _context.Products
-               .Where(p => p.Category.Contains(category))              
-               .ToListAsync(cancellationToken);
-            return products;
-        }
+                    context.Products.Remove(product);
+                    await context.SaveChangesAsync(cancellationToken);
+                    await logger.LogInformationAsync($"Product deleted successfully. ID: {id}");
+                    return true;
+               }
+               catch (Exception ex)
+               {
+                    await logger.LogErrorAsync($"Error deleting product with ID: {id}", ex);
+                    throw;
+               }
+          }
 
-        public async Task<IEnumerable<Product>> GetProductsByPaginationAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
-        {          
-           
-            var totalCount = await _context.Products.LongCountAsync(cancellationToken);
-   
-            var products = await _context.Products                 
-                .OrderBy(o => o.Name)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync(cancellationToken);
-            return products;
-        }     
-    }
+          public async Task<IEnumerable<Product>> GetProductsByCategoryAsync(string category, CancellationToken cancellationToken)
+          {
+               await logger.LogInformationAsync($"Fetching products for category: {category}");
+               return await context.Products
+                   .Where(p => p.Category.Contains(category))
+                   .ToListAsync(cancellationToken);
+          }
+
+          public async Task<IEnumerable<Product>> GetProductsByPaginationAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+          {
+               await logger.LogInformationAsync($"Fetching paginated products. Page: {pageNumber}, Size: {pageSize}");
+
+               var totalCount = await context.Products.LongCountAsync(cancellationToken);
+               var products = await context.Products
+                   .OrderBy(o => o.Name)
+                   .Skip((pageNumber - 1) * pageSize)
+                   .Take(pageSize)
+                   .ToListAsync(cancellationToken);
+
+               await logger.LogDebugAsync($"Retrieved {products.Count} products out of {totalCount} total.");
+               return products;
+          }
+     }
 }

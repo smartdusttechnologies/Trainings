@@ -25,7 +25,8 @@ namespace Catalog.API.Products.UpdateProduct
           {
                try
                {
-                    await logger.LogInformationAsync($"Get the Command from Update Product {command} ");
+                   await logger.LogInformationAsync($"Received Update Command: {System.Text.Json.JsonSerializer.Serialize(command)}");
+
 
                     var product = await _productRepository.GetProductByIdAsync(command.Id, cancellationToken);
                     await logger.LogInformationAsync($"Product with Id : {product} ");
@@ -45,6 +46,11 @@ namespace Catalog.API.Products.UpdateProduct
 
                     // Save changes via the repository
                     var updatedProduct = await _productRepository.UpdateProductAsync(product, cancellationToken);
+if (updatedProduct is null)
+{
+    await logger.LogErrorAsync("Failed to update product", null);
+    return new UpdateProductResult(false);
+}
 
                }
                catch (ProductNotFoundException ex)

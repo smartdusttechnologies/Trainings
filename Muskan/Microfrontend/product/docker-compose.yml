@@ -1,0 +1,13 @@
+services:
+  product:
+    image: product
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3004:3004
+networks:
+  microservices_network:
+    external: true

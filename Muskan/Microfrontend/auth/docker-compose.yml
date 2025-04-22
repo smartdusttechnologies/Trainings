@@ -1,0 +1,10 @@
+services:
+  auth:
+    image: auth
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3002:3002

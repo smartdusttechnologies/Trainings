@@ -64,7 +64,7 @@ const LandingPage = () => {
               color: "#ffcc00",
             }}
           >
-            Proce
+            Price
           </NavLink>
         </Container>
       </Box>

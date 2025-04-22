@@ -44,10 +44,22 @@ const App = () => {
                 element={<AuthLazy onSignIn={() => setIsSignIn(true)} />}
               />
               <Route path="/callback" element={<Callback />} />
-              <Route path="/*" element={<MarketLazy />} />
-              <Route path="/order/*" element={<OrderLazy />} />
-              <Route path="/product/*" element={<ProductLazy />} />
-              <Route path="/basket/*" element={<BasketLazy />} />
+              <Route
+                path="/*"
+                element={<MarketLazy key={location.pathname} />}
+              />
+              <Route
+                path="/order/*"
+                element={<OrderLazy key={location.pathname} />}
+              />
+              <Route
+                path="/product/*"
+                element={<ProductLazy key={location.pathname} />}
+              />
+              <Route
+                path="/basket/*"
+                element={<BasketLazy key={location.pathname} />}
+              />
               <Route
                 path="/dashboard"
                 element={

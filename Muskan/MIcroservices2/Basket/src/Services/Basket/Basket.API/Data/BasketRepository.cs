@@ -4,15 +4,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Basket.API.Data
 {
-    public class BasketRepository(ApplicationDbContext context) : IBasketRepository
+    public class BasketRepository(ApplicationDbContext context ,ILoggingService<BasketRepository> logger) : IBasketRepository
     {
         public async Task<ShoppingCart> GetBasket(string userName, CancellationToken cancellationToken)
         {
+             await logger.LogInformationAsync($"Fetching basket for user: {userName}");
+
             var basket = await context.ShoppingCarts
                                       .Include(sc => sc.Items)  // Include related items
                                       .FirstOrDefaultAsync(sc => sc.UserName == userName, cancellationToken);
-
-            return basket is null ? throw new BasketNotFoundException(userName) : basket;
+    if (basket is null)
+            {
+                await logger.LogWarningAsync($"Basket not found for user: {userName}");
+                throw new BasketNotFoundException(userName);
+            }
+               await logger.LogInformationAsync($"Basket retrieved for user: {userName}, Items count: {basket.Items.Count}");
+            return basket ;
         }
 
 
@@ -37,6 +44,7 @@ namespace Basket.API.Data
 
                 // Save changes to the database
                 await context.SaveChangesAsync(cancellationToken);
+                  await logger.LogInformationAsync($"Stored basket for user: {basket.UserName} with {basket.Items.Count} items.");
                 return basket;
 
             }
@@ -44,13 +52,14 @@ namespace Basket.API.Data
             catch (DbUpdateException ex)
 {
                 
-                Console.WriteLine(ex.InnerException?.Message);
+                  await logger.LogErrorAsync("Error storing basket in database.", ex);
                 throw;
             }
         }
 
         public async Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken)
-        {
+        {await logger.LogInformationAsync($"Attempting to delete basket for user: {userName}");
+
             var basket = await context.ShoppingCarts
                                         .FirstOrDefaultAsync(sc => sc.UserName == userName, cancellationToken);
 
@@ -58,9 +67,11 @@ namespace Basket.API.Data
             {
                 context.ShoppingCarts.Remove(basket);
                 await context.SaveChangesAsync(cancellationToken);
+                  await logger.LogInformationAsync($"Deleted basket for user: {userName}");
                 return true;
             }
 
+       await logger.LogWarningAsync($"No basket found to delete for user: {userName}");
             return false;
         }
         public async Task<bool> UpdateBasket(ShoppingCart cart, CancellationToken cancellationToken = default)
