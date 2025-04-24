@@ -1,6 +1,6 @@
 import { GetBasket } from "../Services/BasketService.js";
 
-// Equivalent to C# LoadUserBasket
+// Equivalent to  LoadUserBasket
 export async function loadBasket(user, getAccessTokenSilently) {
   let basket;
 
@@ -20,11 +20,7 @@ export async function loadBasket(user, getAccessTokenSilently) {
     // Call GetBasket with token (like authorized API call)
     const response = await GetBasket(username, token);
 
-    basket = response.cart || {
-      userName: username,
-      items: [],
-      totalPrice: 0,
-    };
+    basket = response.cart;
   } catch (error) {
     if (error.response) {
       const status = error.response.status;

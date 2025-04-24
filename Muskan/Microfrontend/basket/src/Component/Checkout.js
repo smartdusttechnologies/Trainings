@@ -13,6 +13,7 @@ import {
   TextField,
   MenuItem,
   Button,
+  CircularProgress,
   InputAdornment,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -22,6 +23,7 @@ import { useAuth } from "auth/useAuth";
 
 const Checkout = () => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const { state } = useLocation();
   const cart = state?.cart;
 
@@ -39,7 +41,7 @@ const Checkout = () => {
     expiryDate: "",
     cvv: "",
     paymentMethod: 1,
-    username: user?.name,
+    username: user?.nickname || user?.name || user?.email || "guestUser",
   });
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const Checkout = () => {
   if (!cart) {
     return <div>Cart data is not available</div>;
   }
-
+  console.log(cart);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -80,7 +82,7 @@ const Checkout = () => {
     // };
     const checkoutRequest = {
       basketCheckOutDto: {
-        username: user?.name,
+        username: user?.nickname || user?.name || user?.email || "guestUser",
         customerId: "58c49479-ec65-4de2-86e7-033c546291aa",
         totalPrice: cart.totalPrice,
         firstName: formData.firstName,
@@ -104,13 +106,21 @@ const Checkout = () => {
 
     try {
       const response = await CheckoutBasket(checkoutRequest, token);
+      setIsLoading(true);
       console.log(response);
+      if (response.data) {
+        setIsLoading(false);
+      }
       alert("Checkout successful!");
     } catch (error) {
+      setIsLoading(false);
       alert("Checkout failed. Please try again.");
       console.error("Checkout error:", error);
     }
   };
+  if (isLoading) {
+    return <CircularProgress />;
+  }
 
   return (
     <Container>

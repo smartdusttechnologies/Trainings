@@ -37,9 +37,26 @@ export default function AddToCart({ product }) {
       const username =
         user?.nickname || user?.name || user?.email || "guestUser";
 
-      // Get current basket
-      const basketRes = await GetBasket(username, token);
-      let currentItems = basketRes?.cart?.items || [];
+      // Try to get the current basket
+      let currentItems = [];
+      try {
+        const basketRes = await GetBasket(username, token);
+        currentItems = basketRes?.cart?.items || [];
+      } catch (err) {
+        // Handle basket not found (e.g., 404 error)
+        if (err?.response?.status === 404) {
+          console.warn("Basket not found. Initializing a new basket.");
+          currentItems = []; // Start a new cart
+        } else if (err?.response?.status === 500) {
+          console.warn("Basket not found. Initializing a new basket.");
+          currentItems = [];
+        } else {
+          console.error(
+            "Unexpected error fetching basket:",
+            err?.message || err
+          );
+        }
+      }
 
       // Normalize new item
       const newItem = {
@@ -67,7 +84,7 @@ export default function AddToCart({ product }) {
           items: currentItems,
         },
       };
-
+      console.log("currentItems", currentItems);
       let res = await StoreBasket(currentItems, username, token);
       console.log("Response from StoreBasket:", res);
 

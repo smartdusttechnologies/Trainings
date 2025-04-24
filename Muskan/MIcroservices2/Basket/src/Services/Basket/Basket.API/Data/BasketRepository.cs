@@ -54,6 +54,9 @@ namespace Basket.API.Data
                 
                   await logger.LogErrorAsync("Error storing basket in database.", ex);
                 throw;
+            }catch(Exception ex ){
+                  await logger.LogErrorAsync("Error storing basket in database.", ex);
+                throw;
             }
         }
 

@@ -38,6 +38,7 @@ export default function BasketList() {
         // Using the loadBasket function for fetching basket data
         const basketData = await loadBasket(user, getAccessTokenSilently);
         setItems(basketData.items);
+        console.log(basketData);
 
         setTotalPrice(basketData.totalPrice);
       } catch (err) {
