@@ -1,0 +1,103 @@
+name: dockercompose15416220555760374532
+services:
+  logging.api:
+    build:
+      context: D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common
+      dockerfile: src/Logging/Logging.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ASPNETCORE_HTTPS_PORTS: "8081"
+      ConnectionStrings__SqlServerDb: Server=commondb;Database=LoggingDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      MessageBroker__Host: amqp://messagebroker:5672
+      MessageBroker__Password: guest
+      MessageBroker__Username: guest
+    image: loggingapi
+    networks:
+      microservices_network: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "6007"
+        protocol: tcp
+      - mode: ingress
+        target: 8081
+        published: "6067"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  security:
+    build:
+      context: D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common
+      dockerfile: src/Security/Security/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ASPNETCORE_HTTPS_PORTS: "8081"
+      MessageBroker__Host: amqp://messagebroker:5672
+      MessageBroker__Password: guest
+      MessageBroker__Username: guest
+    image: security
+    networks:
+      microservices_network: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "6006"
+        protocol: tcp
+      - mode: ingress
+        target: 8081
+        published: "6066"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+networks:
+  microservices_network:
+    name: microservices_network
+    external: true

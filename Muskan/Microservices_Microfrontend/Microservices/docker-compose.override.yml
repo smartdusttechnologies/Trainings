@@ -1,0 +1,262 @@
+services:
+  commondb:
+    image: mcr.microsoft.com/mssql/server
+    container_name: commondb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=admin@123
+    restart: always
+    ports:
+      - "1433:1433"
+    networks:
+      - microservices_network
+
+  distributedcache:
+    image: redis:latest
+    container_name: distributedcache
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - microservices_network
+
+  messagebroker:
+    image: rabbitmq:management
+    container_name: messagebroker
+    hostname: ecommerce-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - microservices_network
+
+  # commondb:
+  # container_name: commondb
+  # environment:
+  #   - ACCEPT_EULA=Y
+  #   - SA_PASSWORD=admin@123
+  # restart: always
+  # ports:
+  #   - "1433:1433"
+  # volumes:
+  # - sqlserver_commondb:/var/opt/mssql/data
+
+  # catalogdb:
+  #   container_name: catalogdb
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=admin@123
+  #   restart: always
+  #   ports:
+  #     - "1433:1433"
+  #   volumes:
+  #     - sqlserver_catalog:/var/opt/mssql/data
+
+  # basketdb:
+  #   container_name: basketdb
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=admin@123
+  #   restart: always
+  #   ports:
+  #     - "1434:1433"
+  #   volumes:
+  #    - sqlserver_basket:/var/opt/mssql/data
+
+  # orderdb:
+  #    container_name: orderdb
+  #    environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=admin@123
+  #    restart: always
+  #    ports:
+  #     - "1435:1433"
+  #    volumes:
+  #    - sqlserver_order:/var/opt/mssql/data
+  #  distributedcache:
+  #   container_name: distributedcache
+  #   restart: always
+  #   ports:
+  #     - "6379:6379"
+  #  messagebroker:
+  #    container_name: messagebroker
+  #    hostname: ecommerce-mq
+  #    environment:
+  #     - RABBITMQ_DEFAULT_USER=guest
+  #     - RABBITMQ_DEFAULT_PASS=guest
+  #    restart: always
+  #    ports:
+  #    - "5672:5672"
+  #    - "15672:15672"
+
+  catalog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=CatalogDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+    depends_on:
+      - commondb
+    ports:
+      - "6000:8080"
+      - "6060:8081"
+
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+
+  basket.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=BasketDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - ConnectionStrings__Redis=distributedcache:6379
+      - GrpcSetting__DiscountUrl=https://discount.grpc:8081
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+
+    depends_on:
+      - commondb
+      - distributedcache
+      - discount.grpc
+      - messagebroker
+
+    ports:
+      - "6001:8080"
+      - "6061:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+  discount.grpc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlLite=Data Source=discountdb
+
+    ports:
+      - "6002:8080"
+      - "6062:8081"
+    volumes:
+      - ./data/discount:/app/data
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+  ordering.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=OrderDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+      - FeatureManagement__OrderFullFillment=false
+    depends_on:
+      - commondb
+      - messagebroker
+    ports:
+      - "6003:8080"
+      - "6063:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+  yarpapigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    depends_on:
+      - catalog.api
+      - basket.api
+      - ordering.api
+    ports:
+      - "6004:8080"
+      - "6064:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+  security:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - MessageBroker__Host=amqp://messagebroker:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+    ports:
+      - "6006:8080"
+      - "6066:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+    networks:
+      - microservices_network
+  logging.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__SqlServerDb=Server=commondb;Database=LoggingDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - MessageBroker__Host=amqp://messagebroker:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+    ports:
+      - "6007:8080"
+      - "6067:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - microservices_network
+  shopping.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ApiSetting__GatewayAddress=http://yarpapigateway:8080
+
+    depends_on:
+      - yarpapigateway
+    ports:
+      - "6005:8080"
+      - "6065:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    networks:
+      - microservices_network
+networks:
+  microservices_network:
+    driver: bridge
+    name: microservices_network

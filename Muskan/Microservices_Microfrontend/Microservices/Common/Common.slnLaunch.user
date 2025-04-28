@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "src\\Security\\Security\\Security.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "src\\Logging\\Logging.API\\Logging.API.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

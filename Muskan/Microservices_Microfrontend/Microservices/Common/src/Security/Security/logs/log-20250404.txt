@@ -1,0 +1,23 @@
+2025-04-04 08:45:32.025 +05:30 [INF] User profile is available. Using 'C:\Users\muska\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-04 08:45:33.957 +05:30 [INF] Now listening on: https://localhost:5056
+2025-04-04 08:45:33.962 +05:30 [INF] Now listening on: http://localhost:5006
+2025-04-04 08:45:34.106 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-04 08:45:34.109 +05:30 [INF] Hosting environment: Development
+2025-04-04 08:45:34.111 +05:30 [INF] Content root path: D:\Github\Trainings\Muskan\MIcroservices2\Common\src\Security\Security
+2025-04-04 08:45:44.565 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5056/swagger/index.html - null null
+2025-04-04 08:45:45.597 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5056/swagger/index.html - 200 null text/html;charset=utf-8 1044.3976ms
+2025-04-04 08:45:46.616 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5056/_framework/aspnetcore-browser-refresh.js - null null
+2025-04-04 08:45:46.628 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5056/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.3517ms
+2025-04-04 08:45:47.018 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5056/_vs/browserLink - null null
+2025-04-04 08:45:47.156 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5056/_vs/browserLink - 200 null text/javascript; charset=UTF-8 137.1668ms
+2025-04-04 08:45:48.708 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5056/swagger/v1/swagger.json - null null
+2025-04-04 08:45:48.786 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5056/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 78.1914ms
+2025-04-04 08:48:52.425 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5006/api/logs - application/json 236
+2025-04-04 08:48:52.445 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5006/api/logs - 307 0 null 20.1866ms
+2025-04-04 08:48:52.479 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:5056/api/logs - application/json 236
+2025-04-04 08:48:54.499 +05:30 [INF] Executing endpoint 'Security.Controllers.LoggingController.LogMessage (Security)'
+2025-04-04 08:48:54.573 +05:30 [INF] Route matched with {action = "LogMessage", controller = "Logging"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult LogMessage(Security.Controllers.LogRequest) on controller Security.Controllers.LoggingController (Security).
+2025-04-04 08:48:54.660 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-04 08:48:54.689 +05:30 [INF] Executed action Security.Controllers.LoggingController.LogMessage (Security) in 99.5563ms
+2025-04-04 08:48:54.691 +05:30 [INF] Executed endpoint 'Security.Controllers.LoggingController.LogMessage (Security)'
+2025-04-04 08:48:54.692 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:5056/api/logs - 400 null application/problem+json; charset=utf-8 2212.9281ms

@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "Security.Controllers.LoggingController",
+    "Method": "LogMessage",
+    "RelativePath": "api/logs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "logRequest",
+        "Type": "Security.Controllers.LogRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Security.Controllers.SecurityController",
+    "Method": "GetUserProfile",
+    "RelativePath": "Security/profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Security.Controllers.SecurityController",
+    "Method": "ValidateToken",
+    "RelativePath": "Security/validate-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Security.Controllers.SecurityController\u002BTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

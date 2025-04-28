@@ -1,0 +1,6 @@
+services:
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}orderingapi
+    build:
+      context: .
+      dockerfile: Services/Order/Order.API/Dockerfile

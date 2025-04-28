@@ -1,0 +1,69 @@
+services:
+  container:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./container:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - microservices_network
+  marketing:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./marketing:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - microservices_network
+  auth:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./auth:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - microservices_network
+
+  dashboard:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./dashboard:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - microservices_network
+  product:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./product:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - microservices_network
+  basket:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./basket:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - microservices_network
+
+  order:
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./order:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - microservices_network
+networks:
+  microservices_network:
+    external: true

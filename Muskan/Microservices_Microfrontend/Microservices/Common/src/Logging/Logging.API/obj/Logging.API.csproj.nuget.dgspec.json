@@ -1,0 +1,191 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Logging.API.csproj": {}
+  },
+  "projects": {
+    "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj",
+        "projectName": "BuildingBlock.Messaging",
+        "projectPath": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj",
+        "packagesPath": "D:\\muska\\.nuget",
+        "outputPath": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files\\VisualStudioComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\muska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\muska\\.nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Logging.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Logging.API.csproj",
+        "projectName": "Logging.API",
+        "projectPath": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Logging.API.csproj",
+        "packagesPath": "D:\\muska\\.nuget",
+        "outputPath": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files\\VisualStudioComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\muska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\muska\\.nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj": {
+                "projectPath": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.21.0, )"
+            },
+            "NLog.Database": {
+              "target": "Package",
+              "version": "[5.4.0, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[5.4.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

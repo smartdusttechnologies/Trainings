@@ -1,0 +1,13 @@
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\bin\Debug\net8.0\BuildingBlock.Messaging.deps.json
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\bin\Debug\net8.0\BuildingBlock.Messaging.dll
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\bin\Debug\net8.0\BuildingBlock.Messaging.pdb
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.csproj.AssemblyReference.cache
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.AssemblyInfoInputs.cache
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.AssemblyInfo.cs
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.csproj.CoreCompileInputs.cache
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.sourcelink.json
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.dll
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\refint\BuildingBlock.Messaging.dll
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\BuildingBlock.Messaging.pdb
+D:\Github\Trainings\Muskan\Microservices_Microfrontend\Microservices\Common\src\BuildingBlock\BuildingBlock.Messaging\obj\Debug\net8.0\ref\BuildingBlock.Messaging.dll
