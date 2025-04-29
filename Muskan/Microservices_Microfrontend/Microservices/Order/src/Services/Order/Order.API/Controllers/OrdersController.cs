@@ -10,7 +10,7 @@ using Ordering.Application.Order.Queries.GetOrderByCustomer;
 using Ordering.Application.Order.Queries.GetOrderByName;
 using Ordering.Application.Order.Queries.GetOrders;
 using Ordering.Application.Services;
-
+using Ordering.Application.Middleware;
 namespace Ordering.API.Controllers
 {
      [ApiController]
@@ -18,14 +18,16 @@ namespace Ordering.API.Controllers
      public class OrdersController : ControllerBase
      {
           private readonly ISender _sender;
+          private readonly TokenValidator tokenValidator;
           private readonly IMapper _mapper;
           private readonly ILoggingService<OrdersController> _logger;
 
-          public OrdersController(ISender sender, IMapper mapper, ILoggingService<OrdersController> logger)
+          public OrdersController(ISender sender, IMapper mapper, ILoggingService<OrdersController> logger ,TokenValidator _tokenValidator)
           {
                _sender = sender;
                _mapper = mapper;
                _logger = logger;
+               tokenValidator = _tokenValidator;
           }
 
           /// <summary>
@@ -38,6 +40,13 @@ namespace Ordering.API.Controllers
           [ProducesResponseType(StatusCodes.Status400BadRequest)]
           public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest request)
           {
+                   await _logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await _logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                await _logger.LogInformationAsync($"Create Order Endpoint hit: {request}");
 
                var command = _mapper.Map<CreateOrderCommand>(request);
@@ -58,6 +67,13 @@ namespace Ordering.API.Controllers
           [ProducesResponseType(StatusCodes.Status404NotFound)]
           public async Task<IActionResult> GetOrders([FromQuery] PaginateRequest request)
           {
+                   await _logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await _logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                await _logger.LogInformationAsync($"Get Order endpoint hit : {request}");
 
                var result = await _sender.Send(new GetOrdersQuery(request));
@@ -78,6 +94,13 @@ namespace Ordering.API.Controllers
           [ProducesResponseType(StatusCodes.Status404NotFound)]
           public async Task<IActionResult> GetOrdersByCustomer(Guid customerID)
           {
+                   await _logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await _logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                await _logger.LogInformationAsync($"Get Order by Customer ID called: {customerID}");
 
                var result = await _sender.Send(new GetOrderByCustomerQuery(customerID));
@@ -96,6 +119,13 @@ namespace Ordering.API.Controllers
           [ProducesResponseType(StatusCodes.Status400BadRequest)]
           public async Task<IActionResult> GetOrderByName(string orderName)
           {
+                   await _logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await _logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                await _logger.LogInformationAsync($"GetOrderByName is called: {orderName}");
 
                var result = await _sender.Send(new GetOrderByNameQuery(orderName));
@@ -116,6 +146,13 @@ namespace Ordering.API.Controllers
           [ProducesResponseType(StatusCodes.Status400BadRequest)]
           public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderRequest request)
           {
+                   await _logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await _logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                await _logger.LogInformationAsync($"Update order request received for ID: {request.Order.Id}");
 
                var command = _mapper.Map<UpdateOrderCommand>(request);
@@ -135,6 +172,13 @@ namespace Ordering.API.Controllers
           [ProducesResponseType(StatusCodes.Status400BadRequest)]
           public async Task<IActionResult> DeleteOrder(Guid id)
           {
+                   await _logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await _logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                await _logger.LogInformationAsync($"Delete Order Endpoint hit : {id}");
 
                var result = await _sender.Send(new DeleteOrderCommand(id));

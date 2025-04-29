@@ -27,8 +27,10 @@ namespace Ordering.API
           {
                //app.MapCarter();
                app.UseExceptionHandler(options => { });
-               app.UseMiddleware<TokenValidator>();
+                app.UseHttpsRedirection();
                app.UseRouting();
+               // app.UseMiddleware<TokenValidator>();
+              
                app.MapControllers();
                app.UseHealthChecks("/healths",
                    new HealthCheckOptions

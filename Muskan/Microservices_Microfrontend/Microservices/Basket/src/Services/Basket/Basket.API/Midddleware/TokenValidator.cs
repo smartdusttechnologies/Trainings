@@ -1,24 +1,31 @@
 ﻿namespace Basket.API.Midddleware
 {
-     public class TokenValidator(RequestDelegate next, HttpClient client, IConfiguration configuration, ILogger<TokenValidator> logger)
-     {
-          private readonly RequestDelegate _next = next;
-          private readonly HttpClient _client = client;
-          private readonly IConfiguration _configuration = configuration;
-          private readonly ILogger<TokenValidator> _logger = logger;
+    public class TokenValidator
+    {
+   
+        private readonly HttpClient _client;
+        private readonly IConfiguration _configuration;
+        private readonly ILogger<TokenValidator> _logger;
 
-          public async Task InvokeAsync(HttpContext context)
-          {
-               // Validate token before proceeding to the next middleware
-               if (!await ValidateToken(context))
-               {
-                    return; // If validation fails, the request stops here
-               }
+        public TokenValidator( HttpClient client, IConfiguration configuration, ILogger<TokenValidator> logger)
+        {
+   
+            _client = client;
+            _configuration = configuration;
+            _logger = logger;
+        }
+        //   public async Task InvokeAsync(HttpContext context)
+        //   {
+        //        // Validate token before proceeding to the next middleware
+        //        if (!await ValidateToken(context))
+        //        {
+        //             return; // If validation fails, the request stops here
+        //        }
 
-               await _next(context); // Call the next middleware in the pipeline
-          }
+        //        await _next(context); // Call the next middleware in the pipeline
+        //   }
 
-        private async Task<bool> ValidateToken(HttpContext context)
+        public async Task<bool> ValidateToken(HttpContext context)
         {
             try
             {

@@ -4,6 +4,7 @@ using BuildingBlock.Messaging.RabbitMQ;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
+
 using Ordering.Application.Middleware;
 namespace Ordering.Application
 {
@@ -22,9 +23,18 @@ namespace Ordering.Application
                // Ensure FluentValidation validators are registered
                service.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                // Register HTTP clients
-               service.AddHttpClient();
-               service.AddHttpClient<TokenValidator>();
 
+                service.AddHttpClient<TokenValidator>()
+                    .ConfigurePrimaryHttpMessageHandler(() =>
+                    {
+                        var handler = new HttpClientHandler
+                        {
+                            ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                        };
+                        return handler;
+                    });
+           
+service.AddHttpClient();
                // Register logging service
                service.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
                //service.AddMediatR(cfg =>

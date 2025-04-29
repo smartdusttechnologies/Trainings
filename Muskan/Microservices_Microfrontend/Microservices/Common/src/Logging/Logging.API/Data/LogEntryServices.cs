@@ -1,5 +1,6 @@
 ﻿using BuildingBlock.Messaging.Events;
 using Logging.API.Models;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 namespace Logging.API.Data
 {
@@ -46,9 +47,20 @@ namespace Logging.API.Data
                     _context.LogEntries.Add(log);
                     await _context.SaveChangesAsync();
                }
+               catch (DbUpdateException dbEx)
+               {
+                    Logger.Error(dbEx, "Database update exception while saving log entry. Possible DB unavailability or schema mismatch.");
+                    LogInnerExceptions(dbEx);
+               }
+               catch (InvalidOperationException invalidOpEx)
+               {
+                    Logger.Error(invalidOpEx, "Invalid operation while saving log entry.");
+                    LogInnerExceptions(invalidOpEx);
+               }
                catch (Exception ex)
                {
-                    Logger.Error($"Error saving log entry: {ex.Message}");
+                    Logger.Error(ex, "Unexpected error while saving log entry.");
+                    LogInnerExceptions(ex);
                }
           }
 
@@ -77,6 +89,15 @@ namespace Logging.API.Data
                     default:
                          Logger.Info($"Source: {message.ServiceName} - {message.ControllerName} Message: {log.Message}");
                          break;
+               }
+          }
+          private void LogInnerExceptions(Exception ex)
+          {
+               var current = ex.InnerException;
+               while (current != null)
+               {
+                    Logger.Error(current, "Inner exception: {Message}", current.Message);
+                    current = current.InnerException;
                }
           }
      }

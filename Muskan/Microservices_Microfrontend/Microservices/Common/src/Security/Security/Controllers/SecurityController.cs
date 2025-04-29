@@ -8,7 +8,7 @@ namespace Security.Controllers
 {
      [ApiController]
      [Route("[controller]")]
-     public class SecurityController(IHttpClientFactory httpClientFactory, IConfiguration config, HttpClient client, ILogger<SecurityController> logger) : Controller
+     public class SecurityController(IConfiguration config, ILogger<SecurityController> logger) : Controller
      {
           [HttpGet("profile")]
           [Authorize]

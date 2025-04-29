@@ -8,13 +8,14 @@ using Basket.API.DTOs.DeleteBasketDtos;
 using Basket.API.DTOs.GetBasketDtos;
 using Basket.API.DTOs.StoreBasketDtos;
 using Basket.API.DTOs.UpdateBasketDtos;
+using  Basket.API.Midddleware;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Controllers
 {
      [ApiController]
      [Route("basket")]
-     public class BasketController(IMapper mapper, ISender sender, ILoggingService<BasketController> logger) : Controller
+     public class BasketController(IMapper mapper, ISender sender, ILoggingService<BasketController> logger , TokenValidator tokenValidator) : Controller
      {
           [HttpPost]
           [ProducesResponseType(typeof(StoreBasketResponse), StatusCodes.Status201Created)]
@@ -23,6 +24,13 @@ namespace Basket.API.Controllers
           {
                try
                {
+                          await logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                     await logger.LogInformationAsync("Storing basket for user: " + request.Cart.UserName);
 
                     var command = mapper.Map<StoreBasketCommand>(request);
@@ -44,6 +52,13 @@ namespace Basket.API.Controllers
           {
                try
                {
+                                   await logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                     await logger.LogInformationAsync("Getting basket for user: " + userName);
 
                     var result = await sender.Send(new GetBasketQuery(userName));
@@ -71,6 +86,13 @@ namespace Basket.API.Controllers
           {
                try
                {
+                                   await logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                     var command = mapper.Map<UpdateBasketCommand>(request);
                     var result = await sender.Send(command);
                     var response = mapper.Map<UpdateBasketResponse>(result);
@@ -92,6 +114,13 @@ namespace Basket.API.Controllers
           {
                try
                {
+                                   await logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                     await logger.LogInformationAsync("Deleting basket for user: " + userName);
                     var result = await sender.Send(new DeleteBasketCommand(userName));
                     var response = mapper.Map<DeleteBasketResponse>(result);
@@ -112,6 +141,13 @@ namespace Basket.API.Controllers
           //[Route("checkout")]
           public async Task<IActionResult> CheckoutAsync([FromBody] CheckOutBasketRequest request)
           {
+                              await logger.LogInformationAsync("Validating the token of the header...");
+               var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
+               if (!isTokenValid)
+               {
+                    await logger.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
+                    return Unauthorized("Invalid token.");
+               }
                var command = mapper.Map<CheckOutBasketCommand>(request);
                var result = await sender.Send(command);
                var response = mapper.Map<CheckOutBasketResponse>(result);

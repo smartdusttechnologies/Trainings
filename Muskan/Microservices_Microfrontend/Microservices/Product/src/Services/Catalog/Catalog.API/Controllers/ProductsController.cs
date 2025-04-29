@@ -158,7 +158,7 @@ namespace Catalog.API.Controllers
           {
                await loggingService.LogInformationAsync("Validating the token of the header...");
                var isTokenValid = await tokenValidator.ValidateToken(HttpContext);
-               if (!isTokenValid)
+               if (!isTokenValid) 
                {
                     await loggingService.LogErrorAsync("You are not authorized to access the endpoint", new UnauthorizedAccessException());
                     return Unauthorized("Invalid token.");

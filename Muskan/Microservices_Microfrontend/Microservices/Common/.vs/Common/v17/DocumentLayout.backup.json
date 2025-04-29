@@ -3,36 +3,60 @@
   "WorkspaceRootPath": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\extensions\\databaseextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\extensions\\databaseextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DE378DC2-E55D-4D1D-892D-3D1F4A5F4020}|src\\Security\\Security\\Security.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\security\\security\\controllers\\securitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE378DC2-E55D-4D1D-892D-3D1F4A5F4020}|src\\Security\\Security\\Security.csproj|solutionrelative:src\\security\\security\\controllers\\securitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\buildingblock\\buildingblock.messaging\\masstransit\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|solutionrelative:src\\buildingblock\\buildingblock.messaging\\masstransit\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\nlog.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\nlog.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\data\\logentryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\data\\logentryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\consumer\\logconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\consumer\\logconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\controllers\\loggingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\controllers\\loggingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\buildingblock\\buildingblock.messaging\\consumer\\rabbitmqconsumerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|solutionrelative:src\\buildingblock\\buildingblock.messaging\\consumer\\rabbitmqconsumerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\controllers\\loggingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\controllers\\loggingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\data\\logentryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\data\\logentryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\buildingblock\\buildingblock.messaging\\masstransit\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|solutionrelative:src\\buildingblock\\buildingblock.messaging\\masstransit\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\buildingblock\\buildingblock.messaging\\buildingblock.messaging.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|solutionrelative:src\\buildingblock\\buildingblock.messaging\\buildingblock.messaging.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\buildingblock\\buildingblock.messaging\\producer\\rabbitmqproducerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|solutionrelative:src\\buildingblock\\buildingblock.messaging\\producer\\rabbitmqproducerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE378DC2-E55D-4D1D-892D-3D1F4A5F4020}|src\\Security\\Security\\Security.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\security\\security\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DE378DC2-E55D-4D1D-892D-3D1F4A5F4020}|src\\Security\\Security\\Security.csproj|solutionrelative:src\\security\\security\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\logging\\logging.api\\consumer\\logconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{402C9E0C-C153-42B7-8E00-075E101E3746}|src\\Logging\\Logging.API\\Logging.API.csproj|solutionrelative:src\\logging\\logging.api\\consumer\\logconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|d:\\github\\trainings\\muskan\\microservices_microfrontend\\microservices\\common\\src\\buildingblock\\buildingblock.messaging\\consumer\\rabbitmqconsumerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04C9D156-F9EC-0151-224E-5014640FB226}|src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj|solutionrelative:src\\buildingblock\\buildingblock.messaging\\consumer\\rabbitmqconsumerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,45 +71,136 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DatabaseExtensions.cs",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Extensions\\DatabaseExtensions.cs",
+              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Extensions\\DatabaseExtensions.cs",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Extensions\\DatabaseExtensions.cs",
+              "RelativeToolTip": "src\\Logging\\Logging.API\\Extensions\\DatabaseExtensions.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T09:07:45.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\appsettings.json",
+              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\appsettings.json",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\appsettings.json",
+              "RelativeToolTip": "src\\Logging\\Logging.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-29T08:50:39.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "nlog.config",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\nlog.config",
+              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\nlog.config",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\nlog.config",
+              "RelativeToolTip": "src\\Logging\\Logging.API\\nlog.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-04-29T08:43:56.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "src\\Logging\\Logging.API\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T08:37:10.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "SecurityController.cs",
               "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Security\\Security\\Controllers\\SecurityController.cs",
               "RelativeDocumentMoniker": "src\\Security\\Security\\Controllers\\SecurityController.cs",
               "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Security\\Security\\Controllers\\SecurityController.cs",
               "RelativeToolTip": "src\\Security\\Security\\Controllers\\SecurityController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAiwCsAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAcwAoAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T04:52:18.776Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Extensions.cs",
               "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\MassTransit\\Extensions.cs",
               "RelativeDocumentMoniker": "src\\BuildingBlock\\BuildingBlock.Messaging\\MassTransit\\Extensions.cs",
               "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\MassTransit\\Extensions.cs",
               "RelativeToolTip": "src\\BuildingBlock\\BuildingBlock.Messaging\\MassTransit\\Extensions.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABsAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAIwBsAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-27T05:52:17.712Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LoggingController.cs",
               "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Controllers\\LoggingController.cs",
               "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Controllers\\LoggingController.cs",
               "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Controllers\\LoggingController.cs",
               "RelativeToolTip": "src\\Logging\\Logging.API\\Controllers\\LoggingController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAqwBoAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowBoAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-25T11:01:36.715Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
+              "Title": "LogEntryServices.cs",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
+              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
+              "RelativeToolTip": "src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAgwGgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T07:59:22.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Program.cs",
+              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Program.cs",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Program.cs",
+              "RelativeToolTip": "src\\Logging\\Logging.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T11:03:29.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BuildingBlock.Messaging.csproj",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj",
+              "RelativeDocumentMoniker": "src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj",
+              "RelativeToolTip": "src\\BuildingBlock\\BuildingBlock.Messaging\\BuildingBlock.Messaging.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-28T06:52:56.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "RabbitMqProducerBase.cs",
               "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\Producer\\RabbitMqProducerBase.cs",
               "RelativeDocumentMoniker": "src\\BuildingBlock\\BuildingBlock.Messaging\\Producer\\RabbitMqProducerBase.cs",
@@ -93,11 +208,12 @@
               "RelativeToolTip": "src\\BuildingBlock\\BuildingBlock.Messaging\\Producer\\RabbitMqProducerBase.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAzwAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T10:51:16.695Z"
+              "WhenOpened": "2025-04-25T10:51:16.695Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "LogConsumer.cs",
               "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Consumer\\LogConsumer.cs",
               "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Consumer\\LogConsumer.cs",
@@ -110,7 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "RabbitMqConsumerBase.cs",
               "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\BuildingBlock\\BuildingBlock.Messaging\\Consumer\\RabbitMqConsumerBase.cs",
               "RelativeDocumentMoniker": "src\\BuildingBlock\\BuildingBlock.Messaging\\Consumer\\RabbitMqConsumerBase.cs",
@@ -118,32 +234,19 @@
               "RelativeToolTip": "src\\BuildingBlock\\BuildingBlock.Messaging\\Consumer\\RabbitMqConsumerBase.cs",
               "ViewState": "AgIAABoAAAAAAAAAAIA0wCoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T10:24:54.188Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T10:24:54.188Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Program.cs",
-              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Program.cs",
-              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Program.cs",
-              "RelativeToolTip": "src\\Logging\\Logging.API\\Program.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAlwAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T11:03:29.336Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LogEntryServices.cs",
-              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
-              "RelativeDocumentMoniker": "src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
-              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
-              "RelativeToolTip": "src\\Logging\\Logging.API\\Data\\LogEntryServices.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAWwDcAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T07:59:22.296Z",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Security\\Security\\appsettings.json",
+              "RelativeDocumentMoniker": "src\\Security\\Security\\appsettings.json",
+              "ToolTip": "D:\\Github\\Trainings\\Muskan\\Microservices_Microfrontend\\Microservices\\Common\\src\\Security\\Security\\appsettings.json",
+              "RelativeToolTip": "src\\Security\\Security\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-28T07:21:48.866Z",
               "EditorCaption": ""
             }
           ]

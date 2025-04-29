@@ -47,7 +47,7 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
 //Async Service RabbiMQ
 builder.Services.AddRabbitMq(builder.Configuration);
 builder.Services.AddHttpClient();
-builder.Services.AddHttpClient<TokenValidator>();
+// builder.Services.AddHttpClient<TokenValidator>();
 builder.Services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
 //Exceptional Handling 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
@@ -55,7 +55,16 @@ builder.Services.AddHealthChecks()
     .AddSqlServer(builder.Configuration.GetConnectionString("SqlServerDb"))
     .AddRedis(builder.Configuration.GetConnectionString("Redis"));
 //builder.Services.AddHttpClient<TokenValidator>();
-builder.Services.AddHttpClient<TokenValidator>();
+// builder.Services.AddHttpClient<TokenValidator>();
+builder.Services.AddHttpClient<TokenValidator>()
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+         var handler = new HttpClientHandler
+         {
+              ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+         };
+         return handler;
+    });
 //builder.Services.AddHttpClient<TokenValidator>()
 //    .ConfigurePrimaryHttpMessageHandler(() =>
 //    {
@@ -81,7 +90,7 @@ if (app.Environment.IsDevelopment())
      app.UseSwaggerUI();
 }
 //app.UseMiddleware<TokenValidationMiddlerware>();
-//app.UseHttpsRedirection();
+
 
 //app.UseAuthentication();
 //app.UseAuthorization();
@@ -90,9 +99,11 @@ if (app.Environment.IsDevelopment())
 //app.MapCarter();
 app.UseMigration().GetAwaiter().GetResult();
 app.UseExceptionHandler(options => { });
-app.UseMiddleware<TokenValidator>();
-app.UseRouting();
 app.UseHttpsRedirection();
+app.UseRouting();
+// app.UseMiddleware<TokenValidator>();
+
+// app.UseHttpsRedirection();
 // app.UseAuthorization();
 
 app.MapControllers();

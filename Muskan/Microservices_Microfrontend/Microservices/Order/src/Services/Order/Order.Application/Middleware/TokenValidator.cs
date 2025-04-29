@@ -4,20 +4,20 @@ using Microsoft.Extensions.Configuration;
 
 namespace Ordering.Application.Middleware
 {
-     public class TokenValidator(RequestDelegate next, HttpClient client, IConfiguration configuration, ILogger<TokenValidator> logger)
+     public class TokenValidator( HttpClient client, IConfiguration configuration, ILogger<TokenValidator> logger)
      {
-          public async Task InvokeAsync(HttpContext context)
-          {
-               // Validate token before proceeding to the next middleware
-               if (!await ValidateToken(context))
-               {
-                    return; // If validation fails, the request stops here
-               }
+          // public async Task InvokeAsync(HttpContext context)
+          // {
+          //      // Validate token before proceeding to the next middleware
+          //      if (!await ValidateToken(context))
+          //      {
+          //           return; // If validation fails, the request stops here
+          //      }
 
-               await next(context); // Call the next middleware in the pipeline
-          }
+          //      await next(context); // Call the next middleware in the pipeline
+          // }
 
-          private async Task<bool> ValidateToken(HttpContext context)
+          public async Task<bool> ValidateToken(HttpContext context)
           {
                try
                {
@@ -51,7 +51,7 @@ namespace Ordering.Application.Middleware
                              statusCode: StatusCodes.Status401Unauthorized
                          );
                          await problem.ExecuteAsync(context);
-                         return false; Z
+                         return false; 
                     }
 
                     logger.LogInformation("Token validation succeeded.");

@@ -3,7 +3,7 @@
      public class TokenValidator(HttpClient client, IConfiguration configuration, ILogger<TokenValidator> logger)
      {
           public async Task<bool> ValidateToken(HttpContext context)
-          {
+          { 
                logger.LogInformation("Validating token...");
                var token = context.GetBearerToken();
                //var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();

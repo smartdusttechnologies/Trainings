@@ -4,6 +4,8 @@ using Ordering.Application.DTOs.Update;
 using Ordering.Application.Order.Commands.CreateOrder;
 using Ordering.Application.Order.Commands.UpdateOrder;
 using Ordering.Domain.Models;
+using Ordering.Application.Order.Queries.GetOrderByCustomer;
+using Ordering.Application.DTOs.Get;
 
 namespace Ordering.API.MappingProfile
 {
@@ -25,6 +27,9 @@ namespace Ordering.API.MappingProfile
 
                CreateMap<UpdateOrderResult, UpdateOrderResponse>()
                    .ForMember(dest => dest.IsSuccess, opt => opt.MapFrom(src => src.isSuccess));
+              CreateMap<GetOrderByCustomerResult, GetOrderByCustomerResponse>()
+    .ForMember(dest => dest.Orders, opt => opt.MapFrom(src => src.order));
+
           }
      }
 

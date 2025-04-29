@@ -38,6 +38,11 @@ if (app.Environment.IsDevelopment())
      app.UseSwagger();
      app.UseSwaggerUI();
 }
+// if (!app.Environment.IsEnvironment("Docker"))
+// {
+//     app.UseHttpsRedirection();
+// }
+
 
 app.UseHttpsRedirection();
 
