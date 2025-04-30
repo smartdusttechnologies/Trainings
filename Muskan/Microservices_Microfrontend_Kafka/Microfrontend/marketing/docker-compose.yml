@@ -1,0 +1,10 @@
+services:
+  marketing:
+    image: marketing
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3001:3001

@@ -1,0 +1,81 @@
+services:
+  container:
+    image: container
+    build:
+      context: ./container
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    networks:
+      - microservices_network
+  marketing:
+    image: marketing
+    build:
+      context: ./marketing
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    networks:
+      - microservices_network
+  auth:
+    image: auth
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3002:3002"
+    networks:
+      - microservices_network
+  dashboard:
+    image: dashboard
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3003:3003"
+    networks:
+      - microservices_network
+  product:
+    image: product
+    build:
+      context: ./product
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3004:3004"
+    networks:
+      - microservices_network
+  basket:
+    image: basket
+    build:
+      context: ./basket
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3005:3005"
+    networks:
+      - microservices_network
+  order:
+    image: order
+    build:
+      context: ./order
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3006:3006"
+    networks:
+      - microservices_network
+networks:
+  microservices_network:
+    external: true

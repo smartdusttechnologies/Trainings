@@ -1,0 +1,14 @@
+Column Name	         Type	        Description
+Id	                 int (PK)	    Auto-increment primary key
+Timestamp	         datetime	    Time of the log event
+Level	             string	        Log level (e.g., Info, Warn, Error)
+Message	             string	        The main log message
+Exception	         string	        Stack trace or error message (if any)
+MachineName	         string	        Hostname or container name
+ServiceName	         string	        Microservice name (very important)
+ControllerName	     string     	Controller or logical module name
+CorrelationId	     string	        A unique ID to trace across services
+RequestPath	         string	        HTTP route (e.g., /api/users)
+HttpMethod	         string	        GET, POST, PUT, DELETE, etc.
+UserId (optional)	 string	        ID of the authenticated user (if any)
+SourceIP (optional)	 string	        IP of the client making the request

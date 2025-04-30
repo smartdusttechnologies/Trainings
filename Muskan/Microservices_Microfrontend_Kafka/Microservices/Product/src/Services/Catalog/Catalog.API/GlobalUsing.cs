@@ -1,0 +1,15 @@
+﻿global using System.Text.Json;
+global using AutoMapper;
+global using BuildingBlock.Behaviour;
+global using BuildingBlock.CQRS;
+global using BuildingBlock.Exceptions.Handler;
+global using BuildingBlock.Messaging.Events;
+global using Catalog.API.Data;
+global using Catalog.API.Exceptions;
+global using Catalog.API.Extensions;
+global using Catalog.API.Models;
+global using Catalog.API.Services;
+global using Confluent.Kafka;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;

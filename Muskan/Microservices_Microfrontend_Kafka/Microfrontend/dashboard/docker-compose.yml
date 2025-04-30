@@ -1,0 +1,10 @@
+services:
+  dashboard:
+    image: dashboard
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3003:3003

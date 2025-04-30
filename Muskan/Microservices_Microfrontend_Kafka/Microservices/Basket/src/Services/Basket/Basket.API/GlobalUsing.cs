@@ -1,0 +1,16 @@
+﻿global using AutoMapper;
+global using Basket.API.Data;
+global using Basket.API.DTOs;
+global using Basket.API.Exceptions;
+global using Basket.API.Extensions;
+global using Basket.API.Models;
+global using Basket.API.Service;
+global using BuildingBlock.Behaviour;
+global using BuildingBlock.CQRS;
+global using BuildingBlock.Exceptions;
+global using BuildingBlock.Exceptions.Handler;
+global using BuildingBlock.Messaging.Events;
+global using Discount.Grpc;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;

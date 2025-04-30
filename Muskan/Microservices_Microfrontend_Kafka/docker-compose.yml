@@ -1,0 +1,93 @@
+services:
+  commondb:
+    image: mcr.microsoft.com/mssql/server
+  # catalogdb:
+  #   image: mcr.microsoft.com/mssql/server
+  # basketdb:
+  #   image: mcr.microsoft.com/mssql/server
+  # orderdb:
+  #   image: mcr.microsoft.com/mssql/server
+  distributedcache:
+    image: redis
+
+  messagebroker:
+    image: rabbitmq:management
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: Microservices\Product\src
+      dockerfile: Services\Catalog\Catalog.API\Dockerfile
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - microservices_network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    networks:
+      - microservices_network
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: Microservices/Basket/src
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: Microservices/Basket/src
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}orderingapi
+    build:
+      context: Microservices/Order/src
+      dockerfile: Services/Order/Order.API/Dockerfile
+
+  yarpapigateway:
+    image: ${DOCKER_REGISTRY-}yarpapigateway
+    build:
+      context: Microservices/APiGateway/src
+      dockerfile: APiGateway/YarpAPIGateway/Dockerfile
+
+  # volumes:
+  # sqlserver_commondb:
+  # sqlserver_order:
+  # sqlserver_catalog:
+  # sqlserver_basket:
+
+  security:
+    image: ${DOCKER_REGISTRY-}security
+    build:
+      context: ./Microservices/Common
+      dockerfile: src/Security/Security/Dockerfile
+
+  logging.api:
+    image: ${DOCKER_REGISTRY-}loggingapi
+    build:
+      context: ./Microservices/Common
+      dockerfile: src/Logging/Logging.API/Dockerfile
+
+  shopping.web:
+    image: ${DOCKER_REGISTRY-}shoppingweb
+    build:
+      context: ./Microservices/ShoppingWeb/src
+      dockerfile: WebApps/Shopping.Web/Dockerfile
