@@ -1,51 +1,34 @@
-﻿using BuildingBlock.Messaging.Events;
-using BuildingBlock.Messaging.Producer;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Http;
-using RabbitMQ.Client;
 
 namespace Ordering.Application.Services
 {
-     public class LoggingService<T> : RabbitMqProducerBase<LogEntryMessage>, ILoggingService<T> where T : class
+     public class LoggingService<T> : ILoggingService<T> where T : class
      {
           private readonly IHttpContextAccessor _httpContextAccessor;
+          private readonly IProducerServices _producerService;
+          private readonly ILogger<LoggingService<T>> _logger;
           private readonly string _controllerName;
+          private const string TopicName = "log-entry-topic";
 
-          // Add IConnectionFactory and Exchange name to constructor
-          public LoggingService(IHttpContextAccessor httpContextAccessor, IConnectionFactory connectionFactory)
-           : base(connectionFactory, "log-entry-queue", "log-entry-queue")
+          public LoggingService(
+              IHttpContextAccessor httpContextAccessor,
+              IProducerServices producerService,
+              ILogger<LoggingService<T>> logger)
           {
                _httpContextAccessor = httpContextAccessor;
+               _producerService = producerService;
+               _logger = logger;
                _controllerName = typeof(T).Name;
           }
 
           private async Task PublishLogAsync(string level, string message, Exception? exception = null)
           {
-               var context = _httpContextAccessor.HttpContext;
-               var requestPath = context?.Request?.Path.ToString();
-               if (!string.IsNullOrEmpty(requestPath) && !requestPath.StartsWith("/"))
-               {
-                    requestPath = "/" + requestPath;
-               }
-               var logEntry = new LogEntryMessage
-               {
-                    Timestamp = DateTime.UtcNow,
-                    Level = level,
-                    Message = exception != null ? $"{message} - {exception.Message}" : message,
-                    ServiceName = "Order",
-                    Exception = exception?.ToString() ?? "No exception thrown",
-                    ControllerName = _controllerName,
-                    CorrelationId = Guid.NewGuid().ToString(),
-                    MachineName = Environment.MachineName,
-                    HttpMethod = context?.Request?.Method ?? "N/A",
-                    RequestPath = requestPath ?? "N/A",
-                    UserId = context?.User?.Identity?.Name ?? "anonymous",
-                    SourceIP = context?.Connection?.RemoteIpAddress?.ToString() ?? "unknown"
-               };
+               var logEntry = LogEntryFactory.Create(level, message, _controllerName, _httpContextAccessor, exception);
+               var jsonMessage = JsonSerializer.Serialize(logEntry);
 
-               await Publish(logEntry);
-               await Task.CompletedTask;
+               await _producerService.ProduceAsync(TopicName, jsonMessage);
           }
-
           public Task LogInformationAsync(string message) => PublishLogAsync("Information", message);
           public Task LogErrorAsync(string message, Exception exception) => PublishLogAsync("Error", message, exception);
           public Task LogWarningAsync(string message) => PublishLogAsync("Warning", message);

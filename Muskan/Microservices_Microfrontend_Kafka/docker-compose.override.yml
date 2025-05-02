@@ -7,8 +7,8 @@ services:
       - SA_PASSWORD=admin@123
     restart: always
     ports:
-      - "1434:1433"
-      - "1435:1433"
+      - "1433:1433"
+    
 
     networks:
       - microservices_network
@@ -26,13 +26,22 @@ services:
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: kafka
-    ports:
-      - "9092:9092"
+    ports:     
+     - "9092:9092"  # Expose port 9092 for host
+     - "9093:9093"  # Expose port 9093 internally within the Docker network
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      # KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:909
+      # KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT     
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093  # Kafka listening on all interfaces inside the container
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093, OUTSIDE://localhost:9092  # Kafka advertised listeners
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEX
+      KAFKA_LISTENER_NAME_INSIDE_LISTENER: INSIDE
+      KAFKA_LISTENER_NAME_OUTSIDE_LISTENER: OUTSIDE
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_LISTENER_PORT: 9093
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
@@ -71,6 +80,7 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:909
     depends_on:
       - commondb
     ports:
@@ -96,6 +106,7 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:909
 
     depends_on:
       - commondb
@@ -142,6 +153,7 @@ services:
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
       - FeatureManagement__OrderFullFillment=false
+      - Kafka__BootstrapServers=kafka:909
     depends_on:
       - commondb
       - messagebroker
@@ -182,6 +194,7 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:909
     ports:
       - "6006:8080"
       - "6066:8081"
@@ -202,6 +215,7 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:909
     ports:
       - "6007:8080"
       - "6067:8081"

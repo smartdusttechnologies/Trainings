@@ -1,97 +1,87 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using BuildingBlock.Messaging.Events;
+using Confluent.Kafka;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ordering.Application.Order.Commands.CreateOrder;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
 
 namespace Ordering.Application.Order.EventHandlers.Integration
 {
      public class BasketCheckOutEventHandler : BackgroundService
      {
-          private readonly IConnectionFactory _connectionFactory;
-          private readonly string _exchange = "basket_checkout_exchange";
-          private readonly string _queue = "basket_checkout_queue";
-          private readonly ISender _sender;
 
-          private readonly ILogger<BasketCheckOutEventHandler> _logger; // ILogger injected
-          public BasketCheckOutEventHandler(IConnectionFactory connectionFactory, ILogger<BasketCheckOutEventHandler> logger, ISender sender)
+          private readonly IServiceScopeFactory _scopeFactory;
+          private readonly ConsumerConfig _consumerConfig;
+
+          public BasketCheckOutEventHandler(IConfiguration configuration, IServiceScopeFactory scopeFactory)
           {
-               _connectionFactory = connectionFactory;
-               _logger = logger;  // Assign the injected logger
-               _sender = sender;
-          }
 
+               _scopeFactory = scopeFactory;
+               var kafkaConfig = configuration.GetSection("Kafka");
+               _consumerConfig = new ConsumerConfig
+               {
+                    BootstrapServers = kafkaConfig["BootstrapServers"],  // Address of the Kafka broker
+                    GroupId = "basket-checkout-consumer-group",// Consumer group ID for load balancing
+                    AutoOffsetReset = AutoOffsetReset.Earliest, // Start reading from the earliest message if no offset is committed
+                    EnableAutoCommit = true // Automatically commit offsets after consuming messages
+               };
+          }
           protected override async Task ExecuteAsync(CancellationToken stoppingToken)
           {
+               using var scope = _scopeFactory.CreateScope();
+               var logger = scope.ServiceProvider.GetRequiredService<ILoggingService<BasketCheckOutEventHandler>>();
+               var sender = scope.ServiceProvider.GetRequiredService<ISender>();
+
+               using var consumer = new ConsumerBuilder<Ignore, string>(_consumerConfig)
+                   .SetErrorHandler((_, e) => logger.LogErrorAsync($"Kafka Consumer Error: {e.Reason}", new Exception(e.Reason)))
+                   .Build();
+
+               consumer.Subscribe("basket_checkout_topic");
+               await logger.LogInformationAsync("Consumer subscribed to topic: basket_checkout_topic");
+
                try
                {
-                    var connection = await _connectionFactory.CreateConnectionAsync();
-                    var channel = await connection.CreateChannelAsync();
-
-                    _logger.LogInformation("Consumer: Connected to RabbitMQ.");
-
-                    await channel.ExchangeDeclareAsync(_exchange, ExchangeType.Fanout, durable: true);
-                    await channel.QueueDeclareAsync(_queue, durable: true, exclusive: false, autoDelete: false);
-                    await channel.QueueBindAsync(_queue, _exchange, "");
-
-                    var consumer = new AsyncEventingBasicConsumer(channel);
-                    consumer.ReceivedAsync += async (model, ea) =>
+                    while (!stoppingToken.IsCancellationRequested)
                     {
                          try
                          {
-                              var body = ea.Body.ToArray();
-                              _logger.LogInformation($"Body from the RabbitMq : {body}");
-                              var json = Encoding.UTF8.GetString(body);
-                              _logger.LogInformation($"Json from the RabbitMq : {json}");
-                              var message = JsonSerializer.Deserialize<BasketCheckOutEvents>(json);
-                              _logger.LogInformation($"Message from the RabbitMq : {message}");
-                              if (message != null)
+                              var result = consumer.Consume(stoppingToken);
+                              if (result != null)
                               {
-                                   _logger.LogInformation("Received a message from RabbitMQ.");
-                                   await HandleMessageAsync(message, stoppingToken); // Pass the CancellationToken here
+                                   var message = JsonSerializer.Deserialize<BasketCheckOutEvents>(result.Message.Value);
+
+                                   if (message != null)
+                                   {
+                                        await logger.LogInformationAsync("Order creation message sent to handler.");
+                                        var command = MapToCreateOrderCommand(message);
+                                        await sender.Send(command);
+                                        await logger.LogInformationAsync("Order creation command sent successfully.");
+                                   }
+                                   else
+                                   {
+                                        await logger.LogWarningAsync("Received null or invalid log entry message.");
+                                   }
                               }
-
-                              await channel.BasicAckAsync(ea.DeliveryTag, multiple: false);
                          }
-                         catch (Exception ex)
+                         catch (ConsumeException ex)
                          {
-                              await channel.BasicNackAsync(ea.DeliveryTag, multiple: false, requeue: true);
-                              _logger.LogError($"Error occurred while processing message: {ex.Message}");
+                              await logger.LogErrorAsync($"Consume error: {ex.Error.Reason}", ex);
                          }
-                    };
-
-                    await channel.BasicConsumeAsync(queue: _queue, autoAck: false, consumer: consumer);
+                    }
+               }
+               catch (OperationCanceledException)
+               {
+                    await logger.LogInformationAsync("Consumer cancellation requested. Exiting...");
                }
                catch (Exception ex)
                {
-                    _logger.LogError($"Consumer: Connection error: {ex.Message}");
+                    await logger.LogCriticalAsync($"Unhandled exception in consumer loop: {ex}", ex);
                }
-               await Task.CompletedTask;
-          }
-
-
-          // Method to handle the BasketCheckOutEvents
-          protected virtual async Task HandleMessageAsync(BasketCheckOutEvents message, CancellationToken cancellationToken)
-          {
-               try
+               finally
                {
-                    _logger.LogInformation($"Handling message: {message?.ToString()}");
-
-                    // Create order command from the event message
-                    var command = MapToCreateOrderCommand(message);
-
-                    // Send the CreateOrderCommand using ISender
-                    await _sender.Send(command);
-
-                    // Log the successful processing
-                    _logger.LogInformation("Order creation command sent successfully.");
-               }
-               catch (Exception ex)
-               {
-                    _logger.LogError($"Error processing the message: {ex.Message}");
-                    throw;
+                    consumer.Close();
+                    await logger.LogInformationAsync("Kafka consumer closed.");
                }
           }
           private CreateOrderCommand MapToCreateOrderCommand(BasketCheckOutEvents message)
@@ -122,4 +112,33 @@ namespace Ordering.Application.Order.EventHandlers.Integration
           }
      }
 
+
 }
+
+
+
+
+
+//// Method to handle the BasketCheckOutEvents
+//protected virtual async Task HandleMessageAsync(BasketCheckOutEvents message, CancellationToken cancellationToken)
+//          {
+//               try
+//               {
+//                    _logger.LogInformation($"Handling message: {message?.ToString()}");
+
+//                    // Create order command from the event message
+//                    var command = MapToCreateOrderCommand(message);
+
+//                    // Send the CreateOrderCommand using ISender
+//                    await _sender.Send(command);
+
+//                    // Log the successful processing
+//                    _logger.LogInformation("Order creation command sent successfully.");
+//               }
+//               catch (Exception ex)
+//               {
+//                    _logger.LogError($"Error processing the message: {ex.Message}");
+//                    throw;
+//               }
+//          }
+

@@ -11,6 +11,11 @@ var auth0Audience = builder.Configuration["Auth0:Audience"];
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddReverseProxy()
+    .ConfigureHttpClient((context, handler) =>
+    {
+         handler.AllowAutoRedirect = true;
+
+    })
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 builder.Services.AddRateLimiter(ratelimiter =>
 {

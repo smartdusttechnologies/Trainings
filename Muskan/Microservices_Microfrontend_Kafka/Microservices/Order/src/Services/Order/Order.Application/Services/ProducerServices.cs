@@ -1,6 +1,7 @@
 ﻿using Confluent.Kafka;
+using Microsoft.Extensions.Configuration;
 
-namespace Basket.API.Service
+namespace Ordering.Application.Services
 {
      // Kafka Overview:
      // Apache Kafka is a distributed event streaming platform used for building real-time data pipelines and streaming applications.
@@ -27,7 +28,6 @@ namespace Basket.API.Service
                     RetryBackoffMs = 100 // Time to wait before retrying
                };
                logger.LogInformation("Initializing Kafka producer...");
-               logger.LogInformation("Kafka bootstrap servers: {0}", configuration["Kafka:BootstrapServers"]);
 
                try
                {
@@ -58,6 +58,7 @@ namespace Basket.API.Service
           {
                try
                {
+                    logger.LogInformation($"Kafka message send to topic {topic}");
                     var result = await producer.ProduceAsync(topic, new Message<Null, string> { Value = message }, cancellationToken);
                     logger.LogInformation("Kafka message sent to {Offset}", result.TopicPartitionOffset);
 

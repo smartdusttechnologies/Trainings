@@ -1,5 +1,4 @@
-﻿using BuildingBlock.Messaging.Consumer;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
 
@@ -30,7 +29,7 @@ namespace BuildingBlock.Messaging.RabbitMQ
                          Password = password,
                     };
                });
-               services.AddHostedService<RabbitMqConsumerBackgroundService>();
+               //services.AddHostedService<RabbitMqConsumerBackgroundService>();
                return services;
           }
      }

@@ -4,8 +4,8 @@ using BuildingBlock.Messaging.RabbitMQ;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
-
 using Ordering.Application.Middleware;
+using Ordering.Application.Order.EventHandlers.Integration;
 namespace Ordering.Application
 {
      public static class DependencyInjection
@@ -24,19 +24,21 @@ namespace Ordering.Application
                service.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                // Register HTTP clients
 
-                service.AddHttpClient<TokenValidator>()
-                    .ConfigurePrimaryHttpMessageHandler(() =>
-                    {
+               service.AddHttpClient<TokenValidator>()
+                   .ConfigurePrimaryHttpMessageHandler(() =>
+                   {
                         var handler = new HttpClientHandler
                         {
-                            ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                             ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
                         };
                         return handler;
-                    });
-           
-service.AddHttpClient();
+                   });
+
+               service.AddHttpClient();
                // Register logging service
+               service.AddScoped<IProducerServices, ProducerServices>();
                service.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
+               service.AddHostedService<BasketCheckOutEventHandler>();
                //service.AddMediatR(cfg =>
                //{
                //    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
