@@ -53,7 +53,8 @@ namespace Ordering.Application.Order.EventHandlers.Integration
 
                                    if (message != null)
                                    {
-                                        await logger.LogInformationAsync("Order creation message sent to handler.");
+                                         await logger.LogInformationAsync("Order creation message sent to handler.");
+                                         await logger.LogInformationAsync($"Message BasketCheckout : {message}");
                                         var command = MapToCreateOrderCommand(message);
                                         await sender.Send(command);
                                         await logger.LogInformationAsync("Order creation command sent successfully.");

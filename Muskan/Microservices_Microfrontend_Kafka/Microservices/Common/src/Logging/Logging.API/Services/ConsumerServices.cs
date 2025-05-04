@@ -20,13 +20,14 @@ namespace Logging.API.Services
           private readonly ConsumerConfig _consumerConfig;
 
           public ConsumerServices(ILogger<ConsumerServices> logger,
-              IServiceScopeFactory scopeFactory)
+              IServiceScopeFactory scopeFactory ,IConfiguration configuration)
           {
-               _logger = logger;
+               _logger = logger; 
                _scopeFactory = scopeFactory;
+               var kafkaConfig = configuration.GetSection("Kafka");
                _consumerConfig = new ConsumerConfig
                {
-                    BootstrapServers = "localhost:9092", // Address of the Kafka broker
+                    BootstrapServers = kafkaConfig["BootstrapServers"], // Address of the Kafka broker
                     GroupId = "log-consumer-group",// Consumer group ID for load balancing
                     AutoOffsetReset = AutoOffsetReset.Earliest, // Start reading from the earliest message if no offset is committed
                     EnableAutoCommit = true // Automatically commit offsets after consuming messages

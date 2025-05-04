@@ -24,11 +24,12 @@ namespace Basket.API.Baskets.CheckOutBasket
           private readonly RabbitMQConnectionFactory _factorr;
           private const string TopicName = "basket_checkout_topic";
 
-          public CheckOutBasketHandler(IBasketRepository repository, IMapper mapper, ILoggingService<CheckOutBasketHandler> logger, RabbitMQConnectionFactory factorr)
+          public CheckOutBasketHandler(IBasketRepository repository,    IProducerServices producerService,  IMapper mapper, ILoggingService<CheckOutBasketHandler> logger, RabbitMQConnectionFactory factorr)
           {
                _repository = repository;
                _mapper = mapper;
                _logger = logger;
+               _producerService = producerService;
                _factorr = factorr;
           }
 

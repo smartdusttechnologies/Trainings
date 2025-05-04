@@ -152,7 +152,7 @@ namespace Basket.API.Controllers
                var result = await sender.Send(command);
                var response = mapper.Map<CheckOutBasketResponse>(result);
 
-               return CreatedAtAction(nameof(CheckoutAsync), response);
+               return Ok(response);
           }
      }
 }
