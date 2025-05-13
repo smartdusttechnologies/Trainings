@@ -25,7 +25,7 @@
                     }
 
                     logger.LogInformation("Bearer token cleaned and extracted.");
-                    logger.LogInformation($"{token} token cleaned and extracted.");
+                    logger.LogInformation($"token cleaned and extracted : {token} .");
                     return token;
                }
 

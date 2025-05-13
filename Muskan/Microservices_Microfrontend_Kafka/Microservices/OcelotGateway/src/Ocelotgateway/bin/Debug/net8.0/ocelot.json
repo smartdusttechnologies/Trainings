@@ -1,0 +1,51 @@
+{
+     "Routes": [
+          {
+               "DownstreamPathTemplate": "/{catch-all}",
+               "DownstreamScheme": "http",
+               "DownstreamHostAndPorts": [
+                    {
+                         "Host": "catalog.api",
+                         "Port": 8080
+                    }
+               ],
+               "UpstreamPathTemplate": "/catalog-service/{catch-all}",
+               "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+          },
+          {
+               "DownstreamPathTemplate": "/{catch-all}",
+               "DownstreamScheme": "http",
+               "DownstreamHostAndPorts": [
+                    {
+                         "Host": "basket.api",
+                         "Port": 8080
+                    }
+               ],
+               "UpstreamPathTemplate": "/basket-service/{catch-all}",
+               "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]              
+          },
+          {
+               "DownstreamPathTemplate": "/{catch-all}",
+               "DownstreamScheme": "http",
+               "DownstreamHostAndPorts": [
+                    {
+                         "Host": "ordering.api",
+                         "Port": 8080
+                    }
+               ],
+               "UpstreamPathTemplate": "/ordering-service/{catch-all}",
+               "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],              
+               "RateLimitOptions": {
+                    "ClientWhitelist": [],
+                    "EnableRateLimiting": true,
+                    "Period": "1s",
+                    "PeriodTimespan": 1,
+                    "Limit": 5
+               }
+          }
+     ],
+     "GlobalConfiguration": {
+          "BaseUrl": "http://localhost:6004",
+          "RequestIdKey": "OcRequestId"
+     }
+}

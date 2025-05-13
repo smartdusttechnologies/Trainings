@@ -82,5 +82,12 @@ app.UseAuthorization();
 
 // Configure the HTTP request pipeline
 app.UseRateLimiter();
-app.MapReverseProxy();
+app.Use(async (context, next) =>
+{
+     context.Request.EnableBuffering(); // Allow multiple reads
+     await next();
+});
+
+app.MapReverseProxy(); // YARP should come AFTER buffering
+
 app.Run();

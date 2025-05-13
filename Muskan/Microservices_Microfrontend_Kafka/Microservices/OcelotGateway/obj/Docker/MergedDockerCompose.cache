@@ -1,0 +1,50 @@
+name: dockercompose8963615051116558325
+services:
+  ocelotgateway:
+    build:
+      context: D:\Github\Training\Muskan\Microservices_Microfrontend_Kafka\Microservices\OcelotGateway
+      dockerfile: src/Ocelotgateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ASPNETCORE_HTTPS_PORTS: "8081"
+    image: ocelotgateway
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "6004"
+        protocol: tcp
+      - mode: ingress
+        target: 8081
+        published: "6064"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\muska\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+networks:
+  default:
+    name: dockercompose8963615051116558325_default

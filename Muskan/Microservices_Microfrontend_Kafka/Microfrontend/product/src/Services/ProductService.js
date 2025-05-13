@@ -1,4 +1,4 @@
-const API_SERVER = "https://localhost:6064/catalog-service";
+const API_SERVER = "http://localhost:6004/catalog-service";
 
 export const getProduct = () => {
   return fetch(`${API_SERVER}/products`)

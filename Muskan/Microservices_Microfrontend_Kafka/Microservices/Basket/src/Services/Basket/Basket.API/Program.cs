@@ -77,7 +77,15 @@ builder.Services.AddHttpClient<TokenValidator>()
 //    });
 
 //builder.Services.AddTransient<RabbitMqProducerBase<BasketCheckOutEvents>, BasketCheckOutEventProducer>();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 // Registering AutoMapper (Scan the assembly for profiles)
 builder.Services.AddAutoMapper(assembly);
 builder.Services.AddControllers();
@@ -100,8 +108,9 @@ if (app.Environment.IsDevelopment())
 //app.MapCarter();
 app.UseMigration().GetAwaiter().GetResult();
 app.UseExceptionHandler(options => { });
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCors("AllowAll");
 // app.UseMiddleware<TokenValidator>();
 
 // app.UseHttpsRedirection();

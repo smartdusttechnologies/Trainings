@@ -37,11 +37,23 @@ export default function BasketList() {
 
         // Using the loadBasket function for fetching basket data
         const basketData = await loadBasket(user, getAccessTokenSilently);
+
         setItems(basketData.items);
         console.log(basketData);
 
         setTotalPrice(basketData.totalPrice);
       } catch (err) {
+        
+  if (
+    err.response &&
+    err.response.status === 404 &&
+    err.response.data?.detail?.includes("Basket")
+  ) {
+    setError("You don't have a basket yet. Start shopping to add items!");
+  } else {
+    setError("Failed to load basket. Please try again later.");
+  }
+
         console.error("Error fetching basket:", err);
         setError("Failed to load basket.");
       } finally {

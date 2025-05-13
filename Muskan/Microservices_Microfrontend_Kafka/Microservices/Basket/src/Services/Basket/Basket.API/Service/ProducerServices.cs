@@ -8,7 +8,7 @@ namespace Basket.API.Service
      // - Broker: A Kafka server that stores and serves messages.
      // - Topic: A category to which messages are sent by producers and from which messages are consumed by consumers.
      // - Producer: An application that sends messages to a Kafka topic.
-
+ 
      public class ProducerServices : IProducerServices
      {
           private readonly IProducer<Null, string> producer;
@@ -57,7 +57,9 @@ namespace Basket.API.Service
           public async Task ProduceAsync(string topic, string message, CancellationToken cancellationToken = default)
           {
                try
-               {
+               { 
+                    logger.LogInformation($"Kafka message sent to {topic}");
+                    logger.LogInformation($"Kafka message is  line 62 :  {message}");
                     var result = await producer.ProduceAsync(topic, new Message<Null, string> { Value = message }, cancellationToken);
                     logger.LogInformation("Kafka message sent to {Offset}", result.TopicPartitionOffset);
 

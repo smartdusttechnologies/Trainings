@@ -19,7 +19,15 @@ namespace Ordering.API
                service.AddExceptionHandler<CustomExceptionHandler>();
                service.AddHealthChecks()
                     .AddSqlServer(configuration.GetConnectionString("SqlServerDb"));
-
+service.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
                return service;
           }
@@ -27,10 +35,10 @@ namespace Ordering.API
           {
                //app.MapCarter();
                app.UseExceptionHandler(options => { });
-                app.UseHttpsRedirection();
+               //  app.UseHttpsRedirection();
                app.UseRouting();
                // app.UseMiddleware<TokenValidator>();
-              
+              app.UseCors("AllowAll");
                app.MapControllers();
                app.UseHealthChecks("/healths",
                    new HealthCheckOptions

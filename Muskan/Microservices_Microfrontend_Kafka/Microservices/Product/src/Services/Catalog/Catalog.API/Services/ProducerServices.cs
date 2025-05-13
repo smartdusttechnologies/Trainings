@@ -55,6 +55,7 @@
           {
                try
                {
+                      logger.LogInformation("Kafka message sent to ProduceAsync method");
                     var result = await producer.ProduceAsync(topic, new Message<Null, string> { Value = message }, cancellationToken);
                     logger.LogInformation("Kafka message sent to {Offset}", result.TopicPartitionOffset);
 

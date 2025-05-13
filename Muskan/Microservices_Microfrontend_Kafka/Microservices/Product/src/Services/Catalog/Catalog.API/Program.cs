@@ -46,7 +46,15 @@ builder.Services.AddHttpClient<TokenValidator>()
 
 // Registering AutoMapper (Scan the assembly for profiles)
 builder.Services.AddAutoMapper(assembly);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 // Register Controllers (API Controllers)
 builder.Services.AddControllers();
 var app = builder.Build();
@@ -59,8 +67,9 @@ if (app.Environment.IsDevelopment())
 }
 await app.UseMigration();
 app.UseExceptionHandler(option => { });
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCors("AllowAll");
 app.MapControllers();
 app.UseHealthChecks("/health",
     new HealthCheckOptions

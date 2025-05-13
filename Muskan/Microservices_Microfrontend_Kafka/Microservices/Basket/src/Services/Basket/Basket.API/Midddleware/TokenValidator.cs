@@ -29,22 +29,22 @@
         {
             try
             {
-                _logger.LogInformation("Validating token...");
-                var token = context.GetBearerToken();
-
-                if (string.IsNullOrWhiteSpace(token))
-                {
+                 _logger.LogInformation("Validating token...");
+               var token = context.GetBearerToken();
+               //var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+               if (string.IsNullOrWhiteSpace(token))
+               {
                     _logger.LogWarning("No token provided in Authorization header.");
                     var problem = Results.Problem(
-                        title: "Unauthorized",
-                        detail: "No token provided in Authorization header.",
-                        statusCode: StatusCodes.Status401Unauthorized
-                    );
+                     title: "Unauthorized",
+                     detail: "No token provided in Authorization header.",
+                     statusCode: StatusCodes.Status401Unauthorized
+                 );
                     await problem.ExecuteAsync(context);
+                    _logger.LogInformation("return false ");
                     return false;
-                }
-
-                _logger.LogInformation("Token provided: {token}", token);
+               }
+               _logger.LogInformation("Token provided: {token}", token);
                 var baseUrl = _configuration["CommonService:Auth_Url"];
                 
                 var response = await _client.PostAsJsonAsync($"{baseUrl}/Security/validate-token", new { Token = token });

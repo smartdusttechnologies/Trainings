@@ -3,7 +3,7 @@
      public class TokenValidator(HttpClient client, IConfiguration configuration, ILogger<TokenValidator> logger)
      {
           public async Task<bool> ValidateToken(HttpContext context)
-          { 
+          {
                logger.LogInformation("Validating token...");
                var token = context.GetBearerToken();
                //var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
@@ -19,7 +19,7 @@
                     logger.LogInformation("return false ");
                     return false;
                }
-               logger.LogInformation("Token provided: {token}", token);
+               logger.LogInformation("Token provided: {token}", token); 
                var baseUrl = configuration["CommonService:Auth_Url"];
                var response = await client.PostAsJsonAsync($"{baseUrl}/Security/validate-token", new { Token = token });
                if (!response.IsSuccessStatusCode)

@@ -18,7 +18,7 @@ namespace Basket.API.Controllers
      public class BasketController(IMapper mapper, ISender sender, ILoggingService<BasketController> logger , TokenValidator tokenValidator) : Controller
      {
           [HttpPost]
-          [ProducesResponseType(typeof(StoreBasketResponse), StatusCodes.Status201Created)]
+          [ProducesResponseType(typeof(StoreBasketResponse), StatusCodes.Status200OK)]
           [ProducesResponseType(StatusCodes.Status500InternalServerError)]
           public async Task<IActionResult> StoreBasket([FromBody] StoreBasketRequest request)
           {
@@ -36,9 +36,13 @@ namespace Basket.API.Controllers
                     var command = mapper.Map<StoreBasketCommand>(request);
                     var result = await sender.Send(command);
                     var response = mapper.Map<StoreBasketResponse>(result);
+return Ok(response);
 
-                    return StatusCode(StatusCodes.Status201Created, response);
                }
+                  catch (HttpRequestException ex)
+    {
+        return Problem("Authentication service unavailable.", statusCode: StatusCodes.Status503ServiceUnavailable);
+    }
                catch (Exception ex)
                {
                     await logger.LogErrorAsync("Error storing basket", ex);

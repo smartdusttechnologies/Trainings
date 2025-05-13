@@ -104,8 +104,9 @@ namespace Ordering.Application.Order.EventHandlers.Integration
                    Status: OrderStatus.Pending,
                    OrderItems:
                    [
-
-                   new OrderItemDTO(orderId, message.CustomerId,  1, message.TotalPrice),
+                new OrderItemDTO(orderId, new Guid("5334c996-8457-4cf0-815c-ed2b77c4ff61"), 2, 500),
+                new OrderItemDTO(orderId, new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914"), 1, 400),               
+               //     new OrderItemDTO(orderId, message.CustomerId,  1, message.TotalPrice),
                         //new OrderItemDTO(orderId, new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914"), 1, 400)
                    ]
                    );

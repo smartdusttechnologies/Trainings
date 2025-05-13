@@ -17,6 +17,8 @@ services:
     build:
       context: Microservices\Product\src
       dockerfile: Services\Catalog\Catalog.API\Dockerfile
+    networks:
+      - microservices_network
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -58,25 +60,38 @@ services:
     build:
       context: Microservices/Basket/src
       dockerfile: Services/Basket/Basket.API/Dockerfile
-
+    networks:
+      - microservices_network
   discount.grpc:
     image: ${DOCKER_REGISTRY-}discountgrpc
     build:
       context: Microservices/Basket/src
       dockerfile: Services/Discount/Discount.Grpc/Dockerfile
-
+    networks:
+      - microservices_network
   ordering.api:
     image: ${DOCKER_REGISTRY-}orderingapi
     build:
       context: Microservices/Order/src
       dockerfile: Services/Order/Order.API/Dockerfile
+    networks:
+      - microservices_network
 
-  yarpapigateway:
-    image: ${DOCKER_REGISTRY-}yarpapigateway
+  ocelotapigateway:
+    image: ocelotapigateway
     build:
-      context: Microservices/APiGateway/src
-      dockerfile: APiGateway/YarpAPIGateway/Dockerfile
+     context: ./Microservices/OcelotGateway  
+     dockerfile: src/Ocelotgateway/Dockerfile 
+    networks:
+      - microservices_network
 
+  # yarpapigateway:
+  #   image: ${DOCKER_REGISTRY-}yarpapigateway
+  #   build:
+  #     context: Microservices/APiGateway/src
+  #     dockerfile: APiGateway/YarpAPIGateway/Dockerfile
+  #   networks:
+  #     - microservices_network
   # volumes:
   # sqlserver_commondb:
   # sqlserver_order:
@@ -88,18 +103,22 @@ services:
     build:
       context: ./Microservices/Common
       dockerfile: src/Security/Security/Dockerfile
-
+    networks:
+      - microservices_network
   logging.api:
     image: ${DOCKER_REGISTRY-}loggingapi
     build:
       context: ./Microservices/Common
       dockerfile: src/Logging/Logging.API/Dockerfile
-
+    networks:
+      - microservices_network
   shopping.web:
     image: ${DOCKER_REGISTRY-}shoppingweb
     build:
       context: ./Microservices/ShoppingWeb/src
       dockerfile: WebApps/Shopping.Web/Dockerfile
+    networks:
+      - microservices_network
   container:
     image: container
     build:
@@ -177,4 +196,7 @@ services:
       - "3006:3006"
     networks:
       - microservices_network
+networks:
+  microservices_network:
+    driver: bridge
 
