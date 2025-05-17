@@ -10,3 +10,5 @@
 Muskan/Microfrontend/auth/.env
 /Muskan/MIcroservices2/Common/src/BuildingBlock/BuildingBlock/obj
 /Muskan/Microservices_Microfrontend/Microservices/Common/.vs
+/Muskan/Microservices_Microfrontend_Kafka/Microservices/OcelotGateway/src/Ocelotgateway/obj
+/Muskan/Microservices_Microfrontend_Kafka/Microservices/OcelotGateway/src/Ocelotgateway/obj

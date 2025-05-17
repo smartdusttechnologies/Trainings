@@ -1,40 +1,40 @@
 {
      "Routes": [
           {
-               "DownstreamPathTemplate": "/{catch-all}",
-               "DownstreamScheme": "http",
+               "DownstreamPathTemplate": "/{everything}",
+               "DownstreamScheme": "https",
                "DownstreamHostAndPorts": [
                     {
                          "Host": "catalog.api",
-                         "Port": 8080
+                         "Port": 8081
                     }
                ],
-               "UpstreamPathTemplate": "/catalog-service/{catch-all}",
+               "UpstreamPathTemplate": "/catalog-service/{everything}",
                "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
           },
           {
-               "DownstreamPathTemplate": "/{catch-all}",
-               "DownstreamScheme": "http",
+               "DownstreamPathTemplate": "/{everything}",
+               "DownstreamScheme": "https",
                "DownstreamHostAndPorts": [
                     {
                          "Host": "basket.api",
-                         "Port": 8080
+                         "Port": 8081
                     }
                ],
-               "UpstreamPathTemplate": "/basket-service/{catch-all}",
-               "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]              
+               "UpstreamPathTemplate": "/basket-service/{everything}",
+               "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
           },
           {
-               "DownstreamPathTemplate": "/{catch-all}",
-               "DownstreamScheme": "http",
+               "DownstreamPathTemplate": "/{everything}",
+               "DownstreamScheme": "https",
                "DownstreamHostAndPorts": [
                     {
                          "Host": "ordering.api",
-                         "Port": 8080
+                         "Port": 8081
                     }
                ],
-               "UpstreamPathTemplate": "/ordering-service/{catch-all}",
-               "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],              
+               "UpstreamPathTemplate": "/ordering-service/{everything}",
+               "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
                "RateLimitOptions": {
                     "ClientWhitelist": [],
                     "EnableRateLimiting": true,
@@ -45,7 +45,7 @@
           }
      ],
      "GlobalConfiguration": {
-          "BaseUrl": "http://localhost:6004",
+          "BaseUrl": "https://localhost:6064",
           "RequestIdKey": "OcRequestId"
      }
 }

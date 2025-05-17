@@ -14,6 +14,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Ocelotgateway/Ocelotgateway.csproj", "src/Ocelotgateway/"]
 RUN dotnet restore "./src/Ocelotgateway/Ocelotgateway.csproj"
+COPY Certs/devcert.pfx /https/devcert.pfx
 COPY . .
 WORKDIR "/src/src/Ocelotgateway"
 RUN dotnet build "./Ocelotgateway.csproj" -c $BUILD_CONFIGURATION -o /app/build

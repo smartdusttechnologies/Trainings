@@ -10,6 +10,10 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - ASPNETCORE_Kestrel__Endpoints__Https__Certificate__Path=/root/.aspnet/https/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+
 
     # depends_on:
     # commondb :
@@ -27,7 +31,7 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro  
     networks:
       - microservices_network
 

@@ -182,7 +182,7 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - microservices_network
-  yarpapigateway:
+  ocelotapigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -199,8 +199,28 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      
     networks:
-      - microservices_network
+      - microservices_network    
+  # yarpapigateway:
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #     - ASPNETCORE_HTTP_PORTS=8080
+  #     - ASPNETCORE_HTTPS_PORTS=8081
+  #   depends_on:
+  #     - catalog.api
+  #     - basket.api
+  #     - ordering.api
+  #   ports:
+  #     - "6004:8080"
+  #     - "6064:8081"
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  #     - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  #   networks:
+  #     - microservices_network
   security:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -246,8 +266,8 @@ services:
       - ASPNETCORE_HTTPS_PORTS=8081
       - ApiSetting__GatewayAddress=http://yarpapigateway:8080
 
-    depends_on:
-      - yarpapigateway
+    # depends_on:
+    #   - yarpapigateway
     ports:
       - "6005:8080"
       - "6065:8081"
