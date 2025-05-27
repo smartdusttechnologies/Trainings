@@ -3,6 +3,7 @@ using BuildingBlock.Messaging.MassTransit;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
+using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();
@@ -86,6 +87,14 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
      });
 });
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(httpsOptions =>
+    {
+        httpsOptions.ServerCertificate = new X509Certificate2("/app/Certs/devcert.pfx", "1234");
+    });
+});
+
 // Registering AutoMapper (Scan the assembly for profiles)
 builder.Services.AddAutoMapper(assembly);
 builder.Services.AddControllers();

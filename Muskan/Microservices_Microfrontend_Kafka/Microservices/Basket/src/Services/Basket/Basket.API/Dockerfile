@@ -7,7 +7,7 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
- 
+
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -29,4 +29,19 @@ RUN dotnet publish "./Basket.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+USER root
+
+RUN apt-get update && apt-get install -y ca-certificates openssl && update-ca-certificates
+
+RUN mkdir -p /app/Certs
+COPY Services/Basket/Basket.API/Certs/devcert.pfx /app/Certs/
+
+# Extract public cert and add to trusted CA store
+RUN openssl pkcs12 -in /app/Certs/devcert.pfx -nokeys -out /usr/local/share/ca-certificates/devcert.crt -passin pass:1234 && \
+    update-ca-certificates
+
+RUN chmod 644 /usr/local/share/ca-certificates/devcert.crt
+
+USER $APP_UID
 ENTRYPOINT ["dotnet", "Basket.API.dll"]

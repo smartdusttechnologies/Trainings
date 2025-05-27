@@ -1,0 +1,7 @@
+3. Create a self-signed certificate with the SAN extension
+
+openssl x509 -req -in devcert.csr -signkey devcert.key -out devcert.crt -days 365 -extensions req_ext -extfile openssl-san.cnf
+2. Generate a private key and certificate signing request (CSR)
+
+openssl req -new -nodes -out devcert.csr -newkey rsa:2048 -keyout devcert.key -config openssl-san.cnf
+openssl pkcs12 -export -out devcert.pfx -inkey devcert.key -in devcert.crt
