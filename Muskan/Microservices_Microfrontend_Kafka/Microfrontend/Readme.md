@@ -2,6 +2,8 @@
 
 ## Overview
 
+![Overview](./Readme/Overview.png)
+
 This project is part of a microfrontend architecture designed to create a modular and scalable web application. The microfrontends involved in this project include **Auth**, **Dashboard**, **Container**, and **Marketing (Landing Page)**, each responsible for distinct features of the application. The goal is to provide a seamless user experience by integrating these microfrontends into a host application using Webpack Module Federation.
 
 - **Auth Microfrontend**: Handles user authentication, including login and registration.

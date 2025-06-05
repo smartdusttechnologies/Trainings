@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_SERVER = "http://localhost:6004/basket-service";
+const API_SERVER = "https://localhost:6064/basket-service";
 
 export const StoreBasket = (items, username, token) => {
   if (!Array.isArray(items) || items.length === 0) {

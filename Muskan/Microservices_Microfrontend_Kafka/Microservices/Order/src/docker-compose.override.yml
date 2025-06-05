@@ -10,6 +10,7 @@ services:
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
       - FeatureManagement__OrderFullFillment=false
+      - CommonService__Auth_Url=https://security:8081
     # depends_on:
     #   - commondb      
     #   - messagebroker

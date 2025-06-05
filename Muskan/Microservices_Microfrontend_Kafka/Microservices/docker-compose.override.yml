@@ -99,6 +99,15 @@ services:
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       - ConnectionStrings__SqlServerDb=Server=commondb;Database=CatalogDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+      - MessageBroker__Host=amqp://messagebroker:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:9093
+      - CommonService__Auth_Url=https://security:8081
     depends_on:
       - commondb
     ports:
@@ -121,9 +130,15 @@ services:
       - ConnectionStrings__SqlServerDb=Server=commondb;Database=BasketDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
       - ConnectionStrings__Redis=distributedcache:6379
       - GrpcSetting__DiscountUrl=https://discount.grpc:8081
-      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+      - CommonService__Auth_Url=https://security:8081
 
     depends_on:
       - commondb
@@ -165,10 +180,16 @@ services:
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       - ConnectionStrings__SqlServerDb=Server=commondb;Database=OrderDb;User Id=sa;Password=admin@123;TrustServerCertificate=True
-      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:9093
       - FeatureManagement__OrderFullFillment=false
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+      - CommonService__Auth_Url=https://security:8081
     depends_on:
       - commondb
       - messagebroker
@@ -187,10 +208,15 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-    depends_on:
-      - catalog.api
-      - basket.api
-      - ordering.api
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+      - CommonService__Auth_Url=https://security:8081
+    # depends_on:
+    #   - catalog.api
+    #   - basket.api
+    #   - ordering.api
     ports:
       - "6004:8080"
       - "6064:8081"
@@ -199,9 +225,9 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      
+
     networks:
-      - microservices_network    
+      - microservices_network
   # yarpapigateway:
   #   environment:
   #     - ASPNETCORE_ENVIRONMENT=Development
@@ -229,6 +255,11 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
     ports:
       - "6006:8080"
       - "6066:8081"
@@ -249,6 +280,11 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
     ports:
       - "6007:8080"
       - "6067:8081"
@@ -259,23 +295,23 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - microservices_network
-  shopping.web:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
-      - ApiSetting__GatewayAddress=http://yarpapigateway:8080
+  # shopping.web:
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #     - ASPNETCORE_HTTP_PORTS=8080
+  #     - ASPNETCORE_HTTPS_PORTS=8081
+  #     - ApiSetting__GatewayAddress=http://yarpapigateway:8080
 
-    # depends_on:
-    #   - yarpapigateway
-    ports:
-      - "6005:8080"
-      - "6065:8081"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-    networks:
-      - microservices_network
+  #   # depends_on:
+  #   #   - yarpapigateway
+  #   ports:
+  #     - "6005:8080"
+  #     - "6065:8081"
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  #   networks:
+  #     - microservices_network
 networks:
   microservices_network:
     driver: bridge

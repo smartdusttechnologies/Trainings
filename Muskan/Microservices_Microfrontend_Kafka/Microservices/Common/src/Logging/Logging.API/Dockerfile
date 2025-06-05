@@ -28,4 +28,18 @@ RUN dotnet publish "./Logging.API.csproj" -c $BUILD_CONFIGURATION -o /app/publis
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+USER root
+
+RUN apt-get update && apt-get install -y ca-certificates openssl && update-ca-certificates
+
+RUN mkdir -p /app/Certs
+COPY src/Security/Security/Certs/devcert.pfx /app/Certs/
+
+# Extract public cert and add to trusted CA store
+RUN openssl pkcs12 -in /app/Certs/devcert.pfx -nokeys -out /usr/local/share/ca-certificates/devcert.crt -passin pass:1234 && \
+    update-ca-certificates
+
+RUN chmod 644 /usr/local/share/ca-certificates/devcert.crt
+
+USER $APP_UID
 ENTRYPOINT ["dotnet", "Logging.API.dll"]

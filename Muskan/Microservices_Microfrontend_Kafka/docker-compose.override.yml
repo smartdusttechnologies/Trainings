@@ -8,11 +8,10 @@ services:
     restart: always
     ports:
       - "1433:1433"
-    
 
     networks:
       - microservices_network
-  zookeeper: 
+  zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
     environment:
@@ -26,17 +25,17 @@ services:
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: kafka
-    ports:     
-     - "9092:9092"  # Expose port 9092 for host
-     - "9093:9093"  # Expose port 9093 internally within the Docker network
+    ports:
+      - "9092:9092" # Expose port 9092 for host
+      - "9093:9093" # Expose port 9093 internally within the Docker network
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       # KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:909
       # KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT     
-      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092  # Kafka listening on all interfaces inside the container
-      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093, OUTSIDE://localhost:9092  # Kafka advertised listeners
+      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092 # Kafka listening on all interfaces inside the container
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093, OUTSIDE://localhost:9092 # Kafka advertised listeners
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
       KAFKA_LISTENER_NAME_INSIDE_LISTENER: INSIDE
       KAFKA_LISTENER_NAME_OUTSIDE_LISTENER: OUTSIDE
@@ -47,7 +46,6 @@ services:
       - zookeeper
     networks:
       - microservices_network
-
 
   distributedcache:
     image: redis:latest
@@ -81,6 +79,11 @@ services:
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
       - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+      - CommonService__Auth_Url=https://security:8081
     depends_on:
       - commondb
     ports:
@@ -107,6 +110,11 @@ services:
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
       - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+      - CommonService__Auth_Url=https://security:8081
 
     depends_on:
       - commondb
@@ -124,7 +132,7 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - microservices_network
-      
+
   discount.grpc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -154,6 +162,12 @@ services:
       - MessageBroker__Password=guest
       - FeatureManagement__OrderFullFillment=false
       - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+      - CommonService__Auth_Url=https://security:8081
+
     depends_on:
       - commondb
       - messagebroker
@@ -173,10 +187,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-    depends_on:
-      - catalog.api
-      - basket.api
-      - ordering.api
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
+    # depends_on:
+    #   - catalog.api
+    #   - basket.api
+    #   - ordering.api
     ports:
       - "6004:8080"
       - "6064:8081"
@@ -186,7 +204,7 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
-      - microservices_network    
+      - microservices_network
   # yarpapigateway:
   #   environment:
   #     - ASPNETCORE_ENVIRONMENT=Development
@@ -215,6 +233,10 @@ services:
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
       - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
     ports:
       - "6006:8080"
       - "6066:8081"
@@ -236,6 +258,10 @@ services:
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
       - Kafka__BootstrapServers=kafka:9093
+      - Kestrel__Endpoints__Http__Url=http://+:8080
+      - Kestrel__Endpoints__Https__Url=https://+:8081
+      - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
+      - Kestrel__Endpoints__Https__Certificate__Password=1234
     ports:
       - "6007:8080"
       - "6067:8081"
@@ -253,8 +279,6 @@ services:
       - ASPNETCORE_HTTPS_PORTS=8081
       - ApiSetting__GatewayAddress=http://yarpapigateway:8080
 
-   
-    
     ports:
       - "6005:8080"
       - "6065:8081"

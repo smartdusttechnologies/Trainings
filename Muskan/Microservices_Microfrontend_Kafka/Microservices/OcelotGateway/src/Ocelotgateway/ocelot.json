@@ -2,11 +2,11 @@
      "Routes": [
           {
                "DownstreamPathTemplate": "/{everything}",
-               "DownstreamScheme": "https",
+               "DownstreamScheme": "http",
                "DownstreamHostAndPorts": [
                     {
                          "Host": "catalog.api",
-                         "Port": 8081
+                         "Port": 8080
                     }
                ],
                "UpstreamPathTemplate": "/catalog-service/{everything}",
@@ -14,11 +14,11 @@
           },
           {
                "DownstreamPathTemplate": "/{everything}",
-               "DownstreamScheme": "https",
+               "DownstreamScheme": "http",
                "DownstreamHostAndPorts": [
                     {
                          "Host": "basket.api",
-                         "Port": 8081
+                         "Port": 8080
                     }
                ],
                "UpstreamPathTemplate": "/basket-service/{everything}",
@@ -26,11 +26,11 @@
           },
           {
                "DownstreamPathTemplate": "/{everything}",
-               "DownstreamScheme": "https",
+               "DownstreamScheme": "http",
                "DownstreamHostAndPorts": [
                     {
                          "Host": "ordering.api",
-                         "Port": 8081
+                         "Port": 8080
                     }
                ],
                "UpstreamPathTemplate": "/ordering-service/{everything}",

@@ -13,7 +13,7 @@ services:
       - Kestrel__Endpoints__Https__Url=https://+:8081
       - Kestrel__Endpoints__Https__Certificate__Path=/app/Certs/devcert.pfx
       - Kestrel__Endpoints__Https__Certificate__Password=1234
-
+      - CommonService__Auth_Url=https://security:8081
 
     # depends_on:
     # commondb :
@@ -31,8 +31,8 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro  
-          # - ./Certs:/app/certs:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+        # - ./Certs:/app/certs:ro
     networks:
       - microservices_network
 

@@ -15,4 +15,5 @@ subjectAltName = @alt_names
 DNS.1 = localhost
 DNS.2 = basket-service
 DNS.3 = order-service
+DNS.3 = basket.api
 # Add more service hostnames here as needed

@@ -102,8 +102,8 @@ services:
       context: .
       dockerfile: Common/src/Logging/Logging.API/Dockerfile
 
-  shopping.web:
-    image: ${DOCKER_REGISTRY-}shoppingweb
-    build:
-      context: .
-      dockerfile: WebApps/Shopping.Web/Dockerfile
+  # shopping.web:
+  #   image: ${DOCKER_REGISTRY-}shoppingweb
+  #   build:
+  #     context: .
+  #     dockerfile: WebApps/Shopping.Web/Dockerfile

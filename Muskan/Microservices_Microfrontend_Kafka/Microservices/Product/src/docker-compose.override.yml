@@ -1,5 +1,4 @@
- 
-services:  
+services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -27,7 +26,6 @@ services:
     networks:
       - microservices_network
 
-
   catalog.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -37,11 +35,12 @@ services:
       - MessageBroker__Host=amqp://messagebroker:5672
       - MessageBroker__Username=guest
       - MessageBroker__Password=guest
+      - CommonService__Auth_Url=https://security:8081
     # depends_on:
     #     - commondb
     ports:
-    - "6000:8080"
-    - "6060:8081"
+      - "6000:8080"
+      - "6060:8081"
 
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
@@ -50,7 +49,7 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - microservices_network
-       
+
 networks:
   microservices_network:
-    external: true 
+    external: true

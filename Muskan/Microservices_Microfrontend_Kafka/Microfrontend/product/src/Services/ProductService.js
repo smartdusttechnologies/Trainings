@@ -1,11 +1,25 @@
-const API_SERVER = "http://localhost:6004/catalog-service";
+import axios from "axios";
 
-export const getProduct = () => {
-  return fetch(`${API_SERVER}/products`)
-    .then((res) => res.json())
-    .then((data) => data.products);
+const API_SERVER = "https://localhost:6064/catalog-service";
+
+// Get all products
+export const getProduct = async () => {
+  try {
+    const response = await axios.get(`${API_SERVER}/products`);
+    return response.data.products;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error; // Re-throw if you want to handle it further up
+  }
 };
 
-export const getProductById = (id) => {
-  return fetch(`${API_SERVER}/products/${id}`).then((res) => res.json());
+// Get product by ID
+export const getProductById = async (id) => {
+  try {
+    const response = await axios.get(`${API_SERVER}/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching product with ID ${id}:`, error);
+    throw error;
+  }
 };
